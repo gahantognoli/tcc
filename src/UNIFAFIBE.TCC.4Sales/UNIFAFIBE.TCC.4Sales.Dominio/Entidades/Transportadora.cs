@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -15,6 +16,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Telefone { get; set; }
         public string InformacoesAdicionais { get; set; }
 
-        public virtual Pedido Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

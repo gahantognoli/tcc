@@ -17,17 +17,23 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Contato { get; set; }
         public int QuantidadeTotalItens { get; set; }
         public decimal ValorTotal { get; set; }
+        public Guid RepresentadaId { get; set; }
         public Guid ClienteId { get; set; }
         public Guid CondicaoPagamentoId { get; set; }
         public Guid TransportadoraId { get; set; }
         public Guid StatusPedidoId { get; set; }
         public Guid TipoPedidoId { get; set; }
+        public Guid UsuarioId { get; set; }
 
         public virtual Cliente Cliente { get; set; }
         public virtual CondicaoPagamento CondicaoPagamento { get; set; }
         public virtual Transportadora Transportadora { get; set; }
         public virtual StatusPedido StatusPedido { get; set; }
         public virtual TipoPedido TipoPedido { get; set; }
-        public ICollection<Faturamento> Faturamentos { get; set; }
+        public virtual Representada Representada { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual ICollection<Faturamento> Faturamentos { get; set; }
+        public virtual ICollection<ItemPedido> ItensPedido { get; set; }
+
     }
 }

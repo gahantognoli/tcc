@@ -48,7 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigEntidades\ClienteConfig.cs" />
+    <Compile Include="ConfigEntidades\CondicaoPagamentoConfig.cs" />
+    <Compile Include="ConfigEntidades\ContatoClienteConfig.cs" />
+    <Compile Include="ConfigEntidades\ContatoRepresentadaConfig.cs" />
+    <Compile Include="ConfigEntidades\EnderecoClienteConfig.cs" />
+    <Compile Include="ConfigEntidades\FaturamentoConfig.cs" />
+    <Compile Include="ConfigEntidades\ItemPedidoConfig.cs" />
+    <Compile Include="ConfigEntidades\MetaConfig.cs" />
+    <Compile Include="ConfigEntidades\ParcelasConfig.cs" />
+    <Compile Include="ConfigEntidades\PedidoConfig.cs" />
+    <Compile Include="ConfigEntidades\PerfilConfig.cs" />
+    <Compile Include="ConfigEntidades\PessoaFisicaConfig.cs" />
+    <Compile Include="ConfigEntidades\PessoaJuridicaConfig.cs" />
+    <Compile Include="ConfigEntidades\ProdutoConfig.cs" />
+    <Compile Include="ConfigEntidades\RepresentadaConfig.cs" />
+    <Compile Include="ConfigEntidades\SegmentoConfig.cs" />
+    <Compile Include="ConfigEntidades\StatusPedidoConfig.cs" />
+    <Compile Include="ConfigEntidades\TipoPedidoConfig.cs" />
+    <Compile Include="ConfigEntidades\TransportadoraConfig.cs" />
+    <Compile Include="ConfigEntidades\UsuarioConfig.cs" />
+    <Compile Include="ConfigEntidades\UsuarioRepresentadaConfig.cs" />
     <Compile Include="Contexto\Contexto.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +80,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ConfigEntidades\" />
     <Folder Include="Repositorios\" />
   </ItemGroup>
   <ItemGroup>

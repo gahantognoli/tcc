@@ -9,7 +9,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         {
             RepresentadaId = new Guid();
         }
-
         public Guid RepresentadaId { get; set; }
         public string CNPJ { get; set; }
         public string RazaoSocial { get; set; }
@@ -20,7 +19,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Foto { get; set; }
         public string InformacoesAdicionais { get; set; }
 
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<UsuarioRepresentada> UsuariosRepresentadas { get; set; }
         public virtual ICollection<Produto> Produtos { get; set; }
         public virtual ICollection<CondicaoPagamento> CondicoesPagamento { get; set; }
         public virtual ICollection<ContatoRepresentada> ContatosRepresentada { get; set; }

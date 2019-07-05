@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -10,5 +11,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         }
         public Guid SegmentoId { get; set; }
         public string Descricao { get; set; }
+
+        public virtual ICollection<Cliente> Clientes { get; set; }
     }
 }

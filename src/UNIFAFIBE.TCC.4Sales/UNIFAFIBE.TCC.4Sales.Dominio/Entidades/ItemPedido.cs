@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {

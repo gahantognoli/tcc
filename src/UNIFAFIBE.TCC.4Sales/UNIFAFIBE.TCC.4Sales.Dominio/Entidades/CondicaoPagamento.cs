@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -13,5 +14,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public decimal ValorMinimo { get; set; }
         public virtual Guid RepresentadaId { get; set; }
         public virtual Representada Representada { get; set; }
+
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }
