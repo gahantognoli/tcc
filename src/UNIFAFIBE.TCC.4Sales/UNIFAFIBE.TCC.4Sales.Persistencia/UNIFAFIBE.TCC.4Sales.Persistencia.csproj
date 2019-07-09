@@ -69,9 +69,30 @@
     <Compile Include="ConfigEntidades\TransportadoraConfig.cs" />
     <Compile Include="ConfigEntidades\UsuarioConfig.cs" />
     <Compile Include="ConfigEntidades\UsuarioRepresentadaConfig.cs" />
-    <Compile Include="Contexto\Contexto.cs" />
+    <Compile Include="Contexto\TCC_Contexto.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\ClienteRepositorio.cs" />
+    <Compile Include="Repositorios\CondicaoPagamentoRepositorio.cs" />
+    <Compile Include="Repositorios\ContatoClienteRepositorio.cs" />
+    <Compile Include="Repositorios\ContatoRepresentadaRepositorio.cs" />
+    <Compile Include="Repositorios\EnderecoClienteRepositorio.cs" />
+    <Compile Include="Repositorios\FaturamentoRepositorio.cs" />
+    <Compile Include="Repositorios\PessoaFisicaRepositorio.cs" />
+    <Compile Include="Repositorios\ParcelaRepositorio.cs" />
+    <Compile Include="Repositorios\ItemPedidoRepositorio.cs" />
+    <Compile Include="Repositorios\MetaRepositorio.cs" />
+    <Compile Include="Repositorios\PedidoRepositorio.cs" />
+    <Compile Include="Repositorios\PerfilRepositorio.cs" />
+    <Compile Include="Repositorios\PessoaJuridicaRepositorio.cs" />
+    <Compile Include="Repositorios\ProdutoRepositorio.cs" />
+    <Compile Include="Repositorios\Repositorio.cs" />
+    <Compile Include="Repositorios\RepresentadaRepositorio.cs" />
+    <Compile Include="Repositorios\SegmentoRepositorio.cs" />
+    <Compile Include="Repositorios\StatusPedidoRepositorio.cs" />
+    <Compile Include="Repositorios\TipoPedidoRepositorio.cs" />
+    <Compile Include="Repositorios\TransportadoraRepositorio.cs" />
+    <Compile Include="Repositorios\UsuarioRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Dominio\UNIFAFIBE.TCC.4Sales.Dominio.csproj">
@@ -79,9 +100,7 @@
       <Name>UNIFAFIBE.TCC.4Sales.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositorios\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

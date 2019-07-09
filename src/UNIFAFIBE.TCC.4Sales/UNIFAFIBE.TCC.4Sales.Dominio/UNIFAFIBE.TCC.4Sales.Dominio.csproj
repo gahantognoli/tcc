@@ -44,6 +44,7 @@
     <Compile Include="Interfaces\Repositorios\IClienteRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IFaturamentoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IItemPedidoRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\IMetaRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IParcelaRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IPedidoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IPessoaFisicaRepositorio.cs" />
