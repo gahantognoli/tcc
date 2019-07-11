@@ -71,6 +71,24 @@
     <Compile Include="ConfigEntidades\UsuarioRepresentadaConfig.cs" />
     <Compile Include="Contexto\TCC_Contexto.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Procedures\CondicaoPagamentoProcedures.cs" />
+    <Compile Include="Procedures\ContatoClienteProcedures.cs" />
+    <Compile Include="Procedures\ContatoRepresentadaProcedures.cs" />
+    <Compile Include="Procedures\EnderecoClienteProcedures.cs" />
+    <Compile Include="Procedures\FaturamentoProcedures.cs" />
+    <Compile Include="Procedures\ItemPedidoProcedures.cs" />
+    <Compile Include="Procedures\MetaProcedures.cs" />
+    <Compile Include="Procedures\ParcelaProcedures.cs" />
+    <Compile Include="Procedures\PerfilProcedures.cs" />
+    <Compile Include="Procedures\PessoaFisicaProcedures.cs" />
+    <Compile Include="Procedures\PessoaJuridicaProcedures.cs" />
+    <Compile Include="Procedures\ProdutoProcedures.cs" />
+    <Compile Include="Procedures\RepresentadaProcedures.cs" />
+    <Compile Include="Procedures\SegmentoProcedures.cs" />
+    <Compile Include="Procedures\StatusPedidoProcedures.cs" />
+    <Compile Include="Procedures\TipoPedidoProcedures.cs" />
+    <Compile Include="Procedures\TransportadoraProcedures.cs" />
+    <Compile Include="Procedures\UsuarioProcedures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\ClienteRepositorio.cs" />
     <Compile Include="Repositorios\CondicaoPagamentoRepositorio.cs" />
@@ -93,6 +111,8 @@
     <Compile Include="Repositorios\TipoPedidoRepositorio.cs" />
     <Compile Include="Repositorios\TransportadoraRepositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Dominio\UNIFAFIBE.TCC.4Sales.Dominio.csproj">

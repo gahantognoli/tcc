@@ -17,6 +17,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public Guid PedidoId { get; set; }
 
         public virtual Pedido Pedido { get; set; }
-        public ICollection<Parcela> Parcelas { get; set; }
+        public virtual ICollection<Parcela> Parcelas { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Pedido> ObterPorCliente(int clienteId)
+        public IEnumerable<Pedido> ObterPorCliente(string cliente)
         {
             throw new NotImplementedException();
         }
@@ -53,7 +53,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Pedido> ObterPorVendedor(int usuarioId)
+        public IEnumerable<Pedido> ObterPorVendedor(string usuario)
         {
             throw new NotImplementedException();
         }

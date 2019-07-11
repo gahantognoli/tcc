@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
@@ -25,7 +20,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasPrecision(18, 2)
                 .IsRequired();
 
-            Property(p => p.DataPamento)
+            Property(p => p.DataPagamento)
                 .IsRequired();
         }
     }
