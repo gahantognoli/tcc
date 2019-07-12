@@ -24,6 +24,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasPrecision(18, 2)
                 .IsRequired();
 
+            //Ignore(v => v.ValidationResult);
         }
     }
 }

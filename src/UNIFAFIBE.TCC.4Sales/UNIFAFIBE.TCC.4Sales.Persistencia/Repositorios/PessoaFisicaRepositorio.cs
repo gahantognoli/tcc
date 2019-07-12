@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Infra.Helpers;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Contexto;
+using UNIFAFIBE.TCC._4Sales.Persistencia.Procedures;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
@@ -17,7 +21,14 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override Cliente ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            Cliente retornoCliente;
+
+            retornoCliente = cn.Query<Cliente>(PessoaFisicaProcedures.ObterPorId.GetDescription(),
+                new { id = id },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retornoCliente;
         }
 
         public override IEnumerable<Cliente> ObterTodos()
@@ -27,12 +38,26 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public IEnumerable<PessoaFisica> ObterPorCPF(string cpf)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaFisica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaFisica>(PessoaFisicaProcedures.ObterPorCPF.GetDescription(),
+                new { cpf = cpf },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
 
         public IEnumerable<PessoaFisica> ObterPorNome(string nome)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaFisica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaFisica>(PessoaFisicaProcedures.ObterPorNome.GetDescription(),
+                new { nome = nome },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
     }
 }

@@ -29,6 +29,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .WithRequired(p => p.Produto)
                 .HasForeignKey(p => p.ProdutoId);
 
+            Ignore(v => v.ValidationResult);
+
             ToTable("Produtos");
         }
     }

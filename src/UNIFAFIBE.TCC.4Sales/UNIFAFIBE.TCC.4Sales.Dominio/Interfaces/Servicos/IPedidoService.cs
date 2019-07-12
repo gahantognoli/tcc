@@ -20,7 +20,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         IEnumerable<Pedido> ObterPorCliente(string cliente);
         IEnumerable<Pedido> ObterPorVendedor(string usuario);
         IEnumerable<Pedido> ObterPorStatus(int statusId);
-        IEnumerable<Pedido> ObterPorTipo(int pedidoId);
+        IEnumerable<Pedido> ObterPorTipo(int tipoId);
         IEnumerable<Pedido> ObterPorRepresentada(int representadaId);
         IEnumerable<Pedido> ObterTodos();
     }

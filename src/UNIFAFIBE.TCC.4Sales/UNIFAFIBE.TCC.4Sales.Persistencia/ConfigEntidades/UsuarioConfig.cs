@@ -39,6 +39,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .WithRequired(p => p.Usuario)
                 .HasForeignKey(p => p.UsuarioId);
 
+            Ignore(v => v.ValidationResult);
+
             ToTable("Usuarios");
         }
     }

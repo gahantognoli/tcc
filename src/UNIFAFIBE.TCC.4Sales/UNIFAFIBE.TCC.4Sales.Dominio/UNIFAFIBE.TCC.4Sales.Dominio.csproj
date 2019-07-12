@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DomainValidation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DomainValidation.1.0.0\lib\net453\DomainValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
@@ -79,6 +82,7 @@
     <Compile Include="Interfaces\Repositorios\IUsuarioRepositorio.cs" />
     <Compile Include="Interfaces\Servicos\IFaturamentoService.cs" />
     <Compile Include="Interfaces\Servicos\IItemPedidoService.cs" />
+    <Compile Include="Interfaces\Servicos\IMetaService.cs" />
     <Compile Include="Interfaces\Servicos\IParcelaService.cs" />
     <Compile Include="Interfaces\Servicos\IPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\IPessoaJuridicaService.cs" />
@@ -97,9 +101,32 @@
     <Compile Include="Interfaces\Servicos\IRepresentadaService.cs" />
     <Compile Include="Interfaces\Servicos\ISegmentoService.cs" />
     <Compile Include="Interfaces\Servicos\IUsuarioService.cs" />
+    <Compile Include="Servicos\CondicaoPagamentoService.cs" />
+    <Compile Include="Servicos\ContatoClienteService.cs" />
+    <Compile Include="Servicos\ContatoRepresentadaService.cs" />
+    <Compile Include="Servicos\EnderecoClienteService.cs" />
+    <Compile Include="Servicos\FaturamentoService.cs" />
+    <Compile Include="Servicos\ItemPedidoService.cs" />
+    <Compile Include="Servicos\MetaService.cs" />
+    <Compile Include="Servicos\ParcelaService.cs" />
+    <Compile Include="Servicos\PedidoService.cs" />
+    <Compile Include="Servicos\PerfilService.cs" />
+    <Compile Include="Servicos\PessoaFisicaService.cs" />
+    <Compile Include="Servicos\PessoaJuridicaService.cs" />
+    <Compile Include="Servicos\ProdutoService.cs" />
+    <Compile Include="Servicos\RepresentadaService.cs" />
+    <Compile Include="Servicos\SegmentoService.cs" />
+    <Compile Include="Servicos\StatusPedidoService.cs" />
+    <Compile Include="Servicos\TipoPedidoService.cs" />
+    <Compile Include="Servicos\TransportadoraService.cs" />
+    <Compile Include="Servicos\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Servicos\" />
+    <Folder Include="Especificacoes\" />
+    <Folder Include="Validacoes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

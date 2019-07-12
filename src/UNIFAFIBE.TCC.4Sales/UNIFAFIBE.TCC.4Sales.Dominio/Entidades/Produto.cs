@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
 using System.Collections.Generic;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
@@ -16,8 +17,14 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string UnidadeMedida { get; set; }
         public decimal Preco { get; set; }
         public Guid RepresentadaId { get; set; }
+        public ValidationResult ValidationResult { get; set; }
 
         public virtual Representada Representada { get; set; }
         public ICollection<ItemPedido> ItensPedido { get; set; }
+        public bool EhValido()
+        {
+            //ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

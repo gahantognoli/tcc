@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Infra.Helpers;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Contexto;
+using UNIFAFIBE.TCC._4Sales.Persistencia.Procedures;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
@@ -14,7 +19,14 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override Cliente ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            Cliente retornoCliente;
+
+            retornoCliente = cn.Query<Cliente>(PessoaJuridicaProcedures.ObterPorId.GetDescription(),
+                new { id = id },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retornoCliente;
         }
 
         public override IEnumerable<Cliente> ObterTodos()
@@ -24,22 +36,50 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public IEnumerable<PessoaJuridica> ObterPorCPNJ(string cnpj)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaJuridica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterPorCNPJ.GetDescription(),
+                new { cnpj = cnpj },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
 
         public IEnumerable<PessoaJuridica> ObterPorInscricaoEstadual(string inscricaoEstadual)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaJuridica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterPorInscricaoEstadual.GetDescription(),
+                new { inscricaoEstadual = inscricaoEstadual },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
 
         public IEnumerable<PessoaJuridica> ObterPorNomeFantasia(string nomeFantasia)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaJuridica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterPorNomeFantasia.GetDescription(),
+                new { nomeFantasia = nomeFantasia },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
 
         public IEnumerable<PessoaJuridica> ObterPorRazaoSocial(string razaoSocial)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaJuridica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterPorRazaoSocial.GetDescription(),
+                new { razaoSocial = razaoSocial },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
     }
 }

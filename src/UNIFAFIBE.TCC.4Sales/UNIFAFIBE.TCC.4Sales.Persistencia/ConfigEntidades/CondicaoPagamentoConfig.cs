@@ -20,6 +20,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .WithRequired(c => c.CondicaoPagamento)
                 .HasForeignKey(c => c.CondicaoPagamentoId);
 
+            //Ignore(v => v.ValidationResult);
+
             ToTable("CondicoesPagamentos");
         }
     }

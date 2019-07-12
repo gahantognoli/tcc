@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         CondicaoPagamento Adicionar(CondicaoPagamento condicaoPagamento);
         CondicaoPagamento Atualizar(CondicaoPagamento condicaoPagamento);
         void Remover(int id);
-        CondicaoPagamento ObterPorId();
+        CondicaoPagamento ObterPorId(int id);
         IEnumerable<CondicaoPagamento> ObterTodos(int representadaId);
     }
 }

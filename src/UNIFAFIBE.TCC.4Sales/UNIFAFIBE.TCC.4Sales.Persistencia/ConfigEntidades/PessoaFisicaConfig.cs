@@ -21,6 +21,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasMaxLength(100)
                 .IsRequired();
 
+            Ignore(v => v.ValidationResult);
+
             ToTable("PessoaFisica");
         }
     }

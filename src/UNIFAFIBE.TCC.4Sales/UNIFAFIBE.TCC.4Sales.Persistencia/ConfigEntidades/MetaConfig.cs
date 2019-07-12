@@ -18,6 +18,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
 
             Property(m => m.DataFim)
                 .IsRequired();
+
+            //Ignore(v => v.ValidationResult);
         }
     }
 }

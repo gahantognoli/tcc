@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -14,7 +15,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public decimal ValorComissao { get; set; }
         public DateTime DataPagamento { get; set; }
         public Guid FaturamentoId { get; set; }
-
+        public ValidationResult ValidationResult { get; set; }
         public virtual Faturamento Faturamento { get; set; }
+
+        public bool EhValido()
+        {
+            //ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

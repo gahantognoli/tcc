@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {

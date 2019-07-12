@@ -31,11 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DomainValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Slapper, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slapper.AutoMapper.1.0.0.9\lib\Slapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -79,6 +86,7 @@
     <Compile Include="Procedures\ItemPedidoProcedures.cs" />
     <Compile Include="Procedures\MetaProcedures.cs" />
     <Compile Include="Procedures\ParcelaProcedures.cs" />
+    <Compile Include="Procedures\PedidoProcedures.cs" />
     <Compile Include="Procedures\PerfilProcedures.cs" />
     <Compile Include="Procedures\PessoaFisicaProcedures.cs" />
     <Compile Include="Procedures\PessoaJuridicaProcedures.cs" />
@@ -118,6 +126,10 @@
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Dominio\UNIFAFIBE.TCC.4Sales.Dominio.csproj">
       <Project>{a75cfaa7-f774-441f-b7af-b23238f7a79f}</Project>
       <Name>UNIFAFIBE.TCC.4Sales.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Infra.Helpers\UNIFAFIBE.TCC.4Sales.Infra.Helpers.csproj">
+      <Project>{0fe1dfc7-6303-4dd2-88a9-dc80b20cfb48}</Project>
+      <Name>UNIFAFIBE.TCC.4Sales.Infra.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -22,6 +22,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
 
             Property(p => p.DataPagamento)
                 .IsRequired();
+
+            Ignore(v => v.ValidationResult);
         }
     }
 }

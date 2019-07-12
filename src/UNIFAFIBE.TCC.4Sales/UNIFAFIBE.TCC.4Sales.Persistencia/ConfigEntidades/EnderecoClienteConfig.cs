@@ -37,6 +37,9 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasMaxLength(2)
                 .IsFixedLength()
                 .IsRequired();
+
+            //Ignore(v => v.ValidationResult);
+
         }
     }
 }

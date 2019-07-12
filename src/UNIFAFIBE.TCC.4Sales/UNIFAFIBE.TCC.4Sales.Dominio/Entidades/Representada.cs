@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
 using System.Collections.Generic;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
@@ -18,11 +19,18 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Telefone { get; set; }
         public string Foto { get; set; }
         public string InformacoesAdicionais { get; set; }
+        public ValidationResult ValidationResult { get; set; }
 
         public virtual ICollection<Pedido> Pedidos { get; set; }
         public virtual ICollection<UsuarioRepresentada> UsuariosRepresentadas { get; set; }
         public virtual ICollection<Produto> Produtos { get; set; }
         public virtual ICollection<CondicaoPagamento> CondicoesPagamento { get; set; }
         public virtual ICollection<ContatoRepresentada> ContatosRepresentada { get; set; }
+
+        public bool EhValido()
+        {
+            //ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

@@ -29,6 +29,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsFixedLength()
                 .IsRequired();
 
+            Ignore(v => v.ValidationResult);
+
             ToTable("PessoaJuridica");
         }
     }

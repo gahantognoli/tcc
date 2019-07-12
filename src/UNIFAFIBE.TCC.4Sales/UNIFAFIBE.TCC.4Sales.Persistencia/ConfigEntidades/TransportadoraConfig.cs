@@ -33,6 +33,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
             HasMany(t => t.Pedidos)
                 .WithRequired(t => t.Transportadora)
                 .HasForeignKey(t => t.TransportadoraId);
+
+            Ignore(v => v.ValidationResult);
         }
     }
 }

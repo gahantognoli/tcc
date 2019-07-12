@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Infra.Helpers;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Contexto;
+using UNIFAFIBE.TCC._4Sales.Persistencia.Procedures;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
@@ -14,7 +19,14 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override ContatoRepresentada ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            ContatoRepresentada retornoContatoRepresentada;
+
+            retornoContatoRepresentada = cn.Query<ContatoRepresentada>(ContatoRepresentadaProcedures.ObterPorId.GetDescription(),
+                new { id = id },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retornoContatoRepresentada;
         }
 
         public override IEnumerable<ContatoRepresentada> ObterTodos()
@@ -24,7 +36,14 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public IEnumerable<ContatoRepresentada> ObterTodos(int representadaId)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<ContatoRepresentada> retornoContatoRepresentada;
+
+            retornoContatoRepresentada = cn.Query<ContatoRepresentada>(ContatoRepresentadaProcedures.ObterTodos.GetDescription(),
+                new { representadaId = representadaId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoContatoRepresentada;
         }
     }
 }

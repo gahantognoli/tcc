@@ -17,6 +17,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .WithRequired(s => s.Segmento)
                 .HasForeignKey(s => s.SegmentoId);
 
+            Ignore(v => v.ValidationResult);
+
             ToTable("Segmentos");
         }
     }

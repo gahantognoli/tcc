@@ -60,6 +60,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
               .WithRequired(u => u.Representada)
               .HasForeignKey(u => u.RepresentadaId);
 
+            Ignore(v => v.ValidationResult);
+
             ToTable("Representadas");
         }
     }

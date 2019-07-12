@@ -17,6 +17,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .WithRequired(u => u.Perfil)
                 .HasForeignKey(u => u.PerfilId);
 
+            //Ignore(v => v.ValidationResult);
+
             ToTable("Perfis");
         }
     }

@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Infra.Helpers;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Contexto;
+using UNIFAFIBE.TCC._4Sales.Persistencia.Procedures;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
@@ -13,49 +18,112 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Pedido ObterPorId(int id)
+        public Pedido ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            Pedido retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorId.GetDescription(), 
+                new { id = id}, 
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retornoPedido;
         }
 
         public override IEnumerable<Pedido> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterTodos.GetDescription(),
+                null,
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
 
         public IEnumerable<Pedido> ObterPorCliente(string cliente)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorCliente.GetDescription(),
+                new { cliente = cliente },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
 
         public IEnumerable<Pedido> ObterPorDataEmissao(DateTime dataEmissao)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorDataEmissao.GetDescription(),
+                new { dataEmissao = dataEmissao },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
 
         public Pedido ObterPorNumeroPedido(int numeroPedido)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            Pedido retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorNumeroPedido.GetDescription(),
+                new { numeroPedido = numeroPedido },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retornoPedido;
         }
 
         public IEnumerable<Pedido> ObterPorRepresentada(int representadaId)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorRepresentada.GetDescription(),
+                new { representadaId = representadaId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
 
         public IEnumerable<Pedido> ObterPorStatus(int statusId)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorStatus.GetDescription(),
+                new { statusId = statusId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
 
-        public IEnumerable<Pedido> ObterPorTipo(int pedidoId)
+        public IEnumerable<Pedido> ObterPorTipo(int tipoId)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorTipo.GetDescription(),
+                new { tipoId = tipoId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
 
         public IEnumerable<Pedido> ObterPorVendedor(string usuario)
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorVendedor.GetDescription(),
+                new { usuario = usuario },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
     }
 }
