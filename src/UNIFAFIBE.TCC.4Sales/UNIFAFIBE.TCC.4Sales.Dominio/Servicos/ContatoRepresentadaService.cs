@@ -17,11 +17,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public ContatoRepresentada Adicionar(ContatoRepresentada contatoRepresentada)
         {
+            if (!contatoRepresentada.EhValido())
+                return contatoRepresentada;
+
             return _contatoRepresentadaRepositorio.Adicionar(contatoRepresentada);
         }
 
         public ContatoRepresentada Atualizar(ContatoRepresentada contatoRepresentada)
         {
+            if (!contatoRepresentada.EhValido())
+                return contatoRepresentada;
+
             return _contatoRepresentadaRepositorio.Atualizar(contatoRepresentada);
         }
 
@@ -31,19 +37,19 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             GC.SuppressFinalize(this);
         }
 
-        public ContatoRepresentada ObterPorId(int id)
+        public ContatoRepresentada ObterPorId(Guid id)
         {
             return _contatoRepresentadaRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<ContatoRepresentada> ObterTodos(int representadaId)
+        public IEnumerable<ContatoRepresentada> ObterTodos(Guid representadaId)
         {
             return _contatoRepresentadaRepositorio.ObterTodos(representadaId);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
-            throw new NotImplementedException();
+            _contatoRepresentadaRepositorio.Remover(id);
         }
     }
 }

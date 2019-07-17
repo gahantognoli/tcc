@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Produto ObterPorId(int id)
+        public override Produto ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Produto retornoProduto;
@@ -34,7 +34,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Produto> ObterPorFaixaDePreco(decimal valorInicial, decimal valorFinal, int representadaId)
+        public IEnumerable<Produto> ObterPorFaixaDePreco(decimal valorInicial, decimal valorFinal, Guid representadaId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Produto> retornoProduto;
@@ -46,7 +46,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoProduto;
         }
 
-        public IEnumerable<Produto> ObterPorNome(string nome, int representadaId)
+        public IEnumerable<Produto> ObterPorNome(string nome, Guid representadaId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Produto> retornoProduto;
@@ -58,7 +58,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoProduto;
         }
 
-        public IEnumerable<Produto> ObterTodos(int representadaId)
+        public IEnumerable<Produto> ObterTodos(Guid representadaId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Produto> retornoProduto;

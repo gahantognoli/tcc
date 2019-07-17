@@ -18,7 +18,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Faturamento ObterPorId(int id)
+        public override Faturamento ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Faturamento retornoFaturamento;
@@ -35,7 +35,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Faturamento> ObterTodos(int pedidoId)
+        public IEnumerable<Faturamento> ObterTodos(Guid pedidoId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Faturamento> retornoFaturamento;

@@ -194,6 +194,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Aplicacao\UNIFAFIBE.TCC.4Sales.Aplicacao.csproj">
+      <Project>{8D3BA9E5-6361-4148-BEF1-F2C126386EC3}</Project>
+      <Name>UNIFAFIBE.TCC.4Sales.Aplicacao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Transversal\UNIFAFIBE.TCC.4Sales.Transversal.csproj">
       <Project>{DC676AD7-DB76-4A3C-B8E0-5BD80FAEBD8D}</Project>
       <Name>UNIFAFIBE.TCC.4Sales.Transversal</Name>

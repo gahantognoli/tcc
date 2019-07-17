@@ -1,5 +1,7 @@
 ﻿using DomainValidation.Validation;
 using System;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.Parcelas;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -18,9 +20,19 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public ValidationResult ValidationResult { get; set; }
         public virtual Faturamento Faturamento { get; set; }
 
-        public bool EhValido()
+        public bool EhValido(IFaturamentoRepositorio faturamentoRepositorio)
         {
-            //ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
+            return this.EstaApto(faturamentoRepositorio);
+        }
+
+        public bool EstaConsistente()
+        {
+            return true;
+        }
+
+        public bool EstaApto(IFaturamentoRepositorio faturamentoRepositorio)
+        {
+            ValidationResult = new ParcelaEstaAptaValidation(faturamentoRepositorio).Validate(this);
             return ValidationResult.IsValid;
         }
     }

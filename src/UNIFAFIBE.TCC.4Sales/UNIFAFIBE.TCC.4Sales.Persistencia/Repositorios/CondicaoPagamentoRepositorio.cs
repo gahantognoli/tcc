@@ -17,7 +17,19 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override CondicaoPagamento ObterPorId(int id)
+        public IEnumerable<CondicaoPagamento> ObterPorDescricao(string descricao)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<CondicaoPagamento> retornoCondicaoPagamento;
+
+            retornoCondicaoPagamento = cn.Query<CondicaoPagamento>(CondicaoPagamentoProcedures.ObterPorDescricao.GetDescription(),
+                new { descricao = descricao },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCondicaoPagamento;
+        }
+
+        public override CondicaoPagamento ObterPorId(Guid id)
         {
            var cn = Db.Database.Connection;
            CondicaoPagamento retornoCondicaoPagamento;
@@ -34,7 +46,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CondicaoPagamento> ObterTodos(int representadaId)
+        public IEnumerable<CondicaoPagamento> ObterTodos(Guid representadaId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<CondicaoPagamento> retornoCondicaoPagamento;

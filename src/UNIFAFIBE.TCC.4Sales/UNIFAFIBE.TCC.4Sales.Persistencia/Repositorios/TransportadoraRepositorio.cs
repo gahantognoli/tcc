@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Transportadora ObterPorId(int id)
+        public override Transportadora ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Transportadora retornoTransportadora;

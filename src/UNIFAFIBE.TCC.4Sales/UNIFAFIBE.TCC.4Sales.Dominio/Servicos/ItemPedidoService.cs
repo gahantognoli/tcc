@@ -17,11 +17,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public ItemPedido Adicionar(ItemPedido itemPedido)
         {
+            if (!itemPedido.EhValido())
+                return itemPedido;
+
             return _itemPedidoRepositorio.Adicionar(itemPedido);
         }
 
         public ItemPedido Atualizar(ItemPedido itemPedido)
         {
+            if (!itemPedido.EhValido())
+                return itemPedido;
+
             return _itemPedidoRepositorio.Atualizar(itemPedido);
         }
 
@@ -31,17 +37,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             GC.SuppressFinalize(this);
         }
 
-        public ItemPedido ObterPorId(int id)
+        public ItemPedido ObterPorId(Guid id)
         {
             return _itemPedidoRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<ItemPedido> ObterTodos(int pedidoId)
+        public IEnumerable<ItemPedido> ObterTodos(Guid pedidoId)
         {
             return _itemPedidoRepositorio.ObterTodos(pedidoId);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _itemPedidoRepositorio.Remover(id);
         }

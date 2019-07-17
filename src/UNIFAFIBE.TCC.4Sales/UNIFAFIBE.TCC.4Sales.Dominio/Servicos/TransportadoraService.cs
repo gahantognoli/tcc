@@ -47,7 +47,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _transportadoraRepositorio.ObterPorEstado(estado);
         }
 
-        public Transportadora ObterPorId(int id)
+        public Transportadora ObterPorId(Guid id)
         {
             return _transportadoraRepositorio.ObterPorId(id);
         }
@@ -62,7 +62,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _transportadoraRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _transportadoraRepositorio.Remover(id);
         }

@@ -17,11 +17,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public CondicaoPagamento Adicionar(CondicaoPagamento condicaoPagamento)
         {
+            if (!condicaoPagamento.EhValido(_condicaoPagamentoRepositorio))
+                return condicaoPagamento;
+
             return _condicaoPagamentoRepositorio.Adicionar(condicaoPagamento);
         }
 
         public CondicaoPagamento Atualizar(CondicaoPagamento condicaoPagamento)
         {
+            //if (!condicaoPagamento.EstaConsistente())
+            //    return condicaoPagamento;
+
             return _condicaoPagamentoRepositorio.Atualizar(condicaoPagamento);
         }
 
@@ -31,17 +37,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             GC.SuppressFinalize(this);
         }
 
-        public CondicaoPagamento ObterPorId(int id)
+        public CondicaoPagamento ObterPorId(Guid id)
         {
             return _condicaoPagamentoRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<CondicaoPagamento> ObterTodos(int representadaId)
+        public IEnumerable<CondicaoPagamento> ObterTodos(Guid representadaId)
         {
             return _condicaoPagamentoRepositorio.ObterTodos(representadaId);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _condicaoPagamentoRepositorio.Remover(id);
         }

@@ -38,7 +38,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             GC.SuppressFinalize(this);
         }
 
-        public virtual TEntity ObterPorId(int id)
+        public virtual TEntity ObterPorId(Guid id)
         {
             return DbSet.Find(id);
         }
@@ -48,7 +48,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return DbSet.ToList();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
         }

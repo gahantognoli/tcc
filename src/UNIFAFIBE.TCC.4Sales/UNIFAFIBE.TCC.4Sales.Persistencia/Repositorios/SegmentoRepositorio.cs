@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Segmento ObterPorId(int id)
+        public override Segmento ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Segmento retornoSegmento;

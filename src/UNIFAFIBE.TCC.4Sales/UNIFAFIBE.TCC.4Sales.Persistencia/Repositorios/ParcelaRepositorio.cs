@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Parcela ObterPorId(int id)
+        public override Parcela ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Parcela retornoParcela;
@@ -34,7 +34,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Parcela> ObterTodos(int faturamentoId)
+        public IEnumerable<Parcela> ObterTodos(Guid faturamentoId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Parcela> retornoParcela;

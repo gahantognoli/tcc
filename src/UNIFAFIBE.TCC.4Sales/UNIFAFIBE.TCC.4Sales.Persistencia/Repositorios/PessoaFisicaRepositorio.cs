@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Infra.Helpers;
@@ -13,25 +11,25 @@ using UNIFAFIBE.TCC._4Sales.Persistencia.Procedures;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
-    public class PessoaFisicaRepositorio : ClienteRepositorio, IPessoaFisicaRepositorio
+    public class PessoaFisicaRepositorio : Repositorio<PessoaFisica>, IPessoaFisicaRepositorio
     {
         public PessoaFisicaRepositorio(TCC_Contexto contexto) : base(contexto)
         {
         }
 
-        public override Cliente ObterPorId(int id)
+        public override PessoaFisica ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
-            Cliente retornoCliente;
+            PessoaFisica retornoCliente;
 
-            retornoCliente = cn.Query<Cliente>(PessoaFisicaProcedures.ObterPorId.GetDescription(),
+            retornoCliente = cn.Query<PessoaFisica>(PessoaFisicaProcedures.ObterPorId.GetDescription(),
                 new { id = id },
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
 
             return retornoCliente;
         }
 
-        public override IEnumerable<Cliente> ObterTodos()
+        public override IEnumerable<PessoaFisica> ObterTodos()
         {
             throw new NotImplementedException();
         }

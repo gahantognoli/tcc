@@ -22,7 +22,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public override Meta ObterPorId(int id)
+        public override Meta ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Meta retornoMeta;

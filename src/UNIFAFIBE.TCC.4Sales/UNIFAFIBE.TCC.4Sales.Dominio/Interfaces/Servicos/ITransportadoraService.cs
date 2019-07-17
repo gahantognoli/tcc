@@ -8,8 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Transportadora Adicionar(Transportadora transportadora);
         Transportadora Atualizar(Transportadora transportadora);
-        void Remover(int id);
-        Transportadora ObterPorId(int id);
+        void Remover(Guid id);
+        Transportadora ObterPorId(Guid id);
         IEnumerable<Transportadora> ObterPorNome(string nome);
         IEnumerable<Transportadora> ObterPorCidade(string cidade);
         IEnumerable<Transportadora> ObterPorEstado(string estado);

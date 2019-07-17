@@ -11,25 +11,25 @@ using UNIFAFIBE.TCC._4Sales.Persistencia.Procedures;
 
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
-    public class PessoaJuridicaRepositorio : ClienteRepositorio, IPessoaJuridicaRepositorio
+    public class PessoaJuridicaRepositorio : Repositorio<PessoaJuridica>, IPessoaJuridicaRepositorio
     {
         public PessoaJuridicaRepositorio(TCC_Contexto contexto) : base(contexto)
         {
         }
 
-        public override Cliente ObterPorId(int id)
+        public override PessoaJuridica ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
-            Cliente retornoCliente;
+            PessoaJuridica retornoCliente;
 
-            retornoCliente = cn.Query<Cliente>(PessoaJuridicaProcedures.ObterPorId.GetDescription(),
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterPorId.GetDescription(),
                 new { id = id },
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
 
             return retornoCliente;
         }
 
-        public override IEnumerable<Cliente> ObterTodos()
+        public override IEnumerable<PessoaJuridica> ObterTodos()
         {
             throw new NotImplementedException();
         }

@@ -9,15 +9,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
     public class ParcelaService : IParcelaService
     {
         private readonly IParcelaRepositorio _parcelaRepositorio;
+        private readonly IFaturamentoRepositorio _faturamentoRepositorio;
 
-        public ParcelaService(IParcelaRepositorio parcelaRepositorio)
+        public ParcelaService(IParcelaRepositorio parcelaRepositorio, IFaturamentoRepositorio faturamentoRepositorio)
         {
             _parcelaRepositorio = parcelaRepositorio;
+            _faturamentoRepositorio = faturamentoRepositorio;
         }
 
         public Parcela Adicionar(Parcela parcela)
         {
-            if (!parcela.EhValido())
+            if (!parcela.EhValido(_faturamentoRepositorio))
                 return parcela;
 
             return _parcelaRepositorio.Adicionar(parcela);
@@ -25,17 +27,16 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Parcela Atualizar(Parcela parcela)
         {
-            if (!parcela.EhValido())
+            if (!parcela.EhValido(_faturamentoRepositorio))
                 return parcela;
 
             return _parcelaRepositorio.Atualizar(parcela);
         }
 
-        public decimal CalcularComissao(decimal valorFaturamento, decimal comissao, int numParcela)
+        public decimal CalcularComissao(decimal valorParcela, decimal comissao, int numParcela)
         {
-            var calculo = (valorFaturamento * comissao) / numParcela;
-
-            return calculo;
+            var calculoComissao = (valorParcela * comissao) / numParcela;
+            return calculoComissao;
         }
 
         public void Dispose()
@@ -44,17 +45,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             GC.SuppressFinalize(this);
         }
 
-        public Parcela ObterPorId(int id)
+        public Parcela ObterPorId(Guid id)
         {
             return _parcelaRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<Parcela> ObterTodos(int faturamentoId)
+        public IEnumerable<Parcela> ObterTodos(Guid faturamentoId)
         {
             return _parcelaRepositorio.ObterTodos(faturamentoId);
         }
 
-        public void Remover(int parcelaId)
+        public void Remover(Guid parcelaId)
         {
             _parcelaRepositorio.Remover(parcelaId);
         }

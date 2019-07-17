@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public TipoPedido Adicionar(TipoPedido tipoPedido)
         {
-            if (!tipoPedido.EhValido())
+            if (!tipoPedido.EhValido(_tipoPedidoRepositorio))
                 return tipoPedido;
 
             return _tipoPedidoRepositorio.Adicionar(tipoPedido);
@@ -25,9 +25,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public TipoPedido Atualizar(TipoPedido tipoPedido)
         {
-            if (!tipoPedido.EhValido())
-                return tipoPedido;
-
+            //if (!tipoPedido.EstaConsistente())
+            //    return tipoPedido;
             return _tipoPedidoRepositorio.Atualizar(tipoPedido);
         }
 
@@ -42,7 +41,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _tipoPedidoRepositorio.ObterPorDescricao(tipoPedido);
         }
 
-        public TipoPedido ObterPorId(int id)
+        public TipoPedido ObterPorId(Guid id)
         {
             return _tipoPedidoRepositorio.ObterPorId(id);
         }
@@ -52,7 +51,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _tipoPedidoRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _tipoPedidoRepositorio.Remover(id);
         }

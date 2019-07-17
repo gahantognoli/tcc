@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 {
-    public class EnderecoClienteService : IEnderecoCliente
+    public class EnderecoClienteService : IEnderecoClienteService
     {
         private readonly IEnderecoClienteRepositorio _enderecoClienteRepositorio;
 
@@ -24,17 +25,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _enderecoClienteRepositorio.Atualizar(enderecoCliente);
         }
 
-        public EnderecoCliente ObterPorId(int id)
+        public EnderecoCliente ObterPorId(Guid id)
         {
             return _enderecoClienteRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<EnderecoCliente> ObterTodos(int clienteId)
+        public IEnumerable<EnderecoCliente> ObterTodos(Guid clienteId)
         {
             return _enderecoClienteRepositorio.ObterTodos(clienteId);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _enderecoClienteRepositorio.Remover(id);
         }

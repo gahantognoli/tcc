@@ -40,27 +40,27 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             GC.SuppressFinalize(this);
         }
 
-        public IEnumerable<Produto> ObterPorFaixaDePreco(decimal valorInicial, decimal valorFinal, int representadaId)
+        public IEnumerable<Produto> ObterPorFaixaDePreco(decimal valorInicial, decimal valorFinal, Guid representadaId)
         {
             return _produtoRepositorio.ObterPorFaixaDePreco(valorInicial, valorFinal, representadaId);
         }
 
-        public Produto ObterPorId(int id)
+        public Produto ObterPorId(Guid id)
         {
             return _produtoRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<Produto> ObterPorNome(string nome, int representadaId)
+        public IEnumerable<Produto> ObterPorNome(string nome, Guid representadaId)
         {
             return _produtoRepositorio.ObterPorNome(nome, representadaId);
         }
 
-        public IEnumerable<Produto> ObterTodos(int representadaId)
+        public IEnumerable<Produto> ObterTodos(Guid representadaId)
         {
             return _produtoRepositorio.ObterTodos(representadaId);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _produtoRepositorio.Remover(id);
         }

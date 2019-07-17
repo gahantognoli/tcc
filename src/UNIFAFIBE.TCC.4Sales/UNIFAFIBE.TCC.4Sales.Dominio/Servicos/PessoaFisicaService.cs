@@ -14,20 +14,20 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             _pessoaFisicaRepositorio = pessoaFisicaRepositorio;
         }
 
-        public Cliente Adicionar(Cliente cliente)
+        public PessoaFisica Adicionar(PessoaFisica pessoaFisica)
         {
-            if (!cliente.EhValido())
-                return cliente;
+            if (!pessoaFisica.EhValido(_pessoaFisicaRepositorio))
+                return pessoaFisica;
 
-            return _pessoaFisicaRepositorio.Adicionar(cliente);
+            return _pessoaFisicaRepositorio.Adicionar(pessoaFisica);
         }
 
-        public Cliente Atualizar(Cliente cliente)
+        public PessoaFisica Atualizar(PessoaFisica pessoaFisica)
         {
-            if (!cliente.EhValido())
-                return cliente;
+            if (!pessoaFisica.EstaConsistente())
+                return pessoaFisica;
 
-            return _pessoaFisicaRepositorio.Atualizar(cliente);
+            return _pessoaFisicaRepositorio.Adicionar(pessoaFisica);
         }
 
         public void Dispose()
@@ -41,7 +41,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pessoaFisicaRepositorio.ObterPorCPF(cpf);
         }
 
-        public Cliente ObterPorId(int id)
+        public Cliente ObterPorId(Guid id)
         {
             return _pessoaFisicaRepositorio.ObterPorId(id);
         }
@@ -56,7 +56,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pessoaFisicaRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _pessoaFisicaRepositorio.Remover(id);
         }

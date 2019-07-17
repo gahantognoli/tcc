@@ -8,8 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Representada Adicionar(Representada representada);
         Representada Atualizar(Representada representada);
-        void Remover(int id);
-        Representada ObterPorId(int id);
+        void Remover(Guid id);
+        Representada ObterPorId(Guid id);
         IEnumerable<Representada> ObterTodos();
         IEnumerable<Representada> ObterPorRazaoSocial(string razaoSocial);
         IEnumerable<Representada> ObterPorNomeFantansia(string nomeFantasia);

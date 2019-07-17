@@ -8,6 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         ObterPorId,
         [Description("usp_Usuario_ObterPorNome")]
         ObterPorNome,
+        [Description("usp_Usuario_ObterPorEmail")]
+        ObterPorEmail,
         [Description("usp_Usuario_ObterTodos")]
         ObterTodos
     }

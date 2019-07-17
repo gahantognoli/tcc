@@ -15,20 +15,20 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             _pessoaJuridicaRepositorio = pessoaJuridicaRepositorio;
         }
 
-        public Cliente Adicionar(Cliente cliente)
+        public PessoaJuridica Adicionar(PessoaJuridica pessoaJuridica)
         {
-            if (!cliente.EhValido())
-                return cliente;
+            if (!pessoaJuridica.EhValido(_pessoaJuridicaRepositorio))
+                return pessoaJuridica;
 
-            return _pessoaJuridicaRepositorio.Adicionar(cliente);
+            return _pessoaJuridicaRepositorio.Adicionar(pessoaJuridica);
         }
 
-        public Cliente Atualizar(Cliente cliente)
+        public PessoaJuridica Atualizar(PessoaJuridica pessoaJuridica)
         {
-            if (!cliente.EhValido())
-                return cliente;
+            if (!pessoaJuridica.EstaConsistente())
+                return pessoaJuridica;
 
-            return _pessoaJuridicaRepositorio.Atualizar(cliente);
+            return _pessoaJuridicaRepositorio.Atualizar(pessoaJuridica);
         }
 
         public void Dispose()
@@ -42,7 +42,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pessoaJuridicaRepositorio.ObterPorCPNJ(cnpj);
         }
 
-        public Cliente ObterPorId(int id)
+        public Cliente ObterPorId(Guid id)
         {
             return _pessoaJuridicaRepositorio.ObterPorId(id);
         }
@@ -67,7 +67,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pessoaJuridicaRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _pessoaJuridicaRepositorio.Remover(id);
         }

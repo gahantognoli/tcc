@@ -26,7 +26,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .WithRequired(f => f.Faturamento)
                 .HasForeignKey(f => f.FaturamentoId);
 
-            //Ignore(v => v.ValidationResult);
+            Ignore(v => v.ValidationResult);
         }
     }
 }

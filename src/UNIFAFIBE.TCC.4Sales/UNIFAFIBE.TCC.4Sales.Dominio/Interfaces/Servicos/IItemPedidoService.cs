@@ -8,8 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         ItemPedido Adicionar(ItemPedido itemPedido);
         ItemPedido Atualizar(ItemPedido itemPedido);
-        void Remover(int id);
-        ItemPedido ObterPorId(int id);
-        IEnumerable<ItemPedido> ObterTodos(int pedidoId);
+        void Remover(Guid id);
+        ItemPedido ObterPorId(Guid id);
+        IEnumerable<ItemPedido> ObterTodos(Guid pedidoId);
     }
 }

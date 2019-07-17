@@ -8,8 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Faturamento Faturar(Faturamento faturamento);
         Faturamento Atualizar(Faturamento faturamento);
-        void Remover(int id);
-        Faturamento ObterPorId(int id);
-        IEnumerable<Faturamento> ObterTodos(int pedidoId);
+        void Remover(Guid id);
+        Faturamento ObterPorId(Guid id);
+        IEnumerable<Faturamento> ObterTodos(Guid pedidoId);
     }
 }

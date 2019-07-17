@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
+using UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.ContatosRepresentada;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -14,7 +16,24 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Cargo { get; set; }
         public string Telefone { get; set; }
         public Guid RepresentadaId { get; set; }
+        public ValidationResult ValidationResult { get; set; }
 
         public virtual Representada Representada { get; set; }
+
+        public bool EhValido()
+        {
+            return this.EstaConsistente();
+        }
+
+        public bool EstaConsistente()
+        {
+            ValidationResult = new ContatoRepresentadaEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
+        }
+
+        public bool EstaApto()
+        {
+            return true;
+        }
     }
 }

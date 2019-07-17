@@ -65,7 +65,6 @@
     <Compile Include="ConfigEntidades\MetaConfig.cs" />
     <Compile Include="ConfigEntidades\ParcelasConfig.cs" />
     <Compile Include="ConfigEntidades\PedidoConfig.cs" />
-    <Compile Include="ConfigEntidades\PerfilConfig.cs" />
     <Compile Include="ConfigEntidades\PessoaFisicaConfig.cs" />
     <Compile Include="ConfigEntidades\PessoaJuridicaConfig.cs" />
     <Compile Include="ConfigEntidades\ProdutoConfig.cs" />
@@ -87,7 +86,6 @@
     <Compile Include="Procedures\MetaProcedures.cs" />
     <Compile Include="Procedures\ParcelaProcedures.cs" />
     <Compile Include="Procedures\PedidoProcedures.cs" />
-    <Compile Include="Procedures\PerfilProcedures.cs" />
     <Compile Include="Procedures\PessoaFisicaProcedures.cs" />
     <Compile Include="Procedures\PessoaJuridicaProcedures.cs" />
     <Compile Include="Procedures\ProdutoProcedures.cs" />
@@ -109,7 +107,6 @@
     <Compile Include="Repositorios\ItemPedidoRepositorio.cs" />
     <Compile Include="Repositorios\MetaRepositorio.cs" />
     <Compile Include="Repositorios\PedidoRepositorio.cs" />
-    <Compile Include="Repositorios\PerfilRepositorio.cs" />
     <Compile Include="Repositorios\PessoaJuridicaRepositorio.cs" />
     <Compile Include="Repositorios\ProdutoRepositorio.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />

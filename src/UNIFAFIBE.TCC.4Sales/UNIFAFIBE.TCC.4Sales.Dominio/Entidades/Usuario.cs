@@ -1,6 +1,8 @@
 ﻿using DomainValidation.Validation;
 using System;
 using System.Collections.Generic;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.Usuarios;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -18,18 +20,30 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public bool Ativo { get; set; } = true;
         public string FotoPerfil { get; set; }
         public string AssinaturaEmail { get; set; }
+        public bool UsuarioResponsavel { get; set; }
         public Guid PerfilId { get; set; }
         public ValidationResult ValidationResult { get; set; }
 
-        public virtual Perfil Perfil { get; set; }
         public virtual ICollection<UsuarioRepresentada> UsuariosRepresentadas { get; set; }
         public virtual ICollection<Pedido> Pedidos { get; set; }
 
-        public bool EhValido()
+        public bool EhValido(IUsuarioRepositorio usuarioRepositorio)
         {
-            //ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
+            if (this.EstaConsistente())
+                return this.EstaApto(usuarioRepositorio);
+            return false;
+        }
+
+        public bool EstaConsistente()
+        {
+            ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
             return ValidationResult.IsValid;
         }
 
+        public bool EstaApto(IUsuarioRepositorio usuarioRepositorio)
+        {
+            ValidationResult = new UsuarioEstaAptoValidation(usuarioRepositorio).Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

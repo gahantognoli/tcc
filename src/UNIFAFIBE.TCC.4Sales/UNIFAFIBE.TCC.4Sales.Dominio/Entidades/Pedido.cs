@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
 using System.Collections.Generic;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.Pedidos;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -24,6 +27,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public Guid StatusPedidoId { get; set; }
         public Guid TipoPedidoId { get; set; }
         public Guid UsuarioId { get; set; }
+        public ValidationResult ValidationResult { get; set; }
 
         public virtual Cliente Cliente { get; set; }
         public virtual CondicaoPagamento CondicaoPagamento { get; set; }
@@ -34,6 +38,26 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public virtual Usuario Usuario { get; set; }
         public virtual ICollection<Faturamento> Faturamentos { get; set; }
         public virtual ICollection<ItemPedido> ItensPedido { get; set; }
+
+        public bool EhValido(IPedidoRepositorio pedidoRepositorio)
+        {
+            if (this.EstaConsistente())
+                return this.EstaApto(pedidoRepositorio);
+
+            return false;
+        }
+
+        public bool EstaConsistente()
+        {
+            ValidationResult = new PedidoEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
+        }
+
+        public bool EstaApto(IPedidoRepositorio pedidoRepositorio)
+        {
+            ValidationResult = new PedidoEstaAptoValidation(pedidoRepositorio).Validate(this);
+            return ValidationResult.IsValid;
+        }
 
     }
 }

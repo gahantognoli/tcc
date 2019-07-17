@@ -18,7 +18,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public Pedido ObterPorId(Guid id)
+        public override Pedido ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Pedido retornoPedido;
@@ -78,7 +78,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoPedido;
         }
 
-        public IEnumerable<Pedido> ObterPorRepresentada(int representadaId)
+        public IEnumerable<Pedido> ObterPorRepresentada(Guid representadaId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Pedido> retornoPedido;
@@ -90,7 +90,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoPedido;
         }
 
-        public IEnumerable<Pedido> ObterPorStatus(int statusId)
+        public IEnumerable<Pedido> ObterPorStatus(Guid statusId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Pedido> retornoPedido;
@@ -102,7 +102,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoPedido;
         }
 
-        public IEnumerable<Pedido> ObterPorTipo(int tipoId)
+        public IEnumerable<Pedido> ObterPorTipo(Guid tipoId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Pedido> retornoPedido;

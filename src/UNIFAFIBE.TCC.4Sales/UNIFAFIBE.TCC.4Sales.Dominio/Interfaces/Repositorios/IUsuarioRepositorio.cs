@@ -6,5 +6,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
     public interface IUsuarioRepositorio : IRepositorio<Usuario>
     {
         IEnumerable<Usuario> ObterPorNome(string nome);
+        IEnumerable<Usuario> ObterPorEmail(string email);
     }
 }

@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public StatusPedido Adicionar(StatusPedido statusPedido)
         {
-            if (!statusPedido.EhValido())
+            if (!statusPedido.EhValido(_statusPedidoRepositorio))
                 return statusPedido;
 
             return _statusPedidoRepositorio.Adicionar(statusPedido);
@@ -25,9 +25,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public StatusPedido Atualizar(StatusPedido statusPedido)
         {
-            if (!statusPedido.EhValido())
-                return statusPedido;
-
+            //if (!statusPedido.EstaConsistente())
+            //    return statusPedido;
             return _statusPedidoRepositorio.Atualizar(statusPedido);
         }
 
@@ -42,7 +41,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _statusPedidoRepositorio.ObterPorDescricao(descricao);
         }
 
-        public StatusPedido ObterPorId(int id)
+        public StatusPedido ObterPorId(Guid id)
         {
             return _statusPedidoRepositorio.ObterPorId(id);
         }
@@ -52,7 +51,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _statusPedidoRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _statusPedidoRepositorio.Remover(id);
         }

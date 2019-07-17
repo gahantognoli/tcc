@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Segmento Adicionar(Segmento segmento)
         {
-            if (!segmento.EhValido())
+            if (!segmento.EhValido(_segmentoRepositorio))
                 return segmento;
 
             return _segmentoRepositorio.Adicionar(segmento);
@@ -25,8 +25,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Segmento Atualizar(Segmento segmento)
         {
-            if (!segmento.EhValido())
-                return segmento;
+            //if (!segmento.EstaConsistente())
+            //    return segmento;
 
             return _segmentoRepositorio.Atualizar(segmento);
         }
@@ -42,7 +42,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _segmentoRepositorio.ObterPorDescricao(descricao);
         }
 
-        public Segmento ObterPorId(int id)
+        public Segmento ObterPorId(Guid id)
         {
             return _segmentoRepositorio.ObterPorId(id);
         }
@@ -52,7 +52,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _segmentoRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _segmentoRepositorio.Remover(id);
         }

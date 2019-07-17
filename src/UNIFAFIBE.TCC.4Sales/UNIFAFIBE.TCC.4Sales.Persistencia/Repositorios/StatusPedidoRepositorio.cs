@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override StatusPedido ObterPorId(int id)
+        public override StatusPedido ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             StatusPedido retornoStatusPedido;

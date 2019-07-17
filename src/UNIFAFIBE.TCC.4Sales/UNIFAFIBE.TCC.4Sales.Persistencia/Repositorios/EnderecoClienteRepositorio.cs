@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override EnderecoCliente ObterPorId(int id)
+        public override EnderecoCliente ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             EnderecoCliente retornoEnderecoCliente;
@@ -34,7 +34,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<EnderecoCliente> ObterTodos(int clienteId)
+        public IEnumerable<EnderecoCliente> ObterTodos(Guid clienteId)
         {
             var cn = Db.Database.Connection;
             IEnumerable<EnderecoCliente> retornoEnderecoCliente;

@@ -9,19 +9,19 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         Pedido GerarPedido(Pedido pedido);
         Pedido GerarOrcamento(Pedido pedido);
         Pedido Atualizar(Pedido pedido);
-        void Remover(int id);
-        void VisualizarEmDocumento(int id);
-        void EnviarPorEmail(int pedidoId, int usuarioId, string[] destinatarios, 
+        void Remover(Guid id);
+        void VisualizarEmDocumento(Guid id);
+        void EnviarPorEmail(Guid pedidoId, Guid usuarioId, string[] destinatarios, 
             string assunto = null, string corpo = null);
-        Pedido AtualizarStatus(int statusId);
-        Pedido ObterPorId(int id);
+        Pedido AtualizarStatus(Guid statusId);
+        Pedido ObterPorId(Guid id);
         Pedido ObterPorNumeroPedido(int numeroPedido);
         IEnumerable<Pedido> ObterPorDataEmissao(DateTime dataEmissao);
         IEnumerable<Pedido> ObterPorCliente(string cliente);
         IEnumerable<Pedido> ObterPorVendedor(string usuario);
-        IEnumerable<Pedido> ObterPorStatus(int statusId);
-        IEnumerable<Pedido> ObterPorTipo(int tipoId);
-        IEnumerable<Pedido> ObterPorRepresentada(int representadaId);
+        IEnumerable<Pedido> ObterPorStatus(Guid statusId);
+        IEnumerable<Pedido> ObterPorTipo(Guid tipoId);
+        IEnumerable<Pedido> ObterPorRepresentada(Guid representadaId);
         IEnumerable<Pedido> ObterTodos();
     }
 }

@@ -7,8 +7,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
     {
         TEntity Adicionar(TEntity obj);
         TEntity Atualizar(TEntity obj);
-        void Remover(int id);
-        TEntity ObterPorId(int id);
+        void Remover(Guid id);
+        TEntity ObterPorId(Guid id);
         IEnumerable<TEntity> ObterTodos();
         int SaveChanges();
     }

@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Representada Adicionar(Representada representada)
         {
-            if (!representada.EhValido())
+            if (!representada.EhValido(_representadaRepositorio))
                 return representada;
 
             return _representadaRepositorio.Adicionar(representada);
@@ -25,10 +25,10 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Representada Atualizar(Representada representada)
         {
-            if (!representada.EhValido())
+            if (!representada.EstaConsistente())
                 return representada;
 
-            return _representadaRepositorio.Adicionar(representada);
+            return _representadaRepositorio.Atualizar(representada);
         }
 
         public void Dispose()
@@ -42,7 +42,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _representadaRepositorio.ObterPorCnpj(cnpj);
         }
 
-        public Representada ObterPorId(int id)
+        public Representada ObterPorId(Guid id)
         {
             return _representadaRepositorio.ObterPorId(id);
         }
@@ -62,7 +62,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _representadaRepositorio.ObterTodos();
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _representadaRepositorio.Remover(id);
         }

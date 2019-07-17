@@ -42,9 +42,47 @@
     <Compile Include="Entidades\CondicaoPagamento.cs" />
     <Compile Include="Entidades\ContatoCliente.cs" />
     <Compile Include="Entidades\ContatoRepresentada.cs" />
+    <Compile Include="Entidades\Email.cs" />
     <Compile Include="Entidades\EnderecoCliente.cs" />
     <Compile Include="Entidades\Faturamento.cs" />
-    <Compile Include="Interfaces\Repositorios\IClienteRepositorio.cs" />
+    <Compile Include="Especificacoes\CondicoesPagamento\CondicaoPagamentoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\ContatosCliente\ContatoClienteDevePossuirEmailValidoSpecification.cs" />
+    <Compile Include="Especificacoes\ContatosRepresentada\ContatoRepresentadaDevePossuirEmailValidoSpecification.cs" />
+    <Compile Include="Especificacoes\Faturamentos\FaturamentoDevePossuirPeloMenosUmaParcelaSpecification.cs" />
+    <Compile Include="Especificacoes\Faturamentos\FaturamentoDevePossuirStatusDiferenteDeFaturadoSpecification.cs" />
+    <Compile Include="Especificacoes\Faturamentos\FaturamentoValorDeveSerMenorQueValorDoPedidoSpecification.cs" />
+    <Compile Include="Especificacoes\Faturamentos\FaturamentoValorNaoPodeSerZeroSpecification.cs" />
+    <Compile Include="Especificacoes\Faturamentos\ValorTotalParcelasDeveSerMenorOuIgualAoValorFaturamentoSpecification.cs" />
+    <Compile Include="Especificacoes\ItensPedido\ItemPedidoQuantidadeDeveSerMaiorQueZero.cs" />
+    <Compile Include="Especificacoes\Metas\MetaDeveSerMaiorQueDoQueZeroSpecification.cs" />
+    <Compile Include="Especificacoes\Parcelas\ParcelaDeveSerMenorDoQueValorDoFaturamentoSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirClienteSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirCondicaoPagamentoSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirItensSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirNumeroUnicoSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirRepresentadaSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirStatusSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirTipoPedidoSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirTransportadoraSpecification.cs" />
+    <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirVendedorSpecification.cs" />
+    <Compile Include="Especificacoes\PessoasFisicas\PessoaFisicaDevePossuirCPFUnicoSpecification.cs" />
+    <Compile Include="Especificacoes\PessoasFisicas\PessoaFisicaDevePossuirCPFValidoSpecification.cs" />
+    <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirCNPJUnicoSpecification.cs" />
+    <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirCNPJValidoSpecification.cs" />
+    <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirInscricaoEstadualUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirRazaoSocialUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\Produtos\ProdutoDevePossuirPrecoMaiorDoQueZeroSpecification.cs" />
+    <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirCNPJUnicoSpecification.cs" />
+    <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirCNPJValidoSpecification.cs" />
+    <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirComissaoMaiorDoQueZeroSpecification.cs" />
+    <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirEmailValidoSpecification.cs" />
+    <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirRazaoSocialUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\Segmentos\SegmentoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\TiposPedido\TipoPedidoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirEmailUnicoSpecification.cs" />
+    <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirEmailValidoSpecification.cs" />
+    <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirSenhaComPeloMenosOitoCaracteresSpecification.cs" />
     <Compile Include="Interfaces\Repositorios\IFaturamentoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IItemPedidoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IMetaRepositorio.cs" />
@@ -55,7 +93,6 @@
     <Compile Include="Interfaces\Repositorios\IContatoClienteRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IContatoRepresentadaRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IEnderecoClienteRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\IPerfilRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IPessoaJuridicaRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IProdutoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorio.cs" />
@@ -63,7 +100,6 @@
     <Compile Include="Entidades\Meta.cs" />
     <Compile Include="Entidades\Parcela.cs" />
     <Compile Include="Entidades\Pedido.cs" />
-    <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Entidades\PessoaFisica.cs" />
     <Compile Include="Entidades\PessoaJuridica.cs" />
     <Compile Include="Entidades\Produto.cs" />
@@ -80,6 +116,7 @@
     <Compile Include="Interfaces\Repositorios\ITipoPedidoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\ITransportadoraRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepositorio.cs" />
+    <Compile Include="Interfaces\Servicos\IEmailService.cs" />
     <Compile Include="Interfaces\Servicos\IFaturamentoService.cs" />
     <Compile Include="Interfaces\Servicos\IItemPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\IMetaService.cs" />
@@ -90,12 +127,10 @@
     <Compile Include="Interfaces\Servicos\ITipoPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\ITransportadoraService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\Servicos\IClienteService.cs" />
     <Compile Include="Interfaces\Servicos\ICondicaoPagamentoService.cs" />
-    <Compile Include="Interfaces\Servicos\IContatoCliente.cs" />
+    <Compile Include="Interfaces\Servicos\IContatoClienteService.cs" />
     <Compile Include="Interfaces\Servicos\IContatoRepresentadaService.cs" />
-    <Compile Include="Interfaces\Servicos\IEnderecoCliente.cs" />
-    <Compile Include="Interfaces\Servicos\IPerfilService.cs" />
+    <Compile Include="Interfaces\Servicos\IEnderecoClienteService.cs" />
     <Compile Include="Interfaces\Servicos\IPessoaFisicaService.cs" />
     <Compile Include="Interfaces\Servicos\IProdutoService.cs" />
     <Compile Include="Interfaces\Servicos\IRepresentadaService.cs" />
@@ -110,7 +145,6 @@
     <Compile Include="Servicos\MetaService.cs" />
     <Compile Include="Servicos\ParcelaService.cs" />
     <Compile Include="Servicos\PedidoService.cs" />
-    <Compile Include="Servicos\PerfilService.cs" />
     <Compile Include="Servicos\PessoaFisicaService.cs" />
     <Compile Include="Servicos\PessoaJuridicaService.cs" />
     <Compile Include="Servicos\ProdutoService.cs" />
@@ -120,11 +154,29 @@
     <Compile Include="Servicos\TipoPedidoService.cs" />
     <Compile Include="Servicos\TransportadoraService.cs" />
     <Compile Include="Servicos\UsuarioService.cs" />
+    <Compile Include="Validacoes\CondicoesPagamento\CondicaoPagamentoEstaAptaValidation.cs" />
+    <Compile Include="Validacoes\ContatosCliente\ContatoClienteEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\ContatosRepresentada\ContatoRepresentadaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Faturamentos\FaturamentoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\ItensPedido\ItemPedidoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Metas\MetaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Parcelas\ParcelaEstaAptaValidation.cs" />
+    <Compile Include="Validacoes\Pedidos\PedidoEstaAptoValidation.cs" />
+    <Compile Include="Validacoes\Pedidos\PedidoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\PessoasFisicas\PessoaFisicaEstaAptaValidation.cs" />
+    <Compile Include="Validacoes\PessoasFisicas\PessoaFisicaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\PessoasJuridicas\PessoaJuridicaEstaAptaValidation.cs" />
+    <Compile Include="Validacoes\PessoasJuridicas\PessoaJuridicaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Produtos\ProdutoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Representadas\RepresentadaEstaAptaValidation.cs" />
+    <Compile Include="Validacoes\Representadas\RepresentadaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Segmentos\SegmentoEstaAptoValidation.cs" />
+    <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaAptoValidation.cs" />
+    <Compile Include="Validacoes\TiposPedido\TipoPedidoEstaAptoValidation.cs" />
+    <Compile Include="Validacoes\Usuarios\UsuarioEstaAptoValidation.cs" />
+    <Compile Include="Validacoes\Usuarios\UsuarioEstaConsistenteValidation.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Especificacoes\" />
-    <Folder Include="Validacoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 {
-    public class ContatoClienteService : IContatoCliente
+    public class ContatoClienteService : IContatoClienteService
     {
         private readonly IContatoClienteRepositorio _contatoClienteRepositorio;
 
@@ -16,25 +17,31 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public ContatoCliente Adicionar(ContatoCliente contatoCliente)
         {
+            if (!contatoCliente.EhValido())
+                return contatoCliente;
+
             return _contatoClienteRepositorio.Adicionar(contatoCliente);
         }
 
         public ContatoCliente Atualizar(ContatoCliente contatoCliente)
         {
+            if (!contatoCliente.EhValido())
+                return contatoCliente;
+
             return _contatoClienteRepositorio.Atualizar(contatoCliente);
         }
 
-        public ContatoCliente ObterPorId(int id)
+        public ContatoCliente ObterPorId(Guid id)
         {
             return _contatoClienteRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<ContatoCliente> ObterTodos(int clienteId)
+        public IEnumerable<ContatoCliente> ObterTodos(Guid clienteId)
         {
             return _contatoClienteRepositorio.ObterTodos(clienteId);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             _contatoClienteRepositorio.Remover(id);
         }

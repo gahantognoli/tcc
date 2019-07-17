@@ -6,6 +6,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
     {
         [Description("usp_CondicaoPagamento_ObterPorId")]
         ObterPorId,
+        [Description("usp_CondicaoPagamento_ObterPorDescricao")]
+        ObterPorDescricao,
         [Description("usp_CondicaoPagamento_ObterTodos")]
         ObterTodos
     }

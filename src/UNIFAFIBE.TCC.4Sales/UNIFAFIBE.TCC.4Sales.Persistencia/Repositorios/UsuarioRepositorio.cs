@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Usuario ObterPorId(int id)
+        public override Usuario ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Usuario retornoUsuario;
@@ -47,6 +48,18 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             retornoUsuario = cn.Query<Usuario>(UsuarioProcedures.ObterPorNome.GetDescription(),
                 new { nome = nome },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoUsuario;
+        }
+
+        public IEnumerable<Usuario> ObterPorEmail(string email)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Usuario> retornoUsuario;
+
+            retornoUsuario = cn.Query<Usuario>(UsuarioProcedures.ObterPorEmail.GetDescription(),
+                new { email = email },
                 commandType: CommandType.StoredProcedure);
 
             return retornoUsuario;

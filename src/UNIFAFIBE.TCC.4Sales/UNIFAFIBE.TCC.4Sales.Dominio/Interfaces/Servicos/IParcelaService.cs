@@ -9,8 +9,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         Parcela Adicionar(Parcela parcela);
         Parcela Atualizar(Parcela parcela);
         decimal CalcularComissao(decimal valorFaturamento, decimal comissao, int numParcela);
-        void Remover(int parcelaId);
-        Parcela ObterPorId(int id);
-        IEnumerable<Parcela> ObterTodos(int faturamentoId);
+        void Remover(Guid parcelaId);
+        Parcela ObterPorId(Guid id);
+        IEnumerable<Parcela> ObterTodos(Guid faturamentoId);
     }
 }

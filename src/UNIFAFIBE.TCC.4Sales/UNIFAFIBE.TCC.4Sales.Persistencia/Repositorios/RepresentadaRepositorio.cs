@@ -18,7 +18,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
         {
         }
 
-        public override Representada ObterPorId(int id)
+        public override Representada ObterPorId(Guid id)
         {
             var cn = Db.Database.Connection;
             Representada retornoRepresentada;
