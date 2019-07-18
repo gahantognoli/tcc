@@ -17,17 +17,15 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Transportadora Adicionar(Transportadora transportadora)
         {
-            if (!transportadora.EhValido())
-                return transportadora;
-
+            //if (!transportadora.EhValido())
+            //    return transportadora;
             return _transportadoraRepositorio.Adicionar(transportadora);
         }
 
         public Transportadora Atualizar(Transportadora transportadora)
         {
-            if (!transportadora.EhValido())
-                return transportadora;
-
+            //if (!transportadora.EhValido())
+            //    return transportadora;
             return _transportadoraRepositorio.Atualizar(transportadora);
         }
 

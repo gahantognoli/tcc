@@ -21,18 +21,22 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public ProdutoViewModel Adicionar(ProdutoViewModel produto)
         {
-            var produtoRetorno = _produtoService.Adicionar(Mapper.Map<Produto>(produto));
+            var produtoRetorno = Mapper.Map<ProdutoViewModel>(_produtoService.Adicionar(Mapper.Map<Produto>(produto)));
 
-            Commit();
-            return Mapper.Map<ProdutoViewModel>(produtoRetorno);
+            if (produtoRetorno.EhValido())
+                Commit();
+            
+            return produtoRetorno;
         }
 
         public ProdutoViewModel Atualizar(ProdutoViewModel produto)
         {
-            var produtoRetorno = _produtoService.Atualizar(Mapper.Map<Produto>(produto));
+            var produtoRetorno = Mapper.Map<ProdutoViewModel>(_produtoService.Atualizar(Mapper.Map<Produto>(produto)));
 
-            Commit();
-            return Mapper.Map<ProdutoViewModel>(produtoRetorno);
+            if (produtoRetorno.EhValido())
+                Commit();
+
+            return produtoRetorno;
         }
 
         public IEnumerable<ProdutoViewModel> ObterPorFaixaDePreco(decimal valorInicial, decimal valorFinal, Guid representadaId)

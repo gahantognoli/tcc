@@ -7,6 +7,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal.Email
     {
         public bool Enviar(Dominio.Entidades.Email email)
         {
+            /// todo: Implementar serviço de envio de Email
             throw new NotImplementedException();
         }
     }

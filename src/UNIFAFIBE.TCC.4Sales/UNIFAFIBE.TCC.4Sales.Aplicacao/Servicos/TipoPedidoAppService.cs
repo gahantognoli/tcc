@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public TipoPedidoViewModel Adicionar(TipoPedidoViewModel tipoPedido)
         {
-            var tipoPedidoRetorno = _tipoPedidoService.Adicionar(Mapper.Map<TipoPedido>(tipoPedido));
+            var tipoPedidoRetorno = Mapper.Map<TipoPedidoViewModel>
+                (_tipoPedidoService.Adicionar(Mapper.Map<TipoPedido>(tipoPedido)));
 
-            Commit();
-            return Mapper.Map<TipoPedidoViewModel>(tipoPedidoRetorno);
+            if (tipoPedidoRetorno.EhValido())
+                Commit();
+            
+            return tipoPedidoRetorno;
         }
 
         public TipoPedidoViewModel Atualizar(TipoPedidoViewModel tipoPedido)
         {
-            var tipoPedidoRetorno = _tipoPedidoService.Atualizar(Mapper.Map<TipoPedido>(tipoPedido));
+            var tipoPedidoRetorno = Mapper.Map<TipoPedidoViewModel>
+                (_tipoPedidoService.Atualizar(Mapper.Map<TipoPedido>(tipoPedido)));
 
-            Commit();
-            return Mapper.Map<TipoPedidoViewModel>(tipoPedidoRetorno);
+            if (tipoPedidoRetorno.EhValido())
+                Commit();
+
+            return tipoPedidoRetorno;
         }
 
         public IEnumerable<TipoPedidoViewModel> ObterPorDescricao(string tipoPedido)

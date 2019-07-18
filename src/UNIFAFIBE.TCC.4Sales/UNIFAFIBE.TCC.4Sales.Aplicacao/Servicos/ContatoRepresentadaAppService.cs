@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public ContatoRepresentadaViewModel Adicionar(ContatoRepresentadaViewModel ContatoRepresentadaViewModel)
         {
-            var contatoRepresentadaRetorno = _contatoRepresentadaService.Adicionar(Mapper.Map<ContatoRepresentada>(ContatoRepresentadaViewModel));
+            var contatoRepresentadaRetorno = Mapper.Map<ContatoRepresentadaViewModel>
+                (_contatoRepresentadaService.Adicionar(Mapper.Map<ContatoRepresentada>(ContatoRepresentadaViewModel)));
 
-            Commit();
-            return Mapper.Map<ContatoRepresentadaViewModel>(contatoRepresentadaRetorno); 
+            if (contatoRepresentadaRetorno.EhValido())
+                Commit();
+            
+            return contatoRepresentadaRetorno; 
         }
 
         public ContatoRepresentadaViewModel Atualizar(ContatoRepresentadaViewModel ContatoRepresentadaViewModel)
         {
-            var contatoRepresentadaRetorno = _contatoRepresentadaService.Atualizar(Mapper.Map<ContatoRepresentada>(ContatoRepresentadaViewModel));
+            var contatoRepresentadaRetorno = Mapper.Map<ContatoRepresentadaViewModel>
+                (_contatoRepresentadaService.Atualizar(Mapper.Map<ContatoRepresentada>(ContatoRepresentadaViewModel)));
 
-            Commit();
-            return Mapper.Map<ContatoRepresentadaViewModel>(contatoRepresentadaRetorno);
+            if (contatoRepresentadaRetorno.EhValido())
+                Commit();
+
+            return contatoRepresentadaRetorno;
         }
 
         public ContatoRepresentadaViewModel ObterPorId(Guid id)

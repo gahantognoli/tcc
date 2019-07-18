@@ -21,18 +21,22 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PedidoViewModel Atualizar(PedidoViewModel pedido)
         {
-            var pedidoRetorno = _pedidoService.Atualizar(Mapper.Map<Pedido>(pedido));
+            var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService.Atualizar(Mapper.Map<Pedido>(pedido)));
 
-            Commit();
-            return Mapper.Map<PedidoViewModel>(pedidoRetorno);
+            if (pedidoRetorno.EhValido())
+                Commit();
+            
+            return pedidoRetorno;
         }
 
         public PedidoViewModel AtualizarStatus(Guid statusId)
         {
-            var pedidoRetorno = _pedidoService.AtualizarStatus(statusId);
+            var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService.AtualizarStatus(statusId));
 
-            Commit();
-            return Mapper.Map<PedidoViewModel>(pedidoRetorno);
+            if (pedidoRetorno.EhValido())
+                Commit();
+
+            return pedidoRetorno;
         }
 
         public void EnviarPorEmail(Guid pedidoId, Guid usuarioId, string[] destinatarios, string assunto = null, string corpo = null)
@@ -51,7 +55,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             {
                 pedido.StatusPedido.Descricao = "Em Orçamento";
                 pedidoRetorno = _pedidoService.GerarOrcamento(Mapper.Map<Pedido>(pedido));
-
                 Commit();
             }
 

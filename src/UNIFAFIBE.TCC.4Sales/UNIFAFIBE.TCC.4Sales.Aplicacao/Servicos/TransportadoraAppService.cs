@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public TransportadoraViewModel Adicionar(TransportadoraViewModel transportadora)
         {
-            var transportadoraRetorno = _transportadoraService.Adicionar(Mapper.Map<Transportadora>(transportadora));
+            var transportadoraRetorno = Mapper.Map<TransportadoraViewModel>
+                (_transportadoraService.Adicionar(Mapper.Map<Transportadora>(transportadora)));
 
-            Commit();
-            return Mapper.Map<TransportadoraViewModel>(transportadoraRetorno);
+            if (transportadoraRetorno.EhValido())
+                Commit();
+            
+            return transportadoraRetorno;
         }
 
         public TransportadoraViewModel Atualizar(TransportadoraViewModel transportadora)
         {
-            var transportadoraRetorno = _transportadoraService.Atualizar(Mapper.Map<Transportadora>(transportadora));
+            var transportadoraRetorno = Mapper.Map<TransportadoraViewModel>
+                (_transportadoraService.Atualizar(Mapper.Map<Transportadora>(transportadora)));
 
-            Commit();
-            return Mapper.Map<TransportadoraViewModel>(transportadoraRetorno);
+            if (transportadoraRetorno.EhValido())
+                Commit();
+
+            return transportadoraRetorno;
         }
 
         public IEnumerable<TransportadoraViewModel> ObterPorCidade(string cidade)

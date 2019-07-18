@@ -21,18 +21,22 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public MetaViewModel Adicionar(MetaViewModel meta)
         {
-            var metaRetorno = _metaService.Adicionar(Mapper.Map<Meta>(meta));
+            var metaRetorno = Mapper.Map<MetaViewModel>(_metaService.Adicionar(Mapper.Map<Meta>(meta)));
 
-            Commit();
-            return Mapper.Map<MetaViewModel>(metaRetorno);
+            if (metaRetorno.EhValido())
+                Commit();
+            
+            return metaRetorno;
         }
 
         public MetaViewModel Atualizar(MetaViewModel meta)
         {
-            var metaRetorno = _metaService.Atualizar(Mapper.Map<Meta>(meta));
+            var metaRetorno = Mapper.Map<MetaViewModel>(_metaService.Atualizar(Mapper.Map<Meta>(meta)));
 
-            Commit();
-            return Mapper.Map<MetaViewModel>(metaRetorno);
+            if (metaRetorno.EhValido())
+                Commit();
+
+            return metaRetorno;
         }
 
         public MetaViewModel ObterPorId(Guid id)

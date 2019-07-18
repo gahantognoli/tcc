@@ -22,7 +22,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
 
         public bool EhValido()
         {
-            return this.ValidationResult.Erros.Count() == 0;
+            return this.ValidationResult.IsValid == true;
         }
     }
 }

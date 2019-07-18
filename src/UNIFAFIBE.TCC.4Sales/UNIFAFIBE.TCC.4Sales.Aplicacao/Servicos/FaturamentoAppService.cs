@@ -26,10 +26,13 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public FaturamentoViewModel Atualizar(FaturamentoViewModel faturamento)
         {
-            var faturamentoRetorno = _faturamentoService.Atualizar(Mapper.Map<Faturamento>(faturamento));
+            var faturamentoRetorno = Mapper.Map<FaturamentoViewModel>
+                (_faturamentoService.Atualizar(Mapper.Map<Faturamento>(faturamento)));
 
-            Commit();
-            return Mapper.Map<FaturamentoViewModel>(faturamentoRetorno);
+            if (faturamentoRetorno.EhValido())
+                Commit();
+            
+            return faturamentoRetorno;
         }
 
         public FaturamentoViewModel Faturar(FaturamentoViewModel faturamento)

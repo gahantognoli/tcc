@@ -77,28 +77,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public bool RecuperarSenha(string email)
         {
-            var usuario = _usuarioRepositorio.ObterPorEmail(email);
-
-            List<string> destinatarios = new List<string>();
-            destinatarios.Add(usuario.FirstOrDefault().Email);
-
-            var mensagem = new StringBuilder();
-            mensagem.Append("Olá, ");
-            mensagem.Append(usuario.FirstOrDefault().Nome);
-            mensagem.Append(" sua senha é: ");
-            mensagem.Append(usuario.FirstOrDefault().Senha);
-
-            if (usuario != null)
-            {
-                return _emailService.Enviar(new Email()
-                {
-                    Destinatios = destinatarios,
-                    Assunto = "4Sales - Sua senha",
-                    Mensagem = mensagem.ToString(),
-                    Rementente = "foursales.contato@gmail.com"
-                });
-            }
-            return false;
+            throw new NotImplementedException();
         }
 
         public bool RedefinirSenha(Guid usuarioId, string senhaAtual, string novaSenha)

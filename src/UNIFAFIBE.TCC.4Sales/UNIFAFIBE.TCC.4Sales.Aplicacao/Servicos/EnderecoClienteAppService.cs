@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public EnderecoClienteViewModel Adicionar(EnderecoClienteViewModel enderecoCliente)
         {
-            var enderecoClienteRetorno = _enderecoClienteService.Adicionar(Mapper.Map<EnderecoCliente>(enderecoCliente));
+            var enderecoClienteRetorno = Mapper.Map<EnderecoClienteViewModel>
+                (_enderecoClienteService.Adicionar(Mapper.Map<EnderecoCliente>(enderecoCliente)));
 
-            Commit();
-            return Mapper.Map<EnderecoClienteViewModel>(enderecoClienteRetorno);
+            if (enderecoClienteRetorno.EhValido())
+                Commit();
+            
+            return enderecoClienteRetorno;
         }
 
         public EnderecoClienteViewModel Atualizar(EnderecoClienteViewModel enderecoCliente)
         {
-            var enderecoClienteRetorno = _enderecoClienteService.Atualizar(Mapper.Map<EnderecoCliente>(enderecoCliente));
+            var enderecoClienteRetorno = Mapper.Map<EnderecoClienteViewModel>
+                (_enderecoClienteService.Atualizar(Mapper.Map<EnderecoCliente>(enderecoCliente)));
 
-            Commit();
-            return Mapper.Map<EnderecoClienteViewModel>(enderecoClienteRetorno);
+            if (enderecoClienteRetorno.EhValido())
+                Commit();
+
+            return enderecoClienteRetorno;
         }
 
         public EnderecoClienteViewModel ObterPorId(Guid id)

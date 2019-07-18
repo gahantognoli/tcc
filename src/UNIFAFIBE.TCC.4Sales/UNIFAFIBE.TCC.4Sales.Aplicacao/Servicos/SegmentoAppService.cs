@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public SegmentoViewModel Adicionar(SegmentoViewModel segmento)
         {
-            var segmentoRetorno = _segmentoService.Adicionar(Mapper.Map<Segmento>(segmento));
+            var segmentoRetorno = Mapper.Map<SegmentoViewModel>
+                (_segmentoService.Adicionar(Mapper.Map<Segmento>(segmento)));
 
-            Commit();
-            return Mapper.Map<SegmentoViewModel>(segmentoRetorno);
+            if (segmentoRetorno.EhValido())
+                Commit();
+            
+            return segmentoRetorno;
         }
 
         public SegmentoViewModel Atualizar(SegmentoViewModel segmento)
         {
-            var segmentoRetorno = _segmentoService.Atualizar(Mapper.Map<Segmento>(segmento));
+            var segmentoRetorno = Mapper.Map<SegmentoViewModel>
+                (_segmentoService.Atualizar(Mapper.Map<Segmento>(segmento)));
 
-            Commit();
-            return Mapper.Map<SegmentoViewModel>(segmentoRetorno);
+            if (segmentoRetorno.EhValido())
+                Commit();
+
+            return segmentoRetorno;
         }
 
         public IEnumerable<SegmentoViewModel> ObterPorDescricao(string descricao)

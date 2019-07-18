@@ -21,20 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public CondicaoPagamentoViewModel Adicionar(CondicaoPagamentoViewModel condicaoPagamento)
         {
-            var condicaoPagamentoRetorno = _condicaoPagamentoService.Adicionar(Mapper.Map<CondicaoPagamento>(condicaoPagamento));
+            var condicaoPagamentoRetorno = Mapper.Map<CondicaoPagamentoViewModel>
+                (_condicaoPagamentoService.Adicionar(Mapper.Map<CondicaoPagamento>(condicaoPagamento)));
 
-            Commit();
+            if (condicaoPagamentoRetorno.EhValido())
+                Commit();
 
-            return Mapper.Map<CondicaoPagamentoViewModel>(condicaoPagamentoRetorno);
+            return condicaoPagamento;
         }
 
         public CondicaoPagamentoViewModel Atualizar(CondicaoPagamentoViewModel condicaoPagamento)
         {
-            var condicaoPagamentoRetorno = _condicaoPagamentoService.Atualizar(Mapper.Map<CondicaoPagamento>(condicaoPagamento));
+            var condicaoPagamentoRetorno = Mapper.Map<CondicaoPagamentoViewModel>
+                (_condicaoPagamentoService.Atualizar(Mapper.Map<CondicaoPagamento>(condicaoPagamento)));
 
-            Commit();
+            if (condicaoPagamentoRetorno.EhValido())
+                Commit();
 
-            return Mapper.Map<CondicaoPagamentoViewModel>(condicaoPagamentoRetorno);
+            return condicaoPagamentoRetorno;
         }
 
         public CondicaoPagamentoViewModel ObterPorId(Guid id)

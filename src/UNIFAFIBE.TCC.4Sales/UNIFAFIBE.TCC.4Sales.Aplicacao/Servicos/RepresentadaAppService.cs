@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public RepresentadaViewModel Adicionar(RepresentadaViewModel representada)
         {
-            var representadaRetorno = _representadaService.Adicionar(Mapper.Map<Representada>(representada));
+            var representadaRetorno = Mapper.Map<RepresentadaViewModel>
+                (_representadaService.Adicionar(Mapper.Map<Representada>(representada)));
 
-            Commit();
-            return Mapper.Map<RepresentadaViewModel>(representadaRetorno);
+            if (representadaRetorno.EhValido())
+                Commit();
+            
+            return representadaRetorno;
         }
 
         public RepresentadaViewModel Atualizar(RepresentadaViewModel representada)
         {
-            var representadaRetorno = _representadaService.Atualizar(Mapper.Map<Representada>(representada));
+            var representadaRetorno = Mapper.Map<RepresentadaViewModel>
+                (_representadaService.Atualizar(Mapper.Map<Representada>(representada)));
 
-            Commit();
-            return Mapper.Map<RepresentadaViewModel>(representadaRetorno);
+            if (representadaRetorno.EhValido())
+                Commit();
+
+            return representadaRetorno;
         }
 
         public IEnumerable<RepresentadaViewModel> ObterPorCnpj(string cnpj)

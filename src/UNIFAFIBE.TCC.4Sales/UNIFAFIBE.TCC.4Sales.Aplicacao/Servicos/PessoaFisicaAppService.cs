@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PessoaFisicaViewModel Adicionar(PessoaFisicaViewModel cliente)
         {
-            var pessoaFisicaRetorno = _pessoaFisicaService.Adicionar(Mapper.Map<PessoaFisica>(cliente));
+            var pessoaFisicaRetorno = Mapper.Map<PessoaFisicaViewModel>
+                (_pessoaFisicaService.Adicionar(Mapper.Map<PessoaFisica>(cliente)));
 
-            Commit();
-            return Mapper.Map<PessoaFisicaViewModel>(pessoaFisicaRetorno);
+            if (pessoaFisicaRetorno.EhValido())
+                Commit();
+            
+            return pessoaFisicaRetorno;
         }
 
         public PessoaFisicaViewModel Atualizar(PessoaFisicaViewModel cliente)
         {
-            var pessoaFisicaRetorno = _pessoaFisicaService.Atualizar(Mapper.Map<PessoaFisica>(cliente));
+            var pessoaFisicaRetorno = Mapper.Map<PessoaFisicaViewModel>
+                (_pessoaFisicaService.Atualizar(Mapper.Map<PessoaFisica>(cliente)));
 
-            Commit();
-            return Mapper.Map<PessoaFisicaViewModel>(pessoaFisicaRetorno);
+            if (pessoaFisicaRetorno.EhValido())
+                Commit();
+
+            return pessoaFisicaRetorno;
         }
 
         public IEnumerable<PessoaFisicaViewModel> ObterPorCPF(string cpf)

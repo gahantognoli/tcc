@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PessoaJuridicaViewModel Adicionar(PessoaJuridicaViewModel cliente)
         {
-            var pessoaJuridicaRetorno = _pessoaJuridicaService.Adicionar(Mapper.Map<PessoaJuridica>(cliente));
+            var pessoaJuridicaRetorno = Mapper.Map<PessoaJuridicaViewModel>
+                (_pessoaJuridicaService.Adicionar(Mapper.Map<PessoaJuridica>(cliente)));
 
-            Commit();
-            return Mapper.Map<PessoaJuridicaViewModel>(pessoaJuridicaRetorno);
+            if (pessoaJuridicaRetorno.EhValido())
+                Commit();
+            
+            return pessoaJuridicaRetorno;
         }
 
         public PessoaJuridicaViewModel Atualizar(PessoaJuridicaViewModel cliente)
         {
-            var pessoaJuridicaRetorno = _pessoaJuridicaService.Atualizar(Mapper.Map<PessoaJuridica>(cliente));
+            var pessoaJuridicaRetorno = Mapper.Map<PessoaJuridicaViewModel>
+                (_pessoaJuridicaService.Adicionar(Mapper.Map<PessoaJuridica>(cliente)));
 
-            Commit();
-            return Mapper.Map<PessoaJuridicaViewModel>(pessoaJuridicaRetorno);
+            if (pessoaJuridicaRetorno.EhValido())
+                Commit();
+
+            return pessoaJuridicaRetorno;
         }
 
         public IEnumerable<PessoaJuridicaViewModel> ObterPorCPNJ(string cnpj)

@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public ItemPedidoViewModel Adicionar(ItemPedidoViewModel itemPedido)
         {
-            var itemPedidoRetorno = _itemPedidoService.Adicionar(Mapper.Map<ItemPedido>(itemPedido));
+            var itemPedidoRetorno = Mapper.Map<ItemPedidoViewModel>
+                (_itemPedidoService.Adicionar(Mapper.Map<ItemPedido>(itemPedido)));
 
-            Commit();
-            return Mapper.Map<ItemPedidoViewModel>(itemPedidoRetorno);
+            if (itemPedidoRetorno.EhValido())
+                Commit();
+            
+            return itemPedidoRetorno;
         }
 
         public ItemPedidoViewModel Atualizar(ItemPedidoViewModel itemPedido)
         {
-            var itemPedidoRetorno = _itemPedidoService.Atualizar(Mapper.Map<ItemPedido>(itemPedido));
+            var itemPedidoRetorno = Mapper.Map<ItemPedidoViewModel>
+                (_itemPedidoService.Atualizar(Mapper.Map<ItemPedido>(itemPedido)));
 
-            Commit();
-            return Mapper.Map<ItemPedidoViewModel>(itemPedidoRetorno);
+            if (itemPedidoRetorno.EhValido())
+                Commit();
+
+            return itemPedidoRetorno;
         }
 
         public ItemPedidoViewModel ObterPorId(Guid id)

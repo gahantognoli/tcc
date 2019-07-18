@@ -16,5 +16,10 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 
         public virtual ICollection<PedidoViewModel> Pedidos { get; set; }
+
+        public bool EhValido()
+        {
+            return this.ValidationResult.IsValid == true;
+        }
     }
 }

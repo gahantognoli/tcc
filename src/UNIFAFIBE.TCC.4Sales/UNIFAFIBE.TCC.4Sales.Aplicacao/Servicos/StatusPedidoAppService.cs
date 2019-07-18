@@ -21,15 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public StatusPedidoViewModel Adicionar(StatusPedidoViewModel statusPedido)
         {
-            var statusPedidoRetorno = _statusPedidoService.Adicionar(Mapper.Map<StatusPedido>(statusPedido));
+            var statusPedidoRetorno = Mapper.Map<StatusPedidoViewModel>
+                (_statusPedidoService.Adicionar(Mapper.Map<StatusPedido>(statusPedido)));
 
-            Commit();
-            return Mapper.Map<StatusPedidoViewModel>(statusPedidoRetorno);
+            if (statusPedidoRetorno.EhValido())
+                Commit();
+            
+            return statusPedidoRetorno;
         }
 
         public StatusPedidoViewModel Atualizar(StatusPedidoViewModel statusPedido)
         {
-            return Mapper.Map<StatusPedidoViewModel>(_statusPedidoService.Atualizar(Mapper.Map<StatusPedido>(statusPedido)));
+            var statusPedidoRetorno = Mapper.Map<StatusPedidoViewModel>
+                (_statusPedidoService.Atualizar(Mapper.Map<StatusPedido>(statusPedido)));
+
+            if (statusPedidoRetorno.EhValido())
+                Commit();
+
+            return statusPedidoRetorno;
         }
 
         public IEnumerable<StatusPedidoViewModel> ObterPorDescricao(string descricao)

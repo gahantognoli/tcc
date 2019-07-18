@@ -21,18 +21,22 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public ParcelaViewModel Adicionar(ParcelaViewModel parcela)
         {
-            var parcelaRetorno = _parcelaService.Adicionar(Mapper.Map<Parcela>(parcela));
+            var parcelaRetorno = Mapper.Map<ParcelaViewModel>(_parcelaService.Adicionar(Mapper.Map<Parcela>(parcela)));
 
-            Commit();
-            return Mapper.Map<ParcelaViewModel>(parcelaRetorno);
+            if (parcelaRetorno.EhValido())
+                Commit();
+            
+            return parcelaRetorno;
         }
 
         public ParcelaViewModel Atualizar(ParcelaViewModel parcela)
         {
-            var parcelaRetorno = _parcelaService.Atualizar(Mapper.Map<Parcela>(parcela));
+            var parcelaRetorno = Mapper.Map<ParcelaViewModel>(_parcelaService.Atualizar(Mapper.Map<Parcela>(parcela)));
 
-            Commit();
-            return Mapper.Map<ParcelaViewModel>(parcelaRetorno);
+            if (parcelaRetorno.EhValido())
+                Commit();
+
+            return parcelaRetorno;
         }
 
         public decimal CalcularComissao(decimal valorFaturamento, decimal comissao, int numParcela)

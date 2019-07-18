@@ -21,18 +21,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public UsuarioViewModel Adicionar(UsuarioViewModel usuario)
         {
-            var usuarioRetorno = _usuarioService.Adicionar(Mapper.Map<Usuario>(usuario));
+            var usuarioRetorno = Mapper.Map<UsuarioViewModel>
+                (_usuarioService.Adicionar(Mapper.Map<Usuario>(usuario)));
 
-            Commit();
-            return Mapper.Map<UsuarioViewModel>(usuarioRetorno);
+            if (usuarioRetorno.EhValido())
+                Commit();
+            
+            return usuarioRetorno;
         }
 
         public UsuarioViewModel Atualizar(UsuarioViewModel usuario)
         {
-            var usuarioRetorno = _usuarioService.Atualizar(Mapper.Map<Usuario>(usuario));
+            var usuarioRetorno = Mapper.Map<UsuarioViewModel>
+                 (_usuarioService.Adicionar(Mapper.Map<Usuario>(usuario)));
 
-            Commit();
-            return Mapper.Map<UsuarioViewModel>(usuarioRetorno);
+            if (usuarioRetorno.EhValido())
+                Commit();
+
+            return usuarioRetorno;
         }
 
         public bool AtualizarFotoPerfil(Guid id, string caminhoImagem)
