@@ -45,7 +45,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             if (!pedido.EhValido(_pedidoRepositorio))
                 return pedido;
 
-            pedido.StatusPedido.Descricao = "Em Orçamento";
             return _pedidoRepositorio.Adicionar(pedido);
         }
 
@@ -54,12 +53,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             if (!pedido.EstaConsistente())
                 return pedido;
 
-            var pedidoExiste = _pedidoRepositorio.ObterPorId(pedido.PedidoId);
-            pedido.StatusPedido.Descricao = "Pedido de Venda Gerado";
-
-            if (pedidoExiste != null)
-                return _pedidoRepositorio.Atualizar(pedido);
-         
             return _pedidoRepositorio.Adicionar(pedido);
         }
 

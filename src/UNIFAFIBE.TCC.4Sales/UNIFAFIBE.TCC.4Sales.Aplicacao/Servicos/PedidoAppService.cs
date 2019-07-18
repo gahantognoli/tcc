@@ -42,17 +42,38 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PedidoViewModel GerarOrcamento(PedidoViewModel pedido)
         {
-            var pedidoRetorno = _pedidoService.GerarOrcamento(Mapper.Map<Pedido>(pedido));
+            var pedidoRetorno = new Pedido();
 
-            Commit();
+            var pedidoExiste = _pedidoService.ObterPorId(pedido.PedidoId);
+
+
+            if (pedidoExiste != null)
+            {
+                pedido.StatusPedido.Descricao = "Em Orçamento";
+                pedidoRetorno = _pedidoService.GerarOrcamento(Mapper.Map<Pedido>(pedido));
+
+                Commit();
+            }
+
             return Mapper.Map<PedidoViewModel>(pedidoRetorno);
         }
 
         public PedidoViewModel GerarPedido(PedidoViewModel pedido)
         {
-            var pedidoRetorno = _pedidoService.GerarPedido(Mapper.Map<Pedido>(pedido));
+            var pedidoRetorno = new Pedido();
+
+            var pedidoExiste = _pedidoService.ObterPorId(pedido.PedidoId);
+            pedido.StatusPedido.Descricao = "Pedido de Venda Gerado";
+
+            //Verifica se o pedido existe
+            if (pedidoExiste != null)
+                pedidoRetorno = _pedidoService.Atualizar(Mapper.Map<Pedido>(pedido));
+            else
+                pedidoRetorno = _pedidoService.GerarPedido(Mapper.Map<Pedido>(pedido));
+
 
             Commit();
+
             return Mapper.Map<PedidoViewModel>(pedidoRetorno);
         }
 

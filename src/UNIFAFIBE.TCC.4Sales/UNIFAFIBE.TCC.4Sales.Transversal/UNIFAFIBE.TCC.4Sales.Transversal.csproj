@@ -52,6 +52,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Aplicacao\UNIFAFIBE.TCC.4Sales.Aplicacao.csproj">
+      <Project>{8D3BA9E5-6361-4148-BEF1-F2C126386EC3}</Project>
+      <Name>UNIFAFIBE.TCC.4Sales.Aplicacao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Dominio\UNIFAFIBE.TCC.4Sales.Dominio.csproj">
       <Project>{A75CFAA7-F774-441F-B7AF-B23238F7A79F}</Project>
       <Name>UNIFAFIBE.TCC.4Sales.Dominio</Name>

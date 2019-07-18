@@ -1,9 +1,6 @@
-﻿using DomainValidation.Validation;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
 {
@@ -11,12 +8,18 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public Guid ContatoRepresentadaId { get; set; }
         public string Nome { get; set; }
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
         public string Cargo { get; set; }
         public string Telefone { get; set; }
         public Guid RepresentadaId { get; set; }
-        public ValidationResult ValidationResult { get; set; }
+        public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 
         public virtual RepresentadaViewModel Representada { get; set; }
+
+        public bool EhValido()
+        {
+            return this.ValidationResult.Erros.Count() == 0;
+        }
     }
 }

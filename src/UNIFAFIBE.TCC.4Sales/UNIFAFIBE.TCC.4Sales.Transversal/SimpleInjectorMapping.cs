@@ -1,4 +1,6 @@
 ﻿using SimpleInjector;
+using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
+using UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Dominio.Servicos;
@@ -51,6 +53,27 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoService, TipoPedidoService>(Lifestyle.Scoped);
             container.Register<ITransportadoraService, TransportadoraService>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
+            #endregion
+
+            #region Registros da Camada de Aplicação
+            container.Register<ICondicaoPagamentoAppService, CondicaoPagamentoAppService>(Lifestyle.Scoped);
+            container.Register<IContatoClienteAppService, ContatoClienteAppService>(Lifestyle.Scoped);
+            container.Register<IContatoRepresentadaAppService, ContatoRepresentadaAppService>(Lifestyle.Scoped);
+            container.Register<IEnderecoClienteAppService, EnderecoClienteAppService>(Lifestyle.Scoped);
+            container.Register<IFaturamentoAppService, FaturamentoAppService>(Lifestyle.Scoped);
+            container.Register<IItemPedidoAppService, ItemPedidoAppService>(Lifestyle.Scoped);
+            container.Register<IMetaAppService, MetaAppService>(Lifestyle.Scoped);
+            container.Register<IParcelaAppService, ParcelaAppService>(Lifestyle.Scoped);
+            container.Register<IPedidoAppService, PedidoAppService>(Lifestyle.Scoped);
+            container.Register<IPessoaFisicaAppService, PessoaFisicaAppService>(Lifestyle.Scoped);
+            container.Register<IPessoaJuridicaAppService, PessoaJuridicaAppService>(Lifestyle.Scoped);
+            container.Register<IProdutoAppService, ProdutoAppService>(Lifestyle.Scoped);
+            container.Register<IRepresentadaAppService, RepresentadaAppService>(Lifestyle.Scoped);
+            container.Register<ISegmentoAppService, SegmentoAppService>(Lifestyle.Scoped);
+            container.Register<IStatusPedidoAppService, StatusPedidoAppService>(Lifestyle.Scoped);
+            container.Register<ITipoPedidoAppService, TipoPedidoAppService>(Lifestyle.Scoped);
+            container.Register<ITransportadoraAppService, TransportadoraAppService>(Lifestyle.Scoped);
+            container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
             #endregion
 
             #region Servico de Email

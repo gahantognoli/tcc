@@ -1,9 +1,5 @@
-﻿using DomainValidation.Validation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
 {
@@ -15,10 +11,15 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public decimal Subtotal { get; set; }
         public Guid PedidoId { get; set; }
         public Guid ProdutoId { get; set; }
-        public ValidationResult ValidationResult { get; set; }
+        public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 
         public virtual PedidoViewModel Pedido { get; set; }
         public virtual ProdutoViewModel Produto { get; set; }
+
+        public bool EhValido()
+        {
+            return this.ValidationResult.Erros.Count() == 0;
+        }
 
     }
 }
