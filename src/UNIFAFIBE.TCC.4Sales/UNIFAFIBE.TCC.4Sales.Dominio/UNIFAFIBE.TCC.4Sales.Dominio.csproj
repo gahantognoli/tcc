@@ -117,6 +117,7 @@
     <Compile Include="Interfaces\Repositorios\ITransportadoraRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepositorio.cs" />
     <Compile Include="Interfaces\Servicos\IEmailService.cs" />
+    <Compile Include="Interfaces\Servicos\IEntitySerializationService.cs" />
     <Compile Include="Interfaces\Servicos\IFaturamentoService.cs" />
     <Compile Include="Interfaces\Servicos\IItemPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\IMetaService.cs" />

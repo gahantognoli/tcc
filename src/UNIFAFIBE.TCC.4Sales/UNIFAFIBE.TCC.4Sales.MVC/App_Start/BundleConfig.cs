@@ -25,6 +25,10 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/global").Include(
+                "~/Scripts/Global.js"
+                ));
         }
     }
 }

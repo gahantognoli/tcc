@@ -1,9 +1,12 @@
 ﻿using SimpleInjector;
+using System.Collections.Generic;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos;
+using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Dominio.Servicos;
+using UNIFAFIBE.TCC._4Sales.Infra.Serialization.Servicos;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Transversal.Email;
 
@@ -78,6 +81,10 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
 
             #region Servico de Email
             container.Register<IEmailService, EmailService>(Lifestyle.Scoped);
+            #endregion
+
+            #region Registros de Serialização 
+            container.Register<IEntitySerializationServices<IEnumerable<StatusPedidoViewModel>>, JSONSerializationServices<IEnumerable<StatusPedidoViewModel>>>(Lifestyle.Scoped);
             #endregion
         }
     }
