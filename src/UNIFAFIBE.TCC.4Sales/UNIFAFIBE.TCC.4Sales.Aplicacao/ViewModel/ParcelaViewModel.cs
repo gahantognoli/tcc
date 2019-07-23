@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public ParcelaViewModel()
         {
-            ParcelaId = new Guid();
+            ParcelaId = Guid.NewGuid();
         }
 
         [Key]

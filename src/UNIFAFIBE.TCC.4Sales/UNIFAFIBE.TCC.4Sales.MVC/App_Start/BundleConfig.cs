@@ -14,8 +14,6 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -24,11 +22,24 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/style.css",
+                      "~/Content/notification.css"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/global").Include(
-                "~/Scripts/Global.js"
-                ));
+            bundles.Add(new ScriptBundle("~/Scripts/Global").Include(
+                "~/Scripts/Global.js",
+                "~/Scripts/script.js",
+                "~/Scripts/bootstrap-notify.min.js"
+             ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/MeusDados").Include(
+               "~/Scripts/StatusPedido/script.js",
+               "~/Scripts/TipoPedido/script.js",
+               "~/Scripts/Transportadora/script.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Dashboard").Include(
+               "~/Scripts/Dashboard/chart.js"
+            ));
         }
     }
 }

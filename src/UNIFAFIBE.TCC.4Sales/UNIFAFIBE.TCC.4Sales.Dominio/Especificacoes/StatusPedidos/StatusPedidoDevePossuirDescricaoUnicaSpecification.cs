@@ -1,4 +1,5 @@
 ﻿using DomainValidation.Interfaces.Specification;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 
@@ -15,7 +16,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.StatusPedidos
 
         public bool IsSatisfiedBy(StatusPedido statusPedido)
         {
-            return _statusPedidoRepositorio.ObterPorDescricao(statusPedido.Descricao) == null;
+            return _statusPedidoRepositorio.ObterPorDescricao(statusPedido.Descricao).FirstOrDefault() == null;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Faturamento()
         {
-            FaturamentoId = new Guid();
+            FaturamentoId = Guid.NewGuid();
         }
         public Guid FaturamentoId { get; set; }
         public decimal Valor { get; set; }

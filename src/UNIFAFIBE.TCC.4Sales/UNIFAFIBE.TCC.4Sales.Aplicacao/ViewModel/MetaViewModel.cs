@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public MetaViewModel()
         {
-            MetaId = new Guid();
+            MetaId = Guid.NewGuid();
         }
 
         [Key]

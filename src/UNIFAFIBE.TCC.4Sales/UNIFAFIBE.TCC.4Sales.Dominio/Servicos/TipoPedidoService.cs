@@ -25,8 +25,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public TipoPedido Atualizar(TipoPedido tipoPedido)
         {
-            //if (!tipoPedido.EstaConsistente())
-            //    return tipoPedido;
+            if (!tipoPedido.EstaConsistente())
+                return tipoPedido;
             return _tipoPedidoRepositorio.Atualizar(tipoPedido);
         }
 

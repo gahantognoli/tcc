@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public SegmentoViewModel()
         {
-            SegmentoId = new Guid();
+            SegmentoId = Guid.NewGuid();
         }
 
         [Key]

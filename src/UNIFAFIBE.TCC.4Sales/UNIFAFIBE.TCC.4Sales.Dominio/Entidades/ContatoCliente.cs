@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public ContatoCliente()
         {
-            ContatoClienteId = new Guid();
+            ContatoClienteId = Guid.NewGuid();
         }
         public Guid ContatoClienteId { get; set; }
         public string Nome { get; set; }

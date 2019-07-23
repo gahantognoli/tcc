@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public ContatoRepresentadaViewModel()
         {
-            ContatoRepresentadaId = new Guid();
+            ContatoRepresentadaId = Guid.NewGuid();
         }
 
         [Key]

@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Meta()
         {
-            MetaId = new Guid();
+            MetaId = Guid.NewGuid();
         }
 
         public Guid MetaId { get; set; }

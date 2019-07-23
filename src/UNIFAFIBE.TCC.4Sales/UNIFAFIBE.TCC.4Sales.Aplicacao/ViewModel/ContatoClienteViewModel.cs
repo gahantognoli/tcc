@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public ContatoClienteViewModel()
         {
-            ContatoClienteId = new Guid();
+            ContatoClienteId = Guid.NewGuid();
         }
 
         [Key]

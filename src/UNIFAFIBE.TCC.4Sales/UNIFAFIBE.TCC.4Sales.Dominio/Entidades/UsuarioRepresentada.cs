@@ -6,7 +6,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public UsuarioRepresentada()
         {
-            UsuarioRepresentadaId = new Guid();
+            UsuarioRepresentadaId = Guid.NewGuid();
         }
         public Guid UsuarioRepresentadaId { get; set; }
         public Guid UsuarioId { get; set; }

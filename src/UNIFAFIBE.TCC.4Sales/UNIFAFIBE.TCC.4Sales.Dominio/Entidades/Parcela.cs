@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Parcela()
         {
-            ParcelaId = new Guid();
+            ParcelaId = Guid.NewGuid();
         }
         public Guid ParcelaId { get; set; }
         public int NumeroParcela { get; set; }

@@ -128,6 +128,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void Remover(Guid id)
         {
             _pedidoService.Remover(id);
+            Commit();
         }
 
         public void VisualizarEmDocumento(Guid id)

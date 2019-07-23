@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
@@ -9,32 +11,97 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
     public class StatusPedidoController : Controller
     {
         private readonly IStatusPedidoAppService _statusPedidoAppService;
-        private readonly IEntitySerializationServices<IEnumerable<StatusPedidoViewModel>> _entitySerializationServices;
+        private readonly IEntitySerializationServices<IEnumerable<StatusPedidoViewModel>> _serializationColecaoStatusServices;
+        private readonly IEntitySerializationServices<StatusPedidoViewModel> _serializationStatusService;
 
-        public StatusPedidoController(IStatusPedidoAppService statusPedidoAppService, 
-            IEntitySerializationServices<IEnumerable<StatusPedidoViewModel>> entitySerializationServices)
+        public StatusPedidoController(IStatusPedidoAppService statusPedidoAppService,
+            IEntitySerializationServices<IEnumerable<StatusPedidoViewModel>> entitySerializationServices,
+            IEntitySerializationServices<StatusPedidoViewModel> entitySerializationService)
         {
             _statusPedidoAppService = statusPedidoAppService;
-            _entitySerializationServices = entitySerializationServices;
+            _serializationColecaoStatusServices = entitySerializationServices;
+            _serializationStatusService = entitySerializationService;
         }
 
-        // GET: StatusPedido
-        public ActionResult Index()
+        [HttpGet]
+        public JsonResult Listar()
         {
-            return View();
+            var json = _serializationColecaoStatusServices.Serialize(_statusPedidoAppService.ObterTodos());
+            return Json(new { statusPedido = json }, JsonRequestBehavior.AllowGet);
         }
-        
+
         [HttpPost]
-        public JsonResult Novo(StatusPedidoViewModel statusPedido)
+        public JsonResult Novo(string descricao)
         {
-            var statusRetorno = _statusPedidoAppService.Adicionar(statusPedido);
-            if(statusRetorno.ValidationResult.IsValid)
-            {
-                var json = _entitySerializationServices.Serialize(_statusPedidoAppService.ObterTodos());
-                return Json(new { statusPedido = json }, JsonRequestBehavior.AllowGet);
-            }
+            StatusPedidoViewModel statusPedido = new StatusPedidoViewModel();
+            statusPedido.Descricao = descricao;
 
-            return Json(new { statusPedido = statusRetorno }, JsonRequestBehavior.AllowGet);
+            var statusRetorno = _statusPedidoAppService.Adicionar(statusPedido);
+            var json = _serializationStatusService.Serialize(statusRetorno);
+
+            return Json(new { statusPedido = json }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Alterar(Guid? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            StatusPedidoViewModel statusPedidoViewModel = _statusPedidoAppService.ObterPorId((Guid)id);
+
+            if (statusPedidoViewModel == null)
+                return HttpNotFound();
+
+            return View(statusPedidoViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Alterar(StatusPedidoViewModel statusPedido)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _statusPedidoAppService.Atualizar(statusPedido);
+                    TempData["AtualizadoSucesso"] = "Status " + statusPedido.Descricao +
+                      " alterado com sucesso";
+                    return RedirectToAction("Index", "PainelAdministrativo");
+                }
+
+                return View(statusPedido);
+            }
+            catch (Exception)
+            {
+                return View(statusPedido);
+            }
+        }
+
+        public ActionResult Remover(Guid? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            StatusPedidoViewModel statusPedidoViewModel = _statusPedidoAppService.ObterPorId((Guid)id);
+
+            if (statusPedidoViewModel == null)
+                return HttpNotFound();
+
+            return View(statusPedidoViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Remover(Guid id)
+        {
+            try
+            {
+                _statusPedidoAppService.Remover(id);
+                TempData["RemovidoSucesso"] = "Status removido com sucesso";
+                return RedirectToAction("Index", "PainelAdministrativo");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
     }
 }

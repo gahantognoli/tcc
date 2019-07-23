@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Pedido()
         {
-            PedidoId = new Guid();
+            PedidoId = Guid.NewGuid();
         }
 
         public Guid PedidoId { get; set; }

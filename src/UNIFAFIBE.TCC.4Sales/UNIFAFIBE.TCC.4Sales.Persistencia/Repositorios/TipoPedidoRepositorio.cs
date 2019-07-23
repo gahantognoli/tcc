@@ -31,7 +31,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<TipoPedido> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<TipoPedido> retornoTipoPedido;
+
+            retornoTipoPedido = cn.Query<TipoPedido>(TipoPedidoProcedures.ObterTodos.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoTipoPedido;
         }
 
         public IEnumerable<TipoPedido> ObterPorDescricao(string tipoPedido)
@@ -40,7 +46,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             IEnumerable<TipoPedido> retornoTipoPedido;
 
             retornoTipoPedido = cn.Query<TipoPedido>(TipoPedidoProcedures.ObterPorDescricao.GetDescription(),
-                new { tipoPedido = tipoPedido },
+                new { descricao = tipoPedido },
                 commandType: CommandType.StoredProcedure);
 
             return retornoTipoPedido;

@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Segmento()
         {
-            SegmentoId = new Guid();
+            SegmentoId = Guid.NewGuid();
         }
         public Guid SegmentoId { get; set; }
         public string Descricao { get; set; }

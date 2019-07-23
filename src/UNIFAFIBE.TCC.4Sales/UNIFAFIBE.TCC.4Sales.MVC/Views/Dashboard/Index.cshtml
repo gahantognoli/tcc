@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div id="tabs">
+            <ul class="nav nav-tabs" id="tabs-indicadores" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="painel-tab" data-toggle="tab" href="#painel"
+                       role="tab" aria-controls="painel" aria-selected="true"><i class="fas fa-chart-line icone-home"></i>Painel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="relatorios-tab" data-toggle="tab" href="#relatorios"
+                       role="tab" aria-controls="relatorios" aria-selected="false"><i class="fas fa-file-contract icone-home"></i>Relatórios</a>
+                </li>
+            </ul>
+            <div class="row mt-3" id="filtros-dashboard">
+                <div class="col-lg-12">
+                    <form class="form-inline">
+                        <label class="mr-3" id="label-filtrar-por">Filtrar por: </label>
+                        <select name="mes-pesquisa-dashboards" id="mes-pesquisa-dashboards"
+                                class="form-control col-lg-2 col-12 mr-lg-2">
+                            <option value="janeiro">Janeiro</option>
+                            <option value="Fevereiro">Fevereiro</option>
+                            <option value="Março">Março</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Maio">Maio</option>
+                            <option value="Junho">Junho</option>
+                            <option value="Julho">Julho</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Setembro">Setembro</option>
+                            <option value="Outubro">Outubro</option>
+                            <option value="Novembro">Novembro</option>
+                            <option value="Dezembro">Dezembro</option>
+                        </select>
+
+                        <select name="ano-pesquisa-dashboards" id="ano-pesquisa-dashboards"
+                                class="form-control col-lg-2 col-12 mr-lg-5">
+                            <option value="2016">2014</option>
+                            <option value="2016">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                        </select>
+
+                        <select name="representadas-pesquisa-dashboards"
+                                id="representadas-pesquisa-dashboards" class="form-control col-lg-6 col-12">
+                            <option value="Todas">Todas as representadas</option>
+                            <option value="Representada 1">Representada 1</option>
+                            <option value="Representada 2">Representada 2</option>
+                            <option value="Representada 3">Representada 3</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content" id="conteudo-tab">
+    <div div class="tab-pane fade show active" id="painel" role="tabpanel" aria-labelledby="painel-tab">
+        <div class="row mt-3">
+            <div class="col-lg-4 card-dashboard">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <span class="h3">Faturado</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-lg-2 col-md-3">
+                                <i class="fas fa-money-check-alt icone-dashboard"></i>
+                            </div>
+                            <div class="col-lg-10 col-md-9">
+                                <h4>R$ 1.000.000,00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 card-dashboard">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <span class="h3">A receber</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-lg-2 col-md-3">
+                                <i class="fas fa-money-bill-alt icone-dashboard"></i>
+                            </div>
+                            <div class="col-lg-10 col-md-9">
+                                <h4>R$ 100.000,00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 card-dashboard">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <span class="h3">Meta</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-lg-2 col-md-3">
+                                <i class="fas fa-chart-line icone-dashboard"></i>
+                            </div>
+                            <div class="col-lg-10 col-md-9">
+                                <h4>R$ 500.000,00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        Exemplo gráfico
+                    </div>
+                    <div class="card-body">
+                        <canvas id="exampleChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        Exemplo gráfico 2
+                    </div>
+                    <div class="card-body">
+                        <canvas id="exampleChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        Exemplo gráfico 3
+                    </div>
+                    <div class="card-body">
+                        <canvas id="exampleChart3"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        Exemplo gráfico 3
+                    </div>
+                    <div class="card-body">
+                        <canvas id="exampleChart4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="relatorios" role="tabpanel" aria-labelledby="relatorios-tab">
+        <div class="col-md-12">
+            <div class="row content-relatorios">
+                <div class="col-md-6 mb-3">
+                    <h4 class="h4 text-muted">VENDAS</h4>
+                    <hr class="separator-relatorios">
+                    <div>
+                        <a href="" class="link-relatorio">Relatorio 1</a>
+                        <a href="" class="link-relatorio">Relatorio 2</a>
+                        <a href="" class="link-relatorio">Relatorio 3</a>
+                        <a href="" class="link-relatorio">Relatorio 4</a>
+                        <a href="" class="link-relatorio">Relatorio 5</a>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h4 class="h4 text-muted">FATURAMENTO</h4>
+                    <hr class="separator-relatorios">
+                    <div>
+                        <a href="" class="link-relatorio">Relatorio 1</a>
+                        <a href="" class="link-relatorio">Relatorio 2</a>
+                        <a href="" class="link-relatorio">Relatorio 3</a>
+                        <a href="" class="link-relatorio">Relatorio 4</a>
+                        <a href="" class="link-relatorio">Relatorio 5</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h4 class="h4 text-muted">CLIENTES</h4>
+                    <hr class="separator-relatorios">
+                    <div>
+                        <a href="" class="link-relatorio">Relatorio 1</a>
+                        <a href="" class="link-relatorio">Relatorio 2</a>
+                        <a href="" class="link-relatorio">Relatorio 3</a>
+                        <a href="" class="link-relatorio">Relatorio 4</a>
+                        <a href="" class="link-relatorio">Relatorio 5</a>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h4 class="h4 text-muted">COMISSÕES</h4>
+                    <hr class="separator-relatorios">
+                    <div>
+                        <a href="" class="link-relatorio">Relatorio 1</a>
+                        <a href="" class="link-relatorio">Relatorio 2</a>
+                        <a href="" class="link-relatorio">Relatorio 3</a>
+                        <a href="" class="link-relatorio">Relatorio 4</a>
+                        <a href="" class="link-relatorio">Relatorio 5</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Dashboard")
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+}

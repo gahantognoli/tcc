@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Representada()
         {
-            RepresentadaId = new Guid();
+            RepresentadaId = Guid.NewGuid();
         }
         public Guid RepresentadaId { get; set; }
         public string CNPJ { get; set; }

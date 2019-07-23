@@ -6,7 +6,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public EnderecoCliente()
         {
-            EnderecoClienteId = new Guid();
+            EnderecoClienteId = Guid.NewGuid();
         }
         public Guid EnderecoClienteId { get; set; }
         public string CEP { get; set; }

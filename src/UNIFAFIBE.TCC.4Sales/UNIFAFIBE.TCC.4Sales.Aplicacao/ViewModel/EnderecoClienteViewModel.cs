@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public EnderecoClienteViewModel()
         {
-            EnderecoClienteId = new Guid();
+            EnderecoClienteId = Guid.NewGuid();
         }
 
         [Key]

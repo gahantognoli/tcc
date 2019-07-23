@@ -7,7 +7,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public UsuarioRepresentadaViewModel()
         {
-            UsuarioRepresentadaId = new Guid();
+            UsuarioRepresentadaId = Guid.NewGuid();
         }
 
         [Key]

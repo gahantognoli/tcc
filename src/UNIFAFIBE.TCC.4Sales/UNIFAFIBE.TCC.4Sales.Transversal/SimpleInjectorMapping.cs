@@ -7,7 +7,9 @@ using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Dominio.Servicos;
 using UNIFAFIBE.TCC._4Sales.Infra.Serialization.Servicos;
+using UNIFAFIBE.TCC._4Sales.Persistencia.Contexto;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Persistencia.UnitOfWork;
 using UNIFAFIBE.TCC._4Sales.Transversal.Email;
 
 namespace UNIFAFIBE.TCC._4Sales.Transversal
@@ -85,7 +87,16 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
 
             #region Registros de Serialização 
             container.Register<IEntitySerializationServices<IEnumerable<StatusPedidoViewModel>>, JSONSerializationServices<IEnumerable<StatusPedidoViewModel>>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<StatusPedidoViewModel>, JSONSerializationServices<StatusPedidoViewModel>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<IEnumerable<TipoPedidoViewModel>>, JSONSerializationServices<IEnumerable<TipoPedidoViewModel>>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<TipoPedidoViewModel>, JSONSerializationServices<TipoPedidoViewModel>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<IEnumerable<TransportadoraViewModel>>, JSONSerializationServices<IEnumerable<TransportadoraViewModel>>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<IEnumerable<SegmentoViewModel>>, JSONSerializationServices<IEnumerable<SegmentoViewModel>>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<SegmentoViewModel>, JSONSerializationServices<SegmentoViewModel>>(Lifestyle.Scoped);
             #endregion
+
+            container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
+            container.Register<TCC_Contexto>(Lifestyle.Scoped);
         }
     }
 }

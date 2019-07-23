@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public PedidoViewModel()
         {
-            PedidoId = new Guid();
+            PedidoId = Guid.NewGuid();
         }
 
         [Key]

@@ -13,6 +13,9 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasMaxLength(50)
                 .IsRequired();
 
+            Property(u => u.Padrao)
+                .IsRequired();
+
             HasMany(s => s.Pedidos)
                 .WithRequired(s => s.StatusPedido)
                 .HasForeignKey(s => s.StatusPedidoId);

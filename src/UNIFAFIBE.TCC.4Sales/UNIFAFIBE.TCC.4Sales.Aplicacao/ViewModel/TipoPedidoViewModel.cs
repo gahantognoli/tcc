@@ -1,8 +1,6 @@
-﻿using DomainValidation.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
 {
@@ -10,16 +8,15 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public TipoPedidoViewModel()
         {
-            TipoPedidoId = new Guid();
+            TipoPedidoId = Guid.NewGuid();
         }
 
         [Key]
         public Guid TipoPedidoId { get; set; }
         [Display(Name = "Descrição")]
-        [Required(ErrorMessage = "Preencha o campo Descrição")]
-        [MaxLength(50, ErrorMessage = "Tamanho máximo de 50 caracteres")]
         public string Descricao { get; set; }
         [ScaffoldColumn(false)]
+        public bool Padrao { get; set; } = false;
         public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 
         public virtual ICollection<PedidoViewModel> Pedidos { get; set; }

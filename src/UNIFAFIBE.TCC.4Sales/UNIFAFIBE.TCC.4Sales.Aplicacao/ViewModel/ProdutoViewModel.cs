@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public ProdutoViewModel()
         {
-            ProdutoId = new Guid();
+            ProdutoId = Guid.NewGuid();
         }
 
         [Key]

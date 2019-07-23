@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public Transportadora()
         {
-            TransportadoraId = new Guid();
+            TransportadoraId = Guid.NewGuid();
         }
         public Guid TransportadoraId { get; set; }
         public string Nome { get; set; }

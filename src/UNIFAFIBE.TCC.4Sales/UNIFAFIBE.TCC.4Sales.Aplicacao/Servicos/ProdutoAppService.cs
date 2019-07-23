@@ -62,6 +62,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void Remover(Guid id)
         {
             _produtoService.Remover(id);
+            Commit();
         }
     }
 }

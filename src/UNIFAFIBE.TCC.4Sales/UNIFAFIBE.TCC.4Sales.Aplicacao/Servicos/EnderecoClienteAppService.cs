@@ -54,6 +54,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void Remover(Guid id)
         {
             _enderecoClienteService.Remover(id);
+            Commit();
         }
     }
 }

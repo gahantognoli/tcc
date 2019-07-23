@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public CondicaoPagamentoViewModel()
         {
-            CondicaoPagamentoId = new Guid();
+            CondicaoPagamentoId = Guid.NewGuid();
         }
 
         [Key]

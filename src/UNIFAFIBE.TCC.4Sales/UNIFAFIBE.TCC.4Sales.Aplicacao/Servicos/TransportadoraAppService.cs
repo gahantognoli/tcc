@@ -24,7 +24,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             var transportadoraRetorno = Mapper.Map<TransportadoraViewModel>
                 (_transportadoraService.Adicionar(Mapper.Map<Transportadora>(transportadora)));
 
-            if (transportadoraRetorno.EhValido())
+            //if (transportadoraRetorno.EhValido())
                 Commit();
             
             return transportadoraRetorno;
@@ -35,7 +35,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             var transportadoraRetorno = Mapper.Map<TransportadoraViewModel>
                 (_transportadoraService.Atualizar(Mapper.Map<Transportadora>(transportadora)));
 
-            if (transportadoraRetorno.EhValido())
+            //if (transportadoraRetorno.EhValido())
                 Commit();
 
             return transportadoraRetorno;
@@ -69,6 +69,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void Remover(Guid id)
         {
             _transportadoraService.Remover(id);
+            Commit();
         }
     }
 }

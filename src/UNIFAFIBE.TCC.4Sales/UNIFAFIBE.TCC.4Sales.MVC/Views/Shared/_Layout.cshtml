@@ -3,41 +3,141 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <div id="menu-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <div id="logo">
+                    <a href="#">
+                        <img src="~/assets/img/logo.png" alt="" class="img-logo">
+                    </a>
+                </div>
+                <button type="button" id="btnCollapse" class="btn btn-dark ml-3">
+                    <i class="fas fa-align-justify"></i>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav ml-auto" id="menu-item-navigation-top">
+                    <li class="nav-item actives-menu-top">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope icone-menu-top"></i></a>
+                    </li>
+                    <li class="nav-item actives-menu-top">
+                        <a class="nav-link" href="#"><i class="fas fa-bell icone-menu-top"></i></a>
+                    </li>
+                    <li class="nav-item actives-menu-top">
+                        <div class="d-flex align-items-center user-loged">
+                            <img src="~/assets/img/perfil.jpg" alt="" class="img-user-loged">
+                            <span>gantognoli</span>
+                            <i class="fas fa-angle-up"></i>
+                        </div>
+
+                        <div class="info-user">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="@Url.Action("Index", "PainelAdministrativo")">Painel Administrativo</a>
+                                </li>
+                                <hr class="hr-info-user" />
+                                <li>
+                                    <a href="">Sair</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#">
+                            <img src="~/assets/img/perfil.jpg" alt="" class="img-user" />
+                        </a>
+                    </div>
+                    <div class="col-md-8 d-flex align-items-center flex-column">
+                        <p class="user-name">Gabriel Antognoli</p>
+                        <a href="#" class="link edit-user-profile">Editar perfil</a>
+                        <ul class="list-unstyled" id="menu-item-navigation">
+                            <li class="nav-item actives-menu-top">
+                                <a class="nav-link" href="#"><i class="fas fa-envelope icone-menu-top"></i></a>
+                            </li>
+                            <li class="nav-item actives-menu-top">
+                                <a class="nav-link" href="#"><i class="fas fa-bell icone-menu-top"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="list-unstyled list-menu">
+                <li id="dashboard-menu-item">
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt icone-menu"></i>Dashboard
+                    </a>
+                </li>
+                <li id="pedidos-menu-item">
+                    <a href="pedidos.html">
+                        <i class="fas fa-clipboard-list icone-menu"></i>Pedidos
+                    </a>
+                </li>
+                <li id="clientes-menu-item">
+                    <a href="#">
+                        <i class="fas fa-user-friends icone-menu"></i>Clientes
+                    </a>
+                </li>
+                <li id="representadas-menu-item">
+                    <a href="representadas.html">
+                        <i class="fas fa-store icone-menu"></i>Representadas
+                    </a>
+                </li>
+                <li id="logoff">
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt icone-menu"></i>Sair
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <div class="content">
+                @RenderBody()
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
+    <footer>
+        <div class="col-12" id="footer">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-2">
+                    <div id="logo">
+                        <a href="#">
+                            <img src="~/assets/img/logo.png" alt="" class="img-logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <span class="text-white">
+                        Trabalho de conclusão de curso - Gabriel Antognoli/Otávio Odenik
+                        - CENTRO UNIVERSITÁRIO UNIFAFIBE - BEBEDOURO/SP - 2019</s>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        //Pega a URL default da aplicação
+        var gHostProjeto = "@Url.Content("~/")";
+    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/global")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/Global")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

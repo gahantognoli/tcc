@@ -34,13 +34,45 @@
         }
 
     },
-    MostrarModal: function (pId, pTitulo, pMensagem) {
-        $(pId + " #titulo").text(pTitulo);
-        $(pId + " #mensagem").text(pMensagem);
-
+    VerificaErrosValidacao: function (validationResult) {
+        return validationResult.IsValid;
+    },
+    ExibirNotificaoErrosValidacao: function (validationResult) {
+        var mensagem = "";
+        $.each(validationResult.Erros, function (index, value) {
+            mensagem += value.Message + "<br />";
+        });
+        fGlobal.EmitirNotificacao("Algo deu errado", mensagem, "danger");
+    },
+    MostrarModal: function (pId) {
         $(pId).modal('show');
     },
     EsconderModal: function (pId) {
         $(pId).modal('hide');
+    },
+    EmitirNotificacao: function (titulo, mensagem, tipo) {
+        $.notify({
+            title: titulo,
+            message: mensagem
+        },
+            {
+                type: 'pastel-' + tipo,
+                delay: 5000,
+                offset: {
+                    x: 23,
+                    y: 80
+                },
+                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="title">{1}</span>' +
+                    '<span data-notify="message">{2}</span>' +
+                    '</div>'
+            });
+    },
+    IsNotEmpty: function (pValue) {
+        return pValue !== undefined && pValue !== null && pValue !== "" ? true : false;
+    },
+    IsEmpty: function (pValue) {
+        return pValue === undefined || pValue === null || pValue === "" ? true : false;
     }
 };

@@ -25,8 +25,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public StatusPedido Atualizar(StatusPedido statusPedido)
         {
-            //if (!statusPedido.EstaConsistente())
-            //    return statusPedido;
+            if (!statusPedido.EstaConsistente())
+                return statusPedido;
             return _statusPedidoRepositorio.Atualizar(statusPedido);
         }
 

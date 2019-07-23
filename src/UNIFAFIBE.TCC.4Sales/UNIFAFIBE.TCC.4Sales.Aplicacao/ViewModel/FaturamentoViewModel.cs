@@ -9,7 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public FaturamentoViewModel()
         {
-            FaturamentoId = new Guid();
+            FaturamentoId = Guid.NewGuid();
         }
 
         [Key]

@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public CondicaoPagamento()
         {
-            CondicaoPagamentoId = new Guid();
+            CondicaoPagamentoId = Guid.NewGuid();
         }
         public Guid CondicaoPagamentoId { get; set; }
         public string Descricao { get; set; }

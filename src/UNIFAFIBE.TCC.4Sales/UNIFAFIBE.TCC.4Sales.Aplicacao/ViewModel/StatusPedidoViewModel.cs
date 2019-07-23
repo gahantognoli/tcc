@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
 {
@@ -9,15 +8,16 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public StatusPedidoViewModel()
         {
-            StatusPedidoId = new Guid();
+            StatusPedidoId = Guid.NewGuid();
         }
 
         [Key]
         public Guid StatusPedidoId { get; set; }
         [Display(Name = "Descrição")]
-        [Required(ErrorMessage = "Preencha o campo Descrição")]
-        [MaxLength(50, ErrorMessage = "Tamanho máximo de 50 caracteres")]
+        [Required(ErrorMessage = "Informe a descrição")]
         public string Descricao { get; set; }
+        public bool Padrao { get; set; } = false;
+
         [ScaffoldColumn(false)]
         public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 

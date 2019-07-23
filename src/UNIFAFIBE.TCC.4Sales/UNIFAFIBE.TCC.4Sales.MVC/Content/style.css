@@ -1,0 +1,618 @@
+﻿body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Login */
+.wrapper-login {
+    box-shadow: inset 0 2px 3px 0 rgba(255, 255, 255, 0.3), inset 0 -3px 6px 0 rgba(0, 0, 0, 0.2), 0 3px 2px 0 rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom, #222, #333 130%);
+    width: 100vw;
+    height: 100vh;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    padding-top: 24vh;
+    margin: auto;
+}
+
+.titulo-login {
+    color: #e83e8c;
+}
+
+.img-logo-login {
+    margin-bottom: 22px;
+}
+
+.list-link-login {
+    display: inline-block;
+}
+
+.link-login {
+    color: #CCC;
+    transition: all .5s ease;
+    text-shadow: #444 2px 2px 2px;
+    font-size: .9em;
+}
+
+    .link-login:hover {
+        text-decoration: none;
+        color: #e83e8c;
+    }
+
+.separator-link {
+    color: #CCC;
+}
+/* ************************************* */
+
+/* Menu Lateral */
+#sidebar {
+    min-width: 209px;
+    max-width: 209px;
+    background: #333;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+    #sidebar.active {
+        margin-left: -209px;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 15px 10px;
+        text-align: left;
+    }
+
+    #sidebar ul li a {
+        padding: 12px;
+        font-size: 0.9em;
+        display: block;
+        color: #EEE;
+        text-decoration: none;
+    }
+
+#logo {
+    border-right: #CCC 1px solid;
+    width: 194px;
+}
+
+#menu-top {
+    width: 100%;
+    border-bottom: 1px solid #CCC;
+    background-color: #EEE;
+}
+
+.img-user {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    display: block;
+    margin: auto;
+}
+
+.user-name {
+    font-size: 14px;
+    margin-bottom: 0;
+    display: inline-block;
+    text-shadow: 2px 2px 2px #222;
+    padding-top: 4px;
+}
+
+.edit-user-profile {
+    font-size: 12px;
+    color: #CCC;
+    margin-top: 5px;
+}
+
+    .edit-user-profile:hover {
+        color: #CCC;
+    }
+
+.icone-menu {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #EEE;
+}
+
+    .icone-menu:hover {
+        color: rgb(253, 244, 244);
+        background: #444;
+    }
+
+.active-menu {
+    border-left: 3px solid #DDD;
+    background: #444;
+}
+
+.icone-dashboard {
+    font-size: 50px;
+}
+
+.icone-menu-top {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    color: #222;
+    transition: all 0.4s ease;
+}
+
+    .icone-menu-top:hover {
+        color: #3235fa;
+    }
+
+.actives-menu-top:first-of-type {
+    border-left: #CCC 1px solid;
+}
+
+.actives-menu-top {
+    border-right: #CCC 1px solid;
+}
+
+    .actives-menu-top:last-of-type {
+        border: none;
+    }
+
+#menu-item-navigation-top {
+    cursor: pointer;
+}
+
+.user-loged {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.img-user-loged {
+    width: 40px;
+    height: 40px;
+    margin-left: 7px;
+    margin-right: 7px;
+    border-radius: 20px;
+}
+
+.user-loged i {
+    margin-left: 8px;
+}
+
+.info-user {
+    position: absolute;
+    background: #EEE;
+    width: 175px;
+    box-shadow: #BBB 2px 4px 4px;
+    padding: 15px;
+    margin-left: 8px;
+    border-radius: 2px;
+    z-index: 9999;
+    opacity: 0;
+    display: none;
+}
+
+.hr-info-user {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.info-user.active {
+    opacity: 1;
+    display: block;
+}
+
+.info-user ul li a {
+    color: #222;
+    transition: all .4s ease;
+    font-size: .9em;
+}
+
+    .info-user ul li a:hover {
+        color: #3235fa;
+        text-decoration: none;
+    }
+
+.list-menu li a:hover {
+    color: #fff;
+    background: #444;
+    transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+}
+/* ********************************* */
+
+/* Tabs */
+#tabs {
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #EEE;
+    text-transform: uppercase;
+    border: #CCC 1px solid;
+}
+
+    #tabs a {
+        color: #666;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+.nav-tabs {
+    border-bottom: #BBB 1px solid;
+}
+
+    .nav-tabs .nav-link.active {
+        border-bottom: #000 2px solid;
+        color: #000 !important;
+        font-weight: 700;
+        background-color: #EEE;
+    }
+
+.nav-link.active {
+    border: none;
+    border-bottom: #000 2px solid
+}
+
+.nav-tabs .nav-link:hover {
+    border: none;
+    border-bottom: #BBB 2px solid;
+}
+
+.nav-tabs .nav-link:focus {
+    border: none;
+    border-bottom: #000 2px solid;
+    transition: 0.7s all;
+}
+
+#label-filtrar-por {
+    text-transform: none;
+    font-weight: 700;
+}
+
+.separator-relatorios {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/* *********************** */
+
+/* Relatórios */
+.link-relatorio:first-child {
+    margin-top: 10px;
+}
+
+.link-relatorio {
+    display: block;
+    padding: 3px 0;
+    font-size: 15px;
+}
+
+    .link-relatorio:hover {
+        text-decoration: none;
+    }
+
+.content-relatorios {
+    margin-top: 22px;
+}
+/* *********************************** /
+
+/* Conteúdo da página */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.content {
+    width: 100%;
+    transition: all 0.3s;
+    margin-bottom: 20px;
+    min-height: 100vh;
+}
+
+    .content nav {
+        background-color: #EEE;
+        border-bottom: #CCC 1px solid;
+    }
+
+.hide-element {
+    opacity: 0;
+}
+/* ************************* */
+
+/* Pedidos */
+.btn-criar {
+    background-color: #890d94;
+    color: white;
+    padding: 5px 8px;
+}
+
+.icone-criar {
+    margin-right: 8px;
+}
+
+.btn-criar:hover {
+    background-color: #a825b4;
+    color: white;
+}
+
+.link-detalhes-pedido {
+    color: black;
+    font-size: 15px;
+}
+
+    .link-detalhes-pedido:hover {
+        text-decoration: none;
+        color: #000;
+    }
+
+.num-pedido {
+    color: #3c6aff;
+    font-size: 17px;
+}
+
+.info-pedido {
+    font-size: .9em;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.icone-info-pedido-valor {
+    font-size: 13px;
+    color: rgb(9, 197, 9);
+    margin-right: 4px;
+}
+
+.icone-info-pedido {
+    font-size: 12px;
+    color: #BBB;
+    margin-right: 4px;
+}
+
+.linha {
+    margin: 0 0 12px 0;
+}
+/* **************************************** /
+
+/* Representadas */
+.card-item {
+    border-top: 1px #EEE solid;
+    border-bottom: 1px #EEE solid;
+    padding: 25px 15px;
+    border-left: 1px #EEE solid;
+    box-shadow: 1px 4px 5px #EEE;
+    transition: all .5s ease;
+    margin-bottom: 10px;
+}
+
+    .card-item:hover {
+        background-color: #EEE;
+    }
+
+.link-detalhes:hover {
+    text-decoration: none;
+}
+
+.icone-edit {
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.icone-remove {
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.icone-search {
+    font-size: 16px;
+}
+/* ********************************* /
+
+/* Usuário */
+#tabs-usuario .nav-tabs .nav-link.active {
+    border-bottom: #000 2px solid;
+    color: #000 !important;
+    font-weight: 700;
+    background-color: white;
+}
+
+#tabs-usuario a {
+    color: black;
+}
+
+.card-usuario {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #EEE;
+}
+
+.img-usuario-tab-usuarios {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background-color: #CCC;
+}
+
+.container-info-usuario-tab-usuarios {
+    padding-left: 30px;
+}
+
+.nome-user-tab-usuarios {
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.perfil-responsavel {
+    font-size: 12px;
+    color: #333;
+    display: block;
+}
+
+.contato-tab-usuarios {
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 4px #444 solid;
+}
+
+    .contato-tab-usuarios span {
+        display: block;
+    }
+
+.usuario-icone {
+    font-size: 15px;
+    color: #CCC;
+    margin-right: 5px;
+}
+
+#outros-cadastros-tab .nav-link.active, #outros-cadastros-tab .nav-link.active {
+    border-bottom: none;
+}
+
+.img-user-cadastro {
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    background: #EEE;
+    border: 2px #AAA solid;
+    cursor: pointer;
+}
+
+.link-alterar-senha {
+    font-size: 14px;
+}
+
+    .link-alterar-senha:hover {
+        text-decoration: none;
+    }
+
+.content-responsavel {
+    background-color: #f9f9f9;
+}
+/* ********************** */
+
+/* Transportadora */
+
+#btnPesquisarTransportadora:hover {
+    cursor:pointer;
+}
+/* ************************************* */
+.icone-cadastro {
+    font-size: 22px;
+    margin-right: 8px;
+}
+
+.content-criar {
+    padding-left: 0 !important;
+}
+
+.icone-tab {
+    margin-right: 5px;
+}
+
+.icone-home {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+/* FOOTER */
+#footer {
+    padding: 15px 50px;
+    align-items: center;
+    background-color: rgb(32, 98, 151);
+    border-top: rgb(129, 129, 129) 2px solid;
+}
+/* ********************************* */
+
+@media (max-width: 992px) {
+    #sidebar {
+        margin-left: -209px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+    .sidebar-header {
+        padding-bottom: 0px !important;
+    }
+
+    #btnCollapse span {
+        display: none;
+    }
+
+    .img-user-loged {
+        display: none;
+    }
+
+    .user-loged span {
+        display: none;
+    }
+
+    #menu-item-navigation-top {
+        display: none;
+    }
+
+    #menu-item-navigation {
+        margin-bottom: 0px;
+    }
+
+        #menu-item-navigation li {
+            display: inline-block;
+        }
+
+        #menu-item-navigation a:hover {
+            background-color: #333;
+        }
+
+        #menu-item-navigation li a i:hover {
+            color: rgb(223, 231, 103);
+        }
+
+    .card-dashboard {
+        margin-bottom: 15px;
+    }
+
+        .card-dashboard:last-of-type {
+            margin-bottom: 0px;
+        }
+
+    .actives-menu-top:first-of-type {
+        border-left: none;
+    }
+
+    .actives-menu-top {
+        border-right: none;
+    }
+
+    .icone-menu-top {
+        color: #EEE;
+    }
+
+    #logo {
+        border-right: none;
+    }
+
+    #logoff {
+        display: block;
+    }
+
+    #filtros-dashboard select {
+        margin-bottom: 12px;
+    }
+}
+
+@media (min-width: 992px) {
+    #sidebar {
+        margin-left: 0px;
+    }
+
+    #menu-item-navigation {
+        display: none;
+    }
+
+    #logo {
+        border-right: #CCC 1px solid;
+    }
+
+    .img-logo {
+        margin-left: 25px;
+    }
+
+    #logoff {
+        display: none;
+    }
+}

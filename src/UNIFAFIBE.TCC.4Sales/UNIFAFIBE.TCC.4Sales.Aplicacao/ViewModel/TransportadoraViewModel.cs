@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
     {
         public TransportadoraViewModel()
         {
-            TransportadoraId = new Guid();
+            TransportadoraId = Guid.NewGuid();
         }
 
         [Key]
@@ -31,13 +31,13 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [MaxLength(500, ErrorMessage = "Tamanho máximo de 500 caracteres")]
         public string InformacoesAdicionais { get; set; }
         [ScaffoldColumn(false)]
-        public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
+        //public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 
         public virtual ICollection<PedidoViewModel> Pedidos { get; set; }
 
-        public bool EhValido()
+        /*public bool EhValido()
         {
             return this.ValidationResult.IsValid == true;
-        }
+        }*/
     }
 }

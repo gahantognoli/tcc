@@ -10,22 +10,26 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     {
         public StatusPedido()
         {
-            StatusPedidoId = new Guid();
+            StatusPedidoId = Guid.NewGuid();
         }
         public Guid StatusPedidoId { get; set; }
         public string Descricao { get; set; }
+        public bool Padrao { get; set; } = false;
         public ValidationResult ValidationResult { get; set; }
 
         public virtual ICollection<Pedido> Pedidos { get; set; }
 
         public bool EhValido(IStatusPedidoRepositorio statusPedidoRepositorio)
         {
-            return this.EstaApto(statusPedidoRepositorio);
+            if(this.EstaConsistente())
+                return this.EstaApto(statusPedidoRepositorio);
+            return false;
         }
 
         public bool EstaConsistente()
         {
-            return true;
+            ValidationResult = new StatusPedidoEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
 
         public bool EstaApto(IStatusPedidoRepositorio statusPedidoRepositorio)
