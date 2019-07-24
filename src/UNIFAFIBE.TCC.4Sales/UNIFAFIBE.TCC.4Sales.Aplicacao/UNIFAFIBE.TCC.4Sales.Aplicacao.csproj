@@ -91,6 +91,7 @@
     <Compile Include="Servicos\TipoPedidoAppService.cs" />
     <Compile Include="Servicos\TransportadoraAppService.cs" />
     <Compile Include="Servicos\UsuarioAppService.cs" />
+    <Compile Include="ViewModel\ClientePFPJViewModel.cs" />
     <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="ViewModel\CondicaoPagamentoViewModel.cs" />
     <Compile Include="ViewModel\ContatoClienteViewModel.cs" />

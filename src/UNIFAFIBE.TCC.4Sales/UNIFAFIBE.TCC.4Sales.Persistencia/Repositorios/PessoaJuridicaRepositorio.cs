@@ -31,7 +31,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<PessoaJuridica> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaJuridica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterTodos.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
 
         public IEnumerable<PessoaJuridica> ObterPorCPNJ(string cnpj)

@@ -20,12 +20,17 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 
         public bool EhValido(ISegmentoRepositorio segmentoRepositorio)
         {
-            return this.EstaApto(segmentoRepositorio);
+            if (this.EstaConsistente())
+            {
+                return this.EstaApto(segmentoRepositorio);
+            }
+            return false;
         }
 
         public bool EstaConsistente()
         {
-            return true;
+            ValidationResult = new SegmentoEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
 
         public bool EstaApto(ISegmentoRepositorio segmentoRepositorio)

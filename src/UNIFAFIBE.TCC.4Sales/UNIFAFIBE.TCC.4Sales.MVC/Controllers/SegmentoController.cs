@@ -14,6 +14,15 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         private readonly IEntitySerializationServices<IEnumerable<SegmentoViewModel>> _serializationColecaSegmentosServices;
         private readonly IEntitySerializationServices<SegmentoViewModel> _serializationSegmentosService;
 
+        public SegmentoController(ISegmentoAppService segmentoAppService,
+            IEntitySerializationServices<IEnumerable<SegmentoViewModel>> serializationColecaSegmentosServices,
+            IEntitySerializationServices<SegmentoViewModel> serializationSegmentosService)
+        {
+            _segmentoAppService = segmentoAppService;
+            _serializationColecaSegmentosServices = serializationColecaSegmentosServices;
+            _serializationSegmentosService = serializationSegmentosService;
+        }
+
         [HttpGet]
         public JsonResult Listar()
         {
@@ -30,7 +39,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             var segmentoRetorno = _segmentoAppService.Adicionar(segmento);
             var json = _serializationSegmentosService.Serialize(segmentoRetorno);
 
-            return Json(new { statusPedido = json }, JsonRequestBehavior.AllowGet);
+            return Json(new { segmento = json }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Alterar(Guid? id)
@@ -56,7 +65,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                     _segmentoAppService.Atualizar(segmento);
                     TempData["AtualizadoSucesso"] = "Segmento " + segmento.Descricao +
                       " alterado com sucesso";
-                    return RedirectToAction("Listar", "Cliente");
+                    return RedirectToAction("Index", "Cliente");
                 }
 
                 return View(segmento);
@@ -87,7 +96,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 _segmentoAppService.Remover(id);
                 TempData["RemovidoSucesso"] = "Segmento removido com sucesso";
-                return RedirectToAction("Listar", "Cliente");
+                return RedirectToAction("Index", "Cliente");
             }
             catch (Exception e)
             {

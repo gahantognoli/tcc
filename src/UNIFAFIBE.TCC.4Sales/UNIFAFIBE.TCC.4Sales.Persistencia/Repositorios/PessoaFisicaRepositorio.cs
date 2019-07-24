@@ -31,7 +31,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<PessoaFisica> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaFisica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaFisica>(PessoaFisicaProcedures.ObterTodos.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
         }
 
         public IEnumerable<PessoaFisica> ObterPorCPF(string cpf)

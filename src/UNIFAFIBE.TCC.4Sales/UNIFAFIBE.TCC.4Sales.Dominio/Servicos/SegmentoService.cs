@@ -25,8 +25,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Segmento Atualizar(Segmento segmento)
         {
-            //if (!segmento.EstaConsistente())
-            //    return segmento;
+            if (!segmento.EstaConsistente())
+                return segmento;
 
             return _segmentoRepositorio.Atualizar(segmento);
         }

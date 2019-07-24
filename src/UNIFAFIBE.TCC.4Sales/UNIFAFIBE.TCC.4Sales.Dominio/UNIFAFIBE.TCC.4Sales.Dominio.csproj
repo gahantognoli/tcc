@@ -77,6 +77,7 @@
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirComissaoMaiorDoQueZeroSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirEmailValidoSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirRazaoSocialUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\Segmentos\SegmentoDevePossuirDescricaoSpecification.cs" />
     <Compile Include="Especificacoes\Segmentos\SegmentoDevePossuirDescricaoUnicaSpecification.cs" />
     <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoSpecification.cs" />
     <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoUnicaSpecification.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Validacoes\Representadas\RepresentadaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\Representadas\RepresentadaEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\Segmentos\SegmentoEstaAptoValidation.cs" />
+    <Compile Include="Validacoes\Segmentos\SegmentoEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\TiposPedido\TipoPedidoEstaAptoValidation.cs" />

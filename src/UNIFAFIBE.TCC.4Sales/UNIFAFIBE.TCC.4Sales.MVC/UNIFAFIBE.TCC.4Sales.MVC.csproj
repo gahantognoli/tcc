@@ -176,6 +176,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Cliente\script.js" />
     <Content Include="Scripts\Dashboard\chart.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -212,6 +213,7 @@
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\Segmento\script.js" />
     <Content Include="Scripts\StatusPedido\script.js" />
     <Content Include="Scripts\TipoPedido\script.js" />
     <Content Include="Scripts\Transportadora\script.js" />
@@ -249,12 +251,13 @@
     <Content Include="Views\Transportadora\Alterar.cshtml" />
     <Content Include="Views\Transportadora\Remover.cshtml" />
     <Content Include="Views\Transportadora\Novo.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Segmento\Alterar.cshtml" />
+    <Content Include="Views\Segmento\Remover.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Cliente\" />
-    <Folder Include="Views\Segmento\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

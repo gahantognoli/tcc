@@ -40,6 +40,12 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
             bundles.Add(new ScriptBundle("~/Scripts/Dashboard").Include(
                "~/Scripts/Dashboard/chart.js"
             ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Clientes").Include(
+               "~/Scripts/Cliente/script.js",
+               "~/Scripts/Segmento/script.js"
+            ));
+
         }
     }
 }

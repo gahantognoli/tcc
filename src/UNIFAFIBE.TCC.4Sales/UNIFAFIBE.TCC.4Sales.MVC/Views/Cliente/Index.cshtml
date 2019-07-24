@@ -1,0 +1,187 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.ClientePFPJViewModel
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div id="tabs-clientes">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="cliente-tab" data-toggle="tab" href="#cliente"
+                           role="tab" aria-controls="cliente" aria-selected="true"><i class="fas fa-user-friends icone-tab"></i>Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="segmento-tab" data-toggle="tab"
+                           href="#segmento" role="tab" aria-controls="segmento"
+                           aria-selected="false"><i class="fas fa-grip-horizontal icone-tab"></i>Segmentos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="tab-content">
+                <div div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+                    <div class="row mt-3">
+                        <div class="col-md-12 mt-1">
+                            <a href="Cliente/Novo" class="btn btn-criar">
+                                <i class="fas fa-plus icone-criar"></i>Novo Cliente
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card mb-2 mt-3">
+                                <div class="card-header">
+                                    <span class="h5">Opções de Pesquisa</span>
+                                </div>
+                                <div class="card-body">
+                                    <select name="tamanhoPagina" id="tamanhoPagina" class="form-control mb-2"
+                                            onchange="this.for.submit()">
+                                        <option value="20">Listar 20 registros por página</option>
+                                        <option value="100">Listar 100 registros por página</option>
+                                        <option value="500">Listar 500 registros por página</option>
+                                        <option value="1000">Listar 1000 registros por página</option>
+                                    </select>
+                                    <div class="form-row">
+                                        <div class="col-md-2">
+                                            <select name="parametro" id="parametro" class="form-control mb-2"
+                                                    onchange="$('#busca').val('')">
+                                                <option value="" @(ViewBag.Parametro == "" ? "selected" : "")>Pesquisar por...</option>
+                                                <option value="nome" @(ViewBag.Parametro == "nome" ? "selected" : "")>Nome</option>
+                                                <option value="cpf" @(ViewBag.Parametro == "cpf" ? "selected" : "")>CPF</option>
+                                                <option value="razao-social" @(ViewBag.Parametro == "razao-social" ? "selected" : "")>Razão Social</option>
+                                                <option value="cnpj" @(ViewBag.Parametro == "cnpj" ? "selected" : "")>CNPJ</option>
+                                                <option value="nome-fantasia" @(ViewBag.Parametro == "nome-fantasia" ? "selected" : "")>Nome Fantasia</option>
+                                                <option value="inscricao-estadual" @(ViewBag.Parametro == "inscricao-estadual" ? "selected" : "")>Inscrição estadual</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="form-row">
+                                                <div class="col-md-10">
+                                                    <div class="input-group mb-2">
+                                                        <input type="text" class="form-control" name="busca" id="busca"
+                                                               placeholder="Pesquisa..." value="@(ViewBag.Parametro == "" ? "" : @ViewBag.Busca)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="submit"
+                                                            class="btn btn-primary btn-block mb-2">
+                                                        Pesquisar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 mt-4" id="loading-cliente" style="display:none;">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <img src="~/assets/img/ajax-loader.gif" alt="Carregando ..." />
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                @if (Model.pessoaFisicaViewModels != null)
+                                {
+                                    foreach (var item in Model.pessoaFisicaViewModels)
+                                    {
+                                        <div class="col-md-12" id="content-clientes">
+                                            <div class="card-item d-flex justify-content-between">
+                                                <a href="" class="link-detalhes">
+                                                    <span class="h6">@item.Nome</span>
+                                                </a>
+                                                <div>
+                                                    <a href="" class="btn btn-sm btn-warning mr-1">
+                                                        <i class="fas fa-pencil-alt icone-edit"></i>Alterar
+                                                    </a>
+                                                    <a href="" class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash-alt icone-remove"></i>Remover
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                @if (Model.pessoaJuridicaViewModels != null)
+                                {
+                                    foreach (var item in Model.pessoaJuridicaViewModels)
+                                    {
+                                        <div class="col-md-12" id="content-clientes">
+                                            <div class="card-item d-flex justify-content-between">
+                                                <a href="" class="link-detalhes">
+                                                    <span class="h6">@item.RazaoSocial</span>
+                                                </a>
+                                                <div>
+                                                    <a href="" class="btn btn-sm btn-warning mr-1">
+                                                        <i class="fas fa-pencil-alt icone-edit"></i>Alterar
+                                                    </a>
+                                                    <a href="" class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash-alt icone-remove"></i>Remover
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div div class="tab-pane fade show" id="segmento" role="tabpanel" aria-labelledby="segmento-tab">
+                    <div class="row mt-3">
+                        <div class="col-md-12 mt-1">
+                            <form>
+                                <div class="form-row mt-4 mb-3">
+                                    <div class="form-group col-md-4">
+                                        <input type="text" class="form-control"
+                                               id="descricao-segmento" name="descricao-segmento"
+                                               placeholder="Criar novo segmento">
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <button class="btn btn-criar" id="btnIncluirSegmento" type="button">Cadastrar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="row mb-3 mt-2" id="loading-segmento" style="display:none;">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <img src="~/assets/img/ajax-loader.gif" alt="Carregando ..." />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" id="content-segmento">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    @section Scripts {
+        @Scripts.Render("~/Scripts/Clientes")
+        <script>
+        if (fGlobal.IsNotEmpty('@TempData["CadastradoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["CadastradoSucesso"]', "info");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["AtualizadoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["AtualizadoSucesso"]', "warning");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["RemovidoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["RemovidoSucesso"]', "danger");
+        }
+        </script>
+    }

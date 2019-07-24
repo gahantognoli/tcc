@@ -58,7 +58,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public IEnumerable<ClienteViewModel> ObterTodos()
         {
-            return Mapper.Map<IEnumerable<ClienteViewModel>>(_pessoaFisicaService.ObterTodos());
+            return Mapper.Map<IEnumerable<PessoaFisicaViewModel>>(_pessoaFisicaService.ObterTodos());
         }
 
         public void Remover(Guid id)

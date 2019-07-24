@@ -66,6 +66,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<PessoaJuridicaViewModel>>(_pessoaJuridicaService.ObterPorRazaoSocial(razaoSocial));
         }
 
+        public IEnumerable<ClienteViewModel> ObterTodos()
+        {
+            return Mapper.Map<IEnumerable<PessoaJuridicaViewModel>>(_pessoaJuridicaService.ObterTodos());
+        }
+
         public void Remover(Guid id)
         {
             _pessoaJuridicaService.Remover(id);

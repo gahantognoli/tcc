@@ -485,11 +485,26 @@
 /* ********************** */
 
 /* Transportadora */
-
 #btnPesquisarTransportadora:hover {
     cursor:pointer;
 }
 /* ************************************* */
+
+/* Clientes */
+
+#tabs-clientes .nav-tabs .nav-link.active {
+    border-bottom: #000 2px solid;
+    color: #000 !important;
+    font-weight: 700;
+    background-color: white;
+}
+
+#tabs-clientes a {
+    color: black;
+}
+
+/*********************************/
+
 .icone-cadastro {
     font-size: 22px;
     margin-right: 8px;

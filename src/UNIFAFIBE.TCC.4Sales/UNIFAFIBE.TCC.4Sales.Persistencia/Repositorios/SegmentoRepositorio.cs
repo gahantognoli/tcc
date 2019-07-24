@@ -31,7 +31,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<Segmento> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Segmento> retornoSegmento;
+
+            retornoSegmento = cn.Query<Segmento>(SegmentoProcedures.ObterTodos.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoSegmento;
         }
 
         public IEnumerable<Segmento> ObterPorDescricao(string descricao)
