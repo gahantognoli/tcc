@@ -75,7 +75,7 @@
 
 #logo {
     border-right: #CCC 1px solid;
-    width: 194px;
+    width: 179px;
 }
 
 #menu-top {
@@ -152,6 +152,7 @@
 
     .actives-menu-top:last-of-type {
         border: none;
+        margin-right: 13px;
     }
 
 #menu-item-navigation-top {
@@ -178,8 +179,8 @@
 .info-user {
     position: absolute;
     background: #EEE;
-    width: 175px;
-    box-shadow: #BBB 2px 4px 4px;
+    width: 188px;
+    box-shadow: #BBB 2px 2px 4px;
     padding: 15px;
     margin-left: 8px;
     border-radius: 2px;
@@ -202,6 +203,7 @@
     color: #222;
     transition: all .4s ease;
     font-size: .9em;
+    font-weight: 600;
 }
 
     .info-user ul li a:hover {
@@ -463,12 +465,13 @@
 }
 
 .img-user-cadastro {
-    width: 120px;
-    height: 120px;
-    border-radius: 120px;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
     background: #EEE;
     border: 2px #AAA solid;
     cursor: pointer;
+    padding: 8px;
 }
 
 .link-alterar-senha {
@@ -523,6 +526,9 @@
     margin-right: 5px;
 }
 
+.span-obrigatorio {
+    color: red;
+}
 /* FOOTER */
 #footer {
     padding: 15px 50px;
@@ -531,6 +537,13 @@
     border-top: rgb(129, 129, 129) 2px solid;
 }
 /* ********************************* */
+
+/* Cliente */
+#cliente-cadastro-tab .nav-link.active {
+    border-bottom: none;
+}
+
+/***************************************/
 
 @media (max-width: 992px) {
     #sidebar {
@@ -624,7 +637,7 @@
     }
 
     .img-logo {
-        margin-left: 25px;
+        margin-left: 14px;
     }
 
     #logoff {

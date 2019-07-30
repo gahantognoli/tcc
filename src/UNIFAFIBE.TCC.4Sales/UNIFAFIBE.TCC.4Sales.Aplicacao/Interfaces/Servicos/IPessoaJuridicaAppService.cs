@@ -9,8 +9,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         PessoaJuridicaViewModel Adicionar(PessoaJuridicaViewModel cliente);
         PessoaJuridicaViewModel Atualizar(PessoaJuridicaViewModel cliente);
         void Remover(Guid id);
-        IEnumerable<ClienteViewModel> ObterTodos();
-        ClienteViewModel ObterPorId(Guid id);
+        IEnumerable<PessoaJuridicaViewModel> ObterTodos();
+        PessoaJuridicaViewModel ObterPorId(Guid id);
         IEnumerable<PessoaJuridicaViewModel> ObterPorCPNJ(string cnpj);
         IEnumerable<PessoaJuridicaViewModel> ObterPorRazaoSocial(string razaoSocial);
         IEnumerable<PessoaJuridicaViewModel> ObterPorNomeFantasia(string nomeFantasia);

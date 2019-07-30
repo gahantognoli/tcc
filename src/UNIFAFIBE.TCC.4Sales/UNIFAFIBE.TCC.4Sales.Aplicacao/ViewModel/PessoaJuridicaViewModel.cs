@@ -8,7 +8,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Required(ErrorMessage = "Preencha o campo Razão Social")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo de 100 caracteres")]
         public string RazaoSocial { get; set; }
-        [Required(ErrorMessage = "Preencha o campo SUFRAMA")]
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]
         public string SUFRAMA { get; set; }
         [Display(Name = "Inscrição Estadual")]
@@ -20,9 +19,21 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Required(ErrorMessage = "Preencha o campo Nome Fantasia")]
         [MaxLength(50, ErrorMessage = "Tamanho máximo de 50 caracteres")]
         public string NomeFantasia { get; set; }
+        
+        private string _cnpj;
         [Required(ErrorMessage = "Preencha o campo CNPJ")]
-        [MinLength(14, ErrorMessage = "Tamanho mínimo de 14 caracteres")]
-        [MaxLength(14, ErrorMessage = "Tamanho máximo de 14 caracteres")]
-        public string CNPJ { get; set; }
+        [StringLength(18, MinimumLength = 18, ErrorMessage = "Tamanho deve ser de 18 caracteres")]
+        public string CNPJ
+        {
+            get
+            {
+                return _cnpj;
+            }
+            set
+            {
+                _cnpj = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+            }
+        }
+
     }
 }

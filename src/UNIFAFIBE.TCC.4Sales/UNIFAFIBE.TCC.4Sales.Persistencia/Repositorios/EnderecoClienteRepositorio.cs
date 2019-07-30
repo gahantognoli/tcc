@@ -40,7 +40,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             IEnumerable<EnderecoCliente> retornoEnderecoCliente;
 
             retornoEnderecoCliente = cn.Query<EnderecoCliente>(EnderecoClienteProcedures.ObterTodos.GetDescription(),
-                new { clienteId = clienteId },
+                new { IdCliente = clienteId },
                 commandType: CommandType.StoredProcedure);
 
             return retornoEnderecoCliente;

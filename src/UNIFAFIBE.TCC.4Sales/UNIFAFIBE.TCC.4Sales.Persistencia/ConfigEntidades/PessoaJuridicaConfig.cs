@@ -21,8 +21,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsRequired();
 
             Property(p => p.SUFRAMA)
-                .HasMaxLength(20)
-                .IsRequired();
+                .HasMaxLength(20);
 
             Property(p => p.InscricaoEstadual)
                 .HasMaxLength(12)

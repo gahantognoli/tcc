@@ -32,7 +32,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<Representada> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Representada> retornoRepresentada;
+
+            retornoRepresentada = cn.Query<Representada>(RepresentadaProcedures.ObterTodos.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoRepresentada;
         }
 
         public IEnumerable<Representada> ObterPorCnpj(string cnpj)

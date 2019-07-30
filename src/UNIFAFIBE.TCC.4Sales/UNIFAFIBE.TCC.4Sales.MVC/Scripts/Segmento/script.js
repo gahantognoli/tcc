@@ -1,4 +1,4 @@
-﻿var functionsSegmento = {
+﻿var functionsSegmento = {   
     Listar: function () {
         fGlobal.Ajax(gHostProjeto + "Segmento/Listar", "GET", null, functionsSegmento.HtmlSegmento, null, functionsSegmento.HideLoading, functionsSegmento.ShowLoading);
     },
@@ -58,6 +58,7 @@
 };
 
 $(function () {
+    functionsSegmento.Listar();
     $("#segmento-tab").on("click", function () {
         functionsSegmento.CardsClear();
         functionsSegmento.Listar();

@@ -9,9 +9,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.PessoasFisicas
     {
         public PessoaFisicaEstaAptaValidation(IPessoaFisicaRepositorio pessoaFisicaRepositorio)
         {
-            var email = new PessoaFisicaDevePossuirCPFUnicoSpecification(pessoaFisicaRepositorio);
+            var cpf = new PessoaFisicaDevePossuirCPFUnicoSpecification(pessoaFisicaRepositorio);
 
-            this.Add("EmailDuplicado", new Rule<PessoaFisica>(email, "Endereço de E-mail já está em uso!"));
+            this.Add("CPFDuplicado", new Rule<PessoaFisica>(cpf, "Já existe um cliente com esse CPF!"));
         }
     }
 }

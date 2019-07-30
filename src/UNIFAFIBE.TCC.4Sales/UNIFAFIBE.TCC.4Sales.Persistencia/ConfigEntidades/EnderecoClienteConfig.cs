@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
             HasKey(e => e.EnderecoClienteId);
 
             Property(e => e.CEP)
-                .HasMaxLength(14)
+                .HasMaxLength(8)
                 .IsFixedLength()
                 .IsRequired();
 
@@ -19,7 +19,6 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsRequired();
 
             Property(e => e.Numero)
-                .HasMaxLength(15)
                 .IsRequired();
 
             Property(e => e.Complemento)

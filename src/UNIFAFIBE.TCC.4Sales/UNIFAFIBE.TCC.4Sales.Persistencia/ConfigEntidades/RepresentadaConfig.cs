@@ -18,12 +18,10 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsRequired();
 
             Property(r => r.Telefone)
-                .HasMaxLength(20)
-                .IsRequired();
+                .HasMaxLength(20);
 
             Property(r => r.Email)
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             Property(r => r.Comissao)
                 .HasPrecision(18, 2)

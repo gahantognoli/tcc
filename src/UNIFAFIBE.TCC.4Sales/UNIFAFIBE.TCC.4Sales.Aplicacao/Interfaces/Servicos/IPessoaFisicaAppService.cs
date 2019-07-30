@@ -9,8 +9,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         PessoaFisicaViewModel Adicionar(PessoaFisicaViewModel cliente);
         PessoaFisicaViewModel Atualizar(PessoaFisicaViewModel cliente);
         void Remover(Guid id);
-        ClienteViewModel ObterPorId(Guid id);
-        IEnumerable<ClienteViewModel> ObterTodos();
+        PessoaFisicaViewModel ObterPorId(Guid id);
+        IEnumerable<PessoaFisicaViewModel> ObterTodos();
         IEnumerable<PessoaFisicaViewModel> ObterPorNome(string nome);
         IEnumerable<PessoaFisicaViewModel> ObterPorCPF(string cpf);
     }

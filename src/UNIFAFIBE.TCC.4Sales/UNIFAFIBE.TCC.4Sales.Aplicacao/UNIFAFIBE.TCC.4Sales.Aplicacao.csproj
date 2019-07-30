@@ -91,6 +91,7 @@
     <Compile Include="Servicos\TipoPedidoAppService.cs" />
     <Compile Include="Servicos\TransportadoraAppService.cs" />
     <Compile Include="Servicos\UsuarioAppService.cs" />
+    <Compile Include="ViewModel\ClientePFPJCadastroViewModel.cs" />
     <Compile Include="ViewModel\ClientePFPJViewModel.cs" />
     <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="ViewModel\CondicaoPagamentoViewModel.cs" />
@@ -122,6 +123,10 @@
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Dominio\UNIFAFIBE.TCC.4Sales.Dominio.csproj">
       <Project>{A75CFAA7-F774-441F-B7AF-B23238F7A79F}</Project>
       <Name>UNIFAFIBE.TCC.4Sales.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Infra.Helpers\UNIFAFIBE.TCC.4Sales.Infra.Helpers.csproj">
+      <Project>{0fe1dfc7-6303-4dd2-88a9-dc80b20cfb48}</Project>
+      <Name>UNIFAFIBE.TCC.4Sales.Infra.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\UNIFAFIBE.TCC.4Sales.Persistencia\UNIFAFIBE.TCC.4Sales.Persistencia.csproj">
       <Project>{BE1227E4-A01F-4007-A07E-46CEADE76508}</Project>

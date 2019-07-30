@@ -1,0 +1,904 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.ClientePFPJCadastroViewModel
+
+@{
+    ViewBag.Title = "Novo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-lg-12">
+        <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="cliente-cadastro-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pessoa-juridica-tab" data-toggle="pill" href="#pills-pessoa-juridica" role="tab" aria-controls="pills-pessoa-juridica" aria-selected="true">Pessoa Jurídica</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pessoa-fisica-tab" data-toggle="pill" href="#pills-pessoa-fisica" role="tab" aria-controls="pills-pessoa-fisica" aria-selected="true">Pessoa Física</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row mt-1">
+    <div class="col-lg-12">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-pessoa-juridica" role="tabpanel" aria-labelledby="pessoa-juridica-tab">
+                @if (Model != null)
+                {
+                    if (Model.pessoaJuridicaViewModels.ValidationResult != null)
+                    {
+                        var mensagem = "";
+                        foreach (var item in Model.pessoaJuridicaViewModels.ValidationResult.Erros)
+                        {
+                            mensagem += "<span>" + @item.Message.ToString() + "</span><br />";
+                        }
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Algo deu errado!</h4>
+                            @Html.Raw(mensagem)
+                        </div>
+                    }
+                }
+                <div class="card border-dark">
+                    <div class="card-header bg-dark">
+                        <span class="h5 text-white">
+                            <i class="fas fa-user-friends icone-cadastro"></i>
+                            Novo Cliente
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        @using (Html.BeginForm("NovaPessoaJuridica", "Cliente", FormMethod.Post, new { @id = "form-pessoaJuridica" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.CNPJ, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.CNPJ, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.CNPJ, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.RazaoSocial, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.RazaoSocial, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.RazaoSocial, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.NomeFantasia, htmlAttributes: new { @class = "control-label" })  <span class="span-obrigatorio">*</span>
+                                </div>
+
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.NomeFantasia, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.NomeFantasia, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.Telefone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.Email, htmlAttributes: new { @class = "control-labe" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.InscricaoEstadual, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.InscricaoEstadual, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.InscricaoEstadual, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.SUFRAMA, htmlAttributes: new { @class = "control-label" }) 
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pessoaJuridicaViewModels.SUFRAMA, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.SUFRAMA, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.Segmento, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("pessoaJuridicaViewModels.SegmentoId", ViewBag.Segmento as SelectList, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.Segmento, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.InformacoesAdicionais, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.pessoaJuridicaViewModels.InformacoesAdicionais, new { @class = "form-control", @rows = "5" })
+                                    @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.InformacoesAdicionais, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="lead">Endereços</h4>
+                                <hr class="linha" />
+                            </div>
+                            <div id="enderecosPessoaJuridica">
+                                @if (Model == null)
+                                {
+                                    <div class="enderecoPessoaJuridica">
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[0].CEP, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control cepPJ" name="pessoaJuridicaViewModels.EnderecosCliente[0].CEP" id="pessoaJuridicaViewModels.EnderecosCliente[0].CEP" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().CEP, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Endereco, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[0].Endereco" id="pessoaJuridicaViewModels.EnderecosCliente[0].Endereco" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Endereco, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Numero, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[0].Numero" id="pessoaJuridicaViewModels.EnderecosCliente[0].Numero" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Numero, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" })
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[0].Complemento" id="pessoaJuridicaViewModels.EnderecosCliente[0].Complemento" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Cidade, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[0].Cidade" id="pessoaJuridicaViewModels.EnderecosCliente[0].Cidade" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Cidade, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Bairro, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[0].Bairro" id="pessoaJuridicaViewModels.EnderecosCliente[0].Bairro" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Bairro, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Estado, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select name="pessoaJuridicaViewModels.EnderecosCliente[0].Estado" id="pessoaJuridicaViewModels.EnderecosCliente[0].Estado" class="form-control">
+                                                    <option value="">-------</option>
+                                                    <option value="AC">Acre</option>
+                                                    <option value="AL">Alagoas</option>
+                                                    <option value="AP">Amapá</option>
+                                                    <option value="AM">Amazonas</option>
+                                                    <option value="BA">Bahia</option>
+                                                    <option value="CE">Ceará</option>
+                                                    <option value="DF">Distrito Federal</option>
+                                                    <option value="ES">Espírito Santo</option>
+                                                    <option value="GO">Goiás</option>
+                                                    <option value="MA">Maranhão</option>
+                                                    <option value="MT">Mato Grosso</option>
+                                                    <option value="MS">Mato Grosso do Sul</option>
+                                                    <option value="MG">Minas Gerais</option>
+                                                    <option value="PA">Pará</option>
+                                                    <option value="PB">Paraíba</option>
+                                                    <option value="PR">Paraná</option>
+                                                    <option value="PE">Pernambuco</option>
+                                                    <option value="PI">Piauí</option>
+                                                    <option value="RJ">Rio de Janeiro</option>
+                                                    <option value="RN">Rio Grande do Norte</option>
+                                                    <option value="RS">Rio Grande do Sul</option>
+                                                    <option value="RO">Rondônia</option>
+                                                    <option value="RR">Roraima</option>
+                                                    <option value="SC">Santa Catarina</option>
+                                                    <option value="SP">São Paulo</option>
+                                                    <option value="SE">Sergipe</option>
+                                                    <option value="TO">Tocantins</option>
+                                                </select>
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.FirstOrDefault().Estado, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    for (var i = 0; i < Model.pessoaJuridicaViewModels.EnderecosCliente.Count; i++)
+                                    {
+                                        <div class="enderecoPessoaJuridica">
+                                            @if (i > 0)
+                                            {
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    <h3 class="mr-3">Endereço</h3>
+                                                    <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverEnderecoPessoaJuridica"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
+                                            }
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[@i].CEP, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control cepPJ" name="pessoaJuridicaViewModels.EnderecosCliente[@i].CEP" id="pessoaJuridicaViewModels.EnderecosCliente[@i].CEP" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].CEP)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].CEP", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Endereco, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[@i].Endereco" id="pessoaJuridicaViewModels.EnderecosCliente[@i].Endereco" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Endereco)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].Endereco", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Numero, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="number" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[@i].Numero" id="pessoaJuridicaViewModels.EnderecosCliente[@i].Numero" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Numero)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].Numero", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Complemento, htmlAttributes: new { @class = "control-label " })
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[@i].Complemento" id="pessoaJuridicaViewModels.EnderecosCliente[@i].Complemento" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Complemento)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Cidade, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[@i].Cidade" id="pessoaJuridicaViewModels.EnderecosCliente[@i].Cidade" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Cidade)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].Cidade", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Bairro, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.EnderecosCliente[@i].Bairro" id="pessoaJuridicaViewModels.EnderecosCliente[@i].Bairro" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Bairro)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].Bairro", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="pessoaJuridicaViewModels.EnderecosCliente[@i].Estado" id="pessoaJuridicaViewModels.EnderecosCliente[@i].Estado" class="form-control" value="@(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado)">
+                                                        <option value="" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "" ? "selected" : "")>-------</option>
+                                                        <option value="AC" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "AC" ? "selected" : "")>Acre</option>
+                                                        <option value="AL" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "AL" ? "selected" : "")>Alagoas</option>
+                                                        <option value="AP" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "AP" ? "selected" : "")>Amapá</option>
+                                                        <option value="AM" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "AM" ? "selected" : "")>Amazonas</option>
+                                                        <option value="BA" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "BA" ? "selected" : "")>Bahia</option>
+                                                        <option value="CE" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "CE" ? "selected" : "")>Ceará</option>
+                                                        <option value="DF" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "DF" ? "selected" : "")>Distrito Federal</option>
+                                                        <option value="ES" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "ES" ? "selected" : "")>Espírito Santo</option>
+                                                        <option value="GO" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "GO" ? "selected" : "")>Goiás</option>
+                                                        <option value="MA" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "MA" ? "selected" : "")>Maranhão</option>
+                                                        <option value="MT" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "MT" ? "selected" : "")>Mato Grosso</option>
+                                                        <option value="MS" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "MS" ? "selected" : "")>Mato Grosso do Sul</option>
+                                                        <option value="MG" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "MG" ? "selected" : "")>Minas Gerais</option>
+                                                        <option value="PA" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "PA" ? "selected" : "")>Pará</option>
+                                                        <option value="PB" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "PB" ? "selected" : "")>Paraíba</option>
+                                                        <option value="PR" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "PR" ? "selected" : "")>Paraná</option>
+                                                        <option value="PE" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "PE" ? "selected" : "")>Pernambuco</option>
+                                                        <option value="PI" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "PI" ? "selected" : "")>Piauí</option>
+                                                        <option value="RJ" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "RJ" ? "selected" : "")>Rio de Janeiro</option>
+                                                        <option value="RN" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "RN" ? "selected" : "")>Rio Grande do Norte</option>
+                                                        <option value="RS" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "RS" ? "selected" : "")>Rio Grande do Sul</option>
+                                                        <option value="RO" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "RO" ? "selected" : "")>Rondônia</option>
+                                                        <option value="RR" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "RR" ? "selected" : "")>Roraima</option>
+                                                        <option value="SC" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "SC" ? "selected" : "")>Santa Catarina</option>
+                                                        <option value="SP" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "SP" ? "selected" : "")>São Paulo</option>
+                                                        <option value="SE" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "SE" ? "selected" : "")>Sergipe</option>
+                                                        <option value="TO" @(Model.pessoaJuridicaViewModels.EnderecosCliente.ToList()[i].Estado == "TO" ? "selected" : "")>Tocantins</option>
+                                                    </select>
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.EnderecosCliente[" + i + "].Estado", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-md-12">
+                                <button id="btnCriarEnderecoPessoaJuridica" class="btn btn-criar" type="button">Adicionar endereço</button>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="lead">Contatos</h4>
+                                <hr class="linha" />
+                            </div>
+                            <div id="contatosPessoaJuridica">
+                                @if (Model == null)
+                                {
+                                    <div class="contatoPessoaJuridica">
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control nomePJ" name="pessoaJuridicaViewModels.ContatosCliente[0].Nome" id="pessoaJuridicaViewModels.ContatosCliente[0].Nome" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Nome, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.ContatosCliente[0].Cargo" id="pessoaJuridicaViewModels.ContatosCliente[0].Cargo" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Cargo, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.ContatosCliente[0].Telefone" id="pessoaJuridicaViewModels.ContatosCliente[0].Telefone" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Telefone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="pessoaJuridicaViewModels.ContatosCliente[0].Email" id="pessoaJuridicaViewModels.ContatosCliente[0].Email" />
+                                                @Html.ValidationMessageFor(model => model.pessoaJuridicaViewModels.ContatosCliente.FirstOrDefault().Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    for (var i = 0; i < Model.pessoaJuridicaViewModels.ContatosCliente.Count; i++)
+                                    {
+                                        <div class="contatoPessoaJuridica">
+                                            @if (i > 0)
+                                            {
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    <h3 class="mr-3">Contato</h3>
+                                                    <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverContatoPessoaJuridica"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
+                                            }
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control nomePJ" name="pessoaJuridicaViewModels.ContatosCliente[@i].Nome" id="pessoaJuridicaViewModels.ContatosCliente[@i].Nome" value="@(Model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Nome)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.ContatosCliente[" + i + "].Nome", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.ContatosCliente[@i].Cargo" id="pessoaJuridicaViewModels.ContatosCliente[@i].Cargo" value="@(Model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Cargo)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.ContatosCliente[" + i + "].Cargo", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.ContatosCliente[@i].Telefone" id="pessoaJuridicaViewModels.ContatosCliente[@i].Telefone" value="@(Model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Telefone)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.ContatosCliente[" + i + "].Telefone", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="pessoaJuridicaViewModels.ContatosCliente[@i].Email" id="pessoaJuridicaViewModels.ContatosCliente[@i].Email" value="@(Model.pessoaJuridicaViewModels.ContatosCliente.ToList()[i].Email)" />
+                                                    @Html.ValidationMessage("pessoaJuridicaViewModels.ContatosCliente[" + i + "].Email", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <button id="btnCriarContatoPessoaJuridica" class="btn btn-criar" type="button">Adicionar contato</button>
+                            </div>
+                        }
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="btnSalvarPessoaJuridica" name="btnSalvarPessoaJuridica" onclick="$('#form-pessoaJuridica').submit()">Salvar</button>
+                                @Html.ActionLink("Cancelar", "Index", "Cliente", new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-pessoa-fisica" role="tabpanel" aria-labelledby="pessoa-juridica-tab">
+
+
+                @if (Model != null)
+                {
+
+                    if (Model.pessoaFisicaViewModels.ValidationResult != null)
+                    {
+                        var mensagem = "";
+                        foreach (var item in Model.pessoaFisicaViewModels.ValidationResult.Erros)
+                        {
+                            mensagem += "<span>" + @item.Message.ToString() + "</span><br />";
+                        }
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Algo deu errado!</h4>
+                            @Html.Raw(mensagem)
+                        </div>
+                    }
+
+                }
+
+                <div class="card border-dark">
+                    <div class="card-header bg-dark">
+                        <span class="h5 text-white">
+                            <i class="fas fa-user-friends icone-cadastro"></i>
+                            Novo Cliente
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("NovaPessoaFisica", "Cliente", FormMethod.Post, new { @id = "form-pessoaFisica" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.CPF, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pessoaFisicaViewModels.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.CPF, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.pessoaFisicaViewModels.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.Nome, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pessoaFisicaViewModels.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.Telefone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.pessoaFisicaViewModels.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.Segmento, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("pessoaFisicaViewModels.SegmentoId", ViewBag.Segmento as SelectList, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.Segmento, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.InformacoesAdicionais, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.pessoaFisicaViewModels.InformacoesAdicionais, new { @class = "form-control", @rows = "5" })
+                                    @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.InformacoesAdicionais, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="lead">Endereços</h4>
+                                <hr class="linha" />
+                            </div>
+                            <div id="enderecosPessoaFisica">
+                                @if (Model == null)
+                                {
+                                    <div class="enderecoPessoaFisica">
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().CEP, htmlAttributes: new { @class = "control-label" })<span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control cepPF" name="pessoaFisicaViewModels.EnderecosCliente[0].CEP" id="pessoaFisicaViewModels.EnderecosCliente[0].CEP" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().CEP, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Endereco, htmlAttributes: new { @class = "control-label" })<span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[0].Endereco" id="pessoaFisicaViewModels.EnderecosCliente[0].Endereco" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Endereco, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Numero, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[0].Numero" id="pessoaFisicaViewModels.EnderecosCliente[0].Numero" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Numero, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" }) 
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[0].Complemento" id="pessoaFisicaViewModels.EnderecosCliente[0].Complemento" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Cidade, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[0].Cidade" id="pessoaFisicaViewModels.EnderecosCliente[0].Cidade" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Cidade, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Bairro, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[0].Bairro" id="pessoaFisicaViewModels.EnderecosCliente[0].Bairro" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Bairro, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Estado, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select name="pessoaFisicaViewModels.EnderecosCliente[0].Estado" id="pessoaFisicaViewModels.EnderecosCliente[0].Estado" class="form-control">
+                                                    <option value="">-------</option>
+                                                    <option value="AC">Acre</option>
+                                                    <option value="AL">Alagoas</option>
+                                                    <option value="AP">Amapá</option>
+                                                    <option value="AM">Amazonas</option>
+                                                    <option value="BA">Bahia</option>
+                                                    <option value="CE">Ceará</option>
+                                                    <option value="DF">Distrito Federal</option>
+                                                    <option value="ES">Espírito Santo</option>
+                                                    <option value="GO">Goiás</option>
+                                                    <option value="MA">Maranhão</option>
+                                                    <option value="MT">Mato Grosso</option>
+                                                    <option value="MS">Mato Grosso do Sul</option>
+                                                    <option value="MG">Minas Gerais</option>
+                                                    <option value="PA">Pará</option>
+                                                    <option value="PB">Paraíba</option>
+                                                    <option value="PR">Paraná</option>
+                                                    <option value="PE">Pernambuco</option>
+                                                    <option value="PI">Piauí</option>
+                                                    <option value="RJ">Rio de Janeiro</option>
+                                                    <option value="RN">Rio Grande do Norte</option>
+                                                    <option value="RS">Rio Grande do Sul</option>
+                                                    <option value="RO">Rondônia</option>
+                                                    <option value="RR">Roraima</option>
+                                                    <option value="SC">Santa Catarina</option>
+                                                    <option value="SP">São Paulo</option>
+                                                    <option value="SE">Sergipe</option>
+                                                    <option value="TO">Tocantins</option>
+                                                </select>
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Estado, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < Model.pessoaFisicaViewModels.EnderecosCliente.Count; i++)
+                                    {
+                                        <div class="enderecoPessoaFisica">
+                                            @if (i > 0)
+                                            {
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    <h3 class="mr-3">Endereço</h3>
+                                                    <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverEnderecoPessoaFisica"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
+                                            }
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().CEP, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control cepPF" name="pessoaFisicaViewModels.EnderecosCliente[@i].CEP" id="pessoaFisicaViewModels.EnderecosCliente[@i].CEP" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].CEP)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].CEP", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Endereco, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>                    
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Endereco" id="pessoaFisicaViewModels.EnderecosCliente[@i].Endereco" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Endereco)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Endereco", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Numero, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="number" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Numero" id="pessoaFisicaViewModels.EnderecosCliente[@i].Numero" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Numero)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Numero", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" }) 
+                                                </div>                                                
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Complemento" id="pessoaFisicaViewModels.EnderecosCliente[@i].Complemento" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Complemento)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Cidade, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Cidade" id="pessoaFisicaViewModels.EnderecosCliente[@i].Cidade" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Cidade)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Bairro, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Bairro" id="pessoaFisicaViewModels.EnderecosCliente[@i].Bairro" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Bairro)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Bairro", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Estado, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="pessoaFisicaViewModels.EnderecosCliente[@i].Estado" id="pessoaFisicaViewModels.EnderecosCliente[@i].Estado" class="form-control">
+                                                        <option value="" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "" ? "selected" : "")>-------</option>
+                                                        <option value="AC" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "AC" ? "selected" : "")>Acre</option>
+                                                        <option value="AL" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "AL" ? "selected" : "")>Alagoas</option>
+                                                        <option value="AP" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "AP" ? "selected" : "")>Amapá</option>
+                                                        <option value="AM" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "AM" ? "selected" : "")>Amazonas</option>
+                                                        <option value="BA" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "BA" ? "selected" : "")>Bahia</option>
+                                                        <option value="CE" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "CE" ? "selected" : "")>Ceará</option>
+                                                        <option value="DF" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "DF" ? "selected" : "")>Distrito Federal</option>
+                                                        <option value="ES" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "ES" ? "selected" : "")>Espírito Santo</option>
+                                                        <option value="GO" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "GO" ? "selected" : "")>Goiás</option>
+                                                        <option value="MA" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "MA" ? "selected" : "")>Maranhão</option>
+                                                        <option value="MT" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "MT" ? "selected" : "")>Mato Grosso</option>
+                                                        <option value="MS" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "MS" ? "selected" : "")>Mato Grosso do Sul</option>
+                                                        <option value="MG" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "MG" ? "selected" : "")>Minas Gerais</option>
+                                                        <option value="PA" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "PA" ? "selected" : "")>Pará</option>
+                                                        <option value="PB" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "PB" ? "selected" : "")>Paraíba</option>
+                                                        <option value="PR" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "PR" ? "selected" : "")>Paraná</option>
+                                                        <option value="PE" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "PE" ? "selected" : "")>Pernambuco</option>
+                                                        <option value="PI" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "PI" ? "selected" : "")>Piauí</option>
+                                                        <option value="RJ" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "RJ" ? "selected" : "")>Rio de Janeiro</option>
+                                                        <option value="RN" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "RN" ? "selected" : "")>Rio Grande do Norte</option>
+                                                        <option value="RS" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "RS" ? "selected" : "")>Rio Grande do Sul</option>
+                                                        <option value="RO" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "RO" ? "selected" : "")>Rondônia</option>
+                                                        <option value="RR" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "RR" ? "selected" : "")>Roraima</option>
+                                                        <option value="SC" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "SC" ? "selected" : "")>Santa Catarina</option>
+                                                        <option value="SP" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "SP" ? "selected" : "")>São Paulo</option>
+                                                        <option value="SE" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "SE" ? "selected" : "")>Sergipe</option>
+                                                        <option value="TO" @(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Estado == "TO" ? "selected" : "")>Tocantins</option>
+                                                    </select>
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Estado", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <button id="btnCriarEnderecoPessoaFisica" class="btn btn-criar" type="button">Adicionar endereço</button>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="lead">Contatos</h4>
+                                <hr class="linha" />
+                            </div>
+                            <div id="contatosPessoaFisica">
+                                @if (Model == null)
+                                {
+                                    <div class="contatoPessoaFisica">
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control nomePF" name="pessoaFisicaViewModels.ContatosCliente[0].Nome" id="pessoaFisicaViewModels.ContatosCliente[0].Nome" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Nome, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[0].Cargo" id="pessoaFisicaViewModels.ContatosCliente[0].Cargo" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Cargo, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[0].Telefone" id="pessoaFisicaViewModels.ContatosCliente[0].Telefone" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Telefone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[0].Email" id="pessoaFisicaViewModels.ContatosCliente[0].Email" />
+                                                @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < Model.pessoaFisicaViewModels.ContatosCliente.Count; i++)
+                                    {
+                                        <div class="contatoPessoaFisica">
+                                            @if (i > 0)
+                                            {
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    <h3 class="mr-3">Contato</h3>
+                                                    <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverContatoPessoaFisica"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
+                                            }
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control nomePF" name="pessoaFisicaViewModels.ContatosCliente[@i].Nome" id="pessoaFisicaViewModels.ContatosCliente[@i].Nome" value="@(Model.pessoaFisicaViewModels.ContatosCliente.ToList()[i].Nome)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.ContatosCliente[" + i + "].Nome", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[@i].Cargo" id="pessoaFisicaViewModels.ContatosCliente[@i].Cargo" value="@(Model.pessoaFisicaViewModels.ContatosCliente.ToList()[i].Cargo)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.ContatosCliente[" + i + "].Cargo", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[@i].Telefone" id="pessoaFisicaViewModels.ContatosCliente[@i].Telefone" value="@(Model.pessoaFisicaViewModels.ContatosCliente.ToList()[i].Telefone)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.ContatosCliente[" + i + "].Telefone", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Email, htmlAttributes: new { @class = "control-label" })
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[@i].Email" id="pessoaFisicaViewModels.ContatosCliente[@i].Email" value="@(Model.pessoaFisicaViewModels.ContatosCliente.ToList()[i].Email)" />
+                                                    @Html.ValidationMessage("pessoaFisicaViewModels.ContatosCliente[" + i + "].Email", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <button id="btnCriarContatoPessoaFisica" class="btn btn-criar" type="button">Adicionar contato</button>
+                            </div>
+                        }
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="btnSalvarPessoaFisica" name="btnSalvarPessoaFisica" onclick="$('#form-pessoaFisica').submit()">Salvar</button>
+                                @Html.ActionLink("Cancelar", "Index", "Cliente", new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-cep" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Buscando CEP</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center" style="height: 230px">
+                <img src="~/assets/img/ajax-loader-200px.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Clientes")
+}

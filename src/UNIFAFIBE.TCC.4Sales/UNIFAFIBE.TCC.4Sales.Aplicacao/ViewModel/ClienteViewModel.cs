@@ -10,6 +10,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public ClienteViewModel()
         {
             ClienteId = Guid.NewGuid();
+            EnderecosCliente = new List<EnderecoClienteViewModel>();
+            ContatosCliente = new List<ContatoClienteViewModel>();
         }   
 
         [Key]
@@ -17,13 +19,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Required(ErrorMessage = "Preencha o campo Telefone")]
         [MaxLength(20, ErrorMessage ="Tamanho máximo 20 caracteres")]
         public string Telefone { get; set; }
-        [Display(Name = "E-Mail")]
-        [Required(ErrorMessage = "Preencha o campo E-mail")]
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Preencha o campo Email")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo 100 caracteres")]
-        [EmailAddress(ErrorMessage = "Preencha um E-mail válido")]
+        [EmailAddress(ErrorMessage = "Preencha um Email válido")]
         public string Email { get; set; }
         [Display(Name = "Informações Adicionais")]
-        [Required(ErrorMessage = "Preencha o campo Informações Adicionais")]
         [MaxLength(500, ErrorMessage = "Tamanho máximo 500 caracteres")]
         [ScaffoldColumn(false)]
         public string InformacoesAdicionais { get; set; }
@@ -39,7 +40,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
 
         public bool EhValido()
         {
-            return this.ValidationResult.Erros.Count() == 0;
+            return this.ValidationResult.IsValid == true;
         }
     }
 }

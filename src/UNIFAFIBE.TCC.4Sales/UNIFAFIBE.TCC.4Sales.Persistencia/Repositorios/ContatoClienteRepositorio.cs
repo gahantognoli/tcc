@@ -40,7 +40,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             IEnumerable<ContatoCliente> retornoContatoCliente;
 
             retornoContatoCliente = cn.Query<ContatoCliente>(ContatoClienteProcedures.ObterTodos.GetDescription(),
-                new { clienteId = clienteId },
+                new { IdCliente = clienteId },
                 commandType: CommandType.StoredProcedure);
 
             return retornoContatoCliente;

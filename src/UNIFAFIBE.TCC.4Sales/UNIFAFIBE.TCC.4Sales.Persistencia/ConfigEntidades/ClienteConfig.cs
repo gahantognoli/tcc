@@ -18,8 +18,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsRequired();
 
             Property(c => c.InformacoesAdicionais)
-                .HasMaxLength(500)
-                .IsRequired();
+                .HasMaxLength(500);
 
             HasMany(c => c.EnderecosCliente)
                 .WithRequired(c => c.Cliente)

@@ -8,8 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.PessoasFisicas
     {
         public PessoaFisicaEstaConsistenteValidation()
         {
-            var cpf = new PessoaFisicaDevePossuirCPFValidoSpecification();
-            this.Add("CPFInvalido", new Rule<PessoaFisica>(cpf, "CPF inválido"));
+            //var cpf = new PessoaFisicaDevePossuirCPFValidoSpecification();
+            //this.Add("CPFInvalido", new Rule<PessoaFisica>(cpf, "CPF inválido"));
         }
     }
 }

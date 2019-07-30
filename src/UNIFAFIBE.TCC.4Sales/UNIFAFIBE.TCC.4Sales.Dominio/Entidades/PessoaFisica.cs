@@ -6,7 +6,18 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
     public class PessoaFisica : Cliente
     {
         public string Nome { get; set; }
-        public string CPF { get; set; }
+        private string _cpf { get; set; }
+        public string CPF
+        {
+            get
+            {
+                return _cpf;
+            }
+            set
+            {
+                _cpf = value;
+            }
+        }
 
         public bool EhValido(IPessoaFisicaRepositorio pessoaFisicaRepositorio)
         {

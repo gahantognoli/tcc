@@ -1,4 +1,5 @@
 ﻿using DomainValidation.Interfaces.Specification;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 
@@ -14,7 +15,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.PessoasFisicas
 
         public bool IsSatisfiedBy(PessoaFisica pessoaFisica)
         {
-            return _pessoaFisicaRepositorio.ObterPorCPF(pessoaFisica.CPF) == null;
+            return _pessoaFisicaRepositorio.ObterPorCPF(pessoaFisica.CPF).FirstOrDefault() == null;
         }
     }
 }

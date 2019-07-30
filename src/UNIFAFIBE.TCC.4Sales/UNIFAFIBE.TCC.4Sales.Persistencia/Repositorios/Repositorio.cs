@@ -23,7 +23,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return DbSet.Add(obj);
         }
 
-        public TEntity Atualizar(TEntity obj)
+        public virtual TEntity Atualizar(TEntity obj)
         {
             var entry = Db.Entry(obj);
             DbSet.Attach(obj);

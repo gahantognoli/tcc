@@ -1,0 +1,236 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.PessoaJuridicaViewModel
+
+@{
+    ViewBag.Title = "Remover";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    var i = 0;
+    var j = 0;
+}
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card border-dark">
+            <div class="card-header bg-dark">
+                <span class="h5 text-white">
+                    <i class="fas fa-user-friends icone-cadastro"></i>Detalhes Cliente
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.RazaoSocial, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.RazaoSocial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.NomeFantasia, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.NomeFantasia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.InscricaoEstadual, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.InscricaoEstadual, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.SUFRAMA, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.SUFRAMA, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label class="label-control">Segmento</label>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Segmento.Descricao, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.InformacoesAdicionais, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.InformacoesAdicionais, new { @class = "form-control", @readonly = "readonly", @rows = "5" })
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h4 class="lead">Endereços</h4>
+                    <hr class="linha" />
+                </div>
+                @foreach (var item in Model.EnderecosCliente)
+                {
+                    if (i != 0)
+                    {
+                        <div class="d-flex justify-content-start align-items-center" style="margin-top: 50px;">
+                            <h3 class="mr-3">Endereço</h3>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.CEP, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => item.CEP, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Endereco, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => item.Endereco, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Numero, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => item.Numero, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Complemento, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => item.Complemento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Cidade, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => item.Cidade, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Bairro, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => item.Bairro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    i++;
+                }
+                <div class="mt-4">
+                    <h4 class="lead">Contatos</h4>
+                    <hr class="linha" />
+                </div>
+                @foreach (var item in Model.ContatosCliente)
+                {
+                    if (j != 0)
+                    {
+                        <div class="d-flex justify-content-start align-items-center" style="margin-top: 50px;">
+                            <h3 class="mr-3">Contato</h3>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Nome, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => item.Nome, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Cargo, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => item.Cargo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Telefone, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => item.Telefone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => item.Email, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => item.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                    j++;
+                }
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#confirmarRemocao">Remover</button>
+                    @Html.ActionLink("Voltar", "Index", "Cliente", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="confirmarRemocao" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Remover</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="h4">Atenção</p>
+                <p class="lead">Você está prestes a remover o cliente <strong>@Model.RazaoSocial</strong></p>
+                <p class="lead"><strong>Deseja realmente remove-lo?</strong></p>
+                @using (Html.BeginForm("RemoverPessoaJuridica", "Cliente", FormMethod.Post, new { id = "form-remover" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ClienteId)
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="$('#form-remover').submit()">Confirmar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

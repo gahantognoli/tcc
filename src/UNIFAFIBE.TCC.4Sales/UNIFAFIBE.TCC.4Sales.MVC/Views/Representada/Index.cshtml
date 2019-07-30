@@ -1,0 +1,79 @@
+﻿@model IEnumerable<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.RepresentadaViewModel>
+
+@{
+    ViewBag.Title = "Representadas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <a href="@Url.Action("Novo", "Representada")" class="btn btn-criar">
+            <i class="fas fa-plus icone-criar"></i>Cadastrar
+            Representada
+        </a>
+    </div>
+    <div class="col-md-12">
+        <div class="card" style="margin-bottom:15px;margin-top: 15px;">
+            <div class="card-header">
+                <span class="h5">Opções de Pesquisa</span>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <select name="parametro" id="parametro" class="form-control mb-2"
+                                    onchange="$('#busca').val('')">
+                                <option value="" @(ViewBag.Parametro == "" ? "selected" : "")>Pesquisar por...</option>
+                                <option value="razaoSocial" @(ViewBag.Parametro == "razaoSocial" ? "selected" : "")>Razao Social</option>
+                                <option value="nomeFantasia" @(ViewBag.Parametro == "nomeFantasia" ? "selected" : "")>Nome Fantasia</option>
+                                <option value="cnpj" @(ViewBag.Parametro == "cnpj" ? "selected" : "")>CNPJ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-row">
+                                <div class="col-md-10">
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" name="busca" id="busca"
+                                               placeholder="Pesquisa...">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit"
+                                            class="btn btn-primary btn-block mb-2">
+                                        Pesquisar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 mt-3" id="content-representadas">
+
+        @foreach (var item in Model)
+        {
+            <div class="card-item d-flex justify-content-between">
+                <a href="" class="link-detalhes">
+                    <span class="h6">
+                        @item.RazaoSocial
+                        <small class="text-muted"> - @item.NomeFantasia </small>
+                    </span>
+                </a>
+                <a href="" class="btn btn-sm btn-warning">
+                    <i class="fas fa-pencil-alt icone-edit"></i>Alterar
+                </a>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Representadas")
+}

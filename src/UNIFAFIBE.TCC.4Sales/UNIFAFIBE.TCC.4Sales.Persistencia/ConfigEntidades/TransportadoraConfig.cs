@@ -27,8 +27,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsRequired();
 
             Property(t => t.InformacoesAdicionais)
-                .HasMaxLength(500)
-                .IsRequired();
+                .HasMaxLength(500);
 
             HasMany(t => t.Pedidos)
                 .WithRequired(t => t.Transportadora)

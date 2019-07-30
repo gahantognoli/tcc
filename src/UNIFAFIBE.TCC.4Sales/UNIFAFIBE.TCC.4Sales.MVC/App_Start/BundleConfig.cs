@@ -43,9 +43,19 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
 
             bundles.Add(new ScriptBundle("~/Scripts/Clientes").Include(
                "~/Scripts/Cliente/script.js",
-               "~/Scripts/Segmento/script.js"
+               "~/Scripts/Segmento/script.js",
+               "~/Scripts/jquery.mask.min.js"
             ));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Clientes/Alterar").Include(
+                "~/Scripts/Cliente/script-alterar.js",
+                "~/Scripts/jquery.mask.min.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Representadas").Include(
+                "~/Scripts/Representada/script.js",
+                "~/Scripts/jquery.mask.min.js"
+            ));
         }
     }
 }

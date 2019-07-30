@@ -9,8 +9,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         PessoaJuridica Adicionar(PessoaJuridica cliente);
         PessoaJuridica Atualizar(PessoaJuridica cliente);
         void Remover(Guid id);
-        Cliente ObterPorId(Guid id);
-        IEnumerable<Cliente> ObterTodos();
+        PessoaJuridica ObterPorId(Guid id);
+        IEnumerable<PessoaJuridica> ObterTodos();
         IEnumerable<PessoaJuridica> ObterPorCPNJ(string cnpj);
         IEnumerable<PessoaJuridica> ObterPorRazaoSocial(string razaoSocial);
         IEnumerable<PessoaJuridica> ObterPorNomeFantasia(string nomeFantasia);

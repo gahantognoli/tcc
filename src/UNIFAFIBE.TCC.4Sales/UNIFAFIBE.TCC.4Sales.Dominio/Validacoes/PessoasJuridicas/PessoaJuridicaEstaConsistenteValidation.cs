@@ -8,9 +8,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.PessoasJuridicas
     {
         public PessoaJuridicaEstaConsistenteValidation()
         {
-            var email = new PessoaJuridicaDevePossuirCNPJValidoSpecification();
+            var cnpj = new PessoaJuridicaDevePossuirCNPJValidoSpecification();
 
-            this.Add("EmailInvalido", new Rule<PessoaJuridica>(email, "Endereço de E-mail inválido!"));
+            this.Add("CPNJInvalido", new Rule<PessoaJuridica>(cnpj, "CPNJ informado inválido!"));
         }
     }
 }

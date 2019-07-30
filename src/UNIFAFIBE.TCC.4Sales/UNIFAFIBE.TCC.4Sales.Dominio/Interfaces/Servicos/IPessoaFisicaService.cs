@@ -8,8 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         PessoaFisica Adicionar(PessoaFisica cliente);
         PessoaFisica Atualizar(PessoaFisica cliente);
         void Remover(Guid id);
-        Cliente ObterPorId(Guid id);
-        IEnumerable<Cliente> ObterTodos();
+        PessoaFisica ObterPorId(Guid id);
+        IEnumerable<PessoaFisica> ObterTodos();
         IEnumerable<PessoaFisica> ObterPorNome(string nome);
         IEnumerable<PessoaFisica> ObterPorCPF(string cpf);
     }

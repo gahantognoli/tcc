@@ -27,7 +27,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]
         public string Telefone { get; set; }
         [Display(Name = "Informações Adicionais")]
-        [Required(ErrorMessage = "Preencha o campo Informações Adicionais")]
         [MaxLength(500, ErrorMessage = "Tamanho máximo de 500 caracteres")]
         public string InformacoesAdicionais { get; set; }
         [ScaffoldColumn(false)]

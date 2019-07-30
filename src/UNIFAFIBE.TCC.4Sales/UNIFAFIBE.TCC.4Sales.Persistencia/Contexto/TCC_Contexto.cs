@@ -9,6 +9,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Contexto
     {
         public TCC_Contexto() : base("4Sales")
         {
+            
         }
 
         public DbSet<Pedido> Pedidos { get; set; }

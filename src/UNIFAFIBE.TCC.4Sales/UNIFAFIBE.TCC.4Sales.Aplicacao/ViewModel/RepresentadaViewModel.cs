@@ -26,8 +26,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Required(ErrorMessage = "Preencha o campo Nome Fantasia")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo de 50 caracteres")]
         public string NomeFantasia { get; set; }
-        [Display(Name = "E-Mail")]
-        [Required(ErrorMessage = "Preencha o campo E-mail")]
+        [Display(Name = "Email")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo 100 caracteres")]
         [EmailAddress(ErrorMessage = "Preencha um E-mail válido")]
         public string Email { get; set; }
@@ -35,9 +34,10 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Required(ErrorMessage = "Preencha o campo Comissão")]
         [Range(0, 9999999999999999.99)]
         public decimal Comissao { get; set; }
-        [Required(ErrorMessage = "Preencha o campo Telefone")]
+
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]
         public string Telefone { get; set; }
+
         [DataType(DataType.Upload)]
         public string Foto { get; set; }
         [Display(Name = "Informações Adicionais")]

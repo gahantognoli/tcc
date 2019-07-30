@@ -28,7 +28,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             if (!pessoaJuridica.EstaConsistente())
                 return pessoaJuridica;
 
-            return _pessoaJuridicaRepositorio.Atualizar(pessoaJuridica);
+            _pessoaJuridicaRepositorio.Atualizar(pessoaJuridica);
+
+            return pessoaJuridica;
         }
 
         public void Dispose()
@@ -42,7 +44,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pessoaJuridicaRepositorio.ObterPorCPNJ(cnpj);
         }
 
-        public Cliente ObterPorId(Guid id)
+        public PessoaJuridica ObterPorId(Guid id)
         {
             return _pessoaJuridicaRepositorio.ObterPorId(id);
         }
@@ -62,7 +64,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pessoaJuridicaRepositorio.ObterPorRazaoSocial(razaoSocial);
         }
 
-        public IEnumerable<Cliente> ObterTodos()
+        public IEnumerable<PessoaJuridica> ObterTodos()
         {
             return _pessoaJuridicaRepositorio.ObterTodos();
         }

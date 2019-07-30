@@ -70,6 +70,11 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -131,6 +136,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="X.PagedList, Version=7.6.0.0, Culture=neutral, PublicKeyToken=00b6c4f97602e5e8, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.7.6.0\lib\net461\X.PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="X.PagedList.Mvc, Version=7.6.0.0, Culture=neutral, PublicKeyToken=c6e0b5b21f916f4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.Mvc.7.6.0\lib\net461\X.PagedList.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -144,6 +155,7 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\RepresentadaController.cs" />
     <Compile Include="Controllers\SegmentoController.cs" />
     <Compile Include="Controllers\StatusPedidoController.cs" />
     <Compile Include="Controllers\TipoPedidoController.cs" />
@@ -155,7 +167,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\img\ajax-loader-200px.gif" />
     <Content Include="assets\img\ajax-loader.gif" />
+    <Content Include="assets\img\camera.png" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\logo2.png" />
     <Content Include="assets\img\logo3.png" />
@@ -176,6 +190,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Cliente\script-alterar.js" />
     <Content Include="Scripts\Cliente\script.js" />
     <Content Include="Scripts\Dashboard\chart.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -203,6 +218,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -212,6 +228,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Representada\script.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\Segmento\script.js" />
     <Content Include="Scripts\StatusPedido\script.js" />
@@ -254,6 +271,15 @@
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Segmento\Alterar.cshtml" />
     <Content Include="Views\Segmento\Remover.cshtml" />
+    <Content Include="Views\Cliente\Novo.cshtml" />
+    <Content Include="Views\Cliente\DetalhesPessoaFisica.cshtml" />
+    <Content Include="Views\Cliente\DetalhesPessoaJuridica.cshtml" />
+    <Content Include="Views\Cliente\AlterarPessoaFisica.cshtml" />
+    <Content Include="Views\Cliente\RemoverPessoaFisica.cshtml" />
+    <Content Include="Views\Cliente\RemoverPessoaJuridica.cshtml" />
+    <Content Include="Views\Cliente\AlterarPessoaJuridica.cshtml" />
+    <Content Include="Views\Representada\Index.cshtml" />
+    <Content Include="Views\Representada\Novo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
