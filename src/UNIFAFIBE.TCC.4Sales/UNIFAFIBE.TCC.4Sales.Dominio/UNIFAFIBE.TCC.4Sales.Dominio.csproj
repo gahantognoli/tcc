@@ -71,6 +71,7 @@
     <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirCNPJValidoSpecification.cs" />
     <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirInscricaoEstadualUnicaSpecification.cs" />
     <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirRazaoSocialUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\Produtos\ProdutoDevePossuirCodigoUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Produtos\ProdutoDevePossuirPrecoMaiorDoQueZeroSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirCNPJUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirCNPJValidoSpecification.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Interfaces\Repositorios\ITipoPedidoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\ITransportadoraRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\IUsuarioRepresentadaRepositorio.cs" />
     <Compile Include="Interfaces\Servicos\IEmailService.cs" />
     <Compile Include="Interfaces\Servicos\IEntitySerializationService.cs" />
     <Compile Include="Interfaces\Servicos\IFaturamentoService.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="Interfaces\Servicos\IStatusPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\ITipoPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\ITransportadoraService.cs" />
+    <Compile Include="Interfaces\Servicos\IUsuarioRepresentadaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\Servicos\ICondicaoPagamentoService.cs" />
     <Compile Include="Interfaces\Servicos\IContatoClienteService.cs" />
@@ -157,6 +160,7 @@
     <Compile Include="Servicos\StatusPedidoService.cs" />
     <Compile Include="Servicos\TipoPedidoService.cs" />
     <Compile Include="Servicos\TransportadoraService.cs" />
+    <Compile Include="Servicos\UsuarioRepresentadaService.cs" />
     <Compile Include="Servicos\UsuarioService.cs" />
     <Compile Include="Validacoes\CondicoesPagamento\CondicaoPagamentoEstaAptaValidation.cs" />
     <Compile Include="Validacoes\ContatosCliente\ContatoClienteEstaConsistenteValidation.cs" />
@@ -171,6 +175,7 @@
     <Compile Include="Validacoes\PessoasFisicas\PessoaFisicaEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\PessoasJuridicas\PessoaJuridicaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\PessoasJuridicas\PessoaJuridicaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Produtos\ProdutoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\Produtos\ProdutoEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\Representadas\RepresentadaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\Representadas\RepresentadaEstaConsistenteValidation.cs" />

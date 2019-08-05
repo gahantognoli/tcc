@@ -58,13 +58,13 @@
         @foreach (var item in Model)
         {
             <div class="card-item d-flex justify-content-between">
-                <a href="" class="link-detalhes">
+                <a href="@Url.Action("Painel", "Representada", new { Id = item.RepresentadaId })" class="link-detalhes">
                     <span class="h6">
                         @item.RazaoSocial
                         <small class="text-muted"> - @item.NomeFantasia </small>
                     </span>
                 </a>
-                <a href="" class="btn btn-sm btn-warning">
+                <a href="@Url.Action("Atualizar", "Representada", new { id = item.RepresentadaId})" class="btn btn-sm btn-warning">
                     <i class="fas fa-pencil-alt icone-edit"></i>Alterar
                 </a>
             </div>
@@ -76,4 +76,20 @@
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Representadas")
+    <script>
+        if (fGlobal.IsNotEmpty('@TempData["CadastradoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["CadastradoSucesso"]', "info");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["AtualizadoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["AtualizadoSucesso"]', "warning");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["RemovidoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["RemovidoSucesso"]', "danger");
+        }
+    </script>
 }

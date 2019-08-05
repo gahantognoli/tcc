@@ -70,6 +70,7 @@
     <Compile Include="Interfaces\Servicos\ITipoPedidoAppService.cs" />
     <Compile Include="Interfaces\Servicos\ITransportadoraAppService.cs" />
     <Compile Include="Interfaces\Servicos\IUsuarioAppService.cs" />
+    <Compile Include="Interfaces\Servicos\IUsuarioRepresentadaAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\AppService.cs" />
     <Compile Include="Servicos\CondicaoPagamentoAppService.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Servicos\TipoPedidoAppService.cs" />
     <Compile Include="Servicos\TransportadoraAppService.cs" />
     <Compile Include="Servicos\UsuarioAppService.cs" />
+    <Compile Include="Servicos\UsuarioRepresentadaAppService.cs" />
     <Compile Include="ViewModel\ClientePFPJCadastroViewModel.cs" />
     <Compile Include="ViewModel\ClientePFPJViewModel.cs" />
     <Compile Include="ViewModel\ClienteViewModel.cs" />

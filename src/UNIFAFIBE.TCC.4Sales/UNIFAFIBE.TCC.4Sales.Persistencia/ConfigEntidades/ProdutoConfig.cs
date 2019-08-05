@@ -13,6 +13,9 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasMaxLength(100)
                 .IsRequired();
 
+            Property(p => p.Codigo)
+                .HasMaxLength(50);
+
             Property(p => p.IPI)
                 .HasPrecision(18, 2)
                 .IsRequired();

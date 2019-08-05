@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Painel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div id="tabs-produto">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="produto-tab" data-toggle="tab" href="#produto"
+                       role="tab" aria-controls="produto" aria-selected="true"><i class="fas fa-users icone-tab"></i>Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="detalhes-tab" data-toggle="tab"
+                       href="#detalhes" role="tab" aria-controls="detalhes"
+                       aria-selected="false"><i class="fas fa-folder icone-tab"></i>Detalhes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="tab-content">
+            <div div class="tab-pane fade show active" id="produto" role="tabpanel"
+                 aria-labelledby="produto-tab">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <a href="@Url.Action("Novo", "Produto", new { representadaId = ViewBag.IdRepresentada })" class="btn btn-criar">
+                            <i class="fas fa-plus icone-criar"></i>Cadastrar
+                            Produto
+                        </a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card" style="margin-bottom:15px;margin-top: 15px;">
+                            <div class="card-header">
+                                <span class="h5">Opções de Pesquisa</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <input type="hidden" name="representadaId" id="representadaId" value="@ViewBag.IdRepresentada" />
+                                    <div class="col-md-2">
+                                        <select name="parametro" id="parametro" class="form-control mb-2">
+                                            <option value="" @(ViewBag.Parametro == "" ? "selected" : "")>Pesquisar por...</option>
+                                            <option value="nome" @(ViewBag.Parametro == "nome" ? "nome" : "")>Nome</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="form-row">
+                                            <div class="col-md-10">
+                                                <div class="input-group mb-2">
+                                                    <input type="text" class="form-control" name="busca" id="busca"
+                                                           placeholder="Pesquisa...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" id="btnPesquisarProduto"
+                                                        class="btn btn-primary btn-block mb-2">
+                                                    Pesquisar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="radio" name="OrdemAlfabetica" id="OrdemCrescente" value="Crescente" class="ordenacao" /> <label for="OrdemCrescente">A-Z</label>
+                                        <input type="radio" name="OrdemAlfabetica" id="OrdemDecrescente" value="Decrescente" class="ordenacao" /> <label for="OrdemDecrescente">Z-A</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="radio" name="Preco" id="MaiorPreco" value="MaiorPreco" class="ordenacao" /> <label for="MaiorPreco">Maior Preço</label>
+                                        <input type="radio" name="Preco" id="MenorPreco" value="MenorPreco" class="ordenacao" /> <label for="MenorPreco">Menor Preço</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3" id="loading-produto" style="display:none;">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <img src="~/assets/img/ajax-loader.gif" alt="Carregando ..." />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-hover" id="tabela-produtos">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>IPI</th>
+                                        <th>Unidade</th>
+                                        <th>Preço</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="corpoTabelaProdutos"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div div class="tab-pane fade" id="detalhes" role="tabpanel"
+                 aria-labelledby="detalhes-tab">
+                
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/Representadas/Painel")
+    <script>
+        if (fGlobal.IsNotEmpty('@TempData["CadastradoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["CadastradoSucesso"]', "info");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["AtualizadoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["AtualizadoSucesso"]', "warning");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["RemovidoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["RemovidoSucesso"]', "danger");
+        }
+    </script>
+}
+
+
+

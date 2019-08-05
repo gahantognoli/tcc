@@ -155,6 +155,7 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RepresentadaController.cs" />
     <Compile Include="Controllers\SegmentoController.cs" />
     <Compile Include="Controllers\StatusPedidoController.cs" />
@@ -228,6 +229,8 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Produto\script.js" />
+    <Content Include="Scripts\Representada\Painel.js" />
     <Content Include="Scripts\Representada\script.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\Segmento\script.js" />
@@ -280,6 +283,13 @@
     <Content Include="Views\Cliente\AlterarPessoaJuridica.cshtml" />
     <Content Include="Views\Representada\Index.cshtml" />
     <Content Include="Views\Representada\Novo.cshtml" />
+    <Content Include="Views\Representada\Painel.cshtml" />
+    <Content Include="Views\Produto\Novo.cshtml" />
+    <Content Include="Views\Produto\Detalhes.cshtml" />
+    <Content Include="Views\Produto\Alterar.cshtml" />
+    <Content Include="Views\Produto\Remover.cshtml" />
+    <Content Include="Views\Representada\Atualizar.cshtml" />
+    <Content Include="Views\Representada\Remover.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -51,9 +51,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                               " cadastrado com sucesso";
                         return RedirectToAction("Index", "Cliente");
                     }
-                    PopularViewBag();
                     clientePFPJCadastroViewModel.pessoaJuridicaViewModels.ValidationResult = pessoaJuridicaRetorno.ValidationResult;
-                    return View("Novo", clientePFPJCadastroViewModel);
                 }
                 PopularViewBag();
                 return View("Novo", clientePFPJCadastroViewModel);

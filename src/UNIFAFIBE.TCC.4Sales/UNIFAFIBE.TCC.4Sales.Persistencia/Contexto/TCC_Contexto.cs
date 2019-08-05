@@ -31,6 +31,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Contexto
         public DbSet<Meta> Metas { get; set; }
         public DbSet<StatusPedido> StatusPedidos { get; set; }
         public DbSet<TipoPedido> TipoPedidos { get; set; }
+        public DbSet<ContatoRepresentada> ContatosRepresentada { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

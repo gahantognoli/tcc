@@ -494,7 +494,6 @@
 /* ************************************* */
 
 /* Clientes */
-
 #tabs-clientes .nav-tabs .nav-link.active {
     border-bottom: #000 2px solid;
     color: #000 !important;
@@ -505,9 +504,34 @@
 #tabs-clientes a {
     color: black;
 }
-
 /*********************************/
 
+/* Produtos */
+#tabs-produto .nav-tabs .nav-link.active {
+    border-bottom: #000 2px solid;
+    color: #000 !important;
+    font-weight: 700;
+    background-color: white;
+}
+
+#tabs-produto a {
+    color: black;
+}
+
+#nomeEmpresa {
+    color: dodgerblue;
+    line-height: 1em;
+}
+
+#comissao{
+    color: dodgerblue;
+    font-weight: bolder;
+}
+
+#tabela-produtos {
+    border: 1px #DDD solid;
+}
+/*********************************************/
 .icone-cadastro {
     font-size: 22px;
     margin-right: 8px;

@@ -10,6 +10,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         ObterTodos,
         [Description("usp_Produto_ObterPorFaixaDePreco")]
         ObterPorFaixaDePreco,
+        [Description("usp_Produto_ObterPorCodigo")]
+        ObterPorCodigo,
         [Description("usp_Produto_ObterPorNome")]
         ObterPorNome
 

@@ -311,7 +311,7 @@
         html += '<div class="form-group"> ';
         html += '<label class="control-label col-md-2" for="Nome">Nome</label> ';
         html += '<div class="col-md-8"> ';
-        html += '<input type="text" class="form-control nome" name="pessoaFisicaViewModels.ContatosCliente[' + i + '].Nome" id="pessoaFisicaViewModels.ContatosCliente[' + i + '].Nome" /> ';
+        html += '<input type="text" class="form-control nomePF" name="pessoaFisicaViewModels.ContatosCliente[' + i + '].Nome" id="pessoaFisicaViewModels.ContatosCliente[' + i + '].Nome" /> ';
         html += '<span class="field-validation-valid text-danger" data-valmsg-for="Nome" data-valmsg-replace="true"></span> ';
         html += '</div> ';
         html += '</div> ';
@@ -400,10 +400,62 @@ $("#btnCriarContatoPessoaJuridica").on('click', function () {
 });
 
 $(document).on('click', '.btnRemoverEnderecoPessoaJuridica', function () {
+    var linhaAtual = Number($(this).parent().parent().remove().find('.cepPJ').attr('id').split('[')[1].substring(0, 1));
+    var qtdLinhas = $('#enderecosPessoaJuridica').find('.enderecoPessoaJuridica').length;
+    for (var i = linhaAtual + 1; i <= qtdLinhas; i++) {
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].CEP').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].CEP";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].CEP').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].CEP";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Endereco').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Endereco";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Endereco').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Endereco";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Numero').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Numero";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Numero').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Numero";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Complemento').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Complemento";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Complemento').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Complemento";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Cidade').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Cidade";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Cidade').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Cidade";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Bairro').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Bairro";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Bairro').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Bairro";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Estado').name =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Estado";
+        document.getElementById('pessoaJuridicaViewModels.EnderecosCliente[' + i + '].Estado').id =
+            "pessoaJuridicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Estado";
+    }
     $(this).parent().parent().remove();
 });
 
 $(document).on('click', '.btnRemoverContatoPessoaJuridica', function () {
+    var linhaAtual = Number($(this).parent().parent().remove().find('.nomePJ').attr('id').split('[')[1].substring(0, 1));
+    var qtdLinhas = $('#contatosPessoaJuridica').find('.contatoPessoaJuridica').length;
+    for (var i = linhaAtual + 1; i <= qtdLinhas; i++) {
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Nome').name =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Nome";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Nome').id =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Nome";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Cargo').name =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Cargo";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Cargo').id =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Cargo";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Telefone').name =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Telefone";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Telefone').id =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Telefone";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Email').name =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Email";
+        document.getElementById('pessoaJuridicaViewModels.ContatosCliente[' + i + '].Email').id =
+            "pessoaJuridicaViewModels.ContatosCliente[" + (i + - 1).toString() + "].Email";
+    }
     $(this).parent().parent().remove();
 });
 
@@ -428,9 +480,61 @@ $("#btnCriarContatoPessoaFisicaAlterar").on('click', function () {
 });
 
 $(document).on('click', '.btnRemoverEnderecoPessoaFisica', function () {
+    var linhaAtual = Number($(this).parent().parent().remove().find('.cepPF').attr('id').split('[')[1].substring(0, 1));
+    var qtdLinhas = $('#enderecosPessoaFisica').find('.enderecoPessoaFisica').length;
+    for (var i = linhaAtual + 1; i <= qtdLinhas; i++) {
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].CEP').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].CEP";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].CEP').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].CEP";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Endereco').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Endereco";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Endereco').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Endereco";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Numero').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Numero";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Numero').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Numero";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Complemento').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Complemento";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Complemento').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Complemento";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Cidade').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Cidade";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Cidade').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Cidade";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Bairro').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Bairro";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Bairro').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Bairro";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Estado').name =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Estado";
+        document.getElementById('pessoaFisicaViewModels.EnderecosCliente[' + i + '].Estado').id =
+            "pessoaFisicaViewModels.EnderecosCliente[" + (i - 1).toString() + "].Estado";
+    }
     $(this).parent().parent().remove();
 });
 
 $(document).on('click', '.btnRemoverContatoPessoaFisica', function () {
+    var linhaAtual = Number($(this).parent().parent().remove().find('.nomePF').attr('id').split('[')[1].substring(0, 1));
+    var qtdLinhas = $('#contatosPessoaFisica').find('.contatoPessoaFisica').length;
+    for (var i = linhaAtual + 1; i <= qtdLinhas; i++) {
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Nome').name =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Nome";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Nome').id =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Nome";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Cargo').name =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Cargo";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Cargo').id =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Cargo";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Telefone').name =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Telefone";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Telefone').id =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Telefone";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Email').name =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Email";
+        document.getElementById('pessoaFisicaViewModels.ContatosCliente[' + i + '].Email').id =
+            "pessoaFisicaViewModels.ContatosCliente[" + (i - 1).toString() + "].Email";
+    }
     $(this).parent().parent().remove();
 });

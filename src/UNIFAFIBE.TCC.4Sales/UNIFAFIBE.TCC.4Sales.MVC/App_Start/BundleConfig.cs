@@ -56,6 +56,14 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
                 "~/Scripts/Representada/script.js",
                 "~/Scripts/jquery.mask.min.js"
             ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Representadas/Painel").Include(
+                "~/Scripts/Representada/Painel.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Produto").Include(
+                "~/Scripts/Produto/script.js"
+            ));
         }
     }
 }

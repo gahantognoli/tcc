@@ -16,6 +16,9 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Required(ErrorMessage = "Preencha o campo Nome")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo de 100 caracteres")]
         public string Nome { get; set; }
+        [Display(Name = "Código")]
+        [MaxLength(100, ErrorMessage = "Tamanho máximo de 50 caracteres")]
+        public string Codigo { get; set; }
         [Required(ErrorMessage = "Preencha o campo IPI")]
         [Range(0, 9999999999999999.99)]
         public decimal IPI { get; set; }

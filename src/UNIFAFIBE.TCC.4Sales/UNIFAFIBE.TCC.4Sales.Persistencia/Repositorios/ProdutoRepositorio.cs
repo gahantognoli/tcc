@@ -23,7 +23,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             Produto retornoProduto;
 
             retornoProduto = cn.Query<Produto>(ProdutoProcedures.ObterPorId.GetDescription(),
-                new { id = id },
+                new { idProduto = id },
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
 
             return retornoProduto;
@@ -66,6 +66,18 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             retornoProduto = cn.Query<Produto>(ProdutoProcedures.ObterTodos.GetDescription(),
                 new { representadaId = representadaId },
                 commandType: CommandType.StoredProcedure);
+
+            return retornoProduto;
+        }
+
+        public Produto ObterPorCodigo(string codigo, Guid representadaId)
+        {
+            var cn = Db.Database.Connection;
+            Produto retornoProduto;
+
+            retornoProduto = cn.Query<Produto>(ProdutoProcedures.ObterPorCodigo.GetDescription(),
+                new { codigo = codigo, representadaId = representadaId },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
 
             return retornoProduto;
         }

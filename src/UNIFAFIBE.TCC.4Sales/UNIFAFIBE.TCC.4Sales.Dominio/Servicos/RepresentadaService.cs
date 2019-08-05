@@ -28,7 +28,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             if (!representada.EstaConsistente())
                 return representada;
 
-            return _representadaRepositorio.Atualizar(representada);
+             _representadaRepositorio.Atualizar(representada);
+
+            return representada;
         }
 
         public void Dispose()

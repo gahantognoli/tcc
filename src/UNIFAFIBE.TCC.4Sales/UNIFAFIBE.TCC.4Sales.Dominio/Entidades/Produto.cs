@@ -14,6 +14,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         }
 
         public Guid ProdutoId { get; set; }
+        public string Codigo { get; set; }
         public string Nome { get; set; }
         public decimal IPI { get; set; }
         public string UnidadeMedida { get; set; }
@@ -23,9 +24,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 
         public virtual Representada Representada { get; set; }
         public ICollection<ItemPedido> ItensPedido { get; set; }
-        public bool EhValido()
+        public bool EhValido(IProdutoRepositorio produtoRepositorio)
         {
-            return this.EstaConsistente();
+            if (EstaApto(produtoRepositorio))
+            {
+                return this.EstaConsistente();
+            }
+            return false;
         }
 
         public bool EstaConsistente()
@@ -36,7 +41,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 
         public bool EstaApto(IProdutoRepositorio produtoRepositorio)
         {
-            return true;
+            ValidationResult = new ProdutoEstaAptoValidation(produtoRepositorio).Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

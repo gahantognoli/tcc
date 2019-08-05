@@ -1,4 +1,5 @@
 ﻿using DomainValidation.Interfaces.Specification;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 
@@ -15,7 +16,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.Representadas
 
         public bool IsSatisfiedBy(Representada representada)
         {
-            return _representadaRepositorio.ObterPorCnpj(representada.CNPJ) == null;
+            return _representadaRepositorio.ObterPorCnpj(representada.CNPJ).FirstOrDefault() == null;
         }
     }
 }

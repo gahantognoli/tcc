@@ -20,7 +20,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Produto Adicionar(Produto produto)
         {
-            if (!produto.EhValido())
+            if (!produto.EhValido(_produtoRepositorio))
                 return produto;
 
             return _produtoRepositorio.Adicionar(produto);
@@ -28,7 +28,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Produto Atualizar(Produto produto)
         {
-            if (!produto.EhValido())
+            if (!produto.EstaConsistente())
                 return produto;
 
             return _produtoRepositorio.Atualizar(produto);

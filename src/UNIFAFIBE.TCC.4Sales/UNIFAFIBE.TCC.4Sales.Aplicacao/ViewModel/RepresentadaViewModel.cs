@@ -10,14 +10,26 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public RepresentadaViewModel()
         {
             RepresentadaId = Guid.NewGuid();
+            CondicoesPagamento = new List<CondicaoPagamentoViewModel>();
+            ContatosRepresentada = new List<ContatoRepresentadaViewModel>();
         }
 
         [Key]
         public Guid RepresentadaId { get; set; }
+        private string _cnpj;
         [Required(ErrorMessage = "Preencha o campo CNPJ")]
-        [MinLength(14, ErrorMessage = "Tamanho mínimo de 14 caracteres")]
-        [MaxLength(14, ErrorMessage = "Tamanho máximo de 14 caracteres")]
-        public string CNPJ { get; set; }
+        [StringLength(18, MinimumLength = 18, ErrorMessage = "Tamanho deve ser de 18 caracteres")]
+        public string CNPJ
+        {
+            get
+            {
+                return _cnpj;
+            }
+            set
+            {
+                _cnpj = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+            }
+        }
         [Display(Name = "Razão Social")]
         [Required(ErrorMessage = "Preencha o campo Razão Social")]
         [MaxLength(150, ErrorMessage = "Tamanho máximo de 100 caracteres")]
@@ -28,11 +40,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public string NomeFantasia { get; set; }
         [Display(Name = "Email")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo 100 caracteres")]
-        [EmailAddress(ErrorMessage = "Preencha um E-mail válido")]
+        [EmailAddress(ErrorMessage = "Preencha um Email válido")]
         public string Email { get; set; }
         [Display(Name = "Comissão")]
         [Required(ErrorMessage = "Preencha o campo Comissão")]
-        [Range(0, 9999999999999999.99)]
+        [Range(0.01, 100)]
         public decimal Comissao { get; set; }
 
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]

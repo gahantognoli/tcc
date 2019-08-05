@@ -37,6 +37,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoRepositorio, TipoPedidoRepositorio>(Lifestyle.Scoped);
             container.Register<ITransportadoraRepositorio, TransportadoraRepositorio>(Lifestyle.Scoped);
             container.Register<IUsuarioRepositorio, UsuarioRepositorio>(Lifestyle.Scoped);
+            container.Register<IUsuarioRepresentadaRepositorio, UsuarioRepresentadaRepositorio>(Lifestyle.Scoped);
             #endregion
 
             #region Registro dos Serviços
@@ -58,6 +59,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoService, TipoPedidoService>(Lifestyle.Scoped);
             container.Register<ITransportadoraService, TransportadoraService>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
+            container.Register<IUsuarioRepresentadaService, UsuarioRepresentadaService>(Lifestyle.Scoped);
             #endregion
 
             #region Registros da Camada de Aplicação
@@ -79,6 +81,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoAppService, TipoPedidoAppService>(Lifestyle.Scoped);
             container.Register<ITransportadoraAppService, TransportadoraAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
+            container.Register<IUsuarioRepresentadaAppService, UsuarioRepresentadaAppService>(Lifestyle.Scoped);
             #endregion
 
             #region Servico de Email
@@ -95,6 +98,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<IEntitySerializationServices<SegmentoViewModel>, JSONSerializationServices<SegmentoViewModel>>(Lifestyle.Scoped);
             container.Register<IEntitySerializationServices<RepresentadaViewModel>, JSONSerializationServices<RepresentadaViewModel>>(Lifestyle.Scoped);
             container.Register<IEntitySerializationServices<IEnumerable<RepresentadaViewModel>>, JSONSerializationServices<IEnumerable<RepresentadaViewModel>>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<IEnumerable<ProdutoViewModel>>, JSONSerializationServices<IEnumerable<ProdutoViewModel>>>(Lifestyle.Scoped);
             #endregion
 
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);

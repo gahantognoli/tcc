@@ -1,0 +1,291 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.RepresentadaViewModel
+
+@{
+    ViewBag.Title = "Remover";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-dark mt-2">
+    <div class="card-header bg-dark">
+        <span class="h5 text-white">
+            <i class="fas fa-store icone-cadastro"></i>
+            Remover Representada
+        </span>
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div class="col-lg-8 pl-0">
+                @Html.HiddenFor(model => model.RepresentadaId)
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                    </div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.RazaoSocial, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.RazaoSocial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.RazaoSocial, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.NomeFantasia, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.NomeFantasia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.NomeFantasia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Comissao, htmlAttributes: new { @class = "control-label", @type = "number" }) <span class="span-obrigatorio">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            @Html.EditorFor(model => model.Comissao, new { htmlAttributes = new { @class = "form-control mValor", @readonly = "readonly" } })
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Comissao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex justify-content-center align-items-start">
+                <div class="content-img-user-cadastro">
+                    <input type="file" id="file" name="postedImage" style="display:none;" onchange="$('#formImage').submit()" ; />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.InformacoesAdicionais, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.InformacoesAdicionais, new { @class = "form-control", @rows = "5", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.InformacoesAdicionais, "", new { @class = "text-danger", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h4 class="lead">Condições Pagamento</h4>
+            <hr class="linha" />
+        </div>
+        <div id="condicoesPagamento">
+            @if (Model == null)
+            {
+                <div class="condicaoPagamento">
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.CondicoesPagamento.ToList()[0].Descricao, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control descricao" name="CondicoesPagamento[0].Descricao" id="CondicoesPagamento[0].Descricao" readonly="readonly" />
+                            @Html.ValidationMessageFor(model => model.CondicoesPagamento.FirstOrDefault().Descricao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.CondicoesPagamento.ToList()[0].ValorMinimo, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" name="CondicoesPagamento[0].ValorMinimo" id="CondicoesPagamento[0].ValorMinimo" readonly="readonly" />
+                            @Html.ValidationMessageFor(model => model.CondicoesPagamento.FirstOrDefault().ValorMinimo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                for (var i = 0; i < Model.CondicoesPagamento.Count; i++)
+                {
+                    <div class="condicaoPagamento">
+                        @if (i > 0)
+                        {
+                            <div class="d-flex justify-content-start align-items-center">
+                                <h3 class="mr-3">Condicão Pagamento</h3>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CondicoesPagamento.ToList()[@i].Descricao, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control descricao" name="CondicoesPagamento[@i].Descricao" id="CondicoesPagamento[@i].Descricao" value="@(Model.CondicoesPagamento.ToList()[i].Descricao)" readonly="readonly" />
+                                @Html.ValidationMessage("CondicoesPagamento[" + i + "].Descricao", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.CondicoesPagamento.ToList()[@i].ValorMinimo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control descricao" name="CondicoesPagamento[@i].ValorMinimo" id="CondicoesPagamento[@i].ValorMinimo" value="@(Model.CondicoesPagamento.ToList()[i].ValorMinimo)" readonly="readonly" />
+                                @Html.ValidationMessage("CondicoesPagamento[" + i + "].ValorMinimo", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="mt-4">
+            <h4 class="lead">Contatos</h4>
+            <hr class="linha" />
+        </div>
+        <div id="contatos">
+            @if (Model == null)
+            {
+                <div class="contato">
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            @Html.LabelFor(model => model.ContatosRepresentada.ToList()[0].Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control nome" name="ContatosRepresentada[0].Nome" id="ContatosRepresentada[0].Nome" readonly="readonly" />
+                            @Html.ValidationMessageFor(model => model.ContatosRepresentada.FirstOrDefault().Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ContatosRepresentada.ToList()[0].Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="ContatosRepresentada[0].Cargo" id="ContatosRepresentada[0].Cargo" readonly="readonly" />
+                            @Html.ValidationMessageFor(model => model.ContatosRepresentada.FirstOrDefault().Cargo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ContatosRepresentada.ToList()[0].Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" name="ContatosRepresentada[0].Telefone" id="ContatosRepresentada[0].Telefone" readonly="readonly" />
+                            @Html.ValidationMessageFor(model => model.ContatosRepresentada.FirstOrDefault().Telefone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ContatosRepresentada.ToList()[0].Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="ContatosRepresentada[0].Email" id="ContatosRepresentada[0].Email" readonly="readonly" />
+                            @Html.ValidationMessageFor(model => model.ContatosRepresentada.FirstOrDefault().Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                for (var i = 0; i < Model.ContatosRepresentada.Count; i++)
+                {
+                    <div class="contato">
+                        @if (i > 0)
+                        {
+                            <div class="d-flex justify-content-start align-items-center">
+                                <h3 class="mr-3">Contato</h3>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                @Html.LabelFor(model => model.ContatosRepresentada.ToList()[@i].Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control nome" name="ContatosRepresentada[@i].Nome" id="ContatosRepresentada[@i].Nome" value="@(Model.ContatosRepresentada.ToList()[i].Nome)" readonly="readonly" />
+                                @Html.ValidationMessage("ContatosRepresentada[" + i + "].Nome", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ContatosRepresentada.ToList()[@i].Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="ContatosRepresentada[@i].Cargo" id="ContatosRepresentada[@i].Cargo" value="@(Model.ContatosRepresentada.ToList()[i].Cargo)" readonly="readonly" />
+                                @Html.ValidationMessage("ContatosRepresentada[" + i + "].Cargo", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ContatosRepresentada.ToList()[@i].Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="ContatosRepresentada[@i].Telefone" id="ContatosRepresentada[@i].Telefone" value="@(Model.ContatosRepresentada.ToList()[i].Telefone)" readonly="readonly" />
+                                @Html.ValidationMessage("ContatosRepresentada[" + i + "].Telefone", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.ContatosRepresentada.ToList()[@i].Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="ContatosRepresentada[@i].Email" id="ContatosRepresentada[@i].Email" value="@(Model.ContatosRepresentada.ToList()[i].Email)" readonly="readonly" />
+                                @Html.ValidationMessage("ContatosRepresentada[" + i + "].Email", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-12 d-flex justify-content-end">
+            <div>
+                <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#confirmarRemocao">Remover</button>
+                @Html.ActionLink("Cancelar", "Index", "Representada", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="confirmarRemocao" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Remover</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="h4">Atenção</p>
+                <p class="lead mb-1">Você está prestes a remover a representada <strong>@Model.RazaoSocial</strong></p>
+                <small class="text-danger">*Todos os pedidos gerados nessa representada serão removidos!</small><br />
+                <small class="text-danger">*Todos os produtos dessa representada serão removidos!</small>
+                <p class="lead"><strong>Deseja realmente remove-lo?</strong></p>
+                @using (Html.BeginForm("Remover", "Representada", FormMethod.Post, new { id = "form-remover" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.RepresentadaId)
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="$('#form-remover').submit()">Confirmar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

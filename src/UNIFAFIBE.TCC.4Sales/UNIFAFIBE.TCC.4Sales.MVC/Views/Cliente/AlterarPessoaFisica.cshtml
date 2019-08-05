@@ -82,11 +82,11 @@
                             <select class="form-control" name="SegmentoId" id="SegmentoId">
                                 @foreach (var item in (ViewBag.Segmento.Items as IEnumerable<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.SegmentoViewModel>).ToList())
                                 {
-                                    <option value="@item.SegmentoId" @(item.SegmentoId == Model.Segmento.SegmentoId ? "selected" : "") >@item.Descricao</option>
+                                    <option value="@item.SegmentoId" @(item.SegmentoId == Model.Segmento.SegmentoId ? "selected" : "")>@item.Descricao</option>
                                 }
                             </select>
-                                @Html.ValidationMessageFor(model => model.Segmento, "", new { @class = "text-danger" })
-                            </div>
+                            @Html.ValidationMessageFor(model => model.Segmento, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-3">
@@ -104,109 +104,109 @@
                     <div id="enderecosPessoaFisica">
                         @for (int i = 0; i < Model.EnderecosCliente.Count; i++)
                         {
-                        <div class="enderecoPessoaFisica">
-                            @if (i > 0)
-                            {
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <h3 class="mr-3">Endereço</h3>
-                                    <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverEnderecoPessoaFisica"><i class="fas fa-trash-alt"></i></button>
+                            <div class="enderecoPessoaFisica">
+                                @if (i > 0)
+                                {
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <h3 class="mr-3">Endereço</h3>
+                                        <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverEnderecoPessoaFisica"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                }
+                                @Html.Hidden("EnderecosCliente[" + i + "].EnderecoClienteId", Model.EnderecosCliente.ToList()[i].EnderecoClienteId)
+                                @Html.Hidden("EnderecosCliente[" + i + "].ClienteId", Model.ClienteId)
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().CEP, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control cepPF" name="EnderecosCliente[@i].CEP" id="EnderecosCliente[@i].CEP" value="@(Model.EnderecosCliente.ToList()[i].CEP)" />
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].CEP", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                            }
-                            @Html.Hidden("EnderecosCliente[" + i + "].EnderecoClienteId", Model.EnderecosCliente.ToList()[i].EnderecoClienteId)
-                            @Html.Hidden("EnderecosCliente[" + i + "].ClienteId", Model.ClienteId)
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().CEP, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Endereco, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="EnderecosCliente[@i].Endereco" id="EnderecosCliente[@i].Endereco" value="@(Model.EnderecosCliente.ToList()[i].Endereco)" />
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].Endereco", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control cepPF" name="EnderecosCliente[@i].CEP" id="EnderecosCliente[@i].CEP" value="@(Model.EnderecosCliente.ToList()[i].CEP)" />
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].CEP", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Numero, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="number" class="form-control" name="EnderecosCliente[@i].Numero" id="EnderecosCliente[@i].Numero" value="@(Model.EnderecosCliente.ToList()[i].Numero)" />
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].Numero", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="EnderecosCliente[@i].Complemento" id="EnderecosCliente[@i].Complemento" value="@(Model.EnderecosCliente.ToList()[i].Complemento)" />
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Cidade, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="EnderecosCliente[@i].Cidade" id="EnderecosCliente[@i].Cidade" value="@(Model.EnderecosCliente.ToList()[i].Cidade)" />
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Bairro, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="EnderecosCliente[@i].Bairro" id="EnderecosCliente[@i].Bairro" value="@(Model.EnderecosCliente.ToList()[i].Bairro)" />
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].Bairro", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Estado, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select name="EnderecosCliente[@i].Estado" id="EnderecosCliente[@i].Estado" class="form-control">
+                                            <option value="" @(Model.EnderecosCliente.ToList()[i].Estado == "" ? "selected" : "")>-------</option>
+                                            <option value="AC" @(Model.EnderecosCliente.ToList()[i].Estado == "AC" ? "selected" : "")>Acre</option>
+                                            <option value="AL" @(Model.EnderecosCliente.ToList()[i].Estado == "AL" ? "selected" : "")>Alagoas</option>
+                                            <option value="AP" @(Model.EnderecosCliente.ToList()[i].Estado == "AP" ? "selected" : "")>Amapá</option>
+                                            <option value="AM" @(Model.EnderecosCliente.ToList()[i].Estado == "AM" ? "selected" : "")>Amazonas</option>
+                                            <option value="BA" @(Model.EnderecosCliente.ToList()[i].Estado == "BA" ? "selected" : "")>Bahia</option>
+                                            <option value="CE" @(Model.EnderecosCliente.ToList()[i].Estado == "CE" ? "selected" : "")>Ceará</option>
+                                            <option value="DF" @(Model.EnderecosCliente.ToList()[i].Estado == "DF" ? "selected" : "")>Distrito Federal</option>
+                                            <option value="ES" @(Model.EnderecosCliente.ToList()[i].Estado == "ES" ? "selected" : "")>Espírito Santo</option>
+                                            <option value="GO" @(Model.EnderecosCliente.ToList()[i].Estado == "GO" ? "selected" : "")>Goiás</option>
+                                            <option value="MA" @(Model.EnderecosCliente.ToList()[i].Estado == "MA" ? "selected" : "")>Maranhão</option>
+                                            <option value="MT" @(Model.EnderecosCliente.ToList()[i].Estado == "MT" ? "selected" : "")>Mato Grosso</option>
+                                            <option value="MS" @(Model.EnderecosCliente.ToList()[i].Estado == "MS" ? "selected" : "")>Mato Grosso do Sul</option>
+                                            <option value="MG" @(Model.EnderecosCliente.ToList()[i].Estado == "MG" ? "selected" : "")>Minas Gerais</option>
+                                            <option value="PA" @(Model.EnderecosCliente.ToList()[i].Estado == "PA" ? "selected" : "")>Pará</option>
+                                            <option value="PB" @(Model.EnderecosCliente.ToList()[i].Estado == "PB" ? "selected" : "")>Paraíba</option>
+                                            <option value="PR" @(Model.EnderecosCliente.ToList()[i].Estado == "PR" ? "selected" : "")>Paraná</option>
+                                            <option value="PE" @(Model.EnderecosCliente.ToList()[i].Estado == "PE" ? "selected" : "")>Pernambuco</option>
+                                            <option value="PI" @(Model.EnderecosCliente.ToList()[i].Estado == "PI" ? "selected" : "")>Piauí</option>
+                                            <option value="RJ" @(Model.EnderecosCliente.ToList()[i].Estado == "RJ" ? "selected" : "")>Rio de Janeiro</option>
+                                            <option value="RN" @(Model.EnderecosCliente.ToList()[i].Estado == "RN" ? "selected" : "")>Rio Grande do Norte</option>
+                                            <option value="RS" @(Model.EnderecosCliente.ToList()[i].Estado == "RS" ? "selected" : "")>Rio Grande do Sul</option>
+                                            <option value="RO" @(Model.EnderecosCliente.ToList()[i].Estado == "RO" ? "selected" : "")>Rondônia</option>
+                                            <option value="RR" @(Model.EnderecosCliente.ToList()[i].Estado == "RR" ? "selected" : "")>Roraima</option>
+                                            <option value="SC" @(Model.EnderecosCliente.ToList()[i].Estado == "SC" ? "selected" : "")>Santa Catarina</option>
+                                            <option value="SP" @(Model.EnderecosCliente.ToList()[i].Estado == "SP" ? "selected" : "")>São Paulo</option>
+                                            <option value="SE" @(Model.EnderecosCliente.ToList()[i].Estado == "SE" ? "selected" : "")>Sergipe</option>
+                                            <option value="TO" @(Model.EnderecosCliente.ToList()[i].Estado == "TO" ? "selected" : "")>Tocantins</option>
+                                        </select>
+                                        @Html.ValidationMessage("EnderecosCliente[" + i + "].Estado", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Endereco, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="EnderecosCliente[@i].Endereco" id="EnderecosCliente[@i].Endereco" value="@(Model.EnderecosCliente.ToList()[i].Endereco)" />
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].Endereco", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Numero, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="number" class="form-control" name="EnderecosCliente[@i].Numero" id="EnderecosCliente[@i].Numero" value="@(Model.EnderecosCliente.ToList()[i].Numero)" />
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].Numero", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" })
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="EnderecosCliente[@i].Complemento" id="EnderecosCliente[@i].Complemento" value="@(Model.EnderecosCliente.ToList()[i].Complemento)" />
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Cidade, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="EnderecosCliente[@i].Cidade" id="EnderecosCliente[@i].Cidade" value="@(Model.EnderecosCliente.ToList()[i].Cidade)" />
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Bairro, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="EnderecosCliente[@i].Bairro" id="EnderecosCliente[@i].Bairro" value="@(Model.EnderecosCliente.ToList()[i].Bairro)" />
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].Bairro", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.EnderecosCliente.FirstOrDefault().Estado, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="EnderecosCliente[@i].Estado" id="EnderecosCliente[@i].Estado" class="form-control">
-                                        <option value="" @(Model.EnderecosCliente.ToList()[i].Estado == "" ? "selected" : "")>-------</option>
-                                        <option value="AC" @(Model.EnderecosCliente.ToList()[i].Estado == "AC" ? "selected" : "")>Acre</option>
-                                        <option value="AL" @(Model.EnderecosCliente.ToList()[i].Estado == "AL" ? "selected" : "")>Alagoas</option>
-                                        <option value="AP" @(Model.EnderecosCliente.ToList()[i].Estado == "AP" ? "selected" : "")>Amapá</option>
-                                        <option value="AM" @(Model.EnderecosCliente.ToList()[i].Estado == "AM" ? "selected" : "")>Amazonas</option>
-                                        <option value="BA" @(Model.EnderecosCliente.ToList()[i].Estado == "BA" ? "selected" : "")>Bahia</option>
-                                        <option value="CE" @(Model.EnderecosCliente.ToList()[i].Estado == "CE" ? "selected" : "")>Ceará</option>
-                                        <option value="DF" @(Model.EnderecosCliente.ToList()[i].Estado == "DF" ? "selected" : "")>Distrito Federal</option>
-                                        <option value="ES" @(Model.EnderecosCliente.ToList()[i].Estado == "ES" ? "selected" : "")>Espírito Santo</option>
-                                        <option value="GO" @(Model.EnderecosCliente.ToList()[i].Estado == "GO" ? "selected" : "")>Goiás</option>
-                                        <option value="MA" @(Model.EnderecosCliente.ToList()[i].Estado == "MA" ? "selected" : "")>Maranhão</option>
-                                        <option value="MT" @(Model.EnderecosCliente.ToList()[i].Estado == "MT" ? "selected" : "")>Mato Grosso</option>
-                                        <option value="MS" @(Model.EnderecosCliente.ToList()[i].Estado == "MS" ? "selected" : "")>Mato Grosso do Sul</option>
-                                        <option value="MG" @(Model.EnderecosCliente.ToList()[i].Estado == "MG" ? "selected" : "")>Minas Gerais</option>
-                                        <option value="PA" @(Model.EnderecosCliente.ToList()[i].Estado == "PA" ? "selected" : "")>Pará</option>
-                                        <option value="PB" @(Model.EnderecosCliente.ToList()[i].Estado == "PB" ? "selected" : "")>Paraíba</option>
-                                        <option value="PR" @(Model.EnderecosCliente.ToList()[i].Estado == "PR" ? "selected" : "")>Paraná</option>
-                                        <option value="PE" @(Model.EnderecosCliente.ToList()[i].Estado == "PE" ? "selected" : "")>Pernambuco</option>
-                                        <option value="PI" @(Model.EnderecosCliente.ToList()[i].Estado == "PI" ? "selected" : "")>Piauí</option>
-                                        <option value="RJ" @(Model.EnderecosCliente.ToList()[i].Estado == "RJ" ? "selected" : "")>Rio de Janeiro</option>
-                                        <option value="RN" @(Model.EnderecosCliente.ToList()[i].Estado == "RN" ? "selected" : "")>Rio Grande do Norte</option>
-                                        <option value="RS" @(Model.EnderecosCliente.ToList()[i].Estado == "RS" ? "selected" : "")>Rio Grande do Sul</option>
-                                        <option value="RO" @(Model.EnderecosCliente.ToList()[i].Estado == "RO" ? "selected" : "")>Rondônia</option>
-                                        <option value="RR" @(Model.EnderecosCliente.ToList()[i].Estado == "RR" ? "selected" : "")>Roraima</option>
-                                        <option value="SC" @(Model.EnderecosCliente.ToList()[i].Estado == "SC" ? "selected" : "")>Santa Catarina</option>
-                                        <option value="SP" @(Model.EnderecosCliente.ToList()[i].Estado == "SP" ? "selected" : "")>São Paulo</option>
-                                        <option value="SE" @(Model.EnderecosCliente.ToList()[i].Estado == "SE" ? "selected" : "")>Sergipe</option>
-                                        <option value="TO" @(Model.EnderecosCliente.ToList()[i].Estado == "TO" ? "selected" : "")>Tocantins</option>
-                                    </select>
-                                    @Html.ValidationMessage("EnderecosCliente[" + i + "].Estado", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
                         }
                     </div>
                     <div class="col-md-12">
@@ -219,54 +219,54 @@
                     <div id="contatosPessoaFisica">
                         @for (int i = 0; i < Model.ContatosCliente.Count; i++)
                         {
-                        <div class="contatoPessoaFisica">
-                            @if (i > 0)
-                            {
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <h3 class="mr-3">Contato</h3>
-                                    <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverContatoPessoaFisica"><i class="fas fa-trash-alt"></i></button>
+                            <div class="contatoPessoaFisica">
+                                @if (i > 0)
+                                {
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <h3 class="mr-3">Contato</h3>
+                                        <button type="button" class="btn btn-danger mt-1 mb-2 btnRemoverContatoPessoaFisica"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                }
+                                @Html.Hidden("ContatosCliente[" + i + "].ContatoClienteId", Model.ContatosCliente.ToList()[i].ContatoClienteId)
+                                @Html.Hidden("ContatosCliente[" + i + "].ClienteId", Model.ClienteId)
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control nomePF" name="ContatosCliente[@i].Nome" id="ContatosCliente[@i].Nome" value="@(Model.ContatosCliente.ToList()[i].Nome)" />
+                                        @Html.ValidationMessage("ContatosCliente[" + i + "].Nome", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                            }
-                            @Html.Hidden("ContatosCliente[" + i + "].ContatoClienteId", Model.ContatosCliente.ToList()[i].ContatoClienteId)
-                            @Html.Hidden("ContatosCliente[" + i + "].ClienteId", Model.ClienteId)
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="ContatosCliente[@i].Cargo" id="ContatosCliente[@i].Cargo" value="@(Model.ContatosCliente.ToList()[i].Cargo)" />
+                                        @Html.ValidationMessage("ContatosCliente[" + i + "].Cargo", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control nomePF" name="ContatosCliente[@i].Nome" id="ContatosCliente[@i].Nome" value="@(Model.ContatosCliente.ToList()[i].Nome)" />
-                                    @Html.ValidationMessage("ContatosCliente[" + i + "].Nome", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Cargo, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="ContatosCliente[@i].Cargo" id="ContatosCliente[@i].Cargo" value="@(Model.ContatosCliente.ToList()[i].Cargo)" />
-                                    @Html.ValidationMessage("ContatosCliente[" + i + "].Cargo", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
 
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="ContatosCliente[@i].Telefone" id="ContatosCliente[@i].Telefone" value="@(Model.ContatosCliente.ToList()[i].Telefone)" />
-                                    @Html.ValidationMessage("ContatosCliente[" + i + "].Telefone", new { @class = "text-danger" })
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="ContatosCliente[@i].Telefone" id="ContatosCliente[@i].Telefone" value="@(Model.ContatosCliente.ToList()[i].Telefone)" />
+                                        @Html.ValidationMessage("ContatosCliente[" + i + "].Telefone", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Email, htmlAttributes: new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="ContatosCliente[@i].Email" id="ContatosCliente[@i].Email" value="@(Model.ContatosCliente.ToList()[i].Email)" />
+                                        @Html.ValidationMessage("ContatosCliente[" + i + "].Email", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.ContatosCliente.FirstOrDefault().Email, htmlAttributes: new { @class = "control-label" })
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="ContatosCliente[@i].Email" id="ContatosCliente[@i].Email" value="@(Model.ContatosCliente.ToList()[i].Email)" />
-                                    @Html.ValidationMessage("ContatosCliente[" + i + "].Email", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
                         }
                     </div>
                     <div class="col-md-12">
