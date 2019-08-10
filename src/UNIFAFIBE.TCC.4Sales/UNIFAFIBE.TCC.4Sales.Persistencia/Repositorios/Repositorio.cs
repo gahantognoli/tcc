@@ -18,7 +18,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             DbSet = Db.Set<TEntity>();
         }
 
-        public TEntity Adicionar(TEntity obj)
+        public virtual TEntity Adicionar(TEntity obj)
         {
             return DbSet.Add(obj);
         }

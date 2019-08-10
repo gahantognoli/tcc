@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Contexto
         public DbSet<Representada> Representadas { get; set; }
         public DbSet<Segmento> Segmentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<UsuarioRepresentada> UsuarioRepresentadas { get; set; }
+        //public DbSet<UsuarioRepresentada> UsuarioRepresentadas { get; set; }
         public DbSet<Transportadora> Transportadoras { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
@@ -58,7 +58,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Contexto
             modelBuilder.Configurations.Add(new TipoPedidoConfig());
             modelBuilder.Configurations.Add(new TransportadoraConfig());
             modelBuilder.Configurations.Add(new UsuarioConfig());
-            modelBuilder.Configurations.Add(new UsuarioRepresentadaConfig());
+            //modelBuilder.Configurations.Add(new UsuarioRepresentadaConfig());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -32,6 +32,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
              ));
 
             bundles.Add(new ScriptBundle("~/Scripts/MeusDados").Include(
+                "~/Scripts/Usuario/script.js",
                "~/Scripts/StatusPedido/script.js",
                "~/Scripts/TipoPedido/script.js",
                "~/Scripts/Transportadora/script.js"
@@ -63,6 +64,10 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
 
             bundles.Add(new ScriptBundle("~/Scripts/Produto").Include(
                 "~/Scripts/Produto/script.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Usuario").Include(
+                "~/Scripts/Usuario/script.js"
             ));
         }
     }

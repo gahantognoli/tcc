@@ -8,10 +8,10 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Usuario Adicionar(Usuario usuario);
         Usuario Atualizar(Usuario usuario);
-        bool Desativar(Guid id);
-        bool RecuperarSenha(string email);
-        bool RedefinirSenha(Guid usuarioId, string senhaAtual, string novaSenha);
-        bool AtualizarFotoPerfil(Guid id, string caminhoImagem);
+        Usuario EditarPerfil(Usuario usuario);
+        void Desativar(Guid id);
+        void EnviarSenhaPorEmail(Email email);
+        Usuario AlterarSenha(Guid usuarioId, string novaSenha);
         Usuario ObterPorId(Guid id);
         IEnumerable<Usuario> ObterTodos();
         int SaveChanges();

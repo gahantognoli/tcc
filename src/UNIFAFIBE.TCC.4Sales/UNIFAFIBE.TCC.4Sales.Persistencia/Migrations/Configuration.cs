@@ -1,9 +1,6 @@
 namespace UNIFAFIBE.TCC._4Sales.Persistencia.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<UNIFAFIBE.TCC._4Sales.Persistencia.Contexto.TCC_Contexto>
     {
@@ -14,10 +11,30 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Migrations
 
         protected override void Seed(UNIFAFIBE.TCC._4Sales.Persistencia.Contexto.TCC_Contexto context)
         {
-            //  This method will be called after migrating to the latest version.
+            //***To do: Descomentar quando aplicação for subir para Produção.
+            //List<StatusPedido> statusPedidos = new List<StatusPedido>();
+            //statusPedidos.Add(new StatusPedido() { Descricao = "Em Orçamento", Padrao = true });
+            //statusPedidos.Add(new StatusPedido() { Descricao = "Pedido de Venda Gerado", Padrao = true });
+            //statusPedidos.Add(new StatusPedido() { Descricao = "Parcialmente Faturado", Padrao = true });
+            //statusPedidos.Add(new StatusPedido() { Descricao = "Faturado", Padrao = true });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            //List<TipoPedido> tiposPedido = new List<TipoPedido>();
+            //tiposPedido.Add(new TipoPedido() { Descricao = "Venda", Padrao = true });
+
+            //List<Usuario> admUser = new List<Usuario>();
+            //admUser.Add(new Usuario()
+            //{
+            //    Nome = "Administrador",
+            //    Email = "administrador_4sales@hotmail.com.br",
+            //    Senha = "adm",
+            //    PrimeiroAcesso = false
+            //});
+
+            //context.StatusPedidos.AddRange(statusPedidos);
+            //context.TipoPedidos.AddRange(tiposPedido);
+            //context.Usuarios.AddRange(admUser);
+
+            //context.SaveChanges();
         }
     }
 }

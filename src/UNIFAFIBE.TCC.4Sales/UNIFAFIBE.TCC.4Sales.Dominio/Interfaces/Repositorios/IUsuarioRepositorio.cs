@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
@@ -7,5 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
     {
         IEnumerable<Usuario> ObterPorNome(string nome);
         IEnumerable<Usuario> ObterPorEmail(string email);
+        Usuario EditarPerfil(Usuario usuario);
+        Usuario AlterarSenha(Guid usuarioId, string novaSenha);
+        void Desativar(Guid Id);
     }
 }

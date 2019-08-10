@@ -76,7 +76,6 @@
     <Compile Include="Servicos\CondicaoPagamentoAppService.cs" />
     <Compile Include="Servicos\ContatoClienteAppService.cs" />
     <Compile Include="Servicos\ContatoRepresentadaAppService.cs" />
-    <Compile Include="Servicos\EmailAppService.cs" />
     <Compile Include="Servicos\EnderecoClienteAppService.cs" />
     <Compile Include="Servicos\FaturamentoAppService.cs" />
     <Compile Include="Servicos\ItemPedidoAppService.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="ViewModel\StatusPedidoViewModel.cs" />
     <Compile Include="ViewModel\TipoPedidoViewModel.cs" />
     <Compile Include="ViewModel\TransportadoraViewModel.cs" />
+    <Compile Include="ViewModel\UsuarioRepresentadaCadastroViewModel.cs" />
     <Compile Include="ViewModel\UsuarioRepresentadaViewModel.cs" />
     <Compile Include="ViewModel\UsuarioViewModel.cs" />
   </ItemGroup>

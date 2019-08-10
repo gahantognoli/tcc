@@ -64,7 +64,8 @@
                     </div>
                     <div class="col-md-8 d-flex align-items-center flex-column">
                         <p class="user-name">Gabriel Antognoli</p>
-                        <a href="#" class="link edit-user-profile">Editar perfil</a>
+                        @*Alterar essa senha para o Id do usuário logado, que irá vir de uma claim*@
+                        <a href="@Url.Action("EditarPerfil", "Usuario", new { id = "65d44201-487e-46f0-bc3f-d4774c1768d5" })" class="link edit-user-profile">Editar perfil</a>
                         <ul class="list-unstyled" id="menu-item-navigation">
                             <li class="nav-item actives-menu-top">
                                 <a class="nav-link" href="#"><i class="fas fa-envelope icone-menu-top"></i></a>

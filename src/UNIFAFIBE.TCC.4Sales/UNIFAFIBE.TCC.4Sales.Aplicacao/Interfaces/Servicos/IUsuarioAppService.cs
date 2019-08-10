@@ -8,12 +8,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
     {
         UsuarioViewModel Adicionar(UsuarioViewModel usuario);
         UsuarioViewModel Atualizar(UsuarioViewModel usuario);
-        bool Desativar(Guid id);
-        bool RecuperarSenha(string email);
-        bool RedefinirSenha(Guid usuarioId, string senhaAtual, string novaSenha);
-        bool AtualizarFotoPerfil(Guid id, string caminhoImagem);
+        UsuarioViewModel EditarPerfil(UsuarioViewModel usuario);
+        void Desativar(Guid id);
         UsuarioViewModel ObterPorId(Guid id);
         IEnumerable<UsuarioViewModel> ObterTodos();
+        UsuarioViewModel AlterarSenha(Guid usuarioId, string novaSenha);
         int SaveChanges();
+        UsuarioRepresentadaCadastroViewModel ObterDadosUsuario(Guid id);
     }
 }

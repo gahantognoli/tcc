@@ -162,6 +162,7 @@
     <Compile Include="Controllers\TipoPedidoController.cs" />
     <Compile Include="Controllers\PainelAdministrativoController.cs" />
     <Compile Include="Controllers\TransportadoraController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,6 +176,7 @@
     <Content Include="assets\img\logo2.png" />
     <Content Include="assets\img\logo3.png" />
     <Content Include="assets\img\perfil.jpg" />
+    <Content Include="assets\img\perfil2.jpg" />
     <Content Include="assets\img\user-default.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -241,6 +243,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Usuario\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -290,6 +293,10 @@
     <Content Include="Views\Produto\Remover.cshtml" />
     <Content Include="Views\Representada\Atualizar.cshtml" />
     <Content Include="Views\Representada\Remover.cshtml" />
+    <Content Include="Views\Usuario\Novo.cshtml" />
+    <Content Include="Views\Usuario\Alterar.cshtml" />
+    <Content Include="Views\Usuario\Desativar.cshtml" />
+    <Content Include="Views\Usuario\EditarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

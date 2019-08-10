@@ -1,4 +1,5 @@
 ﻿using DomainValidation.Interfaces.Specification;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 
@@ -15,7 +16,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.Usuarios
 
         public bool IsSatisfiedBy(Usuario usuario)
         {
-            return _usuarioRepositorio.ObterPorEmail(usuario.Email) == null;
+            return _usuarioRepositorio.ObterPorEmail(usuario.Email).FirstOrDefault() == null;
         }
     }
 }

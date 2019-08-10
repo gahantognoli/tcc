@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
@@ -27,42 +25,49 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _usuarioRepositorio.Adicionar(usuario);
         }
 
+        public Usuario AlterarSenha(Guid usuarioId, string novaSenha)
+        {
+            var usuario = _usuarioRepositorio.ObterPorId(usuarioId);
+            usuario.Senha = novaSenha;
+            if (!usuario.EstaConsistente())
+                return usuario;
+
+             _usuarioRepositorio.AlterarSenha(usuarioId, novaSenha);
+            return usuario;
+        }
+
         public Usuario Atualizar(Usuario usuario)
         {
             if (!usuario.EstaConsistente())
                 return usuario;
 
-            return _usuarioRepositorio.Atualizar(usuario);
+           var retorno = _usuarioRepositorio.Atualizar(usuario);
+            retorno.ValidationResult = usuario.ValidationResult;
+            return retorno;
         }
 
-        public bool AtualizarFotoPerfil(Guid id, string caminhoImagem)
+        public void Desativar(Guid id)
         {
-            var usuario = _usuarioRepositorio.ObterPorId(id);
-            if (usuario != null)
-            {
-                usuario.FotoPerfil = caminhoImagem;
-                _usuarioRepositorio.Atualizar(usuario);
-                return true;
-            }
-            return false;
-        }
-
-        public bool Desativar(Guid id)
-        {
-            var usuario = _usuarioRepositorio.ObterPorId(id);
-            if (usuario != null)
-            {
-                usuario.Ativo = false;
-                _usuarioRepositorio.Atualizar(usuario);
-                return true;
-            }
-            return false;
+           _usuarioRepositorio.Desativar(id);
         }
 
         public void Dispose()
         {
             _usuarioRepositorio.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public Usuario EditarPerfil(Usuario usuario)
+        {
+            if (!usuario.EstaConsistente())
+                return usuario;
+
+            return _usuarioRepositorio.EditarPerfil(usuario);
+        }
+
+        public void EnviarSenhaPorEmail(Email email)
+        {
+            _emailService.Enviar(email);
         }
 
         public Usuario ObterPorId(Guid id)
@@ -73,16 +78,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
         public IEnumerable<Usuario> ObterTodos()
         {
             return _usuarioRepositorio.ObterTodos();
-        }
-
-        public bool RecuperarSenha(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RedefinirSenha(Guid usuarioId, string senhaAtual, string novaSenha)
-        {
-            throw new NotImplementedException();
         }
 
         public int SaveChanges()

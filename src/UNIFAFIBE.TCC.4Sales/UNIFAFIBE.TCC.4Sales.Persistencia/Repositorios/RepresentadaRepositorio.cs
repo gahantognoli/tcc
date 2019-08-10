@@ -42,8 +42,6 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             List<CondicaoPagamento> addedCondicoesPagamento = representada.CondicoesPagamento.Except(existingRepresentada.CondicoesPagamento, c => c.CondicaoPagamentoId).ToList<CondicaoPagamento>();
             List<ContatoRepresentada> addedContatos = representada.ContatosRepresentada.Except(existingRepresentada.ContatosRepresentada, c => c.ContatoRepresentadaId).ToList<ContatoRepresentada>();
 
-
-
             if (deletedCondicoesPagamento.Count() > 0 || deletedContatos.Count() > 0)
             {
                 deletedCondicoesPagamento.ForEach(c => { existingRepresentada.CondicoesPagamento.Remove(c); _condicaoPagamentoRepositorio.Remover(c.CondicaoPagamentoId); });

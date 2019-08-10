@@ -1,0 +1,189 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.UsuarioViewModel
+
+@{
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Alterar", "Usuario", FormMethod.Post, new { @id = "form-usuario" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+    <div class="row mt-3">
+        <div class="col-lg-12">
+
+            @if (Model != null)
+            {
+                if (Model.ValidationResult != null)
+                {
+                    var mensagem = "";
+                    foreach (var item in Model.ValidationResult.Erros)
+                    {
+                        mensagem += "<span>" + @item.Message.ToString() + "</span><br />";
+                    }
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="alert-heading">Algo deu errado!</h4>
+                        @Html.Raw(mensagem)
+                    </div>
+                }
+            }
+
+            <div class="card border-dark">
+                <div class="card-header bg-dark">
+                    <span class="h5 text-white">
+                        <i class="fas fa-user icone-cadastro"></i>
+                        Alterar Usuário
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-lg-12 d-flex justify-content-between">
+                            <div class="col-lg-8 p-0">
+                                @Html.HiddenFor(model => model.UsuarioId)
+                                @Html.HiddenFor(model => model.FotoPerfil)
+                                <div class="form-group">
+                                    <div class="col-lg-4 p-0">
+                                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-lg-12 p-0">
+                                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-4 p-0">
+                                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-lg-12 p-0">
+                                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-4 p-0">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-lg-12 p-0">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                                <div class="content-img-user-cadastro">
+                                    <img src=@(Model.FotoPerfil == null ? "/assets/img/user-default.png" : Model.FotoPerfil) class="img-user-cadastro" id="imagem-usuario"
+                                         alt="Selecionar imagem" title="Selecionar imagem" onclick="$('#file').click()">
+                                    <input type="file" id="file" name="fotoPerfil" style="display:none" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <h5 class="h5">Segurança</h5>
+                            <hr class="linha">
+                            <a href="nav-link" id="alterar-senha" data-toggle="modal" data-target="#alterarSenha">Alterar senha</a>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h5 class="h5">Permissões</h5>
+                            <hr class="linha">
+                            <h6><b>Perfil do usuário</b></h6>
+                            <div class="card border-dark content-responsavel">
+                                <div class="card-body">
+                                    <div class="perfil-usuario">
+                                        @Html.CheckBoxFor(model => model.UsuarioResponsavel)
+                                        <span class="reponsavel-label">Reponsável pelo Sistema</span>
+                                        <p class="text-muted mt-2">
+                                            Usuário reponsável pelo sistema,
+                                            tem acesso total ao sistema, podendo visualizar e alterar
+                                            representadas, produtos, clientes, pedidos
+                                            e comissões, inclusive de outros usuários.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="representadas-usuario mt-4">
+                                <h6><b>Representadas</b></h6>
+                                <table class="table table-bordered table-sm">
+                                    <tr>
+                                        <th></th>
+                                        <th>Representada</th>
+                                    </tr>
+                                    @foreach (var item in (ViewBag.Representadas as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.RepresentadaViewModel>))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @if (Model.Representadas.FirstOrDefault(x => x.RepresentadaId == item.RepresentadaId) != null)
+                                                {
+                                                    <input type="checkbox" name="RepresentadaId" value="@item.RepresentadaId" checked />
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" name="RepresentadaId" value="@item.RepresentadaId" />
+                                                }
+
+                                            </td>
+                                            <td>
+                                                <input type="text" name="RazaoSocial" value="@item.RazaoSocial" class="form-control" readonly="readonly" />
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-12">
+                            <h5 class="h5">Assinatura do E-mail</h5>
+                            <hr class="linha">
+                            @Html.TextAreaFor(model => model.AssinaturaEmail, new { @class = "form-control", @rows = "8" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-12 d-flex justify-content-end mt-2">
+    <div>
+        <button type="button" class="btn btn-primary" onclick="$('#form-usuario').submit()">Salvar</button>
+        @Html.ActionLink("Cancelar", "Index", "PainelAdministrativo", "", new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+<div class="modal" id="alterarSenha" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Alterar senha</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <label for="Senha">Nova senha</label>
+                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirmarAlteracaoSenha">Confirmar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Usuario")
+}

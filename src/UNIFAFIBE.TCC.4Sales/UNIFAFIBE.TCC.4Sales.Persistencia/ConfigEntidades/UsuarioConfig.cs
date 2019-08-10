@@ -14,8 +14,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .IsRequired();
 
             Property(u => u.FotoPerfil)
-                .HasMaxLength(int.MaxValue)
-                .IsRequired();
+                .HasMaxLength(int.MaxValue);
 
             Property(u => u.AssinaturaEmail)
                 .HasMaxLength(500);
@@ -24,11 +23,10 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasMaxLength(100)
                 .IsRequired();
 
-            Property(u => u.Telefone)
-                .HasMaxLength(20)
+            Property(u => u.Ativo)
                 .IsRequired();
 
-            Property(u => u.Ativo)
+            Property(u => u.PrimeiroAcesso)
                 .IsRequired();
 
             Property(u => u.Email)
@@ -38,6 +36,15 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
             HasMany(p => p.Pedidos)
                 .WithRequired(p => p.Usuario)
                 .HasForeignKey(p => p.UsuarioId);
+
+            HasMany<Representada>(r => r.Representadas)
+                .WithMany(u => u.Usuarios)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("UsuarioId");
+                    cs.MapRightKey("RepresentadaId");
+                    cs.ToTable("UsuariosRepresentadas");
+                });
 
             Ignore(v => v.ValidationResult);
 

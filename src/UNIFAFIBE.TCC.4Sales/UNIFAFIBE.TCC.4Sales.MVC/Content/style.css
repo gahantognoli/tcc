@@ -420,6 +420,7 @@
     width: 100%;
     padding: 15px 20px;
     background-color: #EEE;
+    box-shadow: 1px 3px 5px #CCC;
 }
 
 .img-usuario-tab-usuarios {
@@ -465,13 +466,12 @@
 }
 
 .img-user-cadastro {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 150px;
     background: #EEE;
     border: 2px #AAA solid;
     cursor: pointer;
-    padding: 8px;
 }
 
 .link-alterar-senha {

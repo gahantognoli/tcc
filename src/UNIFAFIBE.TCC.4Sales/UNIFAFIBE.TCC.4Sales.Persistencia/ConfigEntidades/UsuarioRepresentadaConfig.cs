@@ -7,25 +7,25 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
     {
         public UsuarioRepresentadaConfig()
         {
-            HasKey(u => u.UsuarioRepresentadaId);
+            //HasKey(u => u.UsuarioRepresentadaId);
 
-            Property(u => u.Comissao)
-                .HasPrecision(18, 2)
-                .IsRequired();
+            //Property(u => u.Comissao)
+            //    .HasPrecision(18, 2)
+            //    .IsRequired();
 
-            Property(u => u.ValorMaximoDesconto)
-                .HasPrecision(18, 2)
-                .IsRequired();
+            //Property(u => u.ValorMaximoDesconto)
+            //    .HasPrecision(18, 2)
+            //    .IsRequired();
 
-            HasRequired(u => u.Usuario)
-                .WithMany(u => u.UsuariosRepresentadas)
-                .HasForeignKey(u => u.UsuarioId);
+            //HasRequired(u => u.Usuario)
+            //    .WithMany(u => u.UsuariosRepresentadas)
+            //    .HasForeignKey(u => u.UsuarioId);
 
-            HasRequired(u => u.Representada)
-                .WithMany(u => u.UsuariosRepresentadas)
-                .HasForeignKey(u => u.RepresentadaId);
+            //HasRequired(u => u.Representada)
+            //    .WithMany(u => u.UsuariosRepresentadas)
+            //    .HasForeignKey(u => u.RepresentadaId);
 
-            ToTable("UsuariosRepresentadas");
+            //ToTable("UsuariosRepresentadas");
         }
     }
 }

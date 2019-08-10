@@ -17,14 +17,15 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         private readonly ICondicaoPagamentoService _condicaoPagamentoService;
         private readonly IProdutoService _produtoService;
         private readonly IPedidoService _pedidoService;
-        private readonly IUsuarioRepresentadaService _usuarioRepresentadaService;
+        //private readonly IUsuarioRepresentadaService _usuarioRepresentadaService;
 
         public RepresentadaAppService(IRepresentadaService representadaService, IUnitOfWork uow,
             IContatoRepresentadaService contatoRepresentadaService,
             ICondicaoPagamentoService condicaoPagamentoService,
             IProdutoService produtoService,
-            IPedidoService pedidoService,
-            IUsuarioRepresentadaService usuarioRepresentadaService)
+            IPedidoService pedidoService
+            //IUsuarioRepresentadaService usuarioRepresentadaService
+            )
             : base(uow)
         {
             _representadaService = representadaService;
@@ -32,7 +33,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             _condicaoPagamentoService = condicaoPagamentoService;
             _produtoService = produtoService;
             _pedidoService = pedidoService;
-            _usuarioRepresentadaService = usuarioRepresentadaService;
+            //_usuarioRepresentadaService = usuarioRepresentadaService;
         }
 
         public RepresentadaViewModel Adicionar(RepresentadaViewModel representada)
@@ -121,11 +122,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
                 condicoesPagamento.ToList().ForEach(c => _condicaoPagamentoService.Remover(c.CondicaoPagamentoId));
             }
 
-            var usuarios = _usuarioRepresentadaService.ObterPorRepresentada(id);
-            if (usuarios.Count() > 0)
-            {
-                usuarios.ToList().ForEach(c => _usuarioRepresentadaService.Remover(c.UsuarioRepresentadaId));
-            }
+            //var usuarios = _usuarioRepresentadaService.ObterPorRepresentada(id);
+            //if (usuarios.Count() > 0)
+            //{
+            //    usuarios.ToList().ForEach(c => _usuarioRepresentadaService.Remover(c.UsuarioRepresentadaId));
+            //}
 
             _representadaService.Remover(id);
             Commit();

@@ -27,6 +27,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.AutoMapper
             CreateMap<StatusPedido, StatusPedidoViewModel>();
             CreateMap<TipoPedido, TipoPedidoViewModel>();
             CreateMap<Transportadora, TransportadoraViewModel>();
+            CreateMap<Usuario, UsuarioViewModel>();
             CreateMap<UsuarioRepresentada, UsuarioRepresentadaViewModel>();
         }
     }

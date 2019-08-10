@@ -152,7 +152,6 @@
       <Name>UNIFAFIBE.TCC.4Sales.Infra.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
