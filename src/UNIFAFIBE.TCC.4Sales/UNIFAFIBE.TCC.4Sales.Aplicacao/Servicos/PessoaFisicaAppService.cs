@@ -50,6 +50,14 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return pessoaFisicaRetorno;
         }
 
+        public void Dispose()
+        {
+            _contatoClienteService.Dispose();
+            _enderecoClienteService.Dispose();
+            _pessoaFisicaService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<PessoaFisicaViewModel> ObterPorCPF(string cpf)
         {
             return Mapper.Map<IEnumerable<PessoaFisicaViewModel>>(_pessoaFisicaService.ObterPorCPF(cpf));

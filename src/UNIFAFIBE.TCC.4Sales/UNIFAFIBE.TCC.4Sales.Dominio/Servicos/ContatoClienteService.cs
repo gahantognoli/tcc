@@ -31,6 +31,12 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _contatoClienteRepositorio.Atualizar(contatoCliente);
         }
 
+        public void Dispose()
+        {
+            _contatoClienteRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public ContatoCliente ObterPorId(Guid id)
         {
             return _contatoClienteRepositorio.ObterPorId(id);

@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IParcelaAppService
+    public interface IParcelaAppService : IDisposable
     {
         ParcelaViewModel Adicionar(ParcelaViewModel parcela);
         ParcelaViewModel Atualizar(ParcelaViewModel parcela);

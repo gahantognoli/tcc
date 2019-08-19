@@ -1,0 +1,153 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.PedidoViewModel
+
+@{
+    ViewBag.Title = "Novo Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-2">
+    <div class="col-lg-12">
+        @if (Model != null)
+        {
+            if (Model.ValidationResult != null)
+            {
+                var mensagem = "";
+                foreach (var item in Model.ValidationResult.Erros)
+                {
+                    mensagem += "<span>" + @item.Message.ToString() + "</span><br />";
+                }
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Algo deu errado!</h4>
+                    @Html.Raw(mensagem)
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm("Novo", "Pedido", FormMethod.Post, new { id = "form-produto" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-dark">
+                <div class="card-header bg-dark text-white">
+                    <span class="h5 text-white">
+                        <i class="fas fa-clipboard-list icone-cadastro"></i>
+                        Novo Pedido
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="col-md-2 pl-0">
+                            @Html.LabelFor(model => model.NumeroPedido, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3 pl-0">
+                            <input type="text" name="numeroPedido" id="numeroPedido" class="form-control" readonly="readonly" value="@ViewBag.NumeroPedido" />
+                        </div>
+                    </div>
+                    <h4>Cliente</h4>
+                    <hr class="linha" />
+                    <div class="col-md-12 pl-0">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="cliente" id="cliente" placeholder="Digite o nome do cliente" />
+                            <input type="hidden" name="clienteId" id="clienteId" class="form-control" />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                        <button type="button" id="btnTrocarCliente" class="btn btn-sm btn-criar mb-3" style="display:none;">Trocar cliente</button>
+                    </div>
+
+                    <h4>Representada</h4>
+                    <hr class="linha" />
+                    <div class="col-md-12 pl-0">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="representada" id="representada" placeholder="Digite o nome da representada" />
+                            <input type="hidden" class="form-control" name="representadaId" id="representadaId" />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                        <button type="button" id="btnTrocarRepresentada" class="btn btn-sm btn-criar mb-3" style="display:none;">Trocar representada</button>
+                    </div>
+                    <h4>Produtos</h4>
+                    <hr class="linha" />
+                    <div class="mb-2">
+                        <button type="button" class="btn btn-sm btn-criar" id="btn-criar" disabled="disabled">
+                            <i class="fas fa-plus mr-1"></i>Adicionar
+                        </button>
+                    </div>
+                    <table class="table table-bordered table-sm">
+                        <tr class="bg-dark text-white">
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Desconto</th>
+                            <th></th>
+                        </tr>
+                        <tbody id="corpo-tabela"></tbody>
+                    </table>
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <div class="container-itens mr-3">
+                            <b>Total itens: <span id="totalItens">0</span></b>
+                        </div>
+                        <div class="container-subtotal">
+                            <i class="fas fa-dollar-sign icone-info-pedido-subtotal"></i><b>Subtotal: <span id="subtotal">0</span></b>
+                        </div>
+                    </div>
+                    <h4 class="mt-4">Informações adicionais</h4>
+                    <hr class="linha" />
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Condição de Pagamento</label>
+                            <select id="condicoesPagamento" name="condicoesPagamento" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Tipo Pedido</label>
+                            @Html.DropDownList("TipoPedidoId", ViewBag.TipoPedidoCadastro as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Vendedor</label>
+                            @Html.DropDownList("UsuarioId", ViewBag.Vendedor as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Transportadora</label>
+                            @Html.DropDownList("TransportadoraId", ViewBag.Transportadora as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Endereço de entrega</label>
+                            <select id="enderecoEntrega" name="enderecoEntrega" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Contato</label>
+                            <select id="contato" name="contato" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mt-3">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button class="btn btn-success mr-1">Gerar pedido</button>
+        <button class="btn btn-warning mr-1">Gerar orçamento</button>
+        @Html.ActionLink("Cancelar", "Index", "Pedido", new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Pedido")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validations_pt-br")
+}
+
+

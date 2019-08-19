@@ -39,6 +39,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return produtoRetorno;
         }
 
+        public void Dispose()
+        {
+            _produtoService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<ProdutoViewModel> ObterPorFaixaDePreco(decimal valorInicial, decimal valorFinal, Guid representadaId)
         {
             return Mapper.Map<IEnumerable<ProdutoViewModel>>(_produtoService.ObterPorFaixaDePreco(valorInicial, valorFinal, representadaId));

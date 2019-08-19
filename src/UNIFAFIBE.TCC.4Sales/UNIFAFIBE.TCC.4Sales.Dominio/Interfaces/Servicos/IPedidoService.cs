@@ -15,13 +15,15 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
             string assunto = null, string corpo = null);
         Pedido AtualizarStatus(Guid statusId);
         Pedido ObterPorId(Guid id);
-        Pedido ObterPorNumeroPedido(int numeroPedido);
-        IEnumerable<Pedido> ObterPorDataEmissao(DateTime dataEmissao);
-        IEnumerable<Pedido> ObterPorCliente(string cliente);
-        IEnumerable<Pedido> ObterPorVendedor(string usuario);
-        IEnumerable<Pedido> ObterPorStatus(Guid statusId);
-        IEnumerable<Pedido> ObterPorTipo(Guid tipoId);
+        int ObterNumeroPedido();
+        Pedido ObterPorNumeroPedido(Usuario vendedor, int numeroPedido);
+        IEnumerable<Pedido> ObterPorDataEmissao(Usuario vendedor, DateTime dataEmissao);
+        IEnumerable<Pedido> ObterPorCliente(Usuario vendedor, string cliente);
+        IEnumerable<Pedido> ObterPorVendedor(string vendedor);
+        IEnumerable<Pedido> ObterPorStatus(Usuario vendedor, Guid statusId);
+        IEnumerable<Pedido> ObterPorTipo(Usuario vendedor, Guid tipoId);
+        IEnumerable<Pedido> ObterPorRepresentada(Usuario vendedor, Guid representadaId);
+        IEnumerable<Pedido> ObterTodos(Usuario vendedor);
         IEnumerable<Pedido> ObterPorRepresentada(Guid representadaId);
-        IEnumerable<Pedido> ObterTodos();
     }
 }

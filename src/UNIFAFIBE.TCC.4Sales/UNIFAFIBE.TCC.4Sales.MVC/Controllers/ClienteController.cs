@@ -334,5 +334,16 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         {
             ViewBag.Segmento = new SelectList(_segmentoAppService.ObterTodos(), "SegmentoId", "Descricao");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _pessoaFisicaAppService.Dispose();
+                _pessoaJuridicaAppService.Dispose();
+                _segmentoAppService.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

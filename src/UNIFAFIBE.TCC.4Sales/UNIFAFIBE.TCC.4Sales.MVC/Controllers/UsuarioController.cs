@@ -290,5 +290,14 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             return extensao;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _representadaAppService.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }

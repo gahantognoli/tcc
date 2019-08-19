@@ -1,0 +1,148 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.PagedList<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.PedidoViewModel>
+
+@{
+    ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <a href="@Url.Action("Novo", "Pedido")" class="btn btn-criar">
+            <i class="fas fa-plus icone-criar"></i>Criar Pedido / orçamento
+        </a>
+    </div>
+    <div class="col-md-12">
+        <div class="card" style="margin-bottom:15px;margin-top: 15px;">
+            <div class="card-header">
+                <span class="h5">Opções de Pesquisa</span>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    <select name="tamanhoPagina" id="tamanhoPagina" class="form-control mb-2"
+                            onchange="this.form.submit()">
+                        <option value="20" @(ViewBag.TamanhoPagina == 20 ? "selected" : "")>Listar 20 registros por página</option>
+                        <option value="50" @(ViewBag.TamanhoPagina == 50 ? "selected" : "")>Listar 50 registros por página</option>
+                        <option value="100" @(ViewBag.TamanhoPagina == 100 ? "selected" : "")>Listar 100 registros por página</option>
+                    </select>
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <select name="parametro" id="parametro" class="form-control mb-2"
+                                    onchange="$('#busca').val('')">
+                                <option value="" @(ViewBag.Parametro == "" ? "selected" : "")>Pesquisar por...</option>
+                                <option value="cliente" @(ViewBag.Parametro == "" ? "selected" : "")>Cliente</option>
+                                <option value="representada" @(ViewBag.Parametro == "" ? "selected" : "")>Representada</option>
+                                <option value="vendedor" @(ViewBag.Parametro == "" ? "selected" : "")>Vendedor</option>
+                                <option value="dataEmissao" @(ViewBag.Parametro == "" ? "selected" : "")>Data de emissão</option>
+                                <option value="numeroPedido" @(ViewBag.Parametro == "" ? "selected" : "")>Numero pedido</option>
+                                <option value="status" @(ViewBag.Parametro == "" ? "selected" : "")>Status</option>
+                                <option value="tipo" @(ViewBag.Parametro == "" ? "selected" : "")>Tipo</option>
+                            </select>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-row">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="busca" id="busca"
+                                               placeholder="Pesquisa...">
+                                    </div>
+                                    <div class="input-group" id="buscaRepresentada" style="display:none">
+                                        <select class="form-control" name="buscaRepresentada">
+                                            @foreach (var item in (ViewBag.Representada as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.RepresentadaViewModel>))
+                                            {
+                                                <option value="@item.RepresentadaId">@item.RazaoSocial</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="input-group" id="buscaStatus" style="display:none">
+                                        <select class="form-control" name="buscaStatus">
+                                            @foreach (var item in (ViewBag.Status as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.StatusPedidoViewModel>))
+                                            {
+                                                <option value="@item.StatusPedidoId">@item.Descricao</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="input-group" id="buscaTipoPedido" style="display:none">
+                                        <select class="form-control" name="buscaTipoPedido">
+                                            @foreach (var item in (ViewBag.TipoPedido as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.TipoPedidoViewModel>))
+                                            {
+                                                <option value="@item.TipoPedidoId">@item.Descricao</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary btn-block mb-2">
+                                        Pesquisar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        @foreach (var item in Model.ToList())
+        {
+            <div class="card mt-2">
+                <a href="@Url.Action("Acoes", new { id = item.PedidoId })" class="link-detalhes-pedido">
+                    <div class="card-header card-pedido d-flex justify-content-between">
+                        <div>
+                            <span class="num-pedido">#@item.NumeroPedido</span> emitido por <b>@item.Usuario.Nome</b>
+                        </div>
+                        <div>
+                            <span class="badge badge-pill badge-warning">@item.StatusPedido.Descricao</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="card-body">
+                    <p class="info-pedido">
+                        <i class="fas fa-user-friends icone-info-pedido"></i>
+                        @if (item.PessoaFisica != null)
+                        {
+                            @item.PessoaFisica.Nome
+                        }
+                        else
+                        {
+                            @item.PessoaJuridica.RazaoSocial
+                        }
+
+                    </p>
+                    <p class="info-pedido">
+                        <i class="fas fa-store icone-info-pedido"></i>
+                        @item.Representada.RazaoSocial
+                    </p>
+                    <p class="info-pedido">
+                        <i class="fas fa-clock icone-info-pedido"></i>
+                        @item.DataEmissao
+                    </p>
+                    <p class="info-pedido">
+                        <i class="fas fa-dollar-sign icone-info-pedido-valor"></i><b>
+                            R$ @item.ValorTotal
+                        </b>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row justify-content-center mt-2 mb-2">
+    <div class="col-md-6 pagination justify-content-center">
+        @Html.PagedListPager(Model, pagina => Url.Action("Index", "Pedido", new { pagina, parametro = ViewBag.Parametro, busca = ViewBag.Busca, tamanhoPagina = ViewBag.TamanhoPagina })
+            ,
+            new X.PagedList.Mvc.Common.PagedListRenderOptions
+            {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+            })
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Pedido")
+}

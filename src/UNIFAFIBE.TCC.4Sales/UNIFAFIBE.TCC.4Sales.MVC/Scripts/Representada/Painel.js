@@ -30,11 +30,13 @@
         $.each(data, function (index, value) {
             var row = $('<tr>');
             var columns = "";
+            var ipi = value.IPI.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+            var preco = value.Preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
             columns += '<td>' + (value.Codigo === null ? "  " : value.Codigo) + '</td>';
             columns += '<td><a href="/Produto/Detalhes/' + value.ProdutoId + '" class="link-detalhes">' + value.Nome + '</a></td>';
-            columns += '<td>' + value.IPI + '</td>';
+            columns += '<td>' + ipi + '</td>';
             columns += '<td>' + value.UnidadeMedida + '</td>';
-            columns += '<td>R$ ' + value.Preco + '</td>';
+            columns += '<td>' + preco + '</td>';
             columns += '<td>';
             columns += '<div>';
             columns += '<a href="/Produto/Alterar/' + value.ProdutoId + '" class="btn btn-sm btn-warning mr-1">';

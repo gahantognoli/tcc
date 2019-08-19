@@ -50,6 +50,14 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return pessoaJuridicaRetorno;
         }
 
+        public void Dispose()
+        {
+            _contatoClienteService.Dispose();
+            _enderecoClienteService.Dispose();
+            _pessoaJuridicaService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<PessoaJuridicaViewModel> ObterPorCPNJ(string cnpj)
         {
             return Mapper.Map<IEnumerable<PessoaJuridicaViewModel>>(_pessoaJuridicaService.ObterPorCPNJ(cnpj));

@@ -14,23 +14,23 @@
                 </span>
             </div>
             <div class="card-body">
-                    <div class="row mt-1">
-                        <div class="col-lg-12">
-                            @using (Html.BeginForm("Alterar", "StatusPedido", FormMethod.Post , new { id = "form-editar" }))
-                            {
-                                @Html.AntiForgeryToken()
+                <div class="row mt-1">
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm("Alterar", "StatusPedido", FormMethod.Post, new { id = "form-editar" }))
+                        {
+                            @Html.AntiForgeryToken()
 
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                @Html.HiddenFor(model => model.StatusPedidoId)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.StatusPedidoId)
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Descricao)
                                 @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
                                 @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
                             </div>
-                            }
-                        </div>
+                        }
                     </div>
+                </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <div>
                         @Html.ActionLink("Cancelar", "Index", "PainelAdministrativo", null, new { @class = "btn btn-danger" })
@@ -43,5 +43,6 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")    
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validations_pt-br")
 }

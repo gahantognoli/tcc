@@ -128,5 +128,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
             return usuarioRetorno;
         }
+
+        public void Dispose()
+        {
+            _representadaService.Dispose();
+            _usuarioService.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }

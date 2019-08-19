@@ -365,6 +365,13 @@
     margin-right: 4px;
 }
 
+.icone-info-pedido-subtotal {
+    font-size: 16px;
+    color: #BBB;
+    margin-right: 4px;
+    color: rgb(9, 197, 9);
+}
+
 .linha {
     margin: 0 0 12px 0;
 }
@@ -553,6 +560,52 @@
 .span-obrigatorio {
     color: red;
 }
+
+.input-small {
+    min-width: 80px !important;
+    max-width: 120px !important;
+}
+
+.input-medium {
+    min-width: 120px !important;
+    max-width: 200px !important;
+}
+
+.input-large {
+    min-width: 200px !important;
+    max-width: 300px !important;
+}
+
+.autocomplete-suggestions {
+    border: 1px solid #999;
+    background: #FFF;
+    overflow: auto;
+}
+
+.autocomplete-suggestion {
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+    font-weight: normal;
+    color: #3399FF;
+}
+
+.autocomplete-group {
+    padding: 2px 5px;
+}
+
+    .autocomplete-group strong {
+        display: block;
+        border-bottom: 1px solid #000;
+    }
+
 /* FOOTER */
 #footer {
     padding: 15px 50px;

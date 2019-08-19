@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Slapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,48 +33,202 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<Pedido> ObterTodos()
         {
-            var cn = Db.Database.Connection;
-            IEnumerable<Pedido> retornoPedido;
-
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterTodos.GetDescription(),
-                null,
-                commandType: CommandType.StoredProcedure);
-
-            return retornoPedido;
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Pedido> ObterPorCliente(string cliente)
+        public IEnumerable<Pedido> ObterPorCliente(Usuario vendedor, string cliente)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Pedido> retornoPedido;
 
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorCliente.GetDescription(),
-                new { cliente = cliente },
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorCliente.GetDescription(),
+                new { @NomeOuRazaoSocial = cliente, @idVendedor = vendedor.UsuarioId,
+                    @responsavelSistema  = vendedor.UsuarioResponsavel },
                 commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
 
             return retornoPedido;
         }
 
-        public IEnumerable<Pedido> ObterPorDataEmissao(DateTime dataEmissao)
+        public IEnumerable<Pedido> ObterPorDataEmissao(Usuario vendedor, DateTime dataEmissao)
         {
             var cn = Db.Database.Connection;
             IEnumerable<Pedido> retornoPedido;
 
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorDataEmissao.GetDescription(),
-                new { dataEmissao = dataEmissao },
-                commandType: CommandType.StoredProcedure);
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorDataEmissao.GetDescription(),
+               new
+               {
+                   @DataEmissao = dataEmissao,
+                   @idVendedor = vendedor.UsuarioId,
+                   @responsavelSistema = vendedor.UsuarioResponsavel
+               },
+               commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
 
             return retornoPedido;
         }
 
-        public Pedido ObterPorNumeroPedido(int numeroPedido)
+        public Pedido ObterPorNumeroPedido(Usuario vendedor, int numeroPedido)
         {
             var cn = Db.Database.Connection;
-            Pedido retornoPedido;
+            IEnumerable<Pedido> retornoPedido;
 
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorNumeroPedido.GetDescription(),
-                new { numeroPedido = numeroPedido },
-                commandType: CommandType.StoredProcedure).FirstOrDefault();
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorNumeroPedido.GetDescription(),
+               new
+               {
+                   @numeroPedido = numeroPedido,
+                   @idVendedor = vendedor.UsuarioId,
+                   @responsavelSistema = vendedor.UsuarioResponsavel
+               },
+               commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
+
+            return retornoPedido.FirstOrDefault();
+        }
+
+        public IEnumerable<Pedido> ObterPorRepresentada(Usuario vendedor, Guid representadaId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorRepresentada.GetDescription(),
+               new
+               {
+                   @representadaId = representadaId,
+                   @idVendedor = vendedor.UsuarioId,
+                   @responsavelSistema = vendedor.UsuarioResponsavel
+               },
+               commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorStatus(Usuario vendedor, Guid statusId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorStatus.GetDescription(),
+               new
+               {
+                   @statusId = statusId,
+                   @idVendedor = vendedor.UsuarioId,
+                   @responsavelSistema = vendedor.UsuarioResponsavel
+               },
+               commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorTipo(Usuario vendedor, Guid tipoId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorTipo.GetDescription(),
+               new
+               {
+                   @tipoId = tipoId,
+                   @idVendedor = vendedor.UsuarioId,
+                   @responsavelSistema = vendedor.UsuarioResponsavel
+               },
+               commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorVendedor(string vendedor)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorVendedor.GetDescription(),
+               new
+               {
+                   @usuario = vendedor
+               },
+               commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterTodos(Usuario vendedor)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterTodos.GetDescription(),
+                new { @idVendedor = vendedor.UsuarioId, @responsavelSistema = vendedor.UsuarioResponsavel },
+                commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>);
 
             return retornoPedido;
         }
@@ -83,47 +238,21 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             var cn = Db.Database.Connection;
             IEnumerable<Pedido> retornoPedido;
 
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorRepresentada.GetDescription(),
-                new { representadaId = representadaId },
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorRepresentadaRemover.GetDescription(),
+                new { @idRepresentada = representadaId },
                 commandType: CommandType.StoredProcedure);
 
             return retornoPedido;
         }
 
-        public IEnumerable<Pedido> ObterPorStatus(Guid statusId)
+        public int ObterNumeroPedido()
         {
             var cn = Db.Database.Connection;
-            IEnumerable<Pedido> retornoPedido;
 
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorStatus.GetDescription(),
-                new { statusId = statusId },
-                commandType: CommandType.StoredProcedure);
+            int numeroPedido = cn.Query<int>(PedidoProcedures.ObterNumeroPedido.GetDescription(),
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
 
-            return retornoPedido;
-        }
-
-        public IEnumerable<Pedido> ObterPorTipo(Guid tipoId)
-        {
-            var cn = Db.Database.Connection;
-            IEnumerable<Pedido> retornoPedido;
-
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorTipo.GetDescription(),
-                new { tipoId = tipoId },
-                commandType: CommandType.StoredProcedure);
-
-            return retornoPedido;
-        }
-
-        public IEnumerable<Pedido> ObterPorVendedor(string usuario)
-        {
-            var cn = Db.Database.Connection;
-            IEnumerable<Pedido> retornoPedido;
-
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorVendedor.GetDescription(),
-                new { usuario = usuario },
-                commandType: CommandType.StoredProcedure);
-
-            return retornoPedido;
+            return numeroPedido;
         }
     }
 }

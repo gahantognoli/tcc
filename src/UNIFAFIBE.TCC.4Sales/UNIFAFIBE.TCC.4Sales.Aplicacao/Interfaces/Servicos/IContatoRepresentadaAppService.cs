@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IContatoRepresentadaAppService
+    public interface IContatoRepresentadaAppService : IDisposable
     {
         ContatoRepresentadaViewModel Adicionar(ContatoRepresentadaViewModel ContatoRepresentadaViewModel);
         ContatoRepresentadaViewModel Atualizar(ContatoRepresentadaViewModel ContatoRepresentadaViewModel);

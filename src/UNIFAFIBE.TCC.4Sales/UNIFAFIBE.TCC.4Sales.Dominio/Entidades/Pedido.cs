@@ -30,6 +30,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public ValidationResult ValidationResult { get; set; }
 
         public virtual Cliente Cliente { get; set; }
+        public virtual PessoaFisica PessoaFisica { get; set; }
+        public virtual PessoaJuridica PessoaJuridica { get; set; }
         public virtual CondicaoPagamento CondicaoPagamento { get; set; }
         public virtual Transportadora Transportadora { get; set; }
         public virtual StatusPedido StatusPedido { get; set; }

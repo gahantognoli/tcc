@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
 {
-    public interface IMetaService
+    public interface IMetaService : IDisposable
     {
         Meta Adicionar(Meta meta);
         Meta Atualizar(Meta meta);

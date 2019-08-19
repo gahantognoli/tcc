@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IFaturamentoAppService
+    public interface IFaturamentoAppService : IDisposable
     {
         FaturamentoViewModel Faturar(FaturamentoViewModel faturamento);
         FaturamentoViewModel Atualizar(FaturamentoViewModel faturamento);

@@ -42,6 +42,10 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasForeignKey(p => p.PedidoId);
 
             Ignore(v => v.ValidationResult);
+
+            Ignore(v => v.PessoaFisica);
+
+            Ignore(v => v.PessoaJuridica);
         }
     }
 }

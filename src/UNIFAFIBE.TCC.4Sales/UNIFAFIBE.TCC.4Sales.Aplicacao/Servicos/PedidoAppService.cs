@@ -39,6 +39,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return pedidoRetorno;
         }
 
+        public void Dispose()
+        {
+            _pedidoService.Dispose();
+        }
+
         public void EnviarPorEmail(Guid pedidoId, Guid usuarioId, string[] destinatarios, string assunto = null, string corpo = null)
         {
             _pedidoService.EnviarPorEmail(pedidoId, usuarioId, destinatarios, assunto, corpo);
@@ -80,14 +85,21 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<PedidoViewModel>(pedidoRetorno);
         }
 
-        public IEnumerable<PedidoViewModel> ObterPorCliente(string cliente)
+        public int ObterNumeroPedido()
         {
-            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorCliente(cliente));
+            return _pedidoService.ObterNumeroPedido();
         }
 
-        public IEnumerable<PedidoViewModel> ObterPorDataEmissao(DateTime dataEmissao)
+        public IEnumerable<PedidoViewModel> ObterPorCliente(UsuarioViewModel vendedor, string cliente)
         {
-            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorDataEmissao(dataEmissao));
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorCliente(Mapper.Map<Usuario>(vendedor), cliente));
+        }
+
+        public IEnumerable<PedidoViewModel> ObterPorDataEmissao(UsuarioViewModel vendedor, DateTime dataEmissao)
+        {
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorDataEmissao(Mapper.Map<Usuario>(vendedor), dataEmissao));
         }
 
         public PedidoViewModel ObterPorId(Guid id)
@@ -95,24 +107,34 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<PedidoViewModel>(_pedidoService.ObterPorId(id));
         }
 
-        public PedidoViewModel ObterPorNumeroPedido(int numeroPedido)
+        public PedidoViewModel ObterPorNumeroPedido(UsuarioViewModel vendedor, int numeroPedido)
         {
-            return Mapper.Map<PedidoViewModel>(_pedidoService.ObterPorNumeroPedido(numeroPedido));
+            return Mapper.Map<PedidoViewModel>(_pedidoService
+                .ObterPorNumeroPedido(Mapper.Map<Usuario>(vendedor), numeroPedido));
+        }
+
+        public IEnumerable<PedidoViewModel> ObterPorRepresentada(UsuarioViewModel vendedor, Guid representadaId)
+        {
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorRepresentada(Mapper.Map<Usuario>(vendedor), representadaId));
         }
 
         public IEnumerable<PedidoViewModel> ObterPorRepresentada(Guid representadaId)
         {
-            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorRepresentada(representadaId));
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorRepresentada(representadaId));
         }
 
-        public IEnumerable<PedidoViewModel> ObterPorStatus(Guid statusId)
+        public IEnumerable<PedidoViewModel> ObterPorStatus(UsuarioViewModel vendedor, Guid statusId)
         {
-            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorStatus(statusId));
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorStatus(Mapper.Map<Usuario>(vendedor), statusId));
         }
 
-        public IEnumerable<PedidoViewModel> ObterPorTipo(Guid tipoId)
+        public IEnumerable<PedidoViewModel> ObterPorTipo(UsuarioViewModel vendedor, Guid tipoId)
         {
-            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorTipo(tipoId));
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorTipo(Mapper.Map<Usuario>(vendedor), tipoId));
         }
 
         public IEnumerable<PedidoViewModel> ObterPorVendedor(string usuario)
@@ -120,9 +142,9 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorVendedor(usuario));
         }
 
-        public IEnumerable<PedidoViewModel> ObterTodos()
+        public IEnumerable<PedidoViewModel> ObterTodos(UsuarioViewModel vendedor)
         {
-            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterTodos());
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterTodos(Mapper.Map<Usuario>(vendedor)));
         }
 
         public void Remover(Guid id)

@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface ICondicaoPagamentoAppService
+    public interface ICondicaoPagamentoAppService : IDisposable
     {
         CondicaoPagamentoViewModel Adicionar(CondicaoPagamentoViewModel condicaoPagamento);
         CondicaoPagamentoViewModel Atualizar(CondicaoPagamentoViewModel condicaoPagamento);

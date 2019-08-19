@@ -44,6 +44,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return _parcelaService.CalcularComissao(valorFaturamento, comissao, numParcela);
         }
 
+        public void Dispose()
+        {
+            _parcelaService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public ParcelaViewModel ObterPorId(Guid id)
         {
             return Mapper.Map<ParcelaViewModel>(_parcelaService.ObterPorId(id));

@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return statusPedidoRetorno;
         }
 
+        public void Dispose()
+        {
+            _statusPedidoService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<StatusPedidoViewModel> ObterPorDescricao(string descricao)
         {
             return Mapper.Map<IEnumerable<StatusPedidoViewModel>>(_statusPedidoService.ObterPorDescricao(descricao));

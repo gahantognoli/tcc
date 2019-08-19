@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC
 {
@@ -14,11 +13,16 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(
+                new ScriptBundle("~/bundles/validations_pt-br")
+                    .Include(
+                        "~/Scripts/jquery.validate.custom.pt-br*"));
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.bundle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -68,6 +72,12 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
 
             bundles.Add(new ScriptBundle("~/Scripts/Usuario").Include(
                 "~/Scripts/Usuario/script.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Pedido").Include(
+                "~/Scripts/Pedido/script.js",
+                "~/Scripts/jquery.mask.min.js",
+                "~/Scripts/jquery.autocomplete.min.js"
             ));
         }
     }

@@ -20,7 +20,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [MaxLength(100, ErrorMessage = "Tamanho máximo de 50 caracteres")]
         public string Codigo { get; set; }
         [Required(ErrorMessage = "Preencha o campo IPI")]
-        [Range(0, 9999999999999999.99)]
+        [DataType(DataType.Currency)]
         public decimal IPI { get; set; }
         [Display(Name = "Unidade de Medida")]
         [Required(ErrorMessage = "Preencha o campo Unidade de Medida")]
@@ -28,7 +28,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public string UnidadeMedida { get; set; }
         [Display(Name = "Preço")]
         [Required(ErrorMessage = "Preencha o campo Preço")]
-        [Range(0, 9999999999999999.99)]
+        [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
         [ScaffoldColumn(false)]
         public Guid RepresentadaId { get; set; }

@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return transportadoraRetorno;
         }
 
+        public void Dispose()
+        {
+            _transportadoraService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<TransportadoraViewModel> ObterPorCidade(string cidade)
         {
             return Mapper.Map<IEnumerable<TransportadoraViewModel>>(_transportadoraService.ObterPorCidade(cidade));

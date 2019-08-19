@@ -39,6 +39,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return metaRetorno;
         }
 
+        public void Dispose()
+        {
+            _metaService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public MetaViewModel ObterPorId(Guid id)
         {
             return Mapper.Map<MetaViewModel>(_metaService.ObterPorId(id));

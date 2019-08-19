@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IPedidoAppService
+    public interface IPedidoAppService : IDisposable
     {
         PedidoViewModel GerarPedido(PedidoViewModel pedido);
         PedidoViewModel GerarOrcamento(PedidoViewModel pedido);
@@ -15,13 +15,15 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
             string assunto = null, string corpo = null);
         PedidoViewModel AtualizarStatus(Guid statusId);
         PedidoViewModel ObterPorId(Guid id);
-        PedidoViewModel ObterPorNumeroPedido(int numeroPedido);
-        IEnumerable<PedidoViewModel> ObterPorDataEmissao(DateTime dataEmissao);
-        IEnumerable<PedidoViewModel> ObterPorCliente(string cliente);
-        IEnumerable<PedidoViewModel> ObterPorVendedor(string usuario);
-        IEnumerable<PedidoViewModel> ObterPorStatus(Guid statusId);
-        IEnumerable<PedidoViewModel> ObterPorTipo(Guid tipoId);
+        int ObterNumeroPedido();
+        PedidoViewModel ObterPorNumeroPedido(UsuarioViewModel vendedor, int numeroPedido);
+        IEnumerable<PedidoViewModel> ObterPorDataEmissao(UsuarioViewModel vendedor, DateTime dataEmissao);
+        IEnumerable<PedidoViewModel> ObterPorCliente(UsuarioViewModel vendedor, string cliente);
+        IEnumerable<PedidoViewModel> ObterPorVendedor(string vendedor);
+        IEnumerable<PedidoViewModel> ObterPorStatus(UsuarioViewModel vendedor, Guid statusId);
+        IEnumerable<PedidoViewModel> ObterPorTipo(UsuarioViewModel vendedor, Guid tipoId);
+        IEnumerable<PedidoViewModel> ObterPorRepresentada(UsuarioViewModel vendedor, Guid representadaId);
+        IEnumerable<PedidoViewModel> ObterTodos(UsuarioViewModel vendedor);
         IEnumerable<PedidoViewModel> ObterPorRepresentada(Guid representadaId);
-        IEnumerable<PedidoViewModel> ObterTodos();
     }
 }

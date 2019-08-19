@@ -4,7 +4,8 @@ using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
 {
-    public interface IPessoaFisicaService : IDisposable { 
+    public interface IPessoaFisicaService : IDisposable
+    {
         PessoaFisica Adicionar(PessoaFisica cliente);
         PessoaFisica Atualizar(PessoaFisica cliente);
         void Remover(Guid id);

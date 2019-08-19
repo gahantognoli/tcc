@@ -56,14 +56,19 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pedidoRepositorio.Adicionar(pedido);
         }
 
-        public IEnumerable<Pedido> ObterPorCliente(string cliente)
+        public int ObterNumeroPedido()
         {
-            return _pedidoRepositorio.ObterPorCliente(cliente);
+            return _pedidoRepositorio.ObterNumeroPedido();
         }
 
-        public IEnumerable<Pedido> ObterPorDataEmissao(DateTime dataEmissao)
+        public IEnumerable<Pedido> ObterPorCliente(Usuario vendedor, string cliente)
         {
-            return _pedidoRepositorio.ObterPorDataEmissao(dataEmissao);
+            return _pedidoRepositorio.ObterPorCliente(vendedor, cliente);
+        }
+
+        public IEnumerable<Pedido> ObterPorDataEmissao(Usuario vendedor, DateTime dataEmissao)
+        {
+            return _pedidoRepositorio.ObterPorDataEmissao(vendedor, dataEmissao);
         }
 
         public Pedido ObterPorId(Guid id)
@@ -71,9 +76,14 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pedidoRepositorio.ObterPorId(id);
         }
 
-        public Pedido ObterPorNumeroPedido(int numeroPedido)
+        public Pedido ObterPorNumeroPedido(Usuario vendedor, int numeroPedido)
         {
-            return _pedidoRepositorio.ObterPorNumeroPedido(numeroPedido);
+            return _pedidoRepositorio.ObterPorNumeroPedido(vendedor, numeroPedido);
+        }
+
+        public IEnumerable<Pedido> ObterPorRepresentada(Usuario vendedor, Guid representadaId)
+        {
+            return _pedidoRepositorio.ObterPorRepresentada(vendedor, representadaId);
         }
 
         public IEnumerable<Pedido> ObterPorRepresentada(Guid representadaId)
@@ -81,24 +91,24 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pedidoRepositorio.ObterPorRepresentada(representadaId);
         }
 
-        public IEnumerable<Pedido> ObterPorStatus(Guid statusId)
+        public IEnumerable<Pedido> ObterPorStatus(Usuario vendedor, Guid statusId)
         {
-            return _pedidoRepositorio.ObterPorStatus(statusId);
+            return _pedidoRepositorio.ObterPorStatus(vendedor, statusId);
         }
 
-        public IEnumerable<Pedido> ObterPorTipo(Guid tipoId)
+        public IEnumerable<Pedido> ObterPorTipo(Usuario vendedor, Guid tipoId)
         {
-            return _pedidoRepositorio.ObterPorTipo(tipoId);
+            return _pedidoRepositorio.ObterPorTipo(vendedor, tipoId);
         }
 
-        public IEnumerable<Pedido> ObterPorVendedor(string usuario)
+        public IEnumerable<Pedido> ObterPorVendedor(string vendedor)
         {
-            return _pedidoRepositorio.ObterPorVendedor(usuario);
+            return _pedidoRepositorio.ObterPorVendedor(vendedor);
         }
 
-        public IEnumerable<Pedido> ObterTodos()
+        public IEnumerable<Pedido> ObterTodos(Usuario vendedor)
         {
-            return _pedidoRepositorio.ObterTodos();
+            return _pedidoRepositorio.ObterTodos(vendedor);
         }
 
         public void Remover(Guid id)

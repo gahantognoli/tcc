@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IPessoaFisicaAppService
+    public interface IPessoaFisicaAppService : IDisposable
     {
         PessoaFisicaViewModel Adicionar(PessoaFisicaViewModel cliente);
         PessoaFisicaViewModel Atualizar(PessoaFisicaViewModel cliente);

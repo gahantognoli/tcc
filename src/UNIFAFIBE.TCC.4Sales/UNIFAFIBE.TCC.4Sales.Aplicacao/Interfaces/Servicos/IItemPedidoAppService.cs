@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IItemPedidoAppService
+    public interface IItemPedidoAppService : IDisposable
     {
         ItemPedidoViewModel Adicionar(ItemPedidoViewModel itemPedido);
         ItemPedidoViewModel Atualizar(ItemPedidoViewModel itemPedido);

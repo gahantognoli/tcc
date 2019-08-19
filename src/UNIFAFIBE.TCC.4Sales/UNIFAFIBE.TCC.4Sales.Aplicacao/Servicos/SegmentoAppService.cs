@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return segmentoRetorno;
         }
 
+        public void Dispose()
+        {
+            _segmentoService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<SegmentoViewModel> ObterPorDescricao(string descricao)
         {
             return Mapper.Map<IEnumerable<SegmentoViewModel>>(_segmentoService.ObterPorDescricao(descricao));

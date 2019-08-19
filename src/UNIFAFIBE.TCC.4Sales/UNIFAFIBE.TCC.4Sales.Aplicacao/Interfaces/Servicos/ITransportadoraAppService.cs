@@ -7,7 +7,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface ITransportadoraAppService
+    public interface ITransportadoraAppService : IDisposable
     {
         TransportadoraViewModel Adicionar(TransportadoraViewModel transportadora);
         TransportadoraViewModel Atualizar(TransportadoraViewModel transportadora);

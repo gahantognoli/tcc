@@ -29,12 +29,18 @@
             html += '<div class="card-item d-flex justify-content-between">';
             html += '<span class="h6">' + value.Descricao + '</span>';
             html += '<div>';
-            html += '<a href="/StatusPedido/Alterar/' + value.StatusPedidoId + '" class="btn btn-sm btn-warning mr-1">';
-            html += '<i class="fas fa-pencil-alt icone-edit"></i>Alterar';
-            html += '</a>';
-            html += '<a href="/StatusPedido/Remover/' + value.StatusPedidoId + '" class="btn btn-sm btn-danger">';
-            html += '<i class="fas fa-trash-alt icone-remove"></i>Excluir';
-            html += '</a>';
+            if (value.Padrao === false) {
+                html += '<a href="/StatusPedido/Alterar/' + value.StatusPedidoId + '" class="btn btn-sm btn-warning mr-1">';
+                html += '<i class="fas fa-pencil-alt icone-edit"></i>Alterar';
+                html += '</a>';
+            }
+
+            if (value.Padrao === false) {
+                html += '<a href="/StatusPedido/Remover/' + value.StatusPedidoId + '" class="btn btn-sm btn-danger">';
+                html += '<i class="fas fa-trash-alt icone-remove"></i>Excluir';
+                html += '</a>';
+            }
+            
             html += '</div>';
             html += '</div>';
         });

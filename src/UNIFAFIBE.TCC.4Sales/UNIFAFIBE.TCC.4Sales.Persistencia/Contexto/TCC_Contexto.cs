@@ -1,5 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades;
 
@@ -61,6 +63,24 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Contexto
             //modelBuilder.Configurations.Add(new UsuarioRepresentadaConfig());
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries().
+                Where(entry => entry.Entity.GetType().GetProperty("DataEmissao") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("DataEmissao").CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("DataEmissao").IsModified = false;
+                }
+            }
+            return base.SaveChanges();
         }
     }
 }

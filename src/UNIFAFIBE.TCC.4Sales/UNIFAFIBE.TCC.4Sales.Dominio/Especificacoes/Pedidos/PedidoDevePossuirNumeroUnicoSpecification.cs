@@ -15,7 +15,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.Pedidos
 
         public bool IsSatisfiedBy(Pedido pedido)
         {
-            return _pedidoRepositorio.ObterPorNumeroPedido(pedido.NumeroPedido) == null;
+            return _pedidoRepositorio.ObterPorNumeroPedido(pedido.Usuario, pedido.NumeroPedido) == null;
         }
     }
 }

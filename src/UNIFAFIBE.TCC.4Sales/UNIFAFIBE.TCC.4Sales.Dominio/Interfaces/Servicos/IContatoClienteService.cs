@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
 {
-    public interface IContatoClienteService
+    public interface IContatoClienteService : IDisposable
     {
         ContatoCliente Adicionar(ContatoCliente contatoCliente);
         ContatoCliente Atualizar(ContatoCliente contatoCliente);

@@ -25,6 +25,12 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _enderecoClienteRepositorio.Atualizar(enderecoCliente);
         }
 
+        public void Dispose()
+        {
+            _enderecoClienteRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public EnderecoCliente ObterPorId(Guid id)
         {
             return _enderecoClienteRepositorio.ObterPorId(id);

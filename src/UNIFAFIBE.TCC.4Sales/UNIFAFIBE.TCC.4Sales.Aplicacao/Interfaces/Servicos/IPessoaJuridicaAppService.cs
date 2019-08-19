@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IPessoaJuridicaAppService
+    public interface IPessoaJuridicaAppService : IDisposable
     {
         PessoaJuridicaViewModel Adicionar(PessoaJuridicaViewModel cliente);
         PessoaJuridicaViewModel Atualizar(PessoaJuridicaViewModel cliente);

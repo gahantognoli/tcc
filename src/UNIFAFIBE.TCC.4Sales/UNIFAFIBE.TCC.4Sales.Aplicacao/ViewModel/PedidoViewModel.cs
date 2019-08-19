@@ -52,6 +52,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
 
         public virtual ClienteViewModel Cliente { get; set; }
+        public virtual PessoaFisicaViewModel PessoaFisica { get; set; }
+        public virtual PessoaJuridicaViewModel PessoaJuridica { get; set; }
         public virtual CondicaoPagamentoViewModel CondicaoPagamento { get; set; }
         public virtual TransportadoraViewModel Transportadora { get; set; }
         public virtual StatusPedidoViewModel StatusPedido { get; set; }

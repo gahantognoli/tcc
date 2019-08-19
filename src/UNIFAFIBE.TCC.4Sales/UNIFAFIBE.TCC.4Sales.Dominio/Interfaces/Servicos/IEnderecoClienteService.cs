@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
 {
-    public interface IEnderecoClienteService
+    public interface IEnderecoClienteService : IDisposable
     {
         EnderecoCliente Adicionar(EnderecoCliente enderecoCliente);
         EnderecoCliente Atualizar(EnderecoCliente enderecoCliente);

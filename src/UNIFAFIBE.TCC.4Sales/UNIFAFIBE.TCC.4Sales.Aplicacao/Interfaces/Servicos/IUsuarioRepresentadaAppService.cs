@@ -3,7 +3,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IUsuarioRepresentadaAppService
+    public interface IUsuarioRepresentadaAppService : IDisposable
     {
         UsuarioRepresentadaViewModel Adicionar(UsuarioRepresentadaViewModel UsuarioRepresentadaViewModel);
         UsuarioRepresentadaViewModel Atualizar(UsuarioRepresentadaViewModel UsuarioRepresentadaViewModel);

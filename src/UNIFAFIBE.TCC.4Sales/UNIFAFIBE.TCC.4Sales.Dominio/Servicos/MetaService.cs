@@ -31,6 +31,12 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _metaRepositorio.Atualizar(meta);
         }
 
+        public void Dispose()
+        {
+            _metaRepositorio.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public Meta ObterPorId(Guid id)
         {
             return _metaRepositorio.ObterPorId(id);

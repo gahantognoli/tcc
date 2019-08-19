@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface ISegmentoAppService
+    public interface ISegmentoAppService : IDisposable
     {
         SegmentoViewModel Adicionar(SegmentoViewModel segmento);
         SegmentoViewModel Atualizar(SegmentoViewModel segmento);

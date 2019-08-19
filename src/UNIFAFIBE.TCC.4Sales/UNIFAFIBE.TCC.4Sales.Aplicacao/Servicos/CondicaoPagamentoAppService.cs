@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return condicaoPagamentoRetorno;
         }
 
+        public void Dispose()
+        {
+            _condicaoPagamentoService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public CondicaoPagamentoViewModel ObterPorId(Guid id)
         {
             return Mapper.Map<CondicaoPagamentoViewModel>(_condicaoPagamentoService.ObterPorId(id));

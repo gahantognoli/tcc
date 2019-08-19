@@ -58,6 +58,16 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return representadaRetorno;
         }
 
+        public void Dispose()
+        {
+            _condicaoPagamentoService.Dispose();
+            _contatoRepresentadaService.Dispose();
+            _pedidoService.Dispose();
+            _produtoService.Dispose();
+            _representadaService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public IEnumerable<RepresentadaViewModel> ObterPorCnpj(string cnpj)
         {
             return Mapper.Map<IEnumerable<RepresentadaViewModel>>(_representadaService.ObterPorCnpj(cnpj));
@@ -122,6 +132,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
                 condicoesPagamento.ToList().ForEach(c => _condicaoPagamentoService.Remover(c.CondicaoPagamentoId));
             }
 
+            //To do: Rever como remover os usuários, porque se não, não conseguimos remover a representada, 
+            // por causa da FK de usuários.
             //var usuarios = _usuarioRepresentadaService.ObterPorRepresentada(id);
             //if (usuarios.Count() > 0)
             //{

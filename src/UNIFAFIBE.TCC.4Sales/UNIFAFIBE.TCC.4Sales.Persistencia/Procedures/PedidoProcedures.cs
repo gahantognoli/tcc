@@ -10,10 +10,14 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         ObterPorDataEmissao,
         [Description("usp_Pedido_ObterPorId")]
         ObterPorId,
+        [Description("usp_ObterNumeroPedido")]
+        ObterNumeroPedido,
         [Description("usp_Pedido_ObterPorNumeroPedido")]
         ObterPorNumeroPedido,
         [Description("usp_Pedido_ObterPorRepresentada")]
         ObterPorRepresentada,
+        [Description("usp_Pedido_ObterPorRepresentadaRemover")]
+        ObterPorRepresentadaRemover,
         [Description("usp_Pedido_ObterPorStatus")]
         ObterPorStatus,
         [Description("usp_Pedido_ObterPorTipo")]

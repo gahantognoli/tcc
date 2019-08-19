@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return enderecoClienteRetorno;
         }
 
+        public void Dispose()
+        {
+            _enderecoClienteService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public EnderecoClienteViewModel ObterPorId(Guid id)
         {
             return Mapper.Map<EnderecoClienteViewModel>(_enderecoClienteService.ObterPorId(id));

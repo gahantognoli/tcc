@@ -113,7 +113,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-2">
-                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.SUFRAMA, htmlAttributes: new { @class = "control-label" }) 
+                                    @Html.LabelFor(model => model.pessoaJuridicaViewModels.SUFRAMA, htmlAttributes: new { @class = "control-label" })
                                 </div>
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.pessoaJuridicaViewModels.SUFRAMA, new { htmlAttributes = new { @class = "form-control" } })
@@ -592,7 +592,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-2">
-                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" }) 
+                                                @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" })
                                             </div>
                                             <div class="col-md-4">
                                                 <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[0].Complemento" id="pessoaFisicaViewModels.EnderecosCliente[0].Complemento" />
@@ -681,7 +681,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-2">
                                                     @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Endereco, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
-                                                </div>                    
+                                                </div>
                                                 <div class="col-md-8">
                                                     <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Endereco" id="pessoaFisicaViewModels.EnderecosCliente[@i].Endereco" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Endereco)" />
                                                     @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Endereco", new { @class = "text-danger" })
@@ -698,8 +698,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-2">
-                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" }) 
-                                                </div>                                                
+                                                    @Html.LabelFor(model => model.pessoaFisicaViewModels.EnderecosCliente.FirstOrDefault().Complemento, htmlAttributes: new { @class = "control-label" })
+                                                </div>
                                                 <div class="col-md-4">
                                                     <input type="text" class="form-control" name="pessoaFisicaViewModels.EnderecosCliente[@i].Complemento" id="pessoaFisicaViewModels.EnderecosCliente[@i].Complemento" value="@(Model.pessoaFisicaViewModels.EnderecosCliente.ToList()[i].Complemento)" />
                                                     @Html.ValidationMessage("pessoaFisicaViewModels.EnderecosCliente[" + i + "].Complemento", new { @class = "text-danger" })
@@ -780,7 +780,7 @@
                                             <div class="col-md-2">
                                                 @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Nome, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
                                             </div>
-                                            
+
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control nomePF" name="pessoaFisicaViewModels.ContatosCliente[0].Nome" id="pessoaFisicaViewModels.ContatosCliente[0].Nome" />
                                                 @Html.ValidationMessageFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Nome, "", new { @class = "text-danger" })
@@ -849,7 +849,7 @@
                                                 <div class="col-md-2">
                                                     @Html.LabelFor(model => model.pessoaFisicaViewModels.ContatosCliente.FirstOrDefault().Telefone, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
                                                 </div>
-                                                
+
                                                 <div class="col-md-4">
                                                     <input type="text" class="form-control" name="pessoaFisicaViewModels.ContatosCliente[@i].Telefone" id="pessoaFisicaViewModels.ContatosCliente[@i].Telefone" value="@(Model.pessoaFisicaViewModels.ContatosCliente.ToList()[i].Telefone)" />
                                                     @Html.ValidationMessage("pessoaFisicaViewModels.ContatosCliente[" + i + "].Telefone", new { @class = "text-danger" })
@@ -901,4 +901,6 @@
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Clientes")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validations_pt-br")
 }

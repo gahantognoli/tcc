@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return contatoRepresentadaRetorno;
         }
 
+        public void Dispose()
+        {
+            _contatoRepresentadaService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public ContatoRepresentadaViewModel ObterPorId(Guid id)
         {
             return Mapper.Map<ContatoRepresentadaViewModel>(_contatoRepresentadaService.ObterPorId(id));

@@ -41,6 +41,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return itemPedidoRetorno;
         }
 
+        public void Dispose()
+        {
+            _itemPedidoService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public ItemPedidoViewModel ObterPorId(Guid id)
         {
             return Mapper.Map<ItemPedidoViewModel>(_itemPedidoService.ObterPorId(id));

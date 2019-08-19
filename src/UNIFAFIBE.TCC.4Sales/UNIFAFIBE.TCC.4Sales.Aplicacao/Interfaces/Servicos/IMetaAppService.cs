@@ -4,7 +4,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
-    public interface IMetaAppService
+    public interface IMetaAppService : IDisposable
     {
         MetaViewModel Adicionar(MetaViewModel meta);
         MetaViewModel Atualizar(MetaViewModel meta);

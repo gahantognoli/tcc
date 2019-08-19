@@ -35,6 +35,13 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return faturamentoRetorno;
         }
 
+        public void Dispose()
+        {
+            _faturamentoService.Dispose();
+            _pedidoService.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public FaturamentoViewModel Faturar(FaturamentoViewModel faturamento)
         {
             var pedido = _pedidoService.ObterPorId(faturamento.PedidoId);
