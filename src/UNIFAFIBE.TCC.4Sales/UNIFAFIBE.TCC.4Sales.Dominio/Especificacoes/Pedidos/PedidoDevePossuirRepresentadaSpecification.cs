@@ -7,7 +7,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.Pedidos
     {
         public bool IsSatisfiedBy(Pedido pedido)
         {
-            return pedido.Representada != null;
+            return pedido.RepresentadaId != null;
         }
     }
 }

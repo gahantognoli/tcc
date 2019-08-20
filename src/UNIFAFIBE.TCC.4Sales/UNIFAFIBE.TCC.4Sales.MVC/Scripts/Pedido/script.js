@@ -1,6 +1,50 @@
 ﻿var index = 1;
 
 var functionsPedido = {
+    GerarOrcamento: function (pedido) {
+        fGlobal.Ajax(gHostProjeto + 'Pedido/GerarOrcamento', "POST", { pedido: pedido }, functionsPedido.HtmlOrcamento,
+            null, null, null);
+    },
+    HtmlOrcamento: function (data) {
+        var validationResult = data;
+        if (validationResult.IsValid === false) {
+            fGlobal.ExibirNotificaoErrosValidacao(validationResult);
+        } else {
+            window.location = gHostProjeto + 'Pedido/Index';
+        }
+
+    },
+    GerarRequisicao: function () {
+        var itensPedido = [];
+
+        $('#corpo-tabela tr').each(function (i, item) {
+            i++;
+            var produto = {
+                Quantidade: $('#quantidade_' + i).val(),
+                Desconto: $('#desconto_' + i).val(),
+                Subtotal: $('#subtotal_' + i).val(),
+                ProdutoId: $('#produtoId_' + i).val()
+            };
+            itensPedido.push(produto);
+        });
+
+        var pedido = {
+            NumeroPedido: $('#numeroPedido').val(),
+            EnderecoEntrega: $('#enderecoEntrega').val(),
+            Contato: $('#contato').val(),
+            QuantidadeTotalItens: $('#totalItens').text().trim(),
+            ValorTotal: $('#subtotal').text().trim(),
+            RepresentadaId: $('#representadaId').val(),
+            ClienteId: $('#clienteId').val(),
+            CondicaoPagamentoId: $('#condicoesPagamento').val(),
+            TransportadoraId: $('#TransportadoraId').val(),
+            TipoPedidoId: $('#TipoPedidoId').val(),
+            UsuarioId: $('#UsuarioId').val(),
+            ItensPedido: itensPedido
+        };
+
+        functionsPedido.GerarOrcamento(JSON.stringify(pedido));
+    },
     GetEnderecos: function (id) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GetEnderecosCliente/' + id, "GET", null, functionsPedido.HtmlEnderecos,
             null, null, null);
@@ -70,6 +114,9 @@ var functionsPedido = {
         html += '</div>';
         html += '</div>';
         html += '</td>';
+        html += '<td class="input-small">';
+        html += '<input type="text" class="form-control subtotal" id="subtotal_' + index + '" readonly="readonly" />';
+        html += '</td>';
         html += '<td style="width: 100px;">';
         html += '<button type="button" class="btn btn-sm btn-danger btn-remover">';
         html += '<i class="fas fa-minus mr-1"></i>Remover';
@@ -104,6 +151,7 @@ var functionsPedido = {
                     $("#preco_" + (a + 1)).attr("id", "preco_" + a);
                     $("#quantidade_" + (a + 1)).attr("id", "quantidade_" + a);
                     $("#desconto_" + (a + 1)).attr("id", "desconto_" + a);
+                    $("#subtotal_" + (a + 1)).attr("id", "subtotal_" + a);
                     $("#btnTrocarProduto_" + (a + 1)).attr("id", "btnTrocarProduto_" + a);
                     tr.attr("value", a);
                 }
@@ -122,9 +170,17 @@ var functionsPedido = {
             var preco = parseFloat(Number($(item).find('.preco').val().replace('.', '').replace(',', '.')).toFixed(2));
             var desconto = parseFloat(Number($(item).find('.desconto').val().replace('.', '').replace(',','.')).toFixed(2));
             var quantidade = Number(parseInt($(item).find('.quantidade').val()));
+            
             total = parseFloat((Number(total.toString().replace(',', '.')) + ((preco * quantidade) - desconto))).toFixed(2).replace('.', ',');
         });
         $('#subtotal').text(Number(total.replace(',', '.')).toLocaleString('pt-BR'));
+    },
+    CalculaSubTotalItem: function (id) {
+        var preco = parseFloat(Number($('#preco_' + id).val().replace('.', '').replace(',', '.'))).toFixed(2);
+        var desconto = parseFloat(Number($('#desconto_' + id).val().replace('.', '').replace(',', '.'))).toFixed(2);
+        var quantidade = Number($('#quantidade_' + id).val());
+        var subtotal = (preco * quantidade) - desconto;
+        $('#subtotal_' + id).val(subtotal.toLocaleString('pt-BR'));
     }
 };
 
@@ -254,6 +310,9 @@ $(function () {
         $(this).closest('tr').find('.produto').val('');
         $(this).closest('tr').find('.produtoId').val('');
         $(this).closest('tr').find('.preco').val('');
+        $(this).closest('tr').find('.quantidade').val('');
+        $(this).closest('tr').find('.desconto').val('');
+        $(this).closest('tr').find('.subtotal').val('');
         $(this).attr('disabled', true);
     });
 
@@ -262,12 +321,17 @@ $(function () {
         functionsPedido.CalculaSubTotal();
     });
 
+    $('#btnGerarOrcamento').on('click', function () {
+        functionsPedido.GerarRequisicao();
+    });
+
     $(document).on('click', '.btn-remover', function () {
         functionsPedido.RemoveLinhaTabela(this);
         functionsPedido.CalculaSubTotal();
     });
 
     $(document).on('blur', '.desconto', function () {
+        functionsPedido.CalculaSubTotalItem($(this).attr('id').split('_')[1]);
         functionsPedido.CalculaSubTotal();
     });
 
@@ -275,6 +339,7 @@ $(function () {
         if ($(this).val() === "0" || $(this).val() === "") {
             $(this).val(1);
         }
+        functionsPedido.CalculaSubTotalItem($(this).attr('id').split('_')[1]);
         functionsPedido.CalculaSubTotal();
     });
 

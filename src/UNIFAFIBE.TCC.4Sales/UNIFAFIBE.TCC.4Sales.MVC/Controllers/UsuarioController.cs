@@ -252,7 +252,6 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                 string erro = "Selecione uma imagem em um formato válido(.jpg, .png, .gif)";
                 return Json(new { erro = erro}, JsonRequestBehavior.AllowGet);
             }
-
         }
 
         public void PopularViewBag()

@@ -145,4 +145,20 @@
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Pedido")
+    <script>
+        if (fGlobal.IsNotEmpty('@TempData["OrcamentoGerado"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["OrcamentoGerado"]', "info");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["AtualizadoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["AtualizadoSucesso"]', "warning");
+        }
+
+        if (fGlobal.IsNotEmpty('@TempData["RemovidoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["RemovidoSucesso"]', "danger");
+        }
+    </script>
 }

@@ -34,7 +34,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [MaxLength(150, ErrorMessage = "Tamanho máximo de 100 caracteres")]
         public string RazaoSocial { get; set; }
         [Display(Name = "Nome Fantasia")]
-        [Required(ErrorMessage = "Preencha o campo Nome Fantasia")]
+        //[Required(ErrorMessage = "Preencha o campo Nome Fantasia")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo de 50 caracteres")]
         public string NomeFantasia { get; set; }
         [Display(Name = "Email")]

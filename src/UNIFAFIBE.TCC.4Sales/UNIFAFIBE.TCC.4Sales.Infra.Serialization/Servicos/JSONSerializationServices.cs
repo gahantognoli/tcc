@@ -12,8 +12,9 @@ namespace UNIFAFIBE.TCC._4Sales.Infra.Serialization.Servicos
               new JsonSerializerSettings()
               {
                   ContractResolver = new AllPropertiesResolver(),
-                  ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-              });
+                  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                  Culture = new System.Globalization.CultureInfo("pt-BR")
+              }); 
         }
 
         public string Serialize(T entity)
@@ -22,7 +23,8 @@ namespace UNIFAFIBE.TCC._4Sales.Infra.Serialization.Servicos
                new JsonSerializerSettings()
                {
                    ContractResolver = new AllPropertiesResolver(),
-                   ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                   ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                   Culture = new System.Globalization.CultureInfo("pt-BR")
                });
         }
     }

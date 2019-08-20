@@ -13,9 +13,9 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasMaxLength(150)
                 .IsRequired();
 
-            Property(r => r.NomeFantasia)
-                .HasMaxLength(100)
-                .IsRequired();
+            //Property(r => r.NomeFantasia)
+            //    .HasMaxLength(100)
+            //    .IsRequired();
 
             Property(r => r.Telefone)
                 .HasMaxLength(20);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
 using X.PagedList;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
@@ -22,6 +23,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         private readonly IContatoClienteAppService _contatoClienteAppService;
         private readonly IEnderecoClienteAppService _enderecoClienteAppService;
         private readonly IProdutoAppService _produtoAppService;
+        private readonly IEntitySerializationServices<PedidoViewModel> _entitySerializationServices;
 
 
         public PedidoController(IPedidoAppService pedidoAppService, IUsuarioAppService usuarioAppService,
@@ -29,7 +31,8 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             ITipoPedidoAppService tipoPedidoAppService, ITransportadoraAppService transportadoraAppService, 
             ICondicaoPagamentoAppService condicaoPagamentoAppService, IContatoClienteAppService contatoClienteAppService,
             IEnderecoClienteAppService enderecoClienteAppService, IPessoaFisicaAppService pessoaFisicaAppService,
-            IPessoaJuridicaAppService pessoaJuridicaAppService, IProdutoAppService produtoAppService)
+            IPessoaJuridicaAppService pessoaJuridicaAppService, IProdutoAppService produtoAppService,
+            IEntitySerializationServices<PedidoViewModel> entitySerializationServices)
         {
             _pedidoAppService = pedidoAppService;
             _usuarioAppService = usuarioAppService;
@@ -43,6 +46,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             _pessoaFisicaAppService = pessoaFisicaAppService;
             _pessoaJuridicaAppService = pessoaJuridicaAppService;
             _produtoAppService = produtoAppService;
+            _entitySerializationServices = entitySerializationServices;
         }
 
         // GET: Pedido
@@ -62,6 +66,19 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             PopularViewBagCadastro();
             return View();
         }
+
+        [HttpPost]
+        public JsonResult GerarOrcamento(string pedido)
+        {
+            var orcamento = _entitySerializationServices.Deserialize(pedido);
+            var orcamentoRetorno = _pedidoAppService.GerarOrcamento(orcamento);
+            if (orcamentoRetorno.ValidationResult.IsValid)
+                TempData["OrcamentoGerado"] = "Orçamento " + orcamento.NumeroPedido +
+                              " gerado com com sucesso";
+            
+            return Json(orcamentoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
+        }
+
 
         private IEnumerable<PedidoViewModel> SearchByParameter(string parametro = "", string busca = "",
             string buscaRepresentada = "", string buscaStatus = "", string buscaTipoPedido = "")

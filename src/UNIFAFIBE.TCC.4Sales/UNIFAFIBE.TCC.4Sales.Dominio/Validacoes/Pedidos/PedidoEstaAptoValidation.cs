@@ -9,8 +9,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.Pedidos
     {
         public PedidoEstaAptoValidation(IPedidoRepositorio pedidoRepositorio)
         {
-            var numeroPedido = new PedidoDevePossuirNumeroUnicoSpecification(pedidoRepositorio);
-            this.Add("PedidoDuplicado", new Rule<Pedido>(numeroPedido, "Numero de pedido já foi utilizado!"));
+            //var numeroPedido = new PedidoDevePossuirNumeroUnicoSpecification(pedidoRepositorio);
+            //this.Add("PedidoDuplicado", new Rule<Pedido>(numeroPedido, "Numero de pedido já foi utilizado!"));
         }
     }
 }
