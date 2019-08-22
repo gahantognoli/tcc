@@ -48,14 +48,14 @@
                             <label>Nº Pedido</label>
                         </div>
                         <div class="col-md-3 pl-0">
-                            <input type="text" name="numeroPedido" id="numeroPedido" class="form-control" readonly="readonly" value="@ViewBag.NumeroPedido" />
+                            <input type="text" name="numeroPedido" id="numeroPedido" class="form-control required" readonly="readonly" value="@ViewBag.NumeroPedido" />
                         </div>
                     </div>
                     <h4>Cliente</h4>
                     <hr class="linha" />
                     <div class="col-md-12 pl-0">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="cliente" id="cliente" placeholder="Digite o nome do cliente" />
+                            <input type="text" class="form-control required" name="cliente" id="cliente" placeholder="Digite o nome do cliente" />
                             <input type="hidden" name="clienteId" id="clienteId" class="form-control" />
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -68,7 +68,7 @@
                     <hr class="linha" />
                     <div class="col-md-12 pl-0">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="representada" id="representada" placeholder="Digite o nome da representada" />
+                            <input type="text" class="form-control required" name="representada" id="representada" placeholder="Digite o nome da representada" />
                             <input type="hidden" class="form-control" name="representadaId" id="representadaId" />
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -138,9 +138,22 @@
 
 <div class="row mt-3">
     <div class="col-md-12 d-flex justify-content-end">
-        <button class="btn btn-success mr-1">Gerar pedido</button>
+        <button class="btn btn-success mr-1" id="btnGerarPedido">Gerar pedido</button>
         <button class="btn btn-warning mr-1" id="btnGerarOrcamento">Gerar orçamento</button>
         @Html.ActionLink("Cancelar", "Index", "Pedido", new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+<div class="modal" id="modal-pedido" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aguarde ...</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center" style="height: 230px">
+                <img src="~/assets/img/ajax-loader-200px.gif" />
+            </div>
+        </div>
     </div>
 </div>
 

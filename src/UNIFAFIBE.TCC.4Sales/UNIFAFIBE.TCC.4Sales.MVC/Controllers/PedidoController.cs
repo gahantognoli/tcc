@@ -79,6 +79,18 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             return Json(orcamentoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult GerarPedido(string pedido)
+        {
+            var pedidoDeserializado = _entitySerializationServices.Deserialize(pedido);
+            var pedidoRetorno = _pedidoAppService.GerarPedido(pedidoDeserializado);
+            if (pedidoRetorno.ValidationResult.IsValid)
+                TempData["PedidoGerado"] = "Pedido " + pedidoDeserializado.NumeroPedido +
+                              " gerado com com sucesso";
+
+            return Json(pedidoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
+        }
+
 
         private IEnumerable<PedidoViewModel> SearchByParameter(string parametro = "", string busca = "",
             string buscaRepresentada = "", string buscaStatus = "", string buscaTipoPedido = "")

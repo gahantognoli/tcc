@@ -14,20 +14,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
     {
         private readonly IPedidoService _pedidoService;
         private readonly IStatusPedidoService _statusPedidoService;
-        private readonly IUsuarioAppService _usuarioAppService;
-        private readonly IRepresentadaAppService _representadaAppService;
-        private readonly IPessoaFisicaAppService _pessoaFisicaAppService;
 
         public PedidoAppService(IPedidoService pedidoService, IStatusPedidoService statusPedidoService,
-            IUsuarioAppService usuarioAppService, IRepresentadaAppService representadaAppService,
-            IPessoaFisicaAppService pessoaFisicaAppService, IUnitOfWork uow)
-            : base(uow)
+            IUnitOfWork uow) : base(uow)
         {
             _pedidoService = pedidoService;
             _statusPedidoService = statusPedidoService;
-            _usuarioAppService = usuarioAppService;
-            _representadaAppService = representadaAppService;
-            _pessoaFisicaAppService = pessoaFisicaAppService;
         }
 
         public PedidoViewModel Atualizar(PedidoViewModel pedido)
@@ -75,21 +67,15 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PedidoViewModel GerarPedido(PedidoViewModel pedido)
         {
-            var pedidoRetorno = new Pedido();
+            pedido.StatusPedidoId = _statusPedidoService.ObterPorDescricao("Pedido de Venda Gerado")
+                .FirstOrDefault().StatusPedidoId;
+            pedido.ItensPedido.ToList().ForEach(item => item.PedidoId = pedido.PedidoId);
+            var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService
+                .GerarPedido(Mapper.Map<Pedido>(pedido)));
+            if (pedidoRetorno.EhValido())
+                Commit();
 
-            var pedidoExiste = _pedidoService.ObterPorId(pedido.PedidoId);
-            pedido.StatusPedido.Descricao = "Pedido de Venda Gerado";
-
-            //Verifica se o pedido existe
-            if (pedidoExiste != null)
-                pedidoRetorno = _pedidoService.Atualizar(Mapper.Map<Pedido>(pedido));
-            else
-                pedidoRetorno = _pedidoService.GerarPedido(Mapper.Map<Pedido>(pedido));
-
-
-            Commit();
-
-            return Mapper.Map<PedidoViewModel>(pedidoRetorno);
+            return pedidoRetorno;
         }
 
         public int ObterNumeroPedido()

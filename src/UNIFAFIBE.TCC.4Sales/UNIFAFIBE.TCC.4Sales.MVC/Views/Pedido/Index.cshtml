@@ -1,4 +1,5 @@
 ﻿@using X.PagedList.Mvc;
+@using System.Globalization;
 @model X.PagedList.PagedList<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.PedidoViewModel>
 
 @{
@@ -9,7 +10,7 @@
 <div class="row mt-3">
     <div class="col-md-12">
         <a href="@Url.Action("Novo", "Pedido")" class="btn btn-criar">
-            <i class="fas fa-plus icone-criar"></i>Criar Pedido / orçamento
+            <i class="fas fa-plus icone-criar"></i>Criar Pedido / Orçamento
         </a>
     </div>
     <div class="col-md-12">
@@ -122,8 +123,8 @@
                     </p>
                     <p class="info-pedido">
                         <i class="fas fa-dollar-sign icone-info-pedido-valor"></i><b>
-                            R$ @item.ValorTotal
-                        </b>
+                            @item.ValorTotal.ToString("C2", CultureInfo.CurrentCulture)
+</b>
                     </p>
                 </div>
             </div>
@@ -149,6 +150,10 @@
         if (fGlobal.IsNotEmpty('@TempData["OrcamentoGerado"]'))
         {
             fGlobal.EmitirNotificacao("Sucesso",'@TempData["OrcamentoGerado"]', "info");
+        }
+        if (fGlobal.IsNotEmpty('@TempData["PedidoGerado"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["PedidoGerado"]', "info");
         }
 
         if (fGlobal.IsNotEmpty('@TempData["AtualizadoSucesso"]'))

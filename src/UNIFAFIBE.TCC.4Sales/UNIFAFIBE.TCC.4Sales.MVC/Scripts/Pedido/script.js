@@ -1,20 +1,41 @@
 ﻿var index = 1;
-
+var error = 0;
 var functionsPedido = {
     GerarOrcamento: function (pedido) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GerarOrcamento', "POST", { pedido: pedido }, functionsPedido.HtmlOrcamento,
-            null, null, null);
+            null, functionsPedido.MostrarModal, functionsPedido.EsconderModal);
     },
     HtmlOrcamento: function (data) {
         var validationResult = data;
         if (validationResult.IsValid === false) {
             fGlobal.ExibirNotificaoErrosValidacao(validationResult);
+            setTimeout(function () { functionsPedido.EsconderModal(); }, 30);
         } else {
             window.location = gHostProjeto + 'Pedido/Index';
         }
 
     },
-    GerarRequisicao: function () {
+    GerarPedido: function (pedido) {
+        fGlobal.Ajax(gHostProjeto + 'Pedido/GerarPedido', "POST", { pedido: pedido }, functionsPedido.HtmlPedido,
+            null, functionsPedido.MostrarModal, functionsPedido.EsconderModal);
+    },
+    HtmlPedido: function (data) {
+        var validationResult = data;
+        if (validationResult.IsValid === false) {
+            fGlobal.ExibirNotificaoErrosValidacao(validationResult);
+            setTimeout(function () { functionsPedido.EsconderModal(); }, 30);
+        } else {
+            window.location = gHostProjeto + 'Pedido/Index';
+        }
+
+    },
+    MostrarModal: function () {
+        fGlobal.MostrarModal('#modal-pedido');
+    },
+    EsconderModal: function () {
+        fGlobal.EsconderModal('#modal-pedido');
+    },
+    GerarRequisicao: function (tipo) {
         var itensPedido = [];
 
         $('#corpo-tabela tr').each(function (i, item) {
@@ -43,7 +64,13 @@ var functionsPedido = {
             ItensPedido: itensPedido
         };
 
-        functionsPedido.GerarOrcamento(JSON.stringify(pedido));
+        if (tipo === "pedido") {
+            functionsPedido.GerarPedido(JSON.stringify(pedido));
+        } else {
+            functionsPedido.GerarOrcamento(JSON.stringify(pedido));
+        }
+
+        
     },
     GetEnderecos: function (id) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GetEnderecosCliente/' + id, "GET", null, functionsPedido.HtmlEnderecos,
@@ -93,7 +120,7 @@ var functionsPedido = {
         html += '<input type="hidden" id="produtoId_' + index + '" />';
         html += '<td class="input-large">';
         html += '<div class="input-group">';
-        html += '<input type="text" class="form-control produto" id="produto_' + index + '" placeholder="Informe a descrição do produto" />';
+        html += '<input type="text" class="form-control produto required" id="produto_' + index + '" placeholder="Informe a descrição do produto" />';
         html += '<div class="input-group-append">';
         html += '<span class="input-group-text"><i class="fas fa-search"></i></span>';
         html += '<button type="button" class="btn btn-sm btn-criar btn-trocarProduto" id="btnTrocarProduto_' + index + '" disabled="disabled"><i class="fas fa-pencil-alt"></i></button>';
@@ -101,21 +128,21 @@ var functionsPedido = {
         html += '</div>';
         html += '</td>';
         html += '<td class="input-small">';
-        html += '<input type="text" class="form-control preco" id="preco_' + index + '" readonly="readonly" />';
+        html += '<input type="text" class="form-control preco required" id="preco_' + index + '" readonly="readonly" />';
         html += '</td>';
         html += '<td class="input-small">';
-        html += '<input type="number" class="form-control quantidade" id="quantidade_' + index + '" min="1" value="1" />';
+        html += '<input type="number" class="form-control quantidade required" id="quantidade_' + index + '" min="1" value="1" />';
         html += '</td>';
         html += '<td class="input-small">';
         html += '<div class="input-group">';
-        html += '<input type="text" class="form-control mValor desconto" id="desconto_' + index + '" />';
+        html += '<input type="text" class="form-control mValor desconto required" id="desconto_' + index + '" value="0" />';
         html += '<div class="input-group-append">';
         html += '<span class="input-group-text">R$</span>';
         html += '</div>';
         html += '</div>';
         html += '</td>';
         html += '<td class="input-small">';
-        html += '<input type="text" class="form-control subtotal" id="subtotal_' + index + '" readonly="readonly" />';
+        html += '<input type="text" class="form-control subtotal required" id="subtotal_' + index + '" readonly="readonly" />';
         html += '</td>';
         html += '<td style="width: 100px;">';
         html += '<button type="button" class="btn btn-sm btn-danger btn-remover">';
@@ -181,6 +208,20 @@ var functionsPedido = {
         var quantidade = Number($('#quantidade_' + id).val());
         var subtotal = (preco * quantidade) - desconto;
         $('#subtotal_' + id).val(subtotal.toLocaleString('pt-BR'));
+    },
+    ValidaObrigatorio: function () {
+        error = 0;
+        $('.required').each(function () {
+            if (($(this).val() === "" || $(this).val() === null)) {
+                $(this).css("border", "1px solid red");
+                error++;
+            } else {
+                $(this).css("border", "1px solid #CCC");
+            }
+        });
+        if (error > 0) {
+            alert("Favor preencher os campos em vermelho!");
+        }
     }
 };
 
@@ -217,6 +258,14 @@ $(function () {
     } else {
         $("busca").mask("00/00/0000");
     }
+
+    
+
+    $(document).on('blur', '.desconto', function () {
+        if ($(this).val() === "") {
+            $(this).val(0);
+        }
+    });
 
     $('#cliente').autocomplete({
         serviceUrl: gHostProjeto + 'Pedido/GetCliente' + $('#cliente').val(),
@@ -277,6 +326,7 @@ $(function () {
                 $(document).find('#preco_' + i).val(Number(suggestion.data.split(',')[1]).toLocaleString('pt-BR'));
                 $(document).find('#produto_' + i).attr('readonly', true);
                 $(document).find('#btnTrocarProduto_' + i).removeAttr('disabled');
+                $(document).find('#quantidade_' + i).focus();
                 functionsPedido.CalculaSubTotal();
             }
         });
@@ -322,7 +372,17 @@ $(function () {
     });
 
     $('#btnGerarOrcamento').on('click', function () {
-        functionsPedido.GerarRequisicao();
+        functionsPedido.ValidaObrigatorio();
+        if (error === 0) {
+            functionsPedido.GerarRequisicao("orçamento");
+        }
+    });
+
+    $('#btnGerarPedido').on('click', function () {
+        functionsPedido.ValidaObrigatorio();
+        if (error === 0) {
+            functionsPedido.GerarRequisicao("pedido");
+        }
     });
 
     $(document).on('click', '.btn-remover', function () {
@@ -342,5 +402,4 @@ $(function () {
         functionsPedido.CalculaSubTotalItem($(this).attr('id').split('_')[1]);
         functionsPedido.CalculaSubTotal();
     });
-
 });
