@@ -1,5 +1,5 @@
-﻿var index = 1;
-var error = 0;
+﻿var error = 0;
+var index = 0;
 var functionsPedido = {
     GerarOrcamento: function (pedido) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GerarOrcamento', "POST", { pedido: pedido }, functionsPedido.HtmlOrcamento,
@@ -70,7 +70,7 @@ var functionsPedido = {
             functionsPedido.GerarOrcamento(JSON.stringify(pedido));
         }
 
-        
+
     },
     GetEnderecos: function (id) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GetEnderecosCliente/' + id, "GET", null, functionsPedido.HtmlEnderecos,
@@ -115,6 +115,8 @@ var functionsPedido = {
         $(id).find('option').remove();
     },
     CriaLinhasTabela: function () {
+        index = Number($('.produto').last().attr('id').split('_')[1]) + 1;
+        console.log(index);
         var html = "";
         html = '<tr id="linha_' + index + '" value="' + index + '">';
         html += '<input type="hidden" id="produtoId_' + index + '" />';
@@ -230,40 +232,20 @@ var functionsPedido = {
 };
 
 $(function () {
-    $('#parametro').on('change', function () {
-        var busca = $(this).val();
-        if (busca === "representada") {
-            $('#buscaRepresentada').removeAttr('style', 'display:none');
-            $('#busca').attr('style', 'display:none');
-            $('#buscaStatus').attr('style', 'display:none');
-            $('#buscaTipoPedido').attr('style', 'display:none');
-        } else if (busca === "status") {
-            $('#buscaStatus').removeAttr('style', 'display:none');
-            $('#busca').attr('style', 'display:none');
-            $('#buscaRepresentada').attr('style', 'display:none');
-            $('#buscaTipoPedido').attr('style', 'display:none');
-        }
-        else if (busca === "tipo") {
-            $('#buscaTipoPedido').removeAttr('style', 'display:none');
-            $('#busca').attr('style', 'display:none');
-            $('#buscaRepresentada').attr('style', 'display:none');
-            $('#buscaStatus').attr('style', 'display:none');
-        }
-        else {
-            $('#busca').removeAttr('style', 'display:none');
-            $('#buscaTipoPedido').attr('style', 'display:none');
-            $('#buscaRepresentada').attr('style', 'display:none');
-            $('#buscaStatus').attr('style', 'display:none');
-        }
+
+    $.each($('.subtotal'), function (i, item) {
+        $(item).val(parseFloat(Number($(item).val().replace('.', '').replace(',', '.')).toFixed(2)).toLocaleString('pt-BR'));
     });
 
-    if ($('#parametro').val() === "dataEmissao") {
-        $("busca").mask("00/00/0000");
-    } else {
-        $("busca").mask("00/00/0000");
-    }
+    $.each($('.preco'), function (i, item) {
+        $(item).val(parseFloat(Number($(item).val().replace('.', '').replace(',', '.')).toFixed(2)).toLocaleString('pt-BR'));
+    });
 
-    
+    $.each($('.desconto'), function (i, item) {
+        $(item).val(parseFloat(Number($(item).val().replace('.', '').replace(',', '.')).toFixed(2)).toLocaleString('pt-BR'));
+    });
+
+    $('#subtotal').text(parseFloat(Number($('#subtotal').text().replace('.', '').replace(',', '.')).toFixed(2)).toLocaleString('pt-BR'));
 
     $(document).on('blur', '.desconto', function () {
         if ($(this).val() === "") {
@@ -363,11 +345,12 @@ $(function () {
         $(this).closest('tr').find('.produto').removeAttr('readonly');
         $(this).closest('tr').find('.produto').val('');
         $(this).closest('tr').find('.produtoId').val('');
-        $(this).closest('tr').find('.preco').val('');
-        $(this).closest('tr').find('.quantidade').val('');
-        $(this).closest('tr').find('.desconto').val('');
-        $(this).closest('tr').find('.subtotal').val('');
+        $(this).closest('tr').find('.preco').val(0);
+        $(this).closest('tr').find('.quantidade').val(1);
+        $(this).closest('tr').find('.desconto').val(0);
+        $(this).closest('tr').find('.subtotal').val(0);
         $(this).attr('disabled', true);
+        functionsPedido.CalculaTotal();
     });
 
     $('#btn-criar').on('click', function () {

@@ -51,5 +51,16 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             return retornoStatusPedido;
         }
+
+        public IEnumerable<StatusPedido> ObterStatusNaoPadroes()
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<StatusPedido> retornoStatusPedido;
+
+            retornoStatusPedido = cn.Query<StatusPedido>(StatusPedidoProcedures.ObterNaoPadroes.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoStatusPedido;
+        }
     }
 }

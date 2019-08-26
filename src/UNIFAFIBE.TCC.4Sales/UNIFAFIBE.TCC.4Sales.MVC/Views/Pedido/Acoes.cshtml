@@ -1,0 +1,294 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.PedidoViewModel
+
+@{
+    ViewBag.Title = "Acoes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row mt-2">
+    <div class="col-lg-12">
+        @if (Model != null)
+        {
+            if (Model.ValidationResult != null)
+            {
+                var mensagem = "";
+                foreach (var item in Model.ValidationResult.Erros)
+                {
+                    mensagem += "<span>" + @item.Message.ToString() + "</span><br />";
+                }
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Algo deu errado!</h4>
+                    @Html.Raw(mensagem)
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.AntiForgeryToken()
+
+@{
+    var index = 1;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">
+                <span class="h5 text-white">
+                    <i class="fas fa-clipboard-list icone-cadastro"></i>
+                    Pedido
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="col-md-2 pl-0">
+                        <label>Nº Pedido</label>
+                    </div>
+                    <div class="col-md-3 pl-0">
+                        <input type="text" name="numeroPedido" id="numeroPedido" class="form-control required" readonly="readonly" value="@Model.NumeroPedido" />
+                    </div>
+                </div>
+                <h4>Cliente</h4>
+                <hr class="linha" />
+                <div class="col-md-12 pl-0">
+                    <div class="input-group mb-3">
+                        @if (Model.PessoaFisica != null)
+                        {
+                            <input type="text" class="form-control required" name="cliente" id="cliente" value="@Model.PessoaFisica.Nome" readonly="readonly"
+                                   @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" ? "disabled" : "") />
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control required" name="cliente" id="cliente" value="@Model.PessoaJuridica.RazaoSocial" readonly="readonly"
+                                   @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" ? "disabled" : "") />
+                        }
+
+                        <input type="hidden" name="clienteId" id="clienteId" class="form-control" value="@Model.ClienteId" />
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                    </div>
+                    @if (Model.StatusPedido.Descricao != "Parcialmente Faturado" && Model.StatusPedido.Descricao != "Faturado")
+                    {
+                        <button type="button" id="btnTrocarCliente" class="btn btn-sm btn-criar mb-3">Trocar cliente</button>
+                    }
+                </div>
+
+                <h4>Representada</h4>
+                <hr class="linha" />
+                <div class="col-md-12 pl-0">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control required" name="representada" id="representada" value="@Model.Representada.RazaoSocial" readonly="readonly"
+                               @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" ? "disabled" : "") />
+                        <input type="hidden" class="form-control" name="representadaId" id="representadaId" value="@Model.RepresentadaId" />
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                    </div>
+                    @if (Model.StatusPedido.Descricao != "Parcialmente Faturado" && Model.StatusPedido.Descricao != "Faturado")
+                    {
+                        <button type="button" id="btnTrocarRepresentada" class="btn btn-sm btn-criar mb-3">Trocar representada</button>
+                    }
+                </div>
+                <h4>Produtos</h4>
+                <hr class="linha" />
+                <div class="mb-2">
+                    <button type="button" class="btn btn-sm btn-criar" id="btn-criar">
+                        <i class="fas fa-plus mr-1"></i>Adicionar
+                    </button>
+                </div>
+                <table class="table table-bordered table-sm">
+                    <tr class="bg-dark text-white">
+                        <th>Produto</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Desconto</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                    <tbody id="corpo-tabela">
+
+                        @foreach (var item in Model.ItensPedido)
+                        {
+                            <tr id="linha_@index" value="@index">
+                                <input type="hidden" id="produtoId_@index" value="@item.ProdutoId" />
+                                <td class="input-large">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control produto required" id="produto_@index" value="@item.Produto.Nome" readonly="readonly" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            <button type="button" class="btn btn-sm btn-criar btn-trocarProduto" id="btnTrocarProduto_@index"><i class="fas fa-pencil-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="input-small">
+                                    <input type="text" class="form-control preco required" id="preco_@index" readonly="readonly" value="@item.Produto.Preco" />
+                                </td>
+                                <td class="input-small">
+                                    <input type="number" class="form-control quantidade required" id="quantidade_@index" min="1" value="@item.Quantidade" />
+                                </td>
+                                <td class="input-small">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control mValor desconto required" id="desconto_@index" value="@item.Desconto" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">R$</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="input-small">
+                                    <input type="text" class="form-control subtotal required" id="subtotal_@index" readonly="readonly" value="@item.Subtotal" />
+                                </td>
+                                <td style="width: 100px;">
+                                    <button type="button" class="btn btn-sm btn-danger btn-remover">
+                                        <i class="fas fa-minus mr-1"></i>Remover
+                                    </button>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    </tbody>
+                </table>
+                <div class="col-md-12 d-flex justify-content-end">
+                    <div class="container-itens mr-3">
+                        <b>Total itens: <span id="totalItens">@Model.QuantidadeTotalItens</span></b>
+                    </div>
+                    <div class="container-subtotal">
+                        <i class="fas fa-dollar-sign icone-info-pedido-subtotal"></i><b>Total: <span id="subtotal">@Model.ValorTotal</span></b>
+                    </div>
+                </div>
+                <h4 class="mt-4">Informações adicionais</h4>
+                <hr class="linha" />
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Condição de Pagamento</label>
+                        <select id="condicoesPagamento" name="condicoesPagamento" class="form-control">
+                            @foreach (var condicaoPagamento in (ViewBag.CondicoesPagamento as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.CondicaoPagamentoViewModel>))
+                            {
+                                <option value="@condicaoPagamento.CondicaoPagamentoId" @(condicaoPagamento.CondicaoPagamentoId == Model.CondicaoPagamentoId ? "selected" : "")>
+                                    @condicaoPagamento.Descricao
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Tipo Pedido</label>
+                        <select id="TipoPedidoId" name="TipoPedidoId" class="form-control">
+                            @foreach (var tipoPedido in (ViewBag.TipoPedido as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.TipoPedidoViewModel>))
+                            {
+                                <option value="@tipoPedido.TipoPedidoId" @(tipoPedido.TipoPedidoId == Model.TipoPedidoId ? "selected" : "")>
+                                    @tipoPedido.Descricao
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Vendedor</label>
+                        <select id="UsuarioId" name="UsuarioId" class="form-control">
+                            @foreach (var usuario in (ViewBag.Vendedor as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.UsuarioViewModel>))
+                            {
+                                <option value="@usuario.UsuarioId" @(usuario.UsuarioId == Model.UsuarioId ? "selected" : "")>
+                                    @usuario.Nome
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Transportadora</label>
+                        <select id="TransportadoraId" name="TransportadoraId" class="form-control">
+                            @foreach (var transportadora in (ViewBag.Transportadora as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.TransportadoraViewModel>))
+                            {
+                                <option value="@transportadora.TransportadoraId" @(transportadora.TransportadoraId == Model.TransportadoraId ? "selected" : "")>
+                                    @transportadora.Nome
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Endereço de entrega</label>
+                        <select id="enderecoEntrega" name="enderecoEntrega" class="form-control">
+                            @foreach (var enderecoCliente in (ViewBag.EnderecosCliente as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.EnderecoClienteViewModel>))
+                            {
+                                <option value="@enderecoCliente.EnderecoClienteId" @(enderecoCliente.Endereco == Model.EnderecoEntrega ? "selected" : "")>
+                                    @enderecoCliente.Endereco
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Contato</label>
+                        <select id="contato" name="contato" class="form-control">
+                            @foreach (var contatoCliente in (ViewBag.ContatosCliente as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.ContatoClienteViewModel>))
+                            {
+                                <option value="@contatoCliente.ContatoClienteId" @(contatoCliente.Nome == Model.Contato ? "selected" : "")>
+                                    @contatoCliente.Nome
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-3">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button class="btn btn-primary mr-1" id="btnSalvar">Salvar</button>
+        @if (Model.StatusPedido.Descricao != "Faturado")
+        {
+            <button class="btn btn-warning mr-1" id="btnFaturar">Faturar</button>
+        }
+        <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Mais opções
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Visualizar</a>
+                <a class="dropdown-item" href="#">Enviar para Representada</a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Marcar Status
+            </button>
+            <div class="dropdown-menu">
+                @foreach (var item in (ViewBag.StatusNaoPadroes as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.StatusPedidoViewModel>))
+                {
+                    <a class="dropdown-item" href="#">@item.Descricao</a>
+                }
+            </div>
+        </div>
+        @if (Model.StatusPedido.Descricao == "Em Orçamento")
+        {
+            <button class="btn btn-success mr-1" id="btnGerarPedido">Gerar pedido</button>
+        }
+        @Html.ActionLink("Cancelar", "Index", "Pedido", new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+<div class="modal" id="modal-pedido" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aguarde ...</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center" style="height: 230px">
+                <img src="~/assets/img/ajax-loader-200px.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Acoes")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validations_pt-br")
+}
+

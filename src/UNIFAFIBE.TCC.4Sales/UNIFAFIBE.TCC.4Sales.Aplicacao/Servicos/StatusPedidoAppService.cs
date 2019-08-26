@@ -57,6 +57,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<StatusPedidoViewModel>(_statusPedidoService.ObterPorId(id));
         }
 
+        public IEnumerable<StatusPedidoViewModel> ObterStatusNaoPadroes()
+        {
+            return Mapper.Map<IEnumerable<StatusPedidoViewModel>>(_statusPedidoService.ObterStatusNaoPadroes());
+        }
+
         public IEnumerable<StatusPedidoViewModel> ObterTodos()
         {
             return Mapper.Map<IEnumerable<StatusPedidoViewModel>>(_statusPedidoService.ObterTodos());

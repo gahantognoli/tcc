@@ -91,6 +91,12 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             return Json(pedidoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Acoes(Guid id)
+        {
+            var pedido = _pedidoAppService.ObterPorId(id);
+            PopularViewBagAcoes(pedido.RepresentadaId, pedido.ClienteId);
+            return View(pedido);
+        }
 
         private IEnumerable<PedidoViewModel> SearchByParameter(string parametro = "", string busca = "",
             string buscaRepresentada = "", string buscaStatus = "", string buscaTipoPedido = "")
@@ -230,6 +236,17 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             ViewBag.Representada = _representadaAppService.ObterTodos();
             ViewBag.Status = _statusPedidoAppService.ObterTodos();
             ViewBag.TipoPedido = _tipoPedidoAppService.ObterTodos();
+        }
+
+        private void PopularViewBagAcoes(Guid representadaId, Guid clienteId)
+        {
+            ViewBag.Vendedor = _usuarioAppService.ObterTodos();
+            ViewBag.Transportadora = _transportadoraAppService.ObterTodos();
+            ViewBag.TipoPedido = _tipoPedidoAppService.ObterTodos();
+            ViewBag.CondicoesPagamento = _condicaoPagamentoAppService.ObterTodos(representadaId);
+            ViewBag.EnderecosCliente = _enderecoClienteAppService.ObterTodos(clienteId);
+            ViewBag.ContatosCliente = _contatoClienteAppService.ObterTodos(clienteId);
+            ViewBag.StatusNaoPadroes = _statusPedidoAppService.ObterStatusNaoPadroes();
         }
 
         protected override void Dispose(bool disposing)

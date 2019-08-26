@@ -79,6 +79,10 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
                 "~/Scripts/jquery.mask.min.js",
                 "~/Scripts/jquery.autocomplete.min.js"
             ));
+            bundles.Add(new ScriptBundle("~/Scripts/Acoes").Include(
+                "~/Scripts/Pedido/acoes.js",
+                "~/Scripts/jquery.autocomplete.min.js"
+            ));
         }
     }
 }

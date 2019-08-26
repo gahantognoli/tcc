@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Slapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,9 +23,16 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             var cn = Db.Database.Connection;
             ItemPedido retornoItemPedido;
 
-            retornoItemPedido = cn.Query<ItemPedido>(ItemPedidoProcedures.ObterPorId.GetDescription(),
-                new { id = id },
+            IEnumerable<dynamic> query = cn.Query<dynamic>(ItemPedidoProcedures.ObterPorId.GetDescription(),
+                new
+                {
+                    Id = id,
+                },
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Produto), "ProdutoId");
+
+            retornoItemPedido = (AutoMapper.MapDynamic<ItemPedido>(query, false) as IEnumerable<ItemPedido>).FirstOrDefault();
 
             return retornoItemPedido;
         }
@@ -39,9 +47,16 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             var cn = Db.Database.Connection;
             IEnumerable<ItemPedido> retornoItemPedido;
 
-            retornoItemPedido = cn.Query<ItemPedido>(ItemPedidoProcedures.ObterTodos.GetDescription(),
-                new { pedidoId = pedidoId },
+            IEnumerable<dynamic> query = cn.Query<dynamic>(ItemPedidoProcedures.ObterTodos.GetDescription(),
+                new
+                {
+                    pedidoId = pedidoId,
+                },
                 commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Produto), "ProdutoId");
+
+            retornoItemPedido = (AutoMapper.MapDynamic<ItemPedido>(query, false) as IEnumerable<ItemPedido>);
 
             return retornoItemPedido;
         }

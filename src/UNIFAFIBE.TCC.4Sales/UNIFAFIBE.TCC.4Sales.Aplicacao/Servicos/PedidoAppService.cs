@@ -14,12 +14,14 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
     {
         private readonly IPedidoService _pedidoService;
         private readonly IStatusPedidoService _statusPedidoService;
+        private readonly IItemPedidoAppService _itemPedidoAppService;
 
         public PedidoAppService(IPedidoService pedidoService, IStatusPedidoService statusPedidoService,
-            IUnitOfWork uow) : base(uow)
+            IItemPedidoAppService itemPedidoAppService, IUnitOfWork uow) : base(uow)
         {
             _pedidoService = pedidoService;
             _statusPedidoService = statusPedidoService;
+            _itemPedidoAppService = itemPedidoAppService;
         }
 
         public PedidoViewModel Atualizar(PedidoViewModel pedido)
@@ -97,7 +99,15 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PedidoViewModel ObterPorId(Guid id)
         {
-            return Mapper.Map<PedidoViewModel>(_pedidoService.ObterPorId(id));
+            var pedido = Mapper.Map<PedidoViewModel>(_pedidoService.ObterPorId(id));
+
+            foreach (var item in Mapper.Map<IEnumerable<ItemPedidoViewModel>>
+                (_itemPedidoAppService.ObterTodos(id)))
+            {
+                pedido.ItensPedido.Add(item);
+            }
+            return pedido;
+
         }
 
         public PedidoViewModel ObterPorNumeroPedido(UsuarioViewModel vendedor, int numeroPedido)

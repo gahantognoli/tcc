@@ -46,6 +46,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _statusPedidoRepositorio.ObterPorId(id);
         }
 
+        public IEnumerable<StatusPedido> ObterStatusNaoPadroes()
+        {
+            return _statusPedidoRepositorio.ObterStatusNaoPadroes();
+        }
+
         public IEnumerable<StatusPedido> ObterTodos()
         {
             return _statusPedidoRepositorio.ObterTodos();

@@ -12,5 +12,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         StatusPedido ObterPorId(Guid id);
         IEnumerable<StatusPedido> ObterPorDescricao(string descricao);
         IEnumerable<StatusPedido> ObterTodos();
+        IEnumerable<StatusPedido> ObterStatusNaoPadroes();
     }
 }

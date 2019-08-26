@@ -19,7 +19,9 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
             }
             set
             {
-                _cpf = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+                if (CPF != null)
+                    _cpf = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+
             }
         }
     }

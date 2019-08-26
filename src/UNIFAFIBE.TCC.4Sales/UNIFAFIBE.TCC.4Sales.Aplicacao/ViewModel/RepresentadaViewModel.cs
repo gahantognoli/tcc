@@ -26,7 +26,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
             }
             set
             {
-                _cnpj = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+                if (CNPJ == null)
+                    _cnpj = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
             }
         }
         [Display(Name = "Razão Social")]

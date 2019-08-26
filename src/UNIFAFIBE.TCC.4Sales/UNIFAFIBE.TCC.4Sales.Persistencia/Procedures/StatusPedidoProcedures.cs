@@ -8,6 +8,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         ObterPorId,
         [Description("usp_StatusPedido_ObterPorDescricao")]    
         ObterPorDescricao,
+        [Description("usp_StatusPedido_ObterNaoPadroes")]
+        ObterNaoPadroes,
         [Description("usp_StatusPedido_ObterTodos")]
         ObterTodos
     }

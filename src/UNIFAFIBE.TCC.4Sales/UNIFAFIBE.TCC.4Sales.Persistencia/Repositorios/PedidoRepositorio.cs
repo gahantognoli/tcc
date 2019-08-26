@@ -24,9 +24,23 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             var cn = Db.Database.Connection;
             Pedido retornoPedido;
 
-            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorId.GetDescription(), 
-                new { id = id}, 
-                commandType: CommandType.StoredProcedure).FirstOrDefault();
+            IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorId.GetDescription(),
+                new
+                {
+                    Id = id,
+                },
+                commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaFisica), "Nome");
+            AutoMapper.Configuration.AddIdentifier(typeof(PessoaJuridica), "RazaoSocial");
+            AutoMapper.Configuration.AddIdentifier(typeof(CondicaoPagamento), "CondicaoPagamentoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Representada), "RepresentadaId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Transportadora), "TransportadoraId");
+            AutoMapper.Configuration.AddIdentifier(typeof(StatusPedido), "StatusPedidoId");
+            AutoMapper.Configuration.AddIdentifier(typeof(Usuario), "UsuarioId");
+
+            retornoPedido = (AutoMapper.MapDynamic<Pedido>(query, false) as IEnumerable<Pedido>).FirstOrDefault();
 
             return retornoPedido;
         }

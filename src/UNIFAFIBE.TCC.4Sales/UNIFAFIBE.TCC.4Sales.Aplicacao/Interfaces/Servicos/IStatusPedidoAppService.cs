@@ -11,6 +11,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         void Remover(Guid id);
         StatusPedidoViewModel ObterPorId(Guid id);
         IEnumerable<StatusPedidoViewModel> ObterPorDescricao(string descricao);
+        IEnumerable<StatusPedidoViewModel> ObterStatusNaoPadroes();
         IEnumerable<StatusPedidoViewModel> ObterTodos();
     }
 }

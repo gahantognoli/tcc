@@ -38,6 +38,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult NovaPessoaJuridica(ClientePFPJCadastroViewModel clientePFPJCadastroViewModel)
         {
             try
@@ -64,6 +65,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult NovaPessoaFisica(ClientePFPJCadastroViewModel clientePFPJCadastroViewModel)
         {
             try
@@ -132,6 +134,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AlterarPessoaJuridica(PessoaJuridicaViewModel pessoaJuridicaViewModel)
         {
             try
@@ -174,6 +177,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AlterarPessoaFisica(PessoaFisicaViewModel pessoaFisicaViewModel)
         {
             try
@@ -214,6 +218,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RemoverPessoaFisica(Guid id)
         {
             try
@@ -242,6 +247,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RemoverPessoaJuridica(Guid id)
         {
             try
