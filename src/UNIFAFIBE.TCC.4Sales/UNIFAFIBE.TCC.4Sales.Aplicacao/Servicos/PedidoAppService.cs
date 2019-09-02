@@ -15,28 +15,31 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         private readonly IPedidoService _pedidoService;
         private readonly IStatusPedidoService _statusPedidoService;
         private readonly IItemPedidoAppService _itemPedidoAppService;
+        private readonly IFaturamentoAppService _faturamentoAppService;
+        private readonly IParcelaAppService _parcelaAppService;
 
         public PedidoAppService(IPedidoService pedidoService, IStatusPedidoService statusPedidoService,
-            IItemPedidoAppService itemPedidoAppService, IUnitOfWork uow) : base(uow)
+            IItemPedidoAppService itemPedidoAppService, IFaturamentoAppService faturamentoAppService,
+            IParcelaAppService parcelaAppService, IUnitOfWork uow) : base(uow)
         {
             _pedidoService = pedidoService;
             _statusPedidoService = statusPedidoService;
             _itemPedidoAppService = itemPedidoAppService;
+            _faturamentoAppService = faturamentoAppService;
+            _parcelaAppService = parcelaAppService;
+        }
+
+        public PedidoViewModel AlterarStatus(Guid statusId, Guid pedidoId)
+        {
+            var pedido = Mapper.Map<PedidoViewModel>(_pedidoService.AlterarStatus(statusId, pedidoId));
+            Commit();
+            return pedido;
         }
 
         public PedidoViewModel Atualizar(PedidoViewModel pedido)
         {
+            pedido.ItensPedido.ToList().ForEach(item => item.PedidoId = pedido.PedidoId);
             var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService.Atualizar(Mapper.Map<Pedido>(pedido)));
-
-            if (pedidoRetorno.EhValido())
-                Commit();
-
-            return pedidoRetorno;
-        }
-
-        public PedidoViewModel AtualizarStatus(Guid statusId)
-        {
-            var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService.AtualizarStatus(statusId));
 
             if (pedidoRetorno.EhValido())
                 Commit();
@@ -57,7 +60,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public PedidoViewModel GerarOrcamento(PedidoViewModel pedido)
         {
             pedido.StatusPedidoId = _statusPedidoService.ObterPorDescricao("Em Orçamento")
-                .FirstOrDefault().StatusPedidoId;
+            .FirstOrDefault().StatusPedidoId;
             pedido.ItensPedido.ToList().ForEach(item => item.PedidoId = pedido.PedidoId);
             var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService
                 .GerarOrcamento(Mapper.Map<Pedido>(pedido)));
@@ -69,15 +72,25 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PedidoViewModel GerarPedido(PedidoViewModel pedido)
         {
-            pedido.StatusPedidoId = _statusPedidoService.ObterPorDescricao("Pedido de Venda Gerado")
-                .FirstOrDefault().StatusPedidoId;
-            pedido.ItensPedido.ToList().ForEach(item => item.PedidoId = pedido.PedidoId);
-            var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService
-                .GerarPedido(Mapper.Map<Pedido>(pedido)));
-            if (pedidoRetorno.EhValido())
+            if (_pedidoService.ObterPorId(pedido.PedidoId) != null)
+            {
+                var pedidoRetorno = _pedidoService
+                    .Atualizar(Mapper.Map<Pedido>(pedido), "Pedido de Venda Gerado");
                 Commit();
+                return Mapper.Map<PedidoViewModel>(pedidoRetorno);
+            }
+            else
+            {
+                pedido.StatusPedidoId = _statusPedidoService.ObterPorDescricao("Pedido de Venda Gerado")
+                .FirstOrDefault().StatusPedidoId;
+                pedido.ItensPedido.ToList().ForEach(item => item.PedidoId = pedido.PedidoId);
+                var pedidoRetorno = Mapper.Map<PedidoViewModel>(_pedidoService
+                    .GerarPedido(Mapper.Map<Pedido>(pedido)));
+                if (pedidoRetorno.EhValido())
+                    Commit();
 
-            return pedidoRetorno;
+                return pedidoRetorno;
+            }
         }
 
         public int ObterNumeroPedido()
@@ -152,6 +165,26 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public void Remover(Guid id)
         {
+            var itensPedido = _itemPedidoAppService.ObterTodos(id);
+            if (itensPedido.Count() > 0)
+            {
+                itensPedido.ToList().ForEach(p => _itemPedidoAppService.Remover(p.ItemPedidoId));
+            }
+
+            var faturamento = _faturamentoAppService.ObterTodos(id);
+            if (faturamento.Count() > 0)
+            {
+                faturamento.ToList().ForEach(f => _faturamentoAppService.Remover(f.FaturamentoId));
+
+                foreach (var item in faturamento)
+                {
+                    var parcela = _parcelaAppService.ObterTodos(item.FaturamentoId);
+                    if (parcela.Count() > 0)
+                    {
+                        parcela.ToList().ForEach(f => _parcelaAppService.Remover(f.ParcelaId));
+                    }
+                }
+            }
             _pedidoService.Remover(id);
             Commit();
         }

@@ -6,6 +6,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
     {
         [Description("usp_Faturamento_ObterPorId")]
         ObterPorId,
+        [Description("usp_Faturamento_ObterTotalFaturamento")]
+        ObterTotalFaturamento,
         [Description("usp_Faturamento_ObterTodos")]
         ObterTodos
     }

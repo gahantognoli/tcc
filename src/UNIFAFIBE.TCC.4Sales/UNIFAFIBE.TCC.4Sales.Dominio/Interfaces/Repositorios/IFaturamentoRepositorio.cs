@@ -7,5 +7,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
     public interface IFaturamentoRepositorio : IRepositorio<Faturamento>
     {
         IEnumerable<Faturamento> ObterTodos(Guid pedidoId);
+        decimal ObterTotalFaturamento(Guid pedidoId);
     }
 }

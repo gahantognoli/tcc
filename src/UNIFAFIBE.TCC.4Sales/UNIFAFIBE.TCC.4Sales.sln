@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIFAFIBE.TCC.4Sales.Transv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIFAFIBE.TCC.4Sales.Infra.Serialization", "UNIFAFIBE.TCC.4Sales.Infra.Serialization\UNIFAFIBE.TCC.4Sales.Infra.Serialization.csproj", "{A9667420-5426-47B1-A3F7-68070AB5FCAC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.4 - Setrialization", "5.4 - Setrialization", "{6103B609-C25E-4803-BB18-B103CB2E7ED4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.4 Serialization", "5.4 Serialization", "{6103B609-C25E-4803-BB18-B103CB2E7ED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

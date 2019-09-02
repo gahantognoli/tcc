@@ -3,6 +3,8 @@ using Slapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
@@ -17,6 +19,38 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public PedidoRepositorio(TCC_Contexto contexto) : base(contexto)
         {
+        }
+
+        public override Pedido Atualizar(Pedido obj)
+        {
+            Pedido pedidos = Db.Pedidos.Include("ItensPedido")
+                .Where(e => e.PedidoId == obj.PedidoId).FirstOrDefault();
+
+            List<ItemPedido> deletedItensPedido = pedidos.ItensPedido.Except(obj.ItensPedido, p => p.ItemPedidoId).ToList<ItemPedido>();
+            List<ItemPedido> AddItensPedido = obj.ItensPedido.Except(pedidos.ItensPedido, p => p.ItemPedidoId).ToList<ItemPedido>();
+
+            foreach (var item in deletedItensPedido)
+            {
+                Db.ItensPedido.Remove(item);
+            }
+
+            foreach (ItemPedido p in AddItensPedido)
+            {
+                if (Db.Entry(p).State == EntityState.Detached)
+                {
+                    Db.ItensPedido.Attach(p);
+                }
+                Db.ItensPedido.Add(p);
+            }
+
+            Db.Set<Pedido>().AddOrUpdate(obj);
+
+            foreach (var item in obj.ItensPedido)
+            {
+                Db.Set<ItemPedido>().AddOrUpdate(item);
+            }
+
+            return obj;
         }
 
         public override Pedido ObterPorId(Guid id)
@@ -56,8 +90,12 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             IEnumerable<Pedido> retornoPedido;
 
             IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorCliente.GetDescription(),
-                new { @NomeOuRazaoSocial = cliente, @idVendedor = vendedor.UsuarioId,
-                    @responsavelSistema  = vendedor.UsuarioResponsavel },
+                new
+                {
+                    @NomeOuRazaoSocial = cliente,
+                    @idVendedor = vendedor.UsuarioId,
+                    @responsavelSistema = vendedor.UsuarioResponsavel
+                },
                 commandType: CommandType.StoredProcedure);
 
             AutoMapper.Configuration.AddIdentifier(typeof(Cliente), "ClienteId");
@@ -267,6 +305,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
 
             return numeroPedido;
+        }
+
+        public Pedido AlterarStatus(Guid statusId, Guid pedidoId)
+        {
+            var pedido = DbSet.Find(pedidoId);
+            pedido.StatusPedidoId = statusId;
+            return pedido;
         }
     }
 }

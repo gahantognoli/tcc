@@ -231,6 +231,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pedido\acoes.js" />
+    <Content Include="Scripts\Pedido\faturar.js" />
     <Content Include="Scripts\Pedido\script.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Pedido\Index.cshtml" />
     <Content Include="Views\Pedido\Novo.cshtml" />
     <Content Include="Views\Pedido\Acoes.cshtml" />
+    <Content Include="Views\Pedido\Faturar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

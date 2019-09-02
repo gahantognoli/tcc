@@ -124,7 +124,7 @@
                     <p class="info-pedido">
                         <i class="fas fa-dollar-sign icone-info-pedido-valor"></i><b>
                             @item.ValorTotal.ToString("C2", CultureInfo.CurrentCulture)
-</b>
+                        </b>
                     </p>
                 </div>
             </div>
@@ -151,19 +151,25 @@
         {
             fGlobal.EmitirNotificacao("Sucesso",'@TempData["OrcamentoGerado"]', "info");
         }
+
         if (fGlobal.IsNotEmpty('@TempData["PedidoGerado"]'))
         {
             fGlobal.EmitirNotificacao("Sucesso",'@TempData["PedidoGerado"]', "info");
         }
 
-        if (fGlobal.IsNotEmpty('@TempData["AtualizadoSucesso"]'))
+        if (fGlobal.IsNotEmpty('@TempData["OrcamentoAtualizado"]'))
         {
-            fGlobal.EmitirNotificacao("Sucesso",'@TempData["AtualizadoSucesso"]', "warning");
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["OrcamentoAtualizado"]', "warning");
+        } 
+
+        if (fGlobal.IsNotEmpty('@TempData["StatusAtualizado"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["StatusAtualizado"]', "warning");
         }
 
-        if (fGlobal.IsNotEmpty('@TempData["RemovidoSucesso"]'))
+        if (fGlobal.IsNotEmpty('@TempData["PedidoRemovido"]'))
         {
-            fGlobal.EmitirNotificacao("Sucesso",'@TempData["RemovidoSucesso"]', "danger");
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["PedidoRemovido"]', "danger");
         }
     </script>
 }

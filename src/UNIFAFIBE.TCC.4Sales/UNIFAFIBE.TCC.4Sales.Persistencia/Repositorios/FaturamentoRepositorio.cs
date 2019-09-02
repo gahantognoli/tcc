@@ -46,5 +46,16 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             return retornoFaturamento;
         }
+
+        public decimal ObterTotalFaturamento(Guid pedidoId)
+        {
+            var cn = Db.Database.Connection;
+
+            decimal retornoFaturamento = cn.Query<decimal>(FaturamentoProcedures.ObterTodos.GetDescription(),
+                new { pedidoId = pedidoId },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retornoFaturamento;
+        }
     }
 }

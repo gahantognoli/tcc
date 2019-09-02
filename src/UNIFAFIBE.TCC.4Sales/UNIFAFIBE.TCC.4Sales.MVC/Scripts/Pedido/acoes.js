@@ -1,9 +1,13 @@
-﻿var error = 0;
-var index = 0;
+﻿var index;
+var error = 0;
 var functionsPedido = {
     GerarOrcamento: function (pedido) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GerarOrcamento', "POST", { pedido: pedido }, functionsPedido.HtmlOrcamento,
-            null, functionsPedido.MostrarModal, functionsPedido.EsconderModal);
+            null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
+    },
+    SalvarOrcamento: function (orcamento) {
+        fGlobal.Ajax(gHostProjeto + 'Pedido/SalvarOrcamento', "POST", { orcamento: orcamento }, functionsPedido.HtmlOrcamento,
+            null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
     },
     HtmlOrcamento: function (data) {
         var validationResult = data;
@@ -17,7 +21,7 @@ var functionsPedido = {
     },
     GerarPedido: function (pedido) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GerarPedido', "POST", { pedido: pedido }, functionsPedido.HtmlPedido,
-            null, functionsPedido.MostrarModal, functionsPedido.EsconderModal);
+            null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
     },
     HtmlPedido: function (data) {
         var validationResult = data;
@@ -28,6 +32,20 @@ var functionsPedido = {
             window.location = gHostProjeto + 'Pedido/Index';
         }
 
+    },
+    AlterarStatus: function (statusId, pedidoId) {
+        fGlobal.Ajax(gHostProjeto + 'Pedido/AlterarStatus', "POST", { statusId: statusId, pedidoId: pedidoId },
+            functionsPedido.HtmlAlterarStatus, null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
+    },
+    HtmlAlterarStatus: function (data) {
+        window.location = gHostProjeto + 'Pedido/Index';
+    },
+    Remover: function (pedidoId) {
+        fGlobal.Ajax(gHostProjeto + 'Pedido/Remover', "POST", { pedidoId: pedidoId }, functionsPedido.HtmlRemover,
+            null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
+    },
+    HtmlRemover: function (data) {
+        window.location = gHostProjeto + 'Pedido/Index';
     },
     MostrarModal: function () {
         fGlobal.MostrarModal('#modal-pedido');
@@ -41,6 +59,8 @@ var functionsPedido = {
         $('#corpo-tabela tr').each(function (i, item) {
             i++;
             var produto = {
+                ItemPedidoId: $('#itemPedidoId_' + i).val(),
+                PedidoId: $('#pedidoId').val(),
                 Quantidade: $('#quantidade_' + i).val(),
                 Desconto: $('#desconto_' + i).val(),
                 Subtotal: $('#subtotal_' + i).val(),
@@ -49,7 +69,10 @@ var functionsPedido = {
             itensPedido.push(produto);
         });
 
+        console.log(itensPedido);
+
         var pedido = {
+            PedidoId: $('#pedidoId').val(),
             NumeroPedido: $('#numeroPedido').val(),
             EnderecoEntrega: $('#enderecoEntrega').val(),
             Contato: $('#contato').val(),
@@ -61,16 +84,17 @@ var functionsPedido = {
             TransportadoraId: $('#TransportadoraId').val(),
             TipoPedidoId: $('#TipoPedidoId').val(),
             UsuarioId: $('#UsuarioId').val(),
+            StatusPedidoId: $('#StatusId').val(),
             ItensPedido: itensPedido
         };
 
         if (tipo === "pedido") {
             functionsPedido.GerarPedido(JSON.stringify(pedido));
+        } else if (tipo === "Salvar Orçamento") {
+            functionsPedido.SalvarOrcamento(JSON.stringify(pedido));
         } else {
             functionsPedido.GerarOrcamento(JSON.stringify(pedido));
         }
-
-
     },
     GetEnderecos: function (id) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GetEnderecosCliente/' + id, "GET", null, functionsPedido.HtmlEnderecos,
@@ -115,8 +139,11 @@ var functionsPedido = {
         $(id).find('option').remove();
     },
     CriaLinhasTabela: function () {
-        index = Number($('.produto').last().attr('id').split('_')[1]) + 1;
-        console.log(index);
+        if ($('#corpo-tabela').find('tr').length > 0) {
+            index = Number($('.produto').last().attr('id').split('_')[1]) + 1;
+        } else {
+            index = 1;
+        }
         var html = "";
         html = '<tr id="linha_' + index + '" value="' + index + '">';
         html += '<input type="hidden" id="produtoId_' + index + '" />';
@@ -156,8 +183,6 @@ var functionsPedido = {
         $('#corpo-tabela').append(html);
 
         $('#totalItens').text(parseInt($('#totalItens').text()) + 1);
-
-        index++;
     },
     RemoveLinhaTabela: function (campo) {
         var tr = $(campo).closest('tr');
@@ -176,6 +201,7 @@ var functionsPedido = {
                     });
 
                     $("#produtoId_" + (a + 1)).attr("id", "produtoId_" + a);
+                    $("#itemPedidoId_" + (a + 1)).attr("id", "itemPedidoId_" + a);
                     $("#produto_" + (a + 1)).attr("id", "produto_" + a);
                     $("#preco_" + (a + 1)).attr("id", "preco_" + a);
                     $("#quantidade_" + (a + 1)).attr("id", "quantidade_" + a);
@@ -232,6 +258,8 @@ var functionsPedido = {
 };
 
 $(function () {
+
+    index = $('#corpo-tabela tr').length;
 
     $.each($('.subtotal'), function (i, item) {
         $(item).val(parseFloat(Number($(item).val().replace('.', '').replace(',', '.')).toFixed(2)).toLocaleString('pt-BR'));
@@ -370,6 +398,23 @@ $(function () {
         if (error === 0) {
             functionsPedido.GerarRequisicao("pedido");
         }
+    });
+
+    $("#btnSalvar").on('click', function () {
+        functionsPedido.ValidaObrigatorio();
+        if (error === 0) {
+            functionsPedido.GerarRequisicao("Salvar Orçamento");
+        }
+    });
+
+    $("#btnConfirmarRemocao").on('click', function () {
+        functionsPedido.Remover($('#pedidoId').val());
+    });
+
+    $('.dropdown-item').on('click', function () {
+        var statusId = $(this).data('status');
+        var pedidoId = $('#pedidoId').val();
+        functionsPedido.AlterarStatus(statusId, pedidoId);
     });
 
     $(document).on('click', '.btn-remover', function () {

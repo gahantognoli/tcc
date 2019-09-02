@@ -1,0 +1,132 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.PedidoViewModel
+
+@{
+    ViewBag.Title = "Faturar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-2">
+    <div class="col-lg-12">
+        @if (Model != null)
+        {
+            if (Model.ValidationResult != null)
+            {
+                var mensagem = "";
+                foreach (var item in Model.ValidationResult.Erros)
+                {
+                    mensagem += "<span>" + @item.Message.ToString() + "</span><br />";
+                }
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Algo deu errado!</h4>
+                    @Html.Raw(mensagem)
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm("Novo", "Pedido", FormMethod.Post, new { id = "form-pedido" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-dark">
+                <div class="card-header bg-dark text-white">
+                    <span class="h5 text-white">
+                        <i class="fas fa-clipboard-list icone-cadastro"></i>
+                        Faturar Pedido
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="numeroPedido">Nº Pedido</label>
+                            <input type="text" name="numeroPedido" id="numeroPedido" class="form-control required" readonly="readonly" value="@Model.NumeroPedido" />
+                            <input type="hidden" name="percentualComissao" id="percentualComissao" class="form-control required" readonly="readonly" value="@Model.Representada.Comissao" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="condicaoPagamento">Condição Pagamento</label>
+                            <input type="text" name="condicaoPagamento" id="condicaoPagamento" class="form-control required" readonly="readonly" value="@Model.CondicaoPagamento.Descricao" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="valorJaFaturado">Valor já Faturado</label>
+                            <input type="text" name="valorJaFaturado" id="valorJaFaturado" class="form-control mValor required" readonly="readonly" value="@ViewBag.JaFaturado" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="totalPedido">Total do Pedido</label>
+                            <input type="text" name="totalPedido" id="totalPedido" class="form-control mValor required" readonly="readonly" value="@Model.ValorTotal" />
+                        </div>
+                    </div>
+                    <hr class="linha" />
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="valorFaturamento">Valor a faturar</label><span class="span-obrigatorio">*</span>
+                            <input type="text" name="valorFaturamento" id="valorFaturamento" class="form-control required mValor" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="notaFiscal">Nota Fiscal</label>
+                            <input type="text" name="notaFiscal" id="notaFiscal" class="form-control required" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label" for="informacoesAdicionais">Informações Adicionais</label>
+                            <textarea name="informacoesAdicionais" id="informacoesAdicionais" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <hr class="linha" />
+                    <h4>Parcelas</h4>
+                    <hr class="linha" />
+                    <div class="mb-2">
+                        <button type="button" class="btn btn-sm btn-criar" id="btn-criar">
+                            <i class="fas fa-plus mr-1"></i>Adicionar
+                        </button>
+                    </div>
+                    <table class="table table-bordered table-sm">
+                        <tr class="bg-dark text-white">
+                            <th>Parcela</th>
+                            <th>Comissão</th>
+                            <th>Data</th>
+                            <th></th>
+                        </tr>
+                        <tbody id="corpo-tabela"></tbody>
+                    </table>
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <div class="container-subtotal">
+                            <i class="fas fa-dollar-sign icone-info-pedido-subtotal"></i><b>Total Comissão: <span id="totalComissao">0</span></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mt-3">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button class="btn btn-success mr-1" id="btnFaturar">Faturar</button>
+        @Html.ActionLink("Cancelar", "Index", "Pedido", new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+<div class="modal" id="modal-pedido" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aguarde ...</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center" style="height: 230px">
+                <img src="~/assets/img/ajax-loader-200px.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Faturar")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validations_pt-br")
+}

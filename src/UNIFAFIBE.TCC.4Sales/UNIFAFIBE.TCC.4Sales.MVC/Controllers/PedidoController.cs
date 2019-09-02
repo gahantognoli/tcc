@@ -23,6 +23,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         private readonly IContatoClienteAppService _contatoClienteAppService;
         private readonly IEnderecoClienteAppService _enderecoClienteAppService;
         private readonly IProdutoAppService _produtoAppService;
+        private readonly IFaturamentoAppService _faturamentoAppService;
         private readonly IEntitySerializationServices<PedidoViewModel> _entitySerializationServices;
 
 
@@ -32,7 +33,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             ICondicaoPagamentoAppService condicaoPagamentoAppService, IContatoClienteAppService contatoClienteAppService,
             IEnderecoClienteAppService enderecoClienteAppService, IPessoaFisicaAppService pessoaFisicaAppService,
             IPessoaJuridicaAppService pessoaJuridicaAppService, IProdutoAppService produtoAppService,
-            IEntitySerializationServices<PedidoViewModel> entitySerializationServices)
+            IFaturamentoAppService faturamentoAppService, IEntitySerializationServices<PedidoViewModel> entitySerializationServices)
         {
             _pedidoAppService = pedidoAppService;
             _usuarioAppService = usuarioAppService;
@@ -46,6 +47,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             _pessoaFisicaAppService = pessoaFisicaAppService;
             _pessoaJuridicaAppService = pessoaJuridicaAppService;
             _produtoAppService = produtoAppService;
+            _faturamentoAppService = faturamentoAppService;
             _entitySerializationServices = entitySerializationServices;
         }
 
@@ -74,8 +76,20 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             var orcamentoRetorno = _pedidoAppService.GerarOrcamento(orcamento);
             if (orcamentoRetorno.ValidationResult.IsValid)
                 TempData["OrcamentoGerado"] = "Orçamento " + orcamento.NumeroPedido +
-                              " gerado com com sucesso";
+                              " gerado com sucesso";
             
+            return Json(orcamentoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SalvarOrcamento(string orcamento)
+        {
+            var orcamentoRetorno = _entitySerializationServices.Deserialize(orcamento);
+            orcamentoRetorno = _pedidoAppService.Atualizar(orcamentoRetorno);
+            if(orcamentoRetorno.ValidationResult.IsValid)
+                TempData["OrcamentoAtualizado"] = "Orçamento " + orcamentoRetorno.NumeroPedido +
+                              " atualizado com sucesso";
+
             return Json(orcamentoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
         }
 
@@ -89,6 +103,28 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                               " gerado com com sucesso";
 
             return Json(pedidoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Faturar(Guid pedidoId)
+        {
+            ViewBag.JaFaturado = _faturamentoAppService.ObterTotalFaturamento(pedidoId);
+            return View(_pedidoAppService.ObterPorId(pedidoId));
+        }
+
+        [HttpPost]
+        public JsonResult AlterarStatus(Guid statusId, Guid pedidoId)
+        {
+            var pedidoRetorno = _pedidoAppService.AlterarStatus(statusId, pedidoId);
+            TempData["StatusAtualizado"] = "Status do pedido " + pedidoRetorno.NumeroPedido + " alterado com sucesso!";
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Remover(Guid pedidoId)
+        {
+            _pedidoAppService.Remover(pedidoId);
+            TempData["PedidoRemovido"] = "Pedido removido com sucesso!";
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Acoes(Guid id)
@@ -264,6 +300,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                 _transportadoraAppService.Dispose();
                 _usuarioAppService.Dispose();
                 _pedidoAppService.Dispose();
+                _faturamentoAppService.Dispose();
             }
             base.Dispose(disposing);
         }

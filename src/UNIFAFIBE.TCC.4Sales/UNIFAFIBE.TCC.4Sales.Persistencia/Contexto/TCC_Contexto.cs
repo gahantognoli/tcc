@@ -80,6 +80,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Contexto
                     entry.Property("DataEmissao").IsModified = false;
                 }
             }
+
             return base.SaveChanges();
         }
     }

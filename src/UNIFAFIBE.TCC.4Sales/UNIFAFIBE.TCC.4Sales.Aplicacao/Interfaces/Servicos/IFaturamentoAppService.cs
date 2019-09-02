@@ -11,5 +11,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         void Remover(Guid id);
         FaturamentoViewModel ObterPorId(Guid id);
         IEnumerable<FaturamentoViewModel> ObterTodos(Guid pedidoId);
+        decimal ObterTotalFaturamento(Guid pedidoId);
     }
 }

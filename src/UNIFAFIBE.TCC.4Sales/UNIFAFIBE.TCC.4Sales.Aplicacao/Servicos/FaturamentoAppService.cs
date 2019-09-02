@@ -99,6 +99,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<FaturamentoViewModel>>(_faturamentoService.ObterTodos(pedidoId));
         }
 
+        public decimal ObterTotalFaturamento(Guid pedidoId)
+        {
+            return _faturamentoService.ObterTotalFaturamento(pedidoId);
+        }
+
         public void Remover(Guid id)
         {
             _faturamentoService.Remover(id);

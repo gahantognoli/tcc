@@ -9,11 +9,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         PedidoViewModel GerarPedido(PedidoViewModel pedido);
         PedidoViewModel GerarOrcamento(PedidoViewModel pedido);
         PedidoViewModel Atualizar(PedidoViewModel pedido);
+        PedidoViewModel AlterarStatus(Guid statusId, Guid pedidoId);
         void Remover(Guid id);
         void VisualizarEmDocumento(Guid id);
         void EnviarPorEmail(Guid pedidoId, Guid usuarioId, string[] destinatarios,
             string assunto = null, string corpo = null);
-        PedidoViewModel AtualizarStatus(Guid statusId);
         PedidoViewModel ObterPorId(Guid id);
         int ObterNumeroPedido();
         PedidoViewModel ObterPorNumeroPedido(UsuarioViewModel vendedor, int numeroPedido);

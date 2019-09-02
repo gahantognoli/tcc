@@ -18,7 +18,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.AutoMapper
             CreateMap<ItemPedido, ItemPedidoViewModel>();
             CreateMap<Meta, MetaViewModel>();
             CreateMap<Parcela, ParcelaViewModel>();
-            CreateMap<Pedido, PedidoViewModel>();
+            CreateMap<Pedido, PedidoViewModel>().MaxDepth(3);
             CreateMap<PessoaFisica, PessoaFisicaViewModel>();
             CreateMap<PessoaJuridica, PessoaJuridicaViewModel>();
             CreateMap<Produto, ProdutoViewModel>();

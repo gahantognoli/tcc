@@ -1,9 +1,10 @@
 ﻿var index = 1;
 var error = 0;
+
 var functionsPedido = {
     GerarOrcamento: function (pedido) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GerarOrcamento', "POST", { pedido: pedido }, functionsPedido.HtmlOrcamento,
-            null, functionsPedido.MostrarModal, functionsPedido.EsconderModal);
+            null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
     },
     HtmlOrcamento: function (data) {
         var validationResult = data;
@@ -17,7 +18,7 @@ var functionsPedido = {
     },
     GerarPedido: function (pedido) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/GerarPedido', "POST", { pedido: pedido }, functionsPedido.HtmlPedido,
-            null, functionsPedido.MostrarModal, functionsPedido.EsconderModal);
+            null, functionsPedido.EsconderModal, functionsPedido.MostrarModal);
     },
     HtmlPedido: function (data) {
         var validationResult = data;
@@ -262,8 +263,6 @@ $(function () {
     } else {
         $("busca").mask("00/00/0000");
     }
-
-    
 
     $(document).on('blur', '.desconto', function () {
         if ($(this).val() === "") {

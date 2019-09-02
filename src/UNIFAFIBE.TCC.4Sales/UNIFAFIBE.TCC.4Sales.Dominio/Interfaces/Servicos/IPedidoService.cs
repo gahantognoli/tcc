@@ -8,12 +8,12 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Pedido GerarPedido(Pedido pedido);
         Pedido GerarOrcamento(Pedido pedido);
-        Pedido Atualizar(Pedido pedido);
+        Pedido Atualizar(Pedido pedido, string status = null);
+        Pedido AlterarStatus(Guid statusId, Guid pedidoId);
         void Remover(Guid id);
         void VisualizarEmDocumento(Guid id);
         void EnviarPorEmail(Guid pedidoId, Guid usuarioId, string[] destinatarios, 
             string assunto = null, string corpo = null);
-        Pedido AtualizarStatus(Guid statusId);
         Pedido ObterPorId(Guid id);
         int ObterNumeroPedido();
         Pedido ObterPorNumeroPedido(Usuario vendedor, int numeroPedido);

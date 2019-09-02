@@ -50,6 +50,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _faturamentoRepositorio.ObterTodos(pedidoId);
         }
 
+        public decimal ObterTotalFaturamento(Guid pedidoId)
+        {
+            return _faturamentoRepositorio.ObterTotalFaturamento(pedidoId);
+        }
+
         public void Remover(Guid id)
         {
             _faturamentoRepositorio.Remover(id);

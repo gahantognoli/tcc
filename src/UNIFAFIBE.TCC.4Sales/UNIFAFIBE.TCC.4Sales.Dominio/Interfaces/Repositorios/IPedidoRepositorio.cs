@@ -6,6 +6,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
 {
     public interface IPedidoRepositorio : IRepositorio<Pedido>
     {
+        Pedido AlterarStatus(Guid statusId, Guid pedidoId);
         IEnumerable<Pedido> ObterTodos(Usuario vendedor);
         Pedido ObterPorNumeroPedido(Usuario vendedor, int numeroPedido);
         int ObterNumeroPedido();

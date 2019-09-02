@@ -113,7 +113,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
                 contatosRepresentada.ToList().ForEach(c => _contatoRepresentadaService.Remover(c.ContatoRepresentadaId));
             }
 
-
             var produtosRepresentada = _produtoService.ObterTodos(id);
             if (produtosRepresentada.Count() > 0)
             {
