@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
@@ -12,10 +9,12 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
     public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
+        private readonly IItemPedidoRepositorio _itemPedidoRepositorio;
 
-        public ProdutoService(IProdutoRepositorio produtoRepositorio)
+        public ProdutoService(IProdutoRepositorio produtoRepositorio, IItemPedidoRepositorio itemPedidoRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
+            _itemPedidoRepositorio = itemPedidoRepositorio;
         }
 
         public Produto Adicionar(Produto produto)
@@ -37,6 +36,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
         public void Dispose()
         {
             _produtoRepositorio.Dispose();
+            _itemPedidoRepositorio.Dispose();
             GC.SuppressFinalize(this);
         }
 
@@ -60,9 +60,14 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _produtoRepositorio.ObterTodos(representadaId);
         }
 
-        public void Remover(Guid id)
+        public Produto Remover(Guid id)
         {
-            _produtoRepositorio.Remover(id);
+            var produto = _produtoRepositorio.ObterPorId(id);
+            if (produto.EstaAptoParaRemover(_itemPedidoRepositorio))
+            {
+                _produtoRepositorio.Remover(id);
+            }
+            return produto;
         }
     }
 }

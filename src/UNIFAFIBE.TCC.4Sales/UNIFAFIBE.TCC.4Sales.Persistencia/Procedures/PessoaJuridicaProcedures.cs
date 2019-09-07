@@ -15,7 +15,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         [Description("usp_PessoaJuridica_ObterPorNomeFantasia")]
         ObterPorNomeFantasia,
         [Description("usp_PessoaJuridica_ObterPorRazaoSocial")]
-        ObterPorRazaoSocial
-
+        ObterPorRazaoSocial,
+        [Description("usp_PessoaJuridica_ObterPorSegmento")]
+        ObterPorSegmento
     }
 }

@@ -20,7 +20,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [Display(Name = "Nota Fisal")]
         [MaxLength(50, ErrorMessage = "Tamanho máximo 50 caracteres")]
         public string NotaFiscal { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime DataEmissao { get; set; }
         [Display(Name = "Informações Adicionais")]
         [MaxLength(500, ErrorMessage = "Preencha o campo Informações Adicionais")]
         public string InformacoesAdicionais { get; set; }

@@ -48,7 +48,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return DbSet.ToList();
         }
 
-        public void Remover(Guid id)
+        public virtual void Remover(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
         }

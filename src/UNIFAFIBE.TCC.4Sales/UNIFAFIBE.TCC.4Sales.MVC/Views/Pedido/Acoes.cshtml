@@ -62,14 +62,12 @@
                         @if (Model.PessoaFisica != null)
                         {
                             <input type="text" class="form-control required" name="cliente" id="cliente" value="@Model.PessoaFisica.Nome" readonly="readonly"
-                                   @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                   Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
+                                   @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
                         }
                         else
                         {
                             <input type="text" class="form-control required" name="cliente" id="cliente" value="@Model.PessoaJuridica.RazaoSocial" readonly="readonly"
-                                   @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                   Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")  />
+                                   @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
                         }
 
                         <input type="hidden" name="clienteId" id="clienteId" class="form-control" value="@Model.ClienteId" />
@@ -89,14 +87,13 @@
                 <div class="col-md-12 pl-0">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control required" name="representada" id="representada" value="@Model.Representada.RazaoSocial" readonly="readonly"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                   Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
+                               @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
                         <input type="hidden" class="form-control" name="representadaId" id="representadaId" value="@Model.RepresentadaId" />
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
                     </div>
-                    @if (Model.StatusPedido.Descricao != "Parcialmente Faturado" && Model.StatusPedido.Descricao != "Faturado" 
+                    @if (Model.StatusPedido.Descricao != "Parcialmente Faturado" && Model.StatusPedido.Descricao != "Faturado"
                        && Model.StatusPedido.Descricao != "Pedido de Venda Gerado")
                     {
                         <button type="button" id="btnTrocarRepresentada" class="btn btn-sm btn-criar mb-3">Trocar representada</button>
@@ -112,7 +109,7 @@
                             <i class="fas fa-plus mr-1"></i>Adicionar
                         </button>
                     }
-                    </div>
+                </div>
                 <table class="table table-bordered table-sm">
                     <tr class="bg-dark text-white">
                         <th>Produto</th>
@@ -132,13 +129,11 @@
                                 <td class="input-large">
                                     <div class="input-group">
                                         <input type="text" class="form-control produto required" id="produto_@index" value="@item.Produto.Nome" readonly="readonly"
-                                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                                       Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")/>
+                                               @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                                             <button type="button" class="btn btn-sm btn-criar btn-trocarProduto" id="btnTrocarProduto_@index"
-                                                    @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                                       Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                                    @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                                                 <i class="fas fa-pencil-alt"></i>
                                             </button>
                                         </div>
@@ -149,14 +144,12 @@
                                 </td>
                                 <td class="input-small">
                                     <input type="number" class="form-control quantidade required" id="quantidade_@index" min="1" value="@item.Quantidade"
-                                           @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                            Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
+                                           @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
                                 </td>
                                 <td class="input-small">
                                     <div class="input-group">
                                         <input type="text" class="form-control mValor desconto required" id="desconto_@index" value="@item.Desconto"
-                                               @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                                Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
+                                               @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "") />
                                         <div class="input-group-append">
                                             <span class="input-group-text">R$</span>
                                         </div>
@@ -167,8 +160,7 @@
                                 </td>
                                 <td style="width: 100px;">
                                     <button type="button" class="btn btn-sm btn-danger btn-remover"
-                                             @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                                       Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                            @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                                         <i class="fas fa-minus mr-1"></i>Remover
                                     </button>
                                 </td>
@@ -191,8 +183,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label">Condição de Pagamento</label>
                         <select id="condicoesPagamento" name="condicoesPagamento" class="form-control"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                             @foreach (var condicaoPagamento in (ViewBag.CondicoesPagamento as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.CondicaoPagamentoViewModel>))
                             {
                                 <option value="@condicaoPagamento.CondicaoPagamentoId" @(condicaoPagamento.CondicaoPagamentoId == Model.CondicaoPagamentoId ? "selected" : "")>
@@ -204,8 +195,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label">Tipo Pedido</label>
                         <select id="TipoPedidoId" name="TipoPedidoId" class="form-control"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                             @foreach (var tipoPedido in (ViewBag.TipoPedido as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.TipoPedidoViewModel>))
                             {
                                 <option value="@tipoPedido.TipoPedidoId" @(tipoPedido.TipoPedidoId == Model.TipoPedidoId ? "selected" : "")>
@@ -217,8 +207,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label">Vendedor</label>
                         <select id="UsuarioId" name="UsuarioId" class="form-control"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                             @foreach (var usuario in (ViewBag.Vendedor as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.UsuarioViewModel>))
                             {
                                 <option value="@usuario.UsuarioId" @(usuario.UsuarioId == Model.UsuarioId ? "selected" : "")>
@@ -230,8 +219,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label">Transportadora</label>
                         <select id="TransportadoraId" name="TransportadoraId" class="form-control"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                             @foreach (var transportadora in (ViewBag.Transportadora as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.TransportadoraViewModel>))
                             {
                                 <option value="@transportadora.TransportadoraId" @(transportadora.TransportadoraId == Model.TransportadoraId ? "selected" : "")>
@@ -243,8 +231,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label">Endereço de entrega</label>
                         <select id="enderecoEntrega" name="enderecoEntrega" class="form-control"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                             @foreach (var enderecoCliente in (ViewBag.EnderecosCliente as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.EnderecoClienteViewModel>))
                             {
                                 <option value="@enderecoCliente.EnderecoClienteId" @(enderecoCliente.Endereco == Model.EnderecoEntrega ? "selected" : "")>
@@ -256,8 +243,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label">Contato</label>
                         <select id="contato" name="contato" class="form-control"
-                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || 
-                                 Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
+                                @(Model.StatusPedido.Descricao == "Parcialmente Faturado" || Model.StatusPedido.Descricao == "Faturado" || Model.StatusPedido.Descricao == "Pedido de Venda Gerado" ? "disabled" : "")>
                             @foreach (var contatoCliente in (ViewBag.ContatosCliente as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.ContatoClienteViewModel>))
                             {
                                 <option value="@contatoCliente.ContatoClienteId" @(contatoCliente.Nome == Model.Contato ? "selected" : "")>
@@ -304,7 +290,7 @@
                 Mais opções
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Faturamentos</a>
+                <button class="dropdown-item" data-toggle="modal" data-target="#modalFaturamentos" style="cursor:pointer;">Faturamentos</button>
                 <a class="dropdown-item" href="#">Visualizar</a>
                 <a class="dropdown-item" href="#">Enviar p/ Representada</a>
             </div>
@@ -350,10 +336,45 @@
     </div>
 </div>
 
+<div class="modal" id="modalFaturamentos" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Faturamentos</h5>
+            </div>
+            <div class="col-md-12 mt-2">
+                <table class="table table-hover table-striped table-sm">
+                    <tr class="thead-dark">
+                        <th>Valor</th>
+                        <th>Data Emissão</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in ViewBag.Faturamentos)
+                    {
+                        <tr>
+                            <td>@item.Valor</td>
+                            <td>@item.DataEmissao</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("Detalhes", "Faturamento", new { id = item.FaturamentoId, pedidoId = Model.PedidoId })">Detalhes</a>
+                                <a class="btn btn-danger btn-sm" href="@Url.Action("Remover", "Faturamento", new { id = item.FaturamentoId, pedidoId = Model.PedidoId })">Remover</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/Scripts/Acoes")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/validations_pt-br")
+    <script>
+        if (fGlobal.IsNotEmpty('@TempData["Removido"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["Removido"]', "danger");
+        }
+    </script>
 }
 

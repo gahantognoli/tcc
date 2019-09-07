@@ -35,9 +35,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             if (!faturamento.EhValido())
                 return faturamento;
 
-            var fat = _faturamentoRepositorio.Adicionar(faturamento);
-            
-            return fat;
+            return  _faturamentoRepositorio.Adicionar(faturamento);
         }
 
         public Faturamento ObterPorId(Guid id)

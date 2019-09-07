@@ -54,7 +54,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             }
             catch (Exception ex)
             {
-                return View(transportadoraViewModel);
+                throw;
             }
         }
 
@@ -101,7 +101,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             }
             catch (Exception)
             {
-                return View(transportadoraViewModel);
+                throw;
             }
         }
 
@@ -127,9 +127,9 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                 TempData["RemovidoSucesso"] = "Transportadora removida com sucesso";
                 return RedirectToAction("Index", "PainelAdministrativo");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return View();
+                throw;
             }
         }
 

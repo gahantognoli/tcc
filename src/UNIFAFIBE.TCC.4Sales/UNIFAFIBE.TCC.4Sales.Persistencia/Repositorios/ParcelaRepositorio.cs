@@ -40,7 +40,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             IEnumerable<Parcela> retornoParcela;
 
             retornoParcela = cn.Query<Parcela>(ParcelaProcedures.ObterTodos.GetDescription(),
-                new { faturamentoId = faturamentoId },
+                new { IdFaturamento = faturamentoId },
                 commandType: CommandType.StoredProcedure);
 
             return retornoParcela;

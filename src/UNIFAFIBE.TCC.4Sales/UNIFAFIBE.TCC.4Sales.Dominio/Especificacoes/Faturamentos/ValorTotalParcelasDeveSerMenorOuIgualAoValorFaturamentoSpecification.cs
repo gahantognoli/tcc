@@ -14,7 +14,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.Faturamentos
                 valorTotalParcelas += parcela.ValorParcela;
             }
 
-
             return valorTotalParcelas <= faturamento.Valor;
         }
     }

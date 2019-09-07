@@ -28,6 +28,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PessoaFisicaViewModel Adicionar(PessoaFisicaViewModel cliente)
         {
+            cliente.CPF = RemoverMascara(cliente.CPF);
             var pessoaFisicaRetorno = Mapper.Map<PessoaFisicaViewModel>
                 (_pessoaFisicaService.Adicionar(Mapper.Map<PessoaFisica>(cliente)));
 
@@ -39,13 +40,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PessoaFisicaViewModel Atualizar(PessoaFisicaViewModel cliente)
         {
+            cliente.CPF = RemoverMascara(cliente.CPF);
             var pessoaFisicaRetorno = Mapper.Map<PessoaFisicaViewModel>
                 (_pessoaFisicaService.Atualizar(Mapper.Map<PessoaFisica>(cliente)));
 
             if (pessoaFisicaRetorno.EhValido())
                 Commit();
-
-
 
             return pessoaFisicaRetorno;
         }
@@ -103,5 +103,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             _pessoaFisicaService.Remover(id);
             Commit();
         }
+
+        private string RemoverMascara(string cpf)
+        {
+            return cpf.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+        }
+
     }
 }

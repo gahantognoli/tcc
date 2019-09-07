@@ -44,7 +44,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public string Email { get; set; }
         [Display(Name = "Comissão")]
         [Required(ErrorMessage = "Preencha o campo Comissão")]
-        [Range(0.01, 100)]
         public decimal Comissao { get; set; }
 
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]

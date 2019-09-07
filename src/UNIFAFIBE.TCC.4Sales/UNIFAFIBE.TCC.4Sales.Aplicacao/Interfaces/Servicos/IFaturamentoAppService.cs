@@ -8,6 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
     {
         FaturamentoViewModel Faturar(FaturamentoViewModel faturamento);
         FaturamentoViewModel Atualizar(FaturamentoViewModel faturamento);
+        void Remover(Guid id, Guid pedidoId);
         void Remover(Guid id);
         FaturamentoViewModel ObterPorId(Guid id);
         IEnumerable<FaturamentoViewModel> ObterTodos(Guid pedidoId);

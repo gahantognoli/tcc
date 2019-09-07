@@ -11,7 +11,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         [Description("usp_PessoaFisica_ObterPorCPF")]
         ObterPorCPF,
         [Description("usp_PessoaFisica_ObterPorNome")]
-        ObterPorNome
-
+        ObterPorNome,
+        [Description("usp_PessoaFisica_ObterPorSegmento")]
+        ObterPorSegmento
     }
 }

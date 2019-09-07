@@ -164,6 +164,7 @@
                                     @Html.LabelFor(model => model.CondicoesPagamento.ToList()[@i].Descricao, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
                                 </div>
                                 <div class="col-md-3">
+                                    <input type="hidden" class="form-control descricao" name="CondicoesPagamento[@i].CondicaoPagamentoId" id="CondicoesPagamento[@i].CondicaoPagamentoId" value="@(Model.CondicoesPagamento.ToList()[i].CondicaoPagamentoId)" />
                                     <input type="text" class="form-control descricao" name="CondicoesPagamento[@i].Descricao" id="CondicoesPagamento[@i].Descricao" value="@(Model.CondicoesPagamento.ToList()[i].Descricao)" />
                                     @Html.ValidationMessage("CondicoesPagamento[" + i + "].Descricao", new { @class = "text-danger" })
                                 </div>
@@ -248,6 +249,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control nome" name="ContatosRepresentada[@i].Nome" id="ContatosRepresentada[@i].Nome" value="@(Model.ContatosRepresentada.ToList()[i].Nome)" />
+                                    <input type="hidden" class="form-control nome" name="ContatosRepresentada[@i].ContatoRepresentadaId" id="ContatosRepresentada[@i].ContatoRepresentadaId" value="@(Model.ContatosRepresentada.ToList()[i].ContatoRepresentadaId)" />
                                     @Html.ValidationMessage("ContatosRepresentada[" + i + "].Nome", new { @class = "text-danger" })
                                 </div>
                             </div>

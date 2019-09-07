@@ -13,6 +13,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         [Description("usp_Representada_ObterPorNomeFantasia")]
         ObterPorNomeFantasia,
         [Description("usp_Representada_ObterPorRazaoSocial")]
-        ObterPorRazaoSocial
+        ObterPorRazaoSocial,
+        [Description("usp_Representada_Remover")]
+        Remover
     }
 }

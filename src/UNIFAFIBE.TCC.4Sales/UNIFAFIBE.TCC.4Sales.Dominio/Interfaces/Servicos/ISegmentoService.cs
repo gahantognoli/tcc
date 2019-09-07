@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Segmento Adicionar(Segmento segmento);
         Segmento Atualizar(Segmento segmento);
-        void Remover(Guid id);
+        Segmento Remover(Guid id);
         Segmento ObterPorId(Guid id);
         IEnumerable<Segmento> ObterTodos();
         IEnumerable<Segmento> ObterPorDescricao(string descricao);

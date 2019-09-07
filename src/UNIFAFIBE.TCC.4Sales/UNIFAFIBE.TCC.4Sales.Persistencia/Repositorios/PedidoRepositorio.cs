@@ -118,7 +118,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             IEnumerable<dynamic> query = cn.Query<dynamic>(PedidoProcedures.ObterPorDataEmissao.GetDescription(),
                new
                {
-                   @DataEmissao = dataEmissao,
+                   @DataEmissao = dataEmissao.ToString(),
                    @idVendedor = vendedor.UsuarioId,
                    @responsavelSistema = vendedor.UsuarioResponsavel
                },

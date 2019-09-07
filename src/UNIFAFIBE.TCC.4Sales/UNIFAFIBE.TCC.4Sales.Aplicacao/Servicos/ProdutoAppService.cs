@@ -65,10 +65,13 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<ProdutoViewModel>>(_produtoService.ObterTodos(representadaId));
         }
 
-        public void Remover(Guid id)
+        public ProdutoViewModel Remover(Guid id)
         {
-            _produtoService.Remover(id);
-            Commit();
+            var produtoRetorno = Mapper.Map<ProdutoViewModel>(_produtoService.Remover(id));
+            if (produtoRetorno.ValidationResult.IsValid)
+                Commit();
+
+            return produtoRetorno;
         }
     }
 }

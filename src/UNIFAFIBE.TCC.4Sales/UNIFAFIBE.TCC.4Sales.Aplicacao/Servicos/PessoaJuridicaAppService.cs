@@ -28,6 +28,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PessoaJuridicaViewModel Adicionar(PessoaJuridicaViewModel cliente)
         {
+            cliente.CNPJ = RemoverMascara(cliente.CNPJ);
             var pessoaJuridicaRetorno = Mapper.Map<PessoaJuridicaViewModel>
                 (_pessoaJuridicaService.Adicionar(Mapper.Map<PessoaJuridica>(cliente)));
             //_enderecoClienteService.Adicionar(Mapper.Map<EnderecoCliente>(cliente.EnderecosCliente.FirstOrDefault()));
@@ -41,6 +42,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public PessoaJuridicaViewModel Atualizar(PessoaJuridicaViewModel cliente)
         {
+            cliente.CNPJ = RemoverMascara(cliente.CNPJ);
             var pessoaJuridicaRetorno = Mapper.Map<PessoaJuridicaViewModel>
                 (_pessoaJuridicaService.Atualizar(Mapper.Map<PessoaJuridica>(cliente)));
 
@@ -110,5 +112,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             _pessoaJuridicaService.Remover(id);
             Commit();
         }
+
+        private string RemoverMascara(string cnpj)
+        {
+            return cnpj.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
+        }
+
     }
 }

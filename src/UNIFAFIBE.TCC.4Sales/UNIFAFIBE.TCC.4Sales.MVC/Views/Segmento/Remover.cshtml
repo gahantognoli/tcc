@@ -63,4 +63,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    if (fGlobal.IsNotEmpty('@TempData["FalhaRemover"]'))
+    {
+        fGlobal.EmitirNotificacao("Validação", '@TempData["FalhaRemover"]', "danger");
+    }
+     </script>
 }

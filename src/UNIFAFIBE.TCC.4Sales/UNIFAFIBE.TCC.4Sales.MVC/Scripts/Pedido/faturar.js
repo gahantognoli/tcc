@@ -33,13 +33,48 @@ var functionsFaturamento = {
 
         index++;
     },
+    GeraRequisicao: function () {
+        $('#corpo-tabela tr').each(function (i, item) {
+            var parcelas = [];
+
+            $('#corpo-tabela tr').each(function (i, item) {
+                i++;
+                var parcela = {
+                    NumeroParcela: $('#parcela_' + i).text().split('.')[0].trim(),
+                    ValorParcela: $('#comissao_' + i).val(),
+                    DataPagamento: $('#data_' + i).val()
+                };
+                parcelas.push(parcela);
+
+            });
+
+            var faturamento = {
+                PedidoId: $("#pedidoId").val(),
+                Valor: $("#valorFaturamento").val(),
+                InformacoesAdicionais: $("#informacoesAdicionais").val(),
+                Parcelas: parcelas
+            };
+
+            functionsFaturamento.GerarFaturamento(JSON.stringify(faturamento));
+        });
+    },
+    GerarFaturamento: function (pFaturamento) {
+        fGlobal.Ajax(gHostProjeto + 'Pedido/Faturar', "POST", { faturamento: pFaturamento }, functionsFaturamento.HtmlFaturamento,
+            null, functionsFaturamento.EsconderModal, functionsFaturamento.MostrarModal);
+    },
+    HtmlFaturamento: function (data) {
+        if (data.IsValid === true) {
+            window.location = gHostProjeto + 'Pedido/Index';
+        } else {
+            fGlobal.ExibirNotificaoErrosValidacao(data);
+        }
+    },
     RemoveLinhaTabela: function (campo) {
         var tr = $(campo).closest('tr');
         var valorLinha = parseInt(tr.attr("value"));
         var count = (index - 1);
 
         for (var a = valorLinha; a <= count; a++) {
-
             if ($("#linha_" + (a + 1)) !== "") {
                 $("#linha_" + (a + 1)).attr({
                     "id": "linha_" + a,
@@ -56,7 +91,6 @@ var functionsFaturamento = {
 
         tr.remove();
         index--;
-        
     },
     VerificaValorFaturamento: function (valor) {
         if (Number(functionsFaturamento.FormatarDecimalCalculo(valor)) > Number(functionsFaturamento.FormatarDecimalCalculo($('#totalPedido').val()))) {
@@ -66,10 +100,10 @@ var functionsFaturamento = {
         }
     },
     MostrarModal: function () {
-        fGlobal.MostrarModal('#modal-pedido');
+        fGlobal.MostrarModal('#modal-faturamento');
     },
     EsconderModal: function () {
-        fGlobal.EsconderModal('#modal-pedido');
+        fGlobal.EsconderModal('#modal-faturamento');
     },
     ValidaObrigatorio: function () {
         error = 0;
@@ -108,7 +142,7 @@ var functionsFaturamento = {
 
             if (Number(functionsFaturamento.FormatarDecimalCalculo(comissao)) <= 0) {
                 comissao = '';
-            } 
+            }
 
             $('#corpo-tabela tr').find('.comissao').each(function (i, item) {
                 if (i + 1 > indice) {
@@ -131,10 +165,13 @@ var functionsFaturamento = {
 
 $(function () {
     $('#valorFaturamento').
-        val(parseFloat(functionsFaturamento.FormatarDecimalCalculo($('#totalPedido').val()) - $('#valorJaFaturado').val()).toFixed(2)
+        val(parseFloat(functionsFaturamento.FormatarDecimalCalculo($('#totalPedido').val()) -
+            functionsFaturamento.FormatarDecimalCalculo($('#valorJaFaturado').val())).toFixed(2)
             .replace('.', ','));
 
     functionsFaturamento.CalcularComissaoTotal();
+
+    $('#totalPedido').trigger('blur');
 
     $('#valorFaturamento').on('blur', function () {
         functionsFaturamento.VerificaValorFaturamento($(this).val());
@@ -142,9 +179,20 @@ $(function () {
         functionsFaturamento.CalcularComissaoParcelas();
     });
 
+    $('#valorFaturamento').trigger('blur');
+    $('#valorJaFaturado').trigger('blur');
+
     $('#btn-criar').on('click', function () {
         functionsFaturamento.CriaLinhasTabela();
         functionsFaturamento.CalcularComissaoParcelas();
+    });
+
+    $(document).on('click', '#btnFaturar', function () {
+        functionsFaturamento.ValidaObrigatorio();
+        if (error === 0) {
+            functionsFaturamento.GeraRequisicao();
+        }
+        
     });
 
     $(document).on('click', '.btn-remover', function () {

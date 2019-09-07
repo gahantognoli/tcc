@@ -38,5 +38,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
             ValidationResult = new SegmentoEstaAptoValidation(segmentoRepositorio).Validate(this);
             return ValidationResult.IsValid;
         }
+
+        public bool EstaAptoParaRemover(IPessoaJuridicaRepositorio pessoaJuridicaRepositorio, 
+            IPessoaFisicaRepositorio pessoaFisicaRepositorio)
+        {
+            ValidationResult = new SegmentoEstaAptoParaRemover(pessoaFisicaRepositorio, pessoaJuridicaRepositorio)
+                .Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

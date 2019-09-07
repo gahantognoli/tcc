@@ -14,7 +14,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public Guid FaturamentoId { get; set; }
         public decimal Valor { get; set; }
         public string NotaFiscal { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime DataEmissao { get; set; }
         public string InformacoesAdicionais { get; set; }
         public Guid PedidoId { get; set; }
         public ValidationResult ValidationResult { get; set; }

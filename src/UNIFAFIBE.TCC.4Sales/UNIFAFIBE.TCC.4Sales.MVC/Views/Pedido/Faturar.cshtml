@@ -31,27 +31,30 @@
 @using (Html.BeginForm("Novo", "Pedido", FormMethod.Post, new { id = "form-pedido" }))
 {
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.AntiForgeryToken()
-
     <div class="row">
         <div class="col-md-12">
             <div class="card border-dark">
                 <div class="card-header bg-dark text-white">
                     <span class="h5 text-white">
-                        <i class="fas fa-clipboard-list icone-cadastro"></i>
+                        <i class="fas fa-dollar-sign icone-cadastro"></i>
                         Faturar Pedido
                     </span>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label class="control-label" for="numeroPedido">Nº Pedido</label>
                             <input type="text" name="numeroPedido" id="numeroPedido" class="form-control required" readonly="readonly" value="@Model.NumeroPedido" />
-                            <input type="hidden" name="percentualComissao" id="percentualComissao" class="form-control required" readonly="readonly" value="@Model.Representada.Comissao" />
+                            <input type="hidden" name="pedidoId" id="pedidoId" class="form-control" readonly="readonly" value="@Model.PedidoId" />
+                            <input type="hidden" name="percentualComissao" id="percentualComissao" class="form-control" readonly="readonly" value="@Model.Representada.Comissao" />
                         </div>
-                        <div class="form-group col-md-3">
-                            <label class="control-label" for="condicaoPagamento">Condição Pagamento</label>
+                        <div class="form-group col-md-2">
+                            <label class="control-label" for="condicaoPagamento">Cond. Pagamento</label>
                             <input type="text" name="condicaoPagamento" id="condicaoPagamento" class="form-control required" readonly="readonly" value="@Model.CondicaoPagamento.Descricao" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="control-label" for="percentualComissao">Comissão(%)</label>
+                            <input type="text" name="percentualComissao" id="percentualComissao" class="form-control required" readonly="readonly" value="@Model.Representada.Comissao" />
                         </div>
                         <div class="form-group col-md-3">
                             <label class="control-label" for="valorJaFaturado">Valor já Faturado</label>
@@ -70,7 +73,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label class="control-label" for="notaFiscal">Nota Fiscal</label>
-                            <input type="text" name="notaFiscal" id="notaFiscal" class="form-control required" />
+                            <input type="text" name="notaFiscal" id="notaFiscal" class="form-control" />
                         </div>
                         <div class="form-group col-md-12">
                             <label class="control-label" for="informacoesAdicionais">Informações Adicionais</label>
@@ -112,7 +115,7 @@
     </div>
 </div>
 
-<div class="modal" id="modal-pedido" tabindex="-1" role="dialog">
+<div class="modal" id="modal-faturamento" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">

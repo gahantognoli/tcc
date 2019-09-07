@@ -25,15 +25,17 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         private readonly IProdutoAppService _produtoAppService;
         private readonly IFaturamentoAppService _faturamentoAppService;
         private readonly IEntitySerializationServices<PedidoViewModel> _entitySerializationServices;
+        private readonly IEntitySerializationServices<FaturamentoViewModel> _entitySerializationServicesFaturamento;
 
 
         public PedidoController(IPedidoAppService pedidoAppService, IUsuarioAppService usuarioAppService,
             IRepresentadaAppService representadaAppService, IStatusPedidoAppService statusPedidoAppService,
-            ITipoPedidoAppService tipoPedidoAppService, ITransportadoraAppService transportadoraAppService, 
+            ITipoPedidoAppService tipoPedidoAppService, ITransportadoraAppService transportadoraAppService,
             ICondicaoPagamentoAppService condicaoPagamentoAppService, IContatoClienteAppService contatoClienteAppService,
             IEnderecoClienteAppService enderecoClienteAppService, IPessoaFisicaAppService pessoaFisicaAppService,
             IPessoaJuridicaAppService pessoaJuridicaAppService, IProdutoAppService produtoAppService,
-            IFaturamentoAppService faturamentoAppService, IEntitySerializationServices<PedidoViewModel> entitySerializationServices)
+            IFaturamentoAppService faturamentoAppService, IEntitySerializationServices<PedidoViewModel> entitySerializationServices,
+            IEntitySerializationServices<FaturamentoViewModel> entitySerializationServicesFaturamento)
         {
             _pedidoAppService = pedidoAppService;
             _usuarioAppService = usuarioAppService;
@@ -49,6 +51,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             _produtoAppService = produtoAppService;
             _faturamentoAppService = faturamentoAppService;
             _entitySerializationServices = entitySerializationServices;
+            _entitySerializationServicesFaturamento = entitySerializationServicesFaturamento;
         }
 
         // GET: Pedido
@@ -77,7 +80,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             if (orcamentoRetorno.ValidationResult.IsValid)
                 TempData["OrcamentoGerado"] = "Orçamento " + orcamento.NumeroPedido +
                               " gerado com sucesso";
-            
+
             return Json(orcamentoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
         }
 
@@ -86,7 +89,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         {
             var orcamentoRetorno = _entitySerializationServices.Deserialize(orcamento);
             orcamentoRetorno = _pedidoAppService.Atualizar(orcamentoRetorno);
-            if(orcamentoRetorno.ValidationResult.IsValid)
+            if (orcamentoRetorno.ValidationResult.IsValid)
                 TempData["OrcamentoAtualizado"] = "Orçamento " + orcamentoRetorno.NumeroPedido +
                               " atualizado com sucesso";
 
@@ -112,6 +115,16 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        public ActionResult Faturar(string faturamento)
+        {
+            FaturamentoViewModel faturamentoViewModel =
+                _entitySerializationServicesFaturamento.Deserialize(faturamento);
+            var _faturamentoRetorno = _faturamentoAppService.Faturar(faturamentoViewModel);
+            TempData["Faturado"] = "Pedido Faturado com sucesso!";
+            return Json(_faturamentoRetorno.ValidationResult, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult AlterarStatus(Guid statusId, Guid pedidoId)
         {
             var pedidoRetorno = _pedidoAppService.AlterarStatus(statusId, pedidoId);
@@ -130,14 +143,14 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         public ActionResult Acoes(Guid id)
         {
             var pedido = _pedidoAppService.ObterPorId(id);
-            PopularViewBagAcoes(pedido.RepresentadaId, pedido.ClienteId);
+            PopularViewBagAcoes(pedido.RepresentadaId, pedido.ClienteId, id);
             return View(pedido);
         }
 
-        private IEnumerable<PedidoViewModel> SearchByParameter(string parametro = "", string busca = "",
+        private List<PedidoViewModel> SearchByParameter(string parametro = "", string busca = "",
             string buscaRepresentada = "", string buscaStatus = "", string buscaTipoPedido = "")
         {
-            IEnumerable<PedidoViewModel> pedidos = new List<PedidoViewModel>();
+            List<PedidoViewModel> pedidos = new List<PedidoViewModel>();
 
             //Isso vira de uma claim, depois que fizermos o esquema de autenticação.
             var usuario = _usuarioAppService.ObterPorId(Guid.Parse("65d44201-487e-46f0-bc3f-d4774c1768d5"));
@@ -146,7 +159,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (!string.IsNullOrEmpty(busca))
                 {
-                    pedidos = _pedidoAppService.ObterPorCliente(usuario, busca);
+                    pedidos = _pedidoAppService.ObterPorCliente(usuario, busca).ToList();
                     return pedidos;
                 }
             }
@@ -154,7 +167,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (!string.IsNullOrEmpty(buscaRepresentada))
                 {
-                    pedidos = _pedidoAppService.ObterPorRepresentada(usuario, Guid.Parse(buscaRepresentada));
+                    pedidos = _pedidoAppService.ObterPorRepresentada(usuario, Guid.Parse(buscaRepresentada)).ToList();
                     return pedidos;
                 }
             }
@@ -162,7 +175,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (!string.IsNullOrEmpty(busca))
                 {
-                    pedidos = _pedidoAppService.ObterPorVendedor(busca);
+                    pedidos = _pedidoAppService.ObterPorVendedor(busca).ToList();
                     return pedidos;
                 }
             }
@@ -170,7 +183,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (!string.IsNullOrEmpty(busca))
                 {
-                    pedidos = _pedidoAppService.ObterPorDataEmissao(usuario, Convert.ToDateTime(busca));
+                    pedidos = _pedidoAppService.ObterPorDataEmissao(usuario, Convert.ToDateTime(busca)).ToList();
                     return pedidos;
                 }
             }
@@ -179,7 +192,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                 if (!string.IsNullOrEmpty(busca))
                 {
                     var pedido = _pedidoAppService.ObterPorNumeroPedido(usuario, Convert.ToInt32(busca));
-                    pedidos.ToList().Add(pedido);
+                    pedidos.Add(pedido);
                     return pedidos;
                 }
             }
@@ -187,7 +200,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (!string.IsNullOrEmpty(buscaStatus))
                 {
-                    pedidos = _pedidoAppService.ObterPorStatus(usuario, Guid.Parse(buscaStatus));
+                    pedidos = _pedidoAppService.ObterPorStatus(usuario, Guid.Parse(buscaStatus)).ToList();
                     return pedidos;
                 }
             }
@@ -195,12 +208,12 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (!string.IsNullOrEmpty(buscaTipoPedido))
                 {
-                    pedidos = _pedidoAppService.ObterPorTipo(usuario, Guid.Parse(buscaTipoPedido));
+                    pedidos = _pedidoAppService.ObterPorTipo(usuario, Guid.Parse(buscaTipoPedido)).ToList();
                     return pedidos;
                 }
             }
 
-            pedidos = _pedidoAppService.ObterTodos(usuario);
+            pedidos = _pedidoAppService.ObterTodos(usuario).ToList();
             return pedidos;
         }
 
@@ -274,7 +287,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             ViewBag.TipoPedido = _tipoPedidoAppService.ObterTodos();
         }
 
-        private void PopularViewBagAcoes(Guid representadaId, Guid clienteId)
+        private void PopularViewBagAcoes(Guid representadaId, Guid clienteId, Guid pedidoId)
         {
             ViewBag.Vendedor = _usuarioAppService.ObterTodos();
             ViewBag.Transportadora = _transportadoraAppService.ObterTodos();
@@ -283,6 +296,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             ViewBag.EnderecosCliente = _enderecoClienteAppService.ObterTodos(clienteId);
             ViewBag.ContatosCliente = _contatoClienteAppService.ObterTodos(clienteId);
             ViewBag.StatusNaoPadroes = _statusPedidoAppService.ObterStatusNaoPadroes();
+            ViewBag.Faturamentos = _faturamentoAppService.ObterTodos(pedidoId);
         }
 
         protected override void Dispose(bool disposing)

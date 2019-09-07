@@ -14,14 +14,20 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
     {
         private readonly IFaturamentoService _faturamentoService;
         private readonly IPedidoService _pedidoService;
+        private readonly IStatusPedidoService _statusPedidoService;
+        private readonly IItemPedidoService _itemPedidoService;
+        private readonly IParcelaService _parcelaService;
 
         public FaturamentoAppService(IFaturamentoService faturamentoService,
-            IPedidoService pedidoService,
-            IUnitOfWork uow)
+            IPedidoService pedidoService, IStatusPedidoService statusPedidoService,
+            IItemPedidoService itemPedidoService, IParcelaService parcelaService, IUnitOfWork uow)
             : base(uow)
         {
             _faturamentoService = faturamentoService;
             _pedidoService = pedidoService;
+            _statusPedidoService = statusPedidoService;
+            _itemPedidoService = itemPedidoService;
+            _parcelaService = parcelaService;
         }
 
         public FaturamentoViewModel Atualizar(FaturamentoViewModel faturamento)
@@ -31,7 +37,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
             if (faturamentoRetorno.EhValido())
                 Commit();
-            
+
             return faturamentoRetorno;
         }
 
@@ -45,53 +51,44 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public FaturamentoViewModel Faturar(FaturamentoViewModel faturamento)
         {
             var pedido = _pedidoService.ObterPorId(faturamento.PedidoId);
-
+            faturamento.Parcelas.ToList().ForEach(p => p.FaturamentoId = faturamento.FaturamentoId);
 
             var faturamentoRetorno = _faturamentoService.Faturar(Mapper.Map<Faturamento>(faturamento));
-            var faturamentosPedido = _faturamentoService.ObterTodos(faturamentoRetorno.PedidoId);
 
-            if (faturamentoRetorno.EhValido())
+            var valorTotalFaturamento = 0M;
+            var faturamentosPedido = _faturamentoService.ObterTodos(faturamento.PedidoId);
+
+            foreach (var item in faturamentosPedido)
             {
-
-                if (faturamentosPedido.Where(f => f.FaturamentoId != faturamentoRetorno.FaturamentoId).Count() > 0)
-                {
-                    faturamentosPedido = faturamentosPedido.Where(f => f.FaturamentoId != faturamentoRetorno.FaturamentoId);
-                    var valorTotalFaturamentosPedido = 0.0M;
-
-                    foreach (var item in faturamentosPedido)
-                    {
-                        valorTotalFaturamentosPedido += item.Valor;
-                    }
-
-                    // Criar método auxiliar para retornar o status do pedido
-                    if (valorTotalFaturamentosPedido < pedido.ValorTotal)
-                        pedido.StatusPedido.Descricao = "Parcialmente Faturado";
-                    else
-                        pedido.StatusPedido.Descricao = "Faturado";
-
-                    _pedidoService.Atualizar(pedido);
-                }
-                else
-                {
-                    if (faturamentoRetorno.Valor < pedido.ValorTotal)
-                        pedido.StatusPedido.Descricao = "Parcialmente Faturado";
-                    else
-                        pedido.StatusPedido.Descricao = "Faturado";
-
-                    _pedidoService.Atualizar(pedido);
-                }
-
-
-
-                Commit();
+                valorTotalFaturamento += item.Valor;
             }
 
+            valorTotalFaturamento += faturamento.Valor;
+
+            if (valorTotalFaturamento < pedido.ValorTotal)
+            {
+                var statusId = _statusPedidoService.ObterPorDescricao("Parcialmente Faturado")
+                    .FirstOrDefault().StatusPedidoId;
+                _pedidoService.AlterarStatus(statusId, faturamento.PedidoId);
+            }
+            else
+            {
+                var statusId = _statusPedidoService.ObterPorDescricao("Faturado")
+                    .FirstOrDefault().StatusPedidoId;
+                _pedidoService.AlterarStatus(statusId, faturamento.PedidoId);
+            }
+
+            Commit();
             return Mapper.Map<FaturamentoViewModel>(faturamentoRetorno);
         }
 
         public FaturamentoViewModel ObterPorId(Guid id)
         {
-            return Mapper.Map<FaturamentoViewModel>(_faturamentoService.ObterPorId(id));
+            var faturamento = Mapper.Map<FaturamentoViewModel>(_faturamentoService.ObterPorId(id));
+            faturamento.Parcelas = 
+                Mapper.Map<IEnumerable<ParcelaViewModel>>(_parcelaService
+                .ObterTodos(faturamento.FaturamentoId)).ToList();
+            return faturamento;
         }
 
         public IEnumerable<FaturamentoViewModel> ObterTodos(Guid pedidoId)
@@ -102,6 +99,44 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public decimal ObterTotalFaturamento(Guid pedidoId)
         {
             return _faturamentoService.ObterTotalFaturamento(pedidoId);
+        }
+
+        public void Remover(Guid id, Guid pedidoId)
+        {
+            var pedido = _pedidoService.ObterPorId(pedidoId);
+
+            foreach (var parcela in _parcelaService.ObterTodos(id))
+            {
+                _parcelaService.Remover(parcela.ParcelaId);
+            }
+
+            var valorTotalFaturamento = 0M;
+            var faturamentosPedido = _faturamentoService.ObterTodos(pedidoId);
+
+            foreach (var item in faturamentosPedido)
+            {
+                valorTotalFaturamento += item.Valor;
+            }
+
+            var faturamento = _faturamentoService.ObterPorId(id);
+
+            valorTotalFaturamento -= faturamento.Valor;
+
+            if (valorTotalFaturamento <= pedido.ValorTotal && valorTotalFaturamento != 0)
+            {
+                var statusId = _statusPedidoService.ObterPorDescricao("Parcialmente Faturado")
+                    .FirstOrDefault().StatusPedidoId;
+                _pedidoService.AlterarStatus(statusId, faturamento.PedidoId);
+            }
+            else if(valorTotalFaturamento == 0)
+            {
+                var statusId = _statusPedidoService.ObterPorDescricao("Pedido de Venda Gerado")
+                    .FirstOrDefault().StatusPedidoId;
+                _pedidoService.AlterarStatus(statusId, faturamento.PedidoId);
+            }
+
+            _faturamentoService.Remover(id);
+            Commit();
         }
 
         public void Remover(Guid id)

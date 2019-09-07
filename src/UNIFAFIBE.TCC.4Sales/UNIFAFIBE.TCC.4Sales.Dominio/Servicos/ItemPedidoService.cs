@@ -42,6 +42,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _itemPedidoRepositorio.ObterPorId(id);
         }
 
+        public IEnumerable<ItemPedido> ObterPorProduto(Guid produtoId)
+        {
+            return _itemPedidoRepositorio.ObterPorProduto(produtoId);
+        }
+
         public IEnumerable<ItemPedido> ObterTodos(Guid pedidoId)
         {
             return _itemPedidoRepositorio.ObterTodos(pedidoId);

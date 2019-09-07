@@ -106,7 +106,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public void Remover(Guid id)
         {
-
             var contatosRepresentada = _contatoRepresentadaService.ObterTodos(id);
             if (contatosRepresentada.Count() > 0)
             {
@@ -130,14 +129,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             {
                 condicoesPagamento.ToList().ForEach(c => _condicaoPagamentoService.Remover(c.CondicaoPagamentoId));
             }
-
-            //To do: Rever como remover os usuários, porque se não, não conseguimos remover a representada, 
-            // por causa da FK de usuários.
-            //var usuarios = _usuarioRepresentadaService.ObterPorRepresentada(id);
-            //if (usuarios.Count() > 0)
-            //{
-            //    usuarios.ToList().ForEach(c => _usuarioRepresentadaService.Remover(c.UsuarioRepresentadaId));
-            //}
 
             _representadaService.Remover(id);
             Commit();

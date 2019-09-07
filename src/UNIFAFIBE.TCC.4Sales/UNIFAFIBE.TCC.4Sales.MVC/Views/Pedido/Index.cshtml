@@ -157,10 +157,15 @@
             fGlobal.EmitirNotificacao("Sucesso",'@TempData["PedidoGerado"]', "info");
         }
 
+        if (fGlobal.IsNotEmpty('@TempData["Faturado"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["Faturado"]', "info");
+        }
+
         if (fGlobal.IsNotEmpty('@TempData["OrcamentoAtualizado"]'))
         {
             fGlobal.EmitirNotificacao("Sucesso",'@TempData["OrcamentoAtualizado"]', "warning");
-        } 
+        }
 
         if (fGlobal.IsNotEmpty('@TempData["StatusAtualizado"]'))
         {

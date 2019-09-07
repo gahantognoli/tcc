@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
@@ -114,10 +115,18 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         {
             try
             {
-                var produto = _produtoAppService.ObterPorId(id);
-                _produtoAppService.Remover(id);
-                TempData["RemovidoSucesso"] = "Produto removido com sucesso";
-                return RedirectToAction("Painel", "Representada", new { id = produto.RepresentadaId });
+                var produto = _produtoAppService.Remover(id);
+                if (produto.ValidationResult.IsValid)
+                {
+                    TempData["RemovidoSucesso"] = "Produto removido com sucesso";
+                    return RedirectToAction("Painel", "Representada", new { id = produto.RepresentadaId });
+                }
+                else
+                {
+                    TempData["FalhaRemover"] = produto.ValidationResult.Erros.FirstOrDefault().Message;
+                    return View(produto);
+                }
+                
             }
             catch (Exception e)
             {

@@ -159,5 +159,17 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             return retornoCliente;
         }
+
+        public IEnumerable<PessoaJuridica> ObterPorSegmento(Guid segmentoId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<PessoaJuridica> retornoCliente;
+
+            retornoCliente = cn.Query<PessoaJuridica>(PessoaJuridicaProcedures.ObterPorSegmento.GetDescription(),
+                new { segmentoId = segmentoId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoCliente;
+        }
     }
 }

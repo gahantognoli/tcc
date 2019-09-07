@@ -62,10 +62,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<SegmentoViewModel>>(_segmentoService.ObterTodos());
         }
 
-        public void Remover(Guid id)
+        public SegmentoViewModel Remover(Guid id)
         {
-            _segmentoService.Remover(id);
-            Commit();
+            var segmentoRetorno =  Mapper.Map<SegmentoViewModel>(_segmentoService.Remover(id));
+            if (segmentoRetorno.ValidationResult.IsValid)
+                Commit();
+            return segmentoRetorno;
         }
     }
 }

@@ -256,13 +256,15 @@ $(function () {
             $('#buscaRepresentada').attr('style', 'display:none');
             $('#buscaStatus').attr('style', 'display:none');
         }
+
+        if ($(this).val() === "dataEmissao") {
+            $("#busca").mask("00/00/0000");
+        } else {
+            $("#busca").unmask();
+        }
     });
 
-    if ($('#parametro').val() === "dataEmissao") {
-        $("busca").mask("00/00/0000");
-    } else {
-        $("busca").mask("00/00/0000");
-    }
+    
 
     $(document).on('blur', '.desconto', function () {
         if ($(this).val() === "") {

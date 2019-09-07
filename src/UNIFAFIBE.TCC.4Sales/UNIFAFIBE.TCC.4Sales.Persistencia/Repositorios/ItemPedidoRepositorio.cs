@@ -37,6 +37,25 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoItemPedido;
         }
 
+        public IEnumerable<ItemPedido> ObterPorProduto(Guid produtoId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<ItemPedido> retornoItemPedido;
+
+            IEnumerable<dynamic> query = cn.Query<dynamic>(ItemPedidoProcedures.ObterProduto.GetDescription(),
+                new
+                {
+                    IdProduto = produtoId,
+                },
+                commandType: CommandType.StoredProcedure);
+
+            AutoMapper.Configuration.AddIdentifier(typeof(Produto), "ProdutoId");
+
+            retornoItemPedido = (AutoMapper.MapDynamic<ItemPedido>(query, false) as IEnumerable<ItemPedido>);
+
+            return retornoItemPedido;
+        }
+
         public override IEnumerable<ItemPedido> ObterTodos()
         {
             throw new NotImplementedException();

@@ -8,5 +8,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
     {
         IEnumerable<PessoaFisica> ObterPorNome(string nome);
         IEnumerable<PessoaFisica> ObterPorCPF(string cpf);
+        IEnumerable<PessoaFisica> ObterPorSegmento(Guid segmentoId);
     }
 }

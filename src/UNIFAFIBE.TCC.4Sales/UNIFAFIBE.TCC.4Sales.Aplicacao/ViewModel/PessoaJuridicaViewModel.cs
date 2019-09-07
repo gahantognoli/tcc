@@ -20,21 +20,10 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         [MaxLength(50, ErrorMessage = "Tamanho máximo de 50 caracteres")]
         public string NomeFantasia { get; set; }
 
-        private string _cnpj;
+        public string _cnpj;
         [Required(ErrorMessage = "Preencha o campo CNPJ")]
         [StringLength(18, MinimumLength = 18, ErrorMessage = "Tamanho deve ser de 18 caracteres")]
-        public string CNPJ
-        {
-            get
-            {
-                return _cnpj;
-            }
-            set
-            {
-                if (CNPJ != null)
-                    _cnpj = value.Replace("-", string.Empty).Replace(".", string.Empty).Replace("/", string.Empty);
-            }
-        }
+        public string CNPJ { get; set; }
 
     }
 }

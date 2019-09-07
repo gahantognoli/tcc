@@ -16,7 +16,7 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
             Property(f => f.NotaFiscal)
                 .HasMaxLength(50);
 
-            Property(f => f.Data)
+            Property(f => f.DataEmissao)
                 .IsRequired();
 
             Property(f => f.InformacoesAdicionais)

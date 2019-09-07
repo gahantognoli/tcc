@@ -1,0 +1,106 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.FaturamentoViewModel
+
+@{
+    ViewBag.Title = "Remover";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">
+                <span class="h5 text-white">
+                    <i class="fas fa-dollar-sign icone-cadastro"></i>
+                    Remover Faturamento
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label class="control-label" for="numeroPedido">Nº Pedido</label>
+                        <input type="text" name="numeroPedido" id="numeroPedido" class="form-control required" readonly="readonly" value="@ViewBag.Pedido.NumeroPedido" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label" for="condicaoPagamento">Cond. Pagamento</label>
+                        <input type="text" name="condicaoPagamento" id="condicaoPagamento" class="form-control required" readonly="readonly" value="@ViewBag.Pedido.CondicaoPagamento.Descricao" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label" for="percentualComissao">Comissão(%)</label>
+                        <input type="text" name="percentualComissao" id="percentualComissao" class="form-control required" readonly="readonly" value="@ViewBag.Pedido.Representada.Comissao" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="totalPedido">Total do Pedido</label>
+                        <input type="text" name="totalPedido" id="totalPedido" class="form-control mValor required" readonly="readonly" value="@ViewBag.Pedido.ValorTotal" />
+                    </div>
+                </div>
+                <hr class="linha" />
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="valorFaturamento">Valor Faturado</label>
+                        <input type="text" name="valorFaturamento" id="valorFaturamento" class="form-control required mValor" value="@Model.Valor" readonly="readonly" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="notaFiscal">Nota Fiscal</label>
+                        <input type="text" name="notaFiscal" id="notaFiscal" class="form-control" value="@Model.NotaFiscal" readonly="readonly" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label" for="informacoesAdicionais">Informações Adicionais</label>
+                        <textarea name="informacoesAdicionais" id="informacoesAdicionais" class="form-control" rows="5" value="@Model.InformacoesAdicionais" readonly="readonly"></textarea>
+                    </div>
+                </div>
+                <hr class="linha" />
+                <h4>Parcelas</h4>
+                <table class="table table-bordered table-sm">
+                    <tr class="bg-dark text-white">
+                        <th>Parcela</th>
+                        <th>Comissão</th>
+                        <th>Data</th>
+                    </tr>
+                    <tbody>
+                        @foreach (var item in Model.Parcelas.OrderBy(p => p.NumeroParcela))
+                        {
+                            <tr>
+                                <td><input type="text" name="comissao" class="form-control" value="@item.NumeroParcela" disabled="disabled" /></td>
+                                <td><input type="text" name="comissao" class="form-control" value="@item.ValorParcela" disabled="disabled" /></td>
+                                <td><input type="text" name="comissao" class="form-control" value="@item.DataPagamento" disabled="disabled" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button type="button" id="btnRemover" class="btn btn-danger mr-1" data-toggle="modal" data-target="#confirmarRemocao">Remover</button>
+        @Html.ActionLink("Voltar", "Acoes", "Pedido", new { id = Model.PedidoId }, new { @class = "btn btn-secondary" })
+    </div>
+</div>
+
+<div class="modal" id="confirmarRemocao" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Remover</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="h4">Atenção</p>
+                <p class="lead"><strong>Deseja realmente remover esse faturamento?</strong></p>
+                @using (Html.BeginForm("Remover", "Faturamento", FormMethod.Post, new { id = "form-remover" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" id="id" value="@Model.FaturamentoId" />
+                    <input type="hidden" name="pedidoId" id="pedidoId" value="@Model.PedidoId" />
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="$('#form-remover').submit()">Confirmar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

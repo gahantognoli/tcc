@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         Produto Adicionar(Produto produto);
         Produto Atualizar(Produto produto);
-        void Remover(Guid id);
+        Produto Remover(Guid id);
         Produto ObterPorId(Guid id);
         IEnumerable<Produto> ObterTodos(Guid representadaId);
         IEnumerable<Produto> ObterPorNome(string nome, Guid representadaId);

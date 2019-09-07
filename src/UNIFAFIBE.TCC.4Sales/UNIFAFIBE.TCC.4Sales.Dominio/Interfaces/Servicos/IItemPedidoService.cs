@@ -10,6 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         ItemPedido Atualizar(ItemPedido itemPedido);
         void Remover(Guid id);
         ItemPedido ObterPorId(Guid id);
+        IEnumerable<ItemPedido> ObterPorProduto(Guid produtoId);
         IEnumerable<ItemPedido> ObterTodos(Guid pedidoId);
     }
 }

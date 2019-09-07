@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
@@ -94,13 +95,22 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         {
             try
             {
-                _segmentoAppService.Remover(id);
-                TempData["RemovidoSucesso"] = "Segmento removido com sucesso";
-                return RedirectToAction("Index", "Cliente");
+                var segmentoRetorno = _segmentoAppService.Remover(id);
+                if (segmentoRetorno.ValidationResult.IsValid)
+                {
+                    TempData["RemovidoSucesso"] = "Segmento removido com sucesso";
+                    return RedirectToAction("Index", "Cliente");
+                }
+                else
+                {
+                    TempData["FalhaRemover"] = segmentoRetorno.ValidationResult.Erros.FirstOrDefault().Message;
+                    return View(segmentoRetorno);
+                }
+                
             }
             catch (Exception e)
             {
-                return View();
+                throw;
             }
         }
 

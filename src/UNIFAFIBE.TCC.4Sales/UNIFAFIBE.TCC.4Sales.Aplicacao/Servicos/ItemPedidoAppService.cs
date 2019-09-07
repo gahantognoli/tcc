@@ -52,6 +52,11 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<ItemPedidoViewModel>(_itemPedidoService.ObterPorId(id));
         }
 
+        public IEnumerable<ItemPedidoViewModel> ObterPorProduto(Guid produtoId)
+        {
+            return Mapper.Map<IEnumerable<ItemPedidoViewModel>>(_itemPedidoService.ObterPorId(produtoId));
+        }
+
         public IEnumerable<ItemPedidoViewModel> ObterTodos(Guid pedidoId)
         {
             return Mapper.Map<IEnumerable<ItemPedidoViewModel>>(_itemPedidoService.ObterTodos(pedidoId));

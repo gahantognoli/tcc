@@ -73,6 +73,7 @@
     <Compile Include="Especificacoes\PessoasJuridicas\PessoaJuridicaDevePossuirRazaoSocialUnicaSpecification.cs" />
     <Compile Include="Especificacoes\Produtos\ProdutoDevePossuirCodigoUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Produtos\ProdutoDevePossuirPrecoMaiorDoQueZeroSpecification.cs" />
+    <Compile Include="Especificacoes\Produtos\ProdutoNaoDevePossuirItensVinculadosSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirCNPJUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirCNPJValidoSpecification.cs" />
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirComissaoMaiorDoQueZeroSpecification.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Especificacoes\Representadas\RepresentadaDevePossuirRazaoSocialUnicaSpecification.cs" />
     <Compile Include="Especificacoes\Segmentos\SegmentoDevePossuirDescricaoSpecification.cs" />
     <Compile Include="Especificacoes\Segmentos\SegmentoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\Segmentos\SegmentoNaoDevePossuirClientesVinculadosSpecification.cs" />
     <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoSpecification.cs" />
     <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoUnicaSpecification.cs" />
     <Compile Include="Especificacoes\TiposPedido\TipoPedidoDevePossuirDescricaoSpecification.cs" />
@@ -175,10 +177,12 @@
     <Compile Include="Validacoes\PessoasFisicas\PessoaFisicaEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\PessoasJuridicas\PessoaJuridicaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\PessoasJuridicas\PessoaJuridicaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Produtos\ProdutoEstaAptoParaRemoverValidation.cs" />
     <Compile Include="Validacoes\Produtos\ProdutoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\Produtos\ProdutoEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\Representadas\RepresentadaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\Representadas\RepresentadaEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Segmentos\SegmentoEstaAptoParaRemover.cs" />
     <Compile Include="Validacoes\Segmentos\SegmentoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\Segmentos\SegmentoEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaAptoValidation.cs" />

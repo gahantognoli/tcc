@@ -165,17 +165,9 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public void Remover(Guid id)
         {
-            var itensPedido = _itemPedidoAppService.ObterTodos(id);
-            if (itensPedido.Count() > 0)
-            {
-                itensPedido.ToList().ForEach(p => _itemPedidoAppService.Remover(p.ItemPedidoId));
-            }
-
             var faturamento = _faturamentoAppService.ObterTodos(id);
             if (faturamento.Count() > 0)
             {
-                faturamento.ToList().ForEach(f => _faturamentoAppService.Remover(f.FaturamentoId));
-
                 foreach (var item in faturamento)
                 {
                     var parcela = _parcelaAppService.ObterTodos(item.FaturamentoId);
@@ -184,6 +176,13 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
                         parcela.ToList().ForEach(f => _parcelaAppService.Remover(f.ParcelaId));
                     }
                 }
+                faturamento.ToList().ForEach(f => _faturamentoAppService.Remover(f.FaturamentoId));
+            }
+
+            var itensPedido = _itemPedidoAppService.ObterTodos(id);
+            if (itensPedido.Count() > 0)
+            {
+                itensPedido.ToList().ForEach(p => _itemPedidoAppService.Remover(p.ItemPedidoId));
             }
             _pedidoService.Remover(id);
             Commit();

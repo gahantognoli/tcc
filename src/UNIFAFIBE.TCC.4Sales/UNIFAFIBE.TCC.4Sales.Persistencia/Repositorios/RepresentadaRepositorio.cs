@@ -81,11 +81,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             foreach (var item in modifiedContatos)
             {
+                item.RepresentadaId = representada.RepresentadaId;
                 Db.Set<ContatoRepresentada>().AddOrUpdate(item);
             }
 
             foreach (var item in modifiedCondicoesPagamento)
             {
+                item.RepresentadaId = representada.RepresentadaId;
                 Db.Set<CondicaoPagamento>().AddOrUpdate(item);
             }
 
@@ -149,6 +151,17 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
                 commandType: CommandType.StoredProcedure);
 
             return retornoRepresentada;
+        }
+
+        public override void Remover(Guid id)
+        {
+            var cn = Db.Database.Connection;
+
+            cn.Query(RepresentadaProcedures.Remover.GetDescription(),
+                new { idRepresentada = id },
+                commandType: CommandType.StoredProcedure);
+
+            base.Remover(id);
         }
     }
 }

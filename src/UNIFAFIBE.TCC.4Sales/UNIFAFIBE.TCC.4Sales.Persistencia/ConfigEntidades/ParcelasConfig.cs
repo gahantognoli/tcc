@@ -16,9 +16,9 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasPrecision(18, 2)
                 .IsRequired();
 
-            Property(p => p.ValorComissao)
-                .HasPrecision(18, 2)
-                .IsRequired();
+            //Property(p => p.ValorComissao)
+            //    .HasPrecision(18, 2)
+            //    .IsRequired();
 
             Property(p => p.DataPagamento)
                 .IsRequired();
