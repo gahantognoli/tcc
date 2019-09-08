@@ -16,7 +16,6 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 {
     public class PedidoRepositorio : Repositorio<Pedido>, IPedidoRepositorio
     {
-
         public PedidoRepositorio(TCC_Contexto contexto) : base(contexto)
         {
         }
@@ -312,6 +311,54 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             var pedido = DbSet.Find(pedidoId);
             pedido.StatusPedidoId = statusId;
             return pedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorCliente(Guid clienteId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorClienteRemover.GetDescription(),
+                new { @idCliente = clienteId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorTransportadora(Guid transportadoraId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorTransportadoraRemover.GetDescription(),
+                new { @idTransportadora = transportadoraId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorStatus(Guid statusId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorStatusRemover.GetDescription(),
+                new { @idStatus = statusId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
+        }
+
+        public IEnumerable<Pedido> ObterPorTipo(Guid tipoId)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Pedido> retornoPedido;
+
+            retornoPedido = cn.Query<Pedido>(PedidoProcedures.ObterPorTipoRemover.GetDescription(),
+                new { @idTipoPedido = tipoId },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoPedido;
         }
     }
 }

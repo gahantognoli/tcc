@@ -38,5 +38,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
             return ValidationResult.IsValid;
         }
 
+        public bool EstaAptoParaRemover(IPedidoRepositorio pedidoRepositorio)
+        {
+            ValidationResult = new StatusPedidoEstaAptoParaRemover(pedidoRepositorio).Validate(this);
+            return ValidationResult.IsValid;
+        }
+
     }
 }

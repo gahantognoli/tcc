@@ -84,8 +84,11 @@
     <Compile Include="Especificacoes\Segmentos\SegmentoNaoDevePossuirClientesVinculadosSpecification.cs" />
     <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoSpecification.cs" />
     <Compile Include="Especificacoes\StatusPedidos\StatusPedidoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\StatusPedidos\StatusPedidoNaoDevePossuirPedidosVinculadosSpecification.cs" />
     <Compile Include="Especificacoes\TiposPedido\TipoPedidoDevePossuirDescricaoSpecification.cs" />
     <Compile Include="Especificacoes\TiposPedido\TipoPedidoDevePossuirDescricaoUnicaSpecification.cs" />
+    <Compile Include="Especificacoes\TiposPedido\TipoPedidoNaoDevePossuirPedidosVinculadosSpecification.cs" />
+    <Compile Include="Especificacoes\Transportadoras\TransportadoraNaoDevePossuirPedidosVinculadosSpecification.cs" />
     <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirEmailUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirEmailValidoSpecification.cs" />
     <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirSenhaComPeloMenosOitoCaracteresSpecification.cs" />
@@ -185,10 +188,13 @@
     <Compile Include="Validacoes\Segmentos\SegmentoEstaAptoParaRemover.cs" />
     <Compile Include="Validacoes\Segmentos\SegmentoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\Segmentos\SegmentoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaAptoParaRemover.cs" />
     <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\StatusPedidos\StatusPedidoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\TiposPedido\TipoPedidoEstaAptoParaRemoverValidation.cs" />
     <Compile Include="Validacoes\TiposPedido\TipoPedidoEstaAptoValidation.cs" />
     <Compile Include="Validacoes\TiposPedido\TipoPedidoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Transportadoras\TransportadoraEstaAptaParaRemoverValidation.cs" />
     <Compile Include="Validacoes\Usuarios\UsuarioEstaAptoValidation.cs" />
     <Compile Include="Validacoes\Usuarios\UsuarioEstaConsistenteValidation.cs" />
   </ItemGroup>

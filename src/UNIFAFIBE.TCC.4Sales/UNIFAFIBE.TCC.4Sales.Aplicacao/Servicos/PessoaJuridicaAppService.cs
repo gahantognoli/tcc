@@ -15,15 +15,18 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         private readonly IPessoaJuridicaService _pessoaJuridicaService;
         private readonly IEnderecoClienteService _enderecoClienteService;
         private readonly IContatoClienteService _contatoClienteService;
+        private readonly IPedidoAppService _pedidoAppService;
 
 
         public PessoaJuridicaAppService(IPessoaJuridicaService pessoaJuridicaService, IUnitOfWork uow,
-            IContatoClienteService contatoClienteService, IEnderecoClienteService enderecoClienteService)
+            IContatoClienteService contatoClienteService, IEnderecoClienteService enderecoClienteService,
+            IPedidoAppService pedidoAppService)
             : base(uow)
         {
             _pessoaJuridicaService = pessoaJuridicaService;
             _contatoClienteService = contatoClienteService;
             _enderecoClienteService = enderecoClienteService;
+            _pedidoAppService = pedidoAppService;
         }
 
         public PessoaJuridicaViewModel Adicionar(PessoaJuridicaViewModel cliente)
@@ -104,10 +107,17 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void Remover(Guid id)
         {
             var enderecosCliente = _enderecoClienteService.ObterTodos(id);
-            enderecosCliente.ToList().ForEach(x => _enderecoClienteService.Remover(x.EnderecoClienteId));
+            if (enderecosCliente.Count() > 0)
+                enderecosCliente.ToList().ForEach(x => _enderecoClienteService.Remover(x.EnderecoClienteId));
+            
 
             var contatosCliente = _contatoClienteService.ObterTodos(id);
-            contatosCliente.ToList().ForEach(x => _contatoClienteService.Remover(x.ContatoClienteId));
+            if (contatosCliente.Count() > 0)
+                contatosCliente.ToList().ForEach(x => _contatoClienteService.Remover(x.ContatoClienteId));
+
+            var pedidosCliente = _pedidoAppService.ObterPorCliente(id);
+            if (pedidosCliente.Count() > 0)
+                pedidosCliente.ToList().ForEach(x => _pedidoAppService.Remover(x.PedidoId));
 
             _pessoaJuridicaService.Remover(id);
             Commit();

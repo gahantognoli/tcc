@@ -15,15 +15,17 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         private readonly IPessoaFisicaService _pessoaFisicaService;
         private readonly IEnderecoClienteService _enderecoClienteService;
         private readonly IContatoClienteService _contatoClienteService;
+        private readonly IPedidoAppService _pedidoAppService;
 
         public PessoaFisicaAppService(IPessoaFisicaService pessoaFisicaService,
             IEnderecoClienteService enderecoClienteService, IContatoClienteService contatoClienteService,
-            IUnitOfWork uow)
+            IPedidoAppService pedidoAppService, IUnitOfWork uow)
             : base(uow)
         {
             _pessoaFisicaService = pessoaFisicaService;
             _enderecoClienteService = enderecoClienteService;
             _contatoClienteService = contatoClienteService;
+            _pedidoAppService = pedidoAppService;
         }
 
         public PessoaFisicaViewModel Adicionar(PessoaFisicaViewModel cliente)
@@ -34,7 +36,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
             if (pessoaFisicaRetorno.EhValido())
                 Commit();
-            
+
             return pessoaFisicaRetorno;
         }
 
@@ -95,10 +97,16 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void Remover(Guid id)
         {
             var enderecosCliente = _enderecoClienteService.ObterTodos(id);
-            enderecosCliente.ToList().ForEach(x => _enderecoClienteService.Remover(x.EnderecoClienteId));
+            if (enderecosCliente.Count() > 0)
+                enderecosCliente.ToList().ForEach(x => _enderecoClienteService.Remover(x.EnderecoClienteId));
 
             var contatosCliente = _contatoClienteService.ObterTodos(id);
-            contatosCliente.ToList().ForEach(x => _contatoClienteService.Remover(x.ContatoClienteId));
+            if (contatosCliente.Count() > 0)
+                contatosCliente.ToList().ForEach(x => _contatoClienteService.Remover(x.ContatoClienteId));
+
+            var pedidosCliente = _pedidoAppService.ObterPorCliente(id);
+            if (pedidosCliente.Count() > 0)
+                pedidosCliente.ToList().ForEach(x => _pedidoAppService.Remover(x.PedidoId));
 
             _pessoaFisicaService.Remover(id);
             Commit();

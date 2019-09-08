@@ -62,10 +62,13 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<TipoPedidoViewModel>>(_tipoPedidoService.ObterTodos());
         }
 
-        public void Remover(Guid id)
+        public TipoPedidoViewModel Remover(Guid id)
         {
-            _tipoPedidoService.Remover(id);
-            Commit();
+            var tipoPedidoRetorno = Mapper.Map<TipoPedidoViewModel>(_tipoPedidoService.Remover(id));
+            if (tipoPedidoRetorno.EhValido())
+                Commit();
+
+            return tipoPedidoRetorno;
         }
     }
 }

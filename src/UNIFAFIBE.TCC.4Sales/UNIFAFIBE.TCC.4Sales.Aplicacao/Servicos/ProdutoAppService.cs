@@ -68,7 +68,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public ProdutoViewModel Remover(Guid id)
         {
             var produtoRetorno = Mapper.Map<ProdutoViewModel>(_produtoService.Remover(id));
-            if (produtoRetorno.ValidationResult.IsValid)
+            if (produtoRetorno.EhValido())
                 Commit();
 
             return produtoRetorno;

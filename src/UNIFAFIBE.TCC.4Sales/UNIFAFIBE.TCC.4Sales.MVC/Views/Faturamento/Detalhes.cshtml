@@ -62,7 +62,7 @@
                             <tr>
                                 <td><input type="text" name="comissao" class="form-control" value="@item.NumeroParcela" disabled="disabled" /></td>
                                 <td><input type="text" name="comissao" class="form-control" value="@item.ValorParcela" disabled="disabled" /></td>
-                                <td><input type="text" name="comissao" class="form-control" value="@item.DataPagamento" disabled="disabled" /></td>
+                                <td><input type="text" name="comissao" class="form-control" value="@item.DataPagamento.ToShortDateString()" disabled="disabled" /></td>
                             </tr>
                         }
                     </tbody>

@@ -81,6 +81,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pedidoRepositorio.ObterPorCliente(vendedor, cliente);
         }
 
+        public IEnumerable<Pedido> ObterPorCliente(Guid clienteId)
+        {
+            return _pedidoRepositorio.ObterPorCliente(clienteId);
+        }
+
         public IEnumerable<Pedido> ObterPorDataEmissao(Usuario vendedor, DateTime dataEmissao)
         {
             return _pedidoRepositorio.ObterPorDataEmissao(vendedor, dataEmissao);
@@ -111,9 +116,24 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _pedidoRepositorio.ObterPorStatus(vendedor, statusId);
         }
 
+        public IEnumerable<Pedido> ObterPorStatus(Guid statusId)
+        {
+            return _pedidoRepositorio.ObterPorStatus(statusId);
+        }
+
         public IEnumerable<Pedido> ObterPorTipo(Usuario vendedor, Guid tipoId)
         {
             return _pedidoRepositorio.ObterPorTipo(vendedor, tipoId);
+        }
+
+        public IEnumerable<Pedido> ObterPorTipo(Guid tipoId)
+        {
+            return _pedidoRepositorio.ObterPorTipo(tipoId);
+        }
+
+        public IEnumerable<Pedido> ObterPorTransportadora(Guid transportadoraId)
+        {
+            return _pedidoRepositorio.ObterPorTransportadora(transportadoraId);
         }
 
         public IEnumerable<Pedido> ObterPorVendedor(string vendedor)

@@ -116,7 +116,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             try
             {
                 var produto = _produtoAppService.Remover(id);
-                if (produto.ValidationResult.IsValid)
+                if (produto.EhValido())
                 {
                     TempData["RemovidoSucesso"] = "Produto removido com sucesso";
                     return RedirectToAction("Painel", "Representada", new { id = produto.RepresentadaId });

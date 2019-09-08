@@ -11,7 +11,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
     {
         TransportadoraViewModel Adicionar(TransportadoraViewModel transportadora);
         TransportadoraViewModel Atualizar(TransportadoraViewModel transportadora);
-        void Remover(Guid id);
+        TransportadoraViewModel Remover(Guid id);
         TransportadoraViewModel ObterPorId(Guid id);
         IEnumerable<TransportadoraViewModel> ObterPorNome(string nome);
         IEnumerable<TransportadoraViewModel> ObterPorCidade(string cidade);

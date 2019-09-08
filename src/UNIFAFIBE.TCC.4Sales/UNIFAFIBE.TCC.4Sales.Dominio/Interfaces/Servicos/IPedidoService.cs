@@ -25,5 +25,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         IEnumerable<Pedido> ObterPorRepresentada(Usuario vendedor, Guid representadaId);
         IEnumerable<Pedido> ObterTodos(Usuario vendedor);
         IEnumerable<Pedido> ObterPorRepresentada(Guid representadaId);
+        IEnumerable<Pedido> ObterPorCliente(Guid clienteId);
+        IEnumerable<Pedido> ObterPorTransportadora(Guid transportadoraId);
+        IEnumerable<Pedido> ObterPorStatus(Guid statusId);
+        IEnumerable<Pedido> ObterPorTipo(Guid tipoId);
     }
 }

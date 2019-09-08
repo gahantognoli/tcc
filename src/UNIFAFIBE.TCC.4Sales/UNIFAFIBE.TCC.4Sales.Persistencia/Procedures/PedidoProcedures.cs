@@ -18,6 +18,14 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         ObterPorRepresentada,
         [Description("usp_Pedido_ObterPorRepresentadaRemover")]
         ObterPorRepresentadaRemover,
+        [Description("usp_Pedido_ObterPorClienteRemover")]
+        ObterPorClienteRemover,
+        [Description("usp_Pedido_ObterPorTransportadoraRemover")]
+        ObterPorTransportadoraRemover,
+        [Description("usp_Pedido_ObterPorStatusRemover")]
+        ObterPorStatusRemover,
+        [Description("usp_Pedido_ObterPorTipoPedidoRemover")]
+        ObterPorTipoRemover,
         [Description("usp_Pedido_ObterPorStatus")]
         ObterPorStatus,
         [Description("usp_Pedido_ObterPorTipo")]

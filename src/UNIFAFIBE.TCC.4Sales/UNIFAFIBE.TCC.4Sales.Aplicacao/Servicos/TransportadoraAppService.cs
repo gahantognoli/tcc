@@ -72,10 +72,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<IEnumerable<TransportadoraViewModel>>(_transportadoraService.ObterTodos());
         }
 
-        public void Remover(Guid id)
+        public TransportadoraViewModel Remover(Guid id)
         {
-            _transportadoraService.Remover(id);
-            Commit();
+            var transportadoraRetorno = Mapper.Map<TransportadoraViewModel>(_transportadoraService.Remover(id));
+            if (transportadoraRetorno.ValidationResult.IsValid)
+                Commit();
+            return transportadoraRetorno;
         }
     }
 }

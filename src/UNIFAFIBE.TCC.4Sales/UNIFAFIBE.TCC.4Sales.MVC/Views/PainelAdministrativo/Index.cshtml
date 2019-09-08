@@ -194,5 +194,10 @@
         {
             fGlobal.EmitirNotificacao("Sucesso",'@TempData["DesativadoSucesso"]', "danger");
         }
+
+        if (fGlobal.IsNotEmpty('@TempData["RemovidoSucesso"]'))
+        {
+            fGlobal.EmitirNotificacao("Sucesso",'@TempData["RemovidoSucesso"]', "danger");
+        }
     </script>
 }

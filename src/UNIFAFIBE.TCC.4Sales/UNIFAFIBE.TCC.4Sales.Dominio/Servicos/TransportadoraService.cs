@@ -9,10 +9,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
     public class TransportadoraService : ITransportadoraService
     {
         private readonly ITransportadoraRepositorio _transportadoraRepositorio;
+        private readonly IPedidoRepositorio _pedidoRepositorio;
 
-        public TransportadoraService(ITransportadoraRepositorio transportadoraRepositorio)
+        public TransportadoraService(ITransportadoraRepositorio transportadoraRepositorio,
+            IPedidoRepositorio pedidoRepositorio)
         {
             _transportadoraRepositorio = transportadoraRepositorio;
+            _pedidoRepositorio = pedidoRepositorio;
         }
 
         public Transportadora Adicionar(Transportadora transportadora)
@@ -60,9 +63,14 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _transportadoraRepositorio.ObterTodos();
         }
 
-        public void Remover(Guid id)
+        public Transportadora Remover(Guid id)
         {
-            _transportadoraRepositorio.Remover(id);
+            var transpordoraRetorno = _transportadoraRepositorio.ObterPorId(id);
+            if (transpordoraRetorno.EstaAptaParaRemover(_pedidoRepositorio))
+            {
+                _transportadoraRepositorio.Remover(id);
+            }
+            return transpordoraRetorno;
         }
     }
 }

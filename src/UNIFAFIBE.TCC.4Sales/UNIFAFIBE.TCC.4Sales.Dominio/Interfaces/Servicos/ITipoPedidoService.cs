@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         TipoPedido Adicionar(TipoPedido tipoPedido);
         TipoPedido Atualizar(TipoPedido tipoPedido);
-        void Remover(Guid id);
+        TipoPedido Remover(Guid id);
         TipoPedido ObterPorId(Guid id);
         IEnumerable<TipoPedido> ObterPorDescricao(string tipoPedido);
         IEnumerable<TipoPedido> ObterTodos();

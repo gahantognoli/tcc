@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
     {
         StatusPedidoViewModel Adicionar(StatusPedidoViewModel statusPedido);
         StatusPedidoViewModel Atualizar(StatusPedidoViewModel statusPedido);
-        void Remover(Guid id);
+        StatusPedidoViewModel Remover(Guid id);
         StatusPedidoViewModel ObterPorId(Guid id);
         IEnumerable<StatusPedidoViewModel> ObterPorDescricao(string descricao);
         IEnumerable<StatusPedidoViewModel> ObterStatusNaoPadroes();

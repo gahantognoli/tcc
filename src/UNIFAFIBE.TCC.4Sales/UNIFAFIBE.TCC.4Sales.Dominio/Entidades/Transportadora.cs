@@ -1,6 +1,8 @@
 ﻿using DomainValidation.Validation;
 using System;
 using System.Collections.Generic;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.Transportadoras;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 {
@@ -20,10 +22,10 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 
         public virtual ICollection<Pedido> Pedidos { get; set; }
 
-        //public bool EhValido()
-        //{
-        //    ValidationResult = new UsuarioEstaConsistenteValidation().Validate(this);
-        //    return ValidationResult.IsValid;
-        //}
+        public bool EstaAptaParaRemover(IPedidoRepositorio pedidoRepositorio)
+        {
+            ValidationResult = new TransportadoraEstaAptaParaRemoverValidation(pedidoRepositorio).Validate(this);
+            return ValidationResult.IsValid;
+        }
     }
 }

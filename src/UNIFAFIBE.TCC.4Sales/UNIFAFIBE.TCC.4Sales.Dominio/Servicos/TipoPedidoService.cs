@@ -9,10 +9,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
     public class TipoPedidoService : ITipoPedidoService
     {
         private readonly ITipoPedidoRepositorio _tipoPedidoRepositorio;
+        private readonly IPedidoRepositorio _pedidoRepositorio;
 
-        public TipoPedidoService(ITipoPedidoRepositorio tipoPedidoRepositorio)
+        public TipoPedidoService(ITipoPedidoRepositorio tipoPedidoRepositorio,
+            IPedidoRepositorio pedidoRepositorio)
         {
             _tipoPedidoRepositorio = tipoPedidoRepositorio;
+            _pedidoRepositorio = pedidoRepositorio;
         }
 
         public TipoPedido Adicionar(TipoPedido tipoPedido)
@@ -33,6 +36,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
         public void Dispose()
         {
             _tipoPedidoRepositorio.Dispose();
+            _pedidoRepositorio.Dispose();
             GC.SuppressFinalize(this);
         }
 
@@ -51,9 +55,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _tipoPedidoRepositorio.ObterTodos();
         }
 
-        public void Remover(Guid id)
+        public TipoPedido Remover(Guid id)
         {
-            _tipoPedidoRepositorio.Remover(id);
+            var tipoPedidoRetorno = _tipoPedidoRepositorio.ObterPorId(id);
+            if (tipoPedidoRetorno.EstaAptoParaRemover(_pedidoRepositorio))
+                _tipoPedidoRepositorio.Remover(id);
+
+            return tipoPedidoRetorno;
         }
     }
 }

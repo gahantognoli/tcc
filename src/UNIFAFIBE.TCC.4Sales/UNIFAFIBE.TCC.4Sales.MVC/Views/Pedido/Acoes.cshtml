@@ -352,7 +352,7 @@
                     @foreach (var item in ViewBag.Faturamentos)
                     {
                         <tr>
-                            <td>@item.Valor</td>
+                            <td>@item.Valor.ToString("C2")</td>
                             <td>@item.DataEmissao</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="@Url.Action("Detalhes", "Faturamento", new { id = item.FaturamentoId, pedidoId = Model.PedidoId })">Detalhes</a>

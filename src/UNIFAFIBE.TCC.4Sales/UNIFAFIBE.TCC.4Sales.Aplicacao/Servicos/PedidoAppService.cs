@@ -129,6 +129,12 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
                 .ObterPorNumeroPedido(Mapper.Map<Usuario>(vendedor), numeroPedido));
         }
 
+        public IEnumerable<PedidoViewModel> ObterPorCliente(Guid clienteId)
+        {
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
+                .ObterPorCliente(clienteId));
+        }
+
         public IEnumerable<PedidoViewModel> ObterPorRepresentada(UsuarioViewModel vendedor, Guid representadaId)
         {
             return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService
@@ -191,6 +197,21 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         public void VisualizarEmDocumento(Guid id)
         {
             _pedidoService.VisualizarEmDocumento(id);
+        }
+
+        public IEnumerable<PedidoViewModel> ObterPorTransportadora(Guid transportadoraId)
+        {
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorTransportadora(transportadoraId));
+        }
+
+        public IEnumerable<PedidoViewModel> ObterPorStatus(Guid statusId)
+        {
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorStatus(statusId));
+        }
+
+        public IEnumerable<PedidoViewModel> ObterPorTipo(Guid tipoId)
+        {
+            return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorTipo(tipoId));
         }
     }
 }

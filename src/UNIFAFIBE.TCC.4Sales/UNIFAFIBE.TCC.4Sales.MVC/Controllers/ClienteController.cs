@@ -161,7 +161,6 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             }
         }
 
-
         public ActionResult AlterarPessoaFisica(Guid? id)
         {
             if (id == null)
@@ -201,7 +200,6 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 throw;
             }
-
         }
 
         public ActionResult RemoverPessoaFisica(Guid? id)

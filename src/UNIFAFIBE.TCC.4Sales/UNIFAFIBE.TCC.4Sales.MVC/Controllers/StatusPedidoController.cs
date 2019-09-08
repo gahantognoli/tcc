@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
@@ -94,13 +95,22 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         {
             try
             {
-                _statusPedidoAppService.Remover(id);
-                TempData["RemovidoSucesso"] = "Status removido com sucesso";
-                return RedirectToAction("Index", "PainelAdministrativo");
+                var statusRetorno = _statusPedidoAppService.Remover(id);
+                if (statusRetorno.EhValido())
+                {
+                    TempData["RemovidoSucesso"] = "Status removido com sucesso";
+                    return RedirectToAction("Index", "PainelAdministrativo");
+                }
+                else
+                {
+                    TempData["FalhaRemover"] = statusRetorno.ValidationResult.Erros.FirstOrDefault().Message;
+                    return View(statusRetorno);
+                }
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return View();
+                throw;
             }
         }
 

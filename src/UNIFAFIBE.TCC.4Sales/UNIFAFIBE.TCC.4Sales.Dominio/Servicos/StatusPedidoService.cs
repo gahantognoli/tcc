@@ -9,10 +9,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
     public class StatusPedidoService : IStatusPedidoService
     {
         private readonly IStatusPedidoRepositorio _statusPedidoRepositorio;
+        private readonly IPedidoRepositorio _pedidoRepositorio;
 
-        public StatusPedidoService(IStatusPedidoRepositorio statusPedidoRepositorio)
+        public StatusPedidoService(IStatusPedidoRepositorio statusPedidoRepositorio,
+            IPedidoRepositorio pedidoRepositorio)
         {
             _statusPedidoRepositorio = statusPedidoRepositorio;
+            _pedidoRepositorio = pedidoRepositorio;
         }
 
         public StatusPedido Adicionar(StatusPedido statusPedido)
@@ -56,9 +59,13 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _statusPedidoRepositorio.ObterTodos();
         }
 
-        public void Remover(Guid id)
+        public StatusPedido Remover(Guid id)
         {
-            _statusPedidoRepositorio.Remover(id);
+            var statusRetorno = _statusPedidoRepositorio.ObterPorId(id);
+            if (statusRetorno.EstaAptoParaRemover(_pedidoRepositorio))
+                _statusPedidoRepositorio.Remover(id);
+
+            return statusRetorno;
         }
     }
 }

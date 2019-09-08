@@ -130,6 +130,10 @@
         $(document).ready(function () {
             $("#estado").val($("#valueEstado").val());
         });
+        if (fGlobal.IsNotEmpty('@TempData["FalhaRemover"]'))
+        {
+            fGlobal.EmitirNotificacao("Validação", '@TempData["FalhaRemover"]', "danger");
+        }
     </script>
 }
 

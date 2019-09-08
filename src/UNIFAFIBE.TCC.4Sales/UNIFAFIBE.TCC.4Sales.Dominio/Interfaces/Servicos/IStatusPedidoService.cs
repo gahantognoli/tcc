@@ -8,7 +8,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
     {
         StatusPedido Adicionar(StatusPedido statusPedido);
         StatusPedido Atualizar(StatusPedido statusPedido);
-        void Remover(Guid id);
+        StatusPedido Remover(Guid id);
         StatusPedido ObterPorId(Guid id);
         IEnumerable<StatusPedido> ObterPorDescricao(string descricao);
         IEnumerable<StatusPedido> ObterTodos();

@@ -196,6 +196,7 @@
             <div class="modal-body">
                 <p class="h4">Atenção</p>
                 <p class="lead">Você está prestes a remover o cliente <strong>@Model.Nome</strong></p>
+                <small class="text-danger">*Todos os pedidos desse Cliente serão removidos.</small>
                 <p class="lead"><strong>Deseja realmente remove-lo?</strong></p>
                 @using (Html.BeginForm("RemoverPessoaFisica", "Cliente", FormMethod.Post, new { id = "form-remover" }))
                 {
