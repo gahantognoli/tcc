@@ -42,14 +42,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _metaRepositorio.ObterPorId(id);
         }
 
-        public IEnumerable<Meta> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim)
+        public IEnumerable<Meta> ObterTodos()
         {
-            return _metaRepositorio.ObterPorPeriodo(dataInicio, dataFim);
-        }
-
-        public IEnumerable<Meta> ObterTodos(Guid pedidoId)
-        {
-            throw new NotImplementedException();
+            return _metaRepositorio.ObterTodos();
         }
 
         public void Remover(Guid id)

@@ -19,7 +19,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public override IEnumerable<Meta> ObterTodos()
         {
-            throw new NotImplementedException();
+            var cn = Db.Database.Connection;
+            IEnumerable<Meta> retornoMeta;
+
+            retornoMeta = cn.Query<Meta>(MetaProcedures.ObterTodos.GetDescription(),
+                commandType: CommandType.StoredProcedure);
+
+            return retornoMeta;
         }
 
         public override Meta ObterPorId(Guid id)
@@ -30,18 +36,6 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             retornoMeta = cn.Query<Meta>(MetaProcedures.ObterPorId.GetDescription(),
                 new { id = id },
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
-
-            return retornoMeta;
-        }
-
-        public IEnumerable<Meta> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim)
-        {
-            var cn = Db.Database.Connection;
-            IEnumerable<Meta> retornoMeta;
-
-            retornoMeta = cn.Query<Meta>(MetaProcedures.ObterPorPeriodo.GetDescription(),
-                new { dataInicio = dataInicio, dataFim = dataFim },
-                commandType: CommandType.StoredProcedure);
 
             return retornoMeta;
         }

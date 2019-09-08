@@ -39,7 +39,8 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
                 "~/Scripts/Usuario/script.js",
                "~/Scripts/StatusPedido/script.js",
                "~/Scripts/TipoPedido/script.js",
-               "~/Scripts/Transportadora/script.js"
+               "~/Scripts/Transportadora/script.js",
+               "~/Scripts/Meta/script.js"
             ));
 
             bundles.Add(new ScriptBundle("~/Scripts/Dashboard").Include(

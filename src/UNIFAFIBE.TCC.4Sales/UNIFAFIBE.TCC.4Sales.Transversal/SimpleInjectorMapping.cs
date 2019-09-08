@@ -103,6 +103,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<IEntitySerializationServices<UsuarioViewModel>, JSONSerializationServices<UsuarioViewModel>>(Lifestyle.Scoped);
             container.Register<IEntitySerializationServices<PedidoViewModel>, JSONSerializationServices<PedidoViewModel>>(Lifestyle.Scoped);
             container.Register<IEntitySerializationServices<FaturamentoViewModel>, JSONSerializationServices<FaturamentoViewModel>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<IEnumerable<MetaViewModel>>, JSONSerializationServices<IEnumerable<MetaViewModel>>>(Lifestyle.Scoped);
             #endregion
 
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);

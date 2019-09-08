@@ -157,6 +157,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FaturamentoController.cs" />
+    <Compile Include="Controllers\MetaController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RepresentadaController.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Meta\script.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pedido\acoes.js" />
     <Content Include="Scripts\Pedido\faturar.js" />
@@ -311,6 +313,10 @@
     <Content Include="Views\Pedido\Faturar.cshtml" />
     <Content Include="Views\Faturamento\Detalhes.cshtml" />
     <Content Include="Views\Faturamento\Remover.cshtml" />
+    <Content Include="Views\Meta\Novo.cshtml" />
+    <Content Include="Views\Meta\Detalhes.cshtml" />
+    <Content Include="Views\Meta\Alterar.cshtml" />
+    <Content Include="Views\Meta\Remover.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

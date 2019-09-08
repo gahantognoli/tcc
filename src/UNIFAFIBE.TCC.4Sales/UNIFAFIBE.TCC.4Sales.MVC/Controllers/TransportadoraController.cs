@@ -37,7 +37,6 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         {            
             return View();
         }
-
         
         [HttpPost]
         public ActionResult Novo(TransportadoraViewModel transportadoraViewModel)

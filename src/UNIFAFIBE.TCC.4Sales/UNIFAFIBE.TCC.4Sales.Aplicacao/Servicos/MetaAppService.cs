@@ -50,14 +50,9 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             return Mapper.Map<MetaViewModel>(_metaService.ObterPorId(id));
         }
 
-        public IEnumerable<MetaViewModel> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim)
+        public IEnumerable<MetaViewModel> ObterTodos()
         {
-            return Mapper.Map<IEnumerable<MetaViewModel>>(_metaService.ObterPorPeriodo(dataInicio, dataFim));
-        }
-
-        public IEnumerable<MetaViewModel> ObterTodos(Guid pedidoId)
-        {
-            return Mapper.Map<IEnumerable<MetaViewModel>>(_metaService.ObterTodos(pedidoId));
+            return Mapper.Map<IEnumerable<MetaViewModel>>(_metaService.ObterTodos());
         }
 
         public void Remover(Guid id)

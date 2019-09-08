@@ -10,7 +10,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         MetaViewModel Atualizar(MetaViewModel meta);
         void Remover(Guid id);
         MetaViewModel ObterPorId(Guid id);
-        IEnumerable<MetaViewModel> ObterTodos(Guid pedidoId);
-        IEnumerable<MetaViewModel> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim);
+        IEnumerable<MetaViewModel> ObterTodos();
+        //IEnumerable<MetaViewModel> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim);
     }
 }

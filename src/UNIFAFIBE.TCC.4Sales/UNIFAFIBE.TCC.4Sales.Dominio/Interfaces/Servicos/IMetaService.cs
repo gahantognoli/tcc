@@ -10,7 +10,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         Meta Atualizar(Meta meta);
         void Remover(Guid id);
         Meta ObterPorId(Guid id);
-        IEnumerable<Meta> ObterTodos(Guid pedidoId);
-        IEnumerable<Meta> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim);
+        IEnumerable<Meta> ObterTodos();
     }
 }

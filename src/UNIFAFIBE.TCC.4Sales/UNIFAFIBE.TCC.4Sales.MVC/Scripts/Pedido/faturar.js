@@ -34,29 +34,34 @@ var functionsFaturamento = {
         index++;
     },
     GeraRequisicao: function () {
-        $('#corpo-tabela tr').each(function (i, item) {
-            var parcelas = [];
-
+        if ($('#corpo-tabela tr').length > 0) {
             $('#corpo-tabela tr').each(function (i, item) {
-                i++;
-                var parcela = {
-                    NumeroParcela: $('#parcela_' + i).text().split('.')[0].trim(),
-                    ValorParcela: $('#comissao_' + i).val(),
-                    DataPagamento: $('#data_' + i).val()
+                var parcelas = [];
+
+                $('#corpo-tabela tr').each(function (i, item) {
+                    i++;
+                    var parcela = {
+                        NumeroParcela: $('#parcela_' + i).text().split('.')[0].trim(),
+                        ValorParcela: $('#comissao_' + i).val(),
+                        DataPagamento: $('#data_' + i).val()
+                    };
+                    parcelas.push(parcela);
+
+                });
+
+                var faturamento = {
+                    PedidoId: $("#pedidoId").val(),
+                    Valor: $("#valorFaturamento").val(),
+                    InformacoesAdicionais: $("#informacoesAdicionais").val(),
+                    Parcelas: parcelas
                 };
-                parcelas.push(parcela);
 
+                functionsFaturamento.GerarFaturamento(JSON.stringify(faturamento));
             });
-
-            var faturamento = {
-                PedidoId: $("#pedidoId").val(),
-                Valor: $("#valorFaturamento").val(),
-                InformacoesAdicionais: $("#informacoesAdicionais").val(),
-                Parcelas: parcelas
-            };
-
-            functionsFaturamento.GerarFaturamento(JSON.stringify(faturamento));
-        });
+        }
+        else {
+            alert("Adicione as parcelas para realizar o faturamento!");
+        }
     },
     GerarFaturamento: function (pFaturamento) {
         fGlobal.Ajax(gHostProjeto + 'Pedido/Faturar', "POST", { faturamento: pFaturamento }, functionsFaturamento.HtmlFaturamento,

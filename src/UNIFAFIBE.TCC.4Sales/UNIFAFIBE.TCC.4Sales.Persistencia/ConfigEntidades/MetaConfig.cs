@@ -13,11 +13,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.ConfigEntidades
                 .HasPrecision(18, 2)
                 .IsRequired();
 
-            Property(m => m.DataInicio)
-                .IsRequired();
+            Property(m => m.Mes)
+                .IsRequired()
+                .HasMaxLength(2);
 
-            Property(m => m.DataFim)
-                .IsRequired();
+            Property(m => m.Ano)
+                .IsRequired()
+                .HasMaxLength(4);
 
             Ignore(v => v.ValidationResult);
         }

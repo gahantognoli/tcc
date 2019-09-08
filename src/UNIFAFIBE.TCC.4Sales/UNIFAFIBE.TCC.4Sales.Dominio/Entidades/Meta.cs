@@ -13,8 +13,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
 
         public Guid MetaId { get; set; }
         public decimal Valor { get; set; }
-        public DateTime DataInicio { get; set; }
-        public DateTime DataFim { get; set; }
+        public string Mes { get; set; }
+        public string Ano { get; set; }
         public ValidationResult ValidationResult { get; set; }
 
         public bool EhValido()

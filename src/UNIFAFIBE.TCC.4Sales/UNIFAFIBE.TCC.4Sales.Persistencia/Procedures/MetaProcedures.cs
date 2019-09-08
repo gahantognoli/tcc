@@ -7,8 +7,6 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         [Description("usp_Meta_ObterPorId")]
         ObterPorId,
         [Description("usp_Meta_ObterTodos")]
-        ObterTodos,
-        [Description("usp_Meta_ObterPorPeriodo")]
-        ObterPorPeriodo
+        ObterTodos
     }
 }

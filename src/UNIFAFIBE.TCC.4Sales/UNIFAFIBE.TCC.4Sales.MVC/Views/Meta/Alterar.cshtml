@@ -1,0 +1,91 @@
+﻿@model UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.MetaViewModel
+
+@{
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Alterar", "Meta", "POST"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <div class="card border-dark">
+                <div class="card-header bg-dark">
+                    <span class="h5 text-white">
+                        <i class="fas fa-chart-line icone-cadastro"></i>
+                        Alterar Meta
+                    </span>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.MetaId)
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control mValor" } })
+                                        @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Mes, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="Mes" id="Mes" class="form-control">
+                                            <option value="01" @(Model.Mes == "01" ? "selected" : "")>Janeiro</option>
+                                            <option value="02" @(Model.Mes == "02" ? "selected" : "")>Fevereiro</option>
+                                            <option value="03" @(Model.Mes == "03" ? "selected" : "")>Março</option>
+                                            <option value="04" @(Model.Mes == "04" ? "selected" : "")>Abril</option>
+                                            <option value="05" @(Model.Mes == "05" ? "selected" : "")>Maio</option>
+                                            <option value="06" @(Model.Mes == "06" ? "selected" : "")>Junho</option>
+                                            <option value="07" @(Model.Mes == "07" ? "selected" : "")>Julho</option>
+                                            <option value="08" @(Model.Mes == "08" ? "selected" : "")>Agosto</option>
+                                            <option value="09" @(Model.Mes == "09" ? "selected" : "")>Setembro</option>
+                                            <option value="10" @(Model.Mes == "10" ? "selected" : "")>Outubro</option>
+                                            <option value="11" @(Model.Mes == "11" ? "selected" : "")>Novembro</option>
+                                            <option value="12" @(Model.Mes == "12" ? "selected" : "")>Dezembro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "control-label" }) <span class="span-obrigatorio">*</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="Ano" id="Ano" class="form-control">
+                                            <option value="2014" @(Model.Ano == "2014" ? "selected" : "")>2014</option>
+                                            <option value="2015" @(Model.Ano == "2015" ? "selected" : "")>2015</option>
+                                            <option value="2016" @(Model.Ano == "2016" ? "selected" : "")>2016</option>
+                                            <option value="2017" @(Model.Ano == "2017" ? "selected" : "")>2017</option>
+                                            <option value="2018" @(Model.Ano == "2018" ? "selected" : "")>2018</option>
+                                            <option value="2019" @(Model.Ano == "2019" ? "selected" : "")>2019</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <div>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            @Html.ActionLink("Cancelar", "Index", "PainelAdministrativo", null, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validations_pt-br")
+}

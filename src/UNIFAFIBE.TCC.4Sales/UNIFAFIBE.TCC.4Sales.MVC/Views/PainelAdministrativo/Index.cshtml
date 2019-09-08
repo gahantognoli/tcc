@@ -53,7 +53,6 @@
                 </div>
             </div>
 
-
             <div div class="tab-pane fade" id="outros-cadastros" role="tabpanel"
                  aria-labelledby="outros-cadastros-tab">
                 <div class="row mt-3">
@@ -74,6 +73,11 @@
                                 <a class="nav-link" id="pills-status-tab" data-toggle="pill"
                                    href="#pills-status" role="tab" aria-controls="pills-status"
                                    aria-selected="false">Status Pedido</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-meta-tab" data-toggle="pill"
+                                   href="#pills-meta" role="tab" aria-controls="pills-meta"
+                                   aria-selected="false">Meta</a>
                             </li>
                         </ul>
                     </div>
@@ -153,7 +157,7 @@
                                     </div>
                                     <div class="form-group col-md-8">
                                         <button class="btn btn-criar" id="btnIncluirPedido" type="button">Cadastrar</button>
-                                   </div>
+                                    </div>
                                 </div>
                             </form>
 
@@ -166,6 +170,40 @@
                             <div class="row">
                                 <div class="col-md-12 content-status-pedido" id="content-status-pedido">
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-meta" role="tabpanel"
+                             aria-labelledby="pills-meta">
+
+                            <form>
+                                <div class="form-row d-flex justify-content-between mt-3 mb-4">
+                                    <div class="input-group col-md-4 mt-3">
+                                        <a class="btn btn-criar"
+                                           href="/Meta/Novo">
+                                            <i class="fas fa-plus icone-criar"></i>Cadastrar
+                                            Meta
+                                        </a>
+                                    </div>
+                                    @*<div class="input-group col-md-4 mt-3">
+                                        <input type="text" class="form-control" placeholder="Pesquisar meta" id="pesquisa-meta">
+                                        <div class="input-group-append" id="btnPesquisarMeta">
+                                            <span class="input-group-text" id="basic-addon2">
+                                                <i class="fas fa-search icone-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </form>
+
+                            <div class="row mb-3" id="loading-meta" style="display:none;">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <img src="~/assets/img/ajax-loader.gif" alt="Carregando ..." />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" id="content-meta">
                                 </div>
                             </div>
                         </div>
