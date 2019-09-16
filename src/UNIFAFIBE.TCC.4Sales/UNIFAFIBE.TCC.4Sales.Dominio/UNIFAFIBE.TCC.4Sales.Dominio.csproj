@@ -54,6 +54,7 @@
     <Compile Include="Especificacoes\Faturamentos\FaturamentoValorNaoPodeSerZeroSpecification.cs" />
     <Compile Include="Especificacoes\Faturamentos\ValorTotalParcelasDeveSerMenorOuIgualAoValorFaturamentoSpecification.cs" />
     <Compile Include="Especificacoes\ItensPedido\ItemPedidoQuantidadeDeveSerMaiorQueZero.cs" />
+    <Compile Include="Especificacoes\Metas\MetaDevePossuirPeriodoUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Metas\MetaDeveSerMaiorQueDoQueZeroSpecification.cs" />
     <Compile Include="Especificacoes\Parcelas\ParcelaDeveSerMenorDoQueValorDoFaturamentoSpecification.cs" />
     <Compile Include="Especificacoes\Pedidos\PedidoDevePossuirClienteSpecification.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirEmailUnicoSpecification.cs" />
     <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirEmailValidoSpecification.cs" />
     <Compile Include="Especificacoes\Usuarios\UsuarioDevePossuirSenhaComPeloMenosOitoCaracteresSpecification.cs" />
+    <Compile Include="Interfaces\Repositorios\IDashboardRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IFaturamentoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IItemPedidoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IMetaRepositorio.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Interfaces\Repositorios\ITransportadoraRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepresentadaRepositorio.cs" />
+    <Compile Include="Interfaces\Servicos\IDashboardService.cs" />
     <Compile Include="Interfaces\Servicos\IEmailService.cs" />
     <Compile Include="Interfaces\Servicos\IEntitySerializationService.cs" />
     <Compile Include="Interfaces\Servicos\IFaturamentoService.cs" />
@@ -151,6 +154,7 @@
     <Compile Include="Servicos\CondicaoPagamentoService.cs" />
     <Compile Include="Servicos\ContatoClienteService.cs" />
     <Compile Include="Servicos\ContatoRepresentadaService.cs" />
+    <Compile Include="Servicos\DashboardService.cs" />
     <Compile Include="Servicos\EnderecoClienteService.cs" />
     <Compile Include="Servicos\FaturamentoService.cs" />
     <Compile Include="Servicos\ItemPedidoService.cs" />
@@ -172,6 +176,7 @@
     <Compile Include="Validacoes\ContatosRepresentada\ContatoRepresentadaEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\Faturamentos\FaturamentoEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\ItensPedido\ItemPedidoEstaConsistenteValidation.cs" />
+    <Compile Include="Validacoes\Metas\MetaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\Metas\MetaEstaConsistenteValidation.cs" />
     <Compile Include="Validacoes\Parcelas\ParcelaEstaAptaValidation.cs" />
     <Compile Include="Validacoes\Pedidos\PedidoEstaAptoValidation.cs" />

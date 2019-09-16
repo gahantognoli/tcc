@@ -39,5 +39,17 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             return retornoMeta;
         }
+
+        public IEnumerable<Meta> ObterPorPeriodo(string ano, string mes)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Meta> retornoMeta;
+
+            retornoMeta = cn.Query<Meta>(MetaProcedures.ObterPorPeriodo.GetDescription(),
+                new { @Ano = ano, @Mes = mes },
+                commandType: CommandType.StoredProcedure);
+
+            return retornoMeta;
+        }
     }
 }

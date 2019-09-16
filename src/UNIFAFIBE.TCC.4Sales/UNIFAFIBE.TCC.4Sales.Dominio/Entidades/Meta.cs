@@ -1,5 +1,6 @@
 ﻿using DomainValidation.Validation;
 using System;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Validacoes.Metas;
 
 namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
@@ -17,9 +18,12 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Ano { get; set; }
         public ValidationResult ValidationResult { get; set; }
 
-        public bool EhValido()
+        public bool EhValido(IMetaRepositorio metaRepositorio)
         {
-            return this.EstaConsistente();
+            if (this.EstaConsistente())
+                return EstaApto(metaRepositorio);
+
+            return false;
         }
 
         public bool EstaConsistente()
@@ -28,9 +32,10 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
             return ValidationResult.IsValid;
         }
 
-        public bool EstaApto()
+        public bool EstaApto(IMetaRepositorio metaRepositorio)
         {
-            return true;
+            ValidationResult = new MetaEstaAptaValidation(metaRepositorio).Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

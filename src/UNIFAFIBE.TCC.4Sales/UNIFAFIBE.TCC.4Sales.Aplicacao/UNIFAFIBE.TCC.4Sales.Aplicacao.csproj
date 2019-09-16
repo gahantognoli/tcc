@@ -54,6 +54,7 @@
     <Compile Include="Interfaces\Servicos\ICondicaoPagamentoAppService.cs" />
     <Compile Include="Interfaces\Servicos\IContatoClienteAppService.cs" />
     <Compile Include="Interfaces\Servicos\IContatoRepresentadaAppService.cs" />
+    <Compile Include="Interfaces\Servicos\IDashboardAppService.cs" />
     <Compile Include="Interfaces\Servicos\IEmailAppService.cs" />
     <Compile Include="Interfaces\Servicos\IEnderecoClienteAppService.cs" />
     <Compile Include="Interfaces\Servicos\IFaturamentoAppService.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Servicos\CondicaoPagamentoAppService.cs" />
     <Compile Include="Servicos\ContatoClienteAppService.cs" />
     <Compile Include="Servicos\ContatoRepresentadaAppService.cs" />
+    <Compile Include="Servicos\DashboardAppService.cs" />
     <Compile Include="Servicos\EnderecoClienteAppService.cs" />
     <Compile Include="Servicos\FaturamentoAppService.cs" />
     <Compile Include="Servicos\ItemPedidoAppService.cs" />

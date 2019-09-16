@@ -37,6 +37,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoRepositorio, TipoPedidoRepositorio>(Lifestyle.Scoped);
             container.Register<ITransportadoraRepositorio, TransportadoraRepositorio>(Lifestyle.Scoped);
             container.Register<IUsuarioRepositorio, UsuarioRepositorio>(Lifestyle.Scoped);
+            container.Register<IDashboardRepositorio, DashboardRepositorio>(Lifestyle.Scoped);
             //container.Register<IUsuarioRepresentadaRepositorio, UsuarioRepresentadaRepositorio>(Lifestyle.Scoped);
             #endregion
 
@@ -59,6 +60,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoService, TipoPedidoService>(Lifestyle.Scoped);
             container.Register<ITransportadoraService, TransportadoraService>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
+            container.Register<IDashboardService, DashboardService>(Lifestyle.Scoped);
             //container.Register<IUsuarioRepresentadaService, UsuarioRepresentadaService>(Lifestyle.Scoped);
             #endregion
 
@@ -81,6 +83,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITipoPedidoAppService, TipoPedidoAppService>(Lifestyle.Scoped);
             container.Register<ITransportadoraAppService, TransportadoraAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
+            container.Register<IDashboardAppService, DashboardAppService>(Lifestyle.Scoped);
             //container.Register<IUsuarioRepresentadaAppService, UsuarioRepresentadaAppService>(Lifestyle.Scoped);
             #endregion
 

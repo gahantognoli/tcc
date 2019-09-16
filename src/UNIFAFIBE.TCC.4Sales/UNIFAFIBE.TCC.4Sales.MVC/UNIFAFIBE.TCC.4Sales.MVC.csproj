@@ -200,6 +200,7 @@
     <Content Include="Scripts\Cliente\script-alterar.js" />
     <Content Include="Scripts\Cliente\script.js" />
     <Content Include="Scripts\Dashboard\chart.js" />
+    <Content Include="Scripts\Dashboard\script.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />

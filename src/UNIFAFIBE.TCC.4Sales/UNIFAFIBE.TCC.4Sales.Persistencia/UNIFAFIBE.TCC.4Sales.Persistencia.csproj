@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -101,6 +102,7 @@
     <Compile Include="Procedures\CondicaoPagamentoProcedures.cs" />
     <Compile Include="Procedures\ContatoClienteProcedures.cs" />
     <Compile Include="Procedures\ContatoRepresentadaProcedures.cs" />
+    <Compile Include="Procedures\DashboardProcedures.cs" />
     <Compile Include="Procedures\EnderecoClienteProcedures.cs" />
     <Compile Include="Procedures\FaturamentoProcedures.cs" />
     <Compile Include="Procedures\ItemPedidoProcedures.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Repositorios\CondicaoPagamentoRepositorio.cs" />
     <Compile Include="Repositorios\ContatoClienteRepositorio.cs" />
     <Compile Include="Repositorios\ContatoRepresentadaRepositorio.cs" />
+    <Compile Include="Repositorios\DashboardRepositorio.cs" />
     <Compile Include="Repositorios\EnderecoClienteRepositorio.cs" />
     <Compile Include="Repositorios\FaturamentoRepositorio.cs" />
     <Compile Include="Repositorios\PessoaFisicaRepositorio.cs" />

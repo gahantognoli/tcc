@@ -19,38 +19,43 @@
                 <div class="col-lg-12">
                     <form class="form-inline">
                         <label class="mr-3" id="label-filtrar-por">Filtrar por: </label>
-                        <select name="mes-pesquisa-dashboards" id="mes-pesquisa-dashboards"
+                        <select name="mes-dashboards" id="mes-dashboards"
                                 class="form-control col-lg-2 col-12 mr-lg-2">
-                            <option value="01">Janeiro</option>
-                            <option value="02">Fevereiro</option>
-                            <option value="03">Março</option>
-                            <option value="04">Abril</option>
-                            <option value="05">Maio</option>
-                            <option value="06">Junho</option>
-                            <option value="07">Julho</option>
-                            <option value="08">Agosto</option>
-                            <option value="09">Setembro</option>
-                            <option value="10">Outubro</option>
-                            <option value="11">Novembro</option>
-                            <option value="12">Dezembro</option>
+                            @{
+                                var mesAtual = System.DateTime.Today.Month;
+                            }
+                            <option value="01" @(mesAtual == 1 ? "selected" : "")>Janeiro</option>
+                            <option value="02" @(mesAtual == 2 ? "selected" : "")>Fevereiro</option>
+                            <option value="03" @(mesAtual == 3 ? "selected" : "")>Março</option>
+                            <option value="04" @(mesAtual == 4 ? "selected" : "")>Abril</option>
+                            <option value="05" @(mesAtual == 5 ? "selected" : "")>Maio</option>
+                            <option value="06" @(mesAtual == 6 ? "selected" : "")>Junho</option>
+                            <option value="07" @(mesAtual == 7 ? "selected" : "")>Julho</option>
+                            <option value="08" @(mesAtual == 8 ? "selected" : "")>Agosto</option>
+                            <option value="09" @(mesAtual == 9 ? "selected" : "")>Setembro</option>
+                            <option value="10" @(mesAtual == 10 ? "selected" : "")>Outubro</option>
+                            <option value="11" @(mesAtual == 11 ? "selected" : "")>Novembro</option>
+                            <option value="12" @(mesAtual == 12 ? "selected" : "")>Dezembro</option>
                         </select>
 
-                        <select name="ano-pesquisa-dashboards" id="ano-pesquisa-dashboards"
+                        <select name="ano-dashboards" id="ano-dashboards"
                                 class="form-control col-lg-2 col-12 mr-lg-5">
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                        </select>
-
-                        <select name="representadas-pesquisa-dashboards"
-                                id="representadas-pesquisa-dashboards" class="form-control col-lg-6 col-12">
-                            <option value="Todas">Todas as representadas</option>
-                            <option value="Representada 1">Representada 1</option>
-                            <option value="Representada 2">Representada 2</option>
-                            <option value="Representada 3">Representada 3</option>
+                            @{
+                                var anoAtual = System.DateTime.Today.Year;
+                            }
+                            <option value="2010" @(anoAtual == 2010 ? "selected" : "")>2014</option>
+                            <option value="2011" @(anoAtual == 2011 ? "selected" : "")>2014</option>
+                            <option value="2012" @(anoAtual == 2012 ? "selected" : "")>2014</option>
+                            <option value="2013" @(anoAtual == 2013 ? "selected" : "")>2014</option>
+                            <option value="2014" @(anoAtual == 2014 ? "selected" : "")>2014</option>
+                            <option value="2015" @(anoAtual == 2015 ? "selected" : "")>2015</option>
+                            <option value="2016" @(anoAtual == 2016 ? "selected" : "")>2016</option>
+                            <option value="2017" @(anoAtual == 2017 ? "selected" : "")>2017</option>
+                            <option value="2018" @(anoAtual == 2018 ? "selected" : "")>2018</option>
+                            <option value="2019" @(anoAtual == 2019 ? "selected" : "")>2019</option>
+                            <option value="2020" @(anoAtual == 2020 ? "selected" : "")>2020</option>
+                            <option value="2021" @(anoAtual == 2021 ? "selected" : "")>2021</option>
+                            <option value="2022" @(anoAtual == 2022 ? "selected" : "")>2022</option>
                         </select>
                     </form>
                 </div>
@@ -73,7 +78,7 @@
                                 <i class="fas fa-money-check-alt icone-dashboard"></i>
                             </div>
                             <div class="col-lg-10 col-md-9">
-                                <h4>R$ 1.000.000,00</h4>
+                                <h4 id="totalFaturado"></h4>
                             </div>
                         </div>
                     </div>
@@ -91,7 +96,7 @@
                                 <i class="fas fa-money-bill-alt icone-dashboard"></i>
                             </div>
                             <div class="col-lg-10 col-md-9">
-                                <h4>R$ 100.000,00</h4>
+                                <h4 id="totalAReceber"></h4>
                             </div>
                         </div>
                     </div>
@@ -109,7 +114,7 @@
                                 <i class="fas fa-chart-line icone-dashboard"></i>
                             </div>
                             <div class="col-lg-10 col-md-9">
-                                <h4>R$ 500.000,00</h4>
+                                <h4 id="meta"></h4>
                             </div>
                         </div>
                     </div>

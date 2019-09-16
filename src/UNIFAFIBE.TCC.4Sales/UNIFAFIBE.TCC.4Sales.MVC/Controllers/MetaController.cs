@@ -40,9 +40,17 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var transportadoraRetorno = _metaAppService.Adicionar(metaViewModel);
-                    TempData["CadastradoSucesso"] = "Meta cadastrada com sucesso";
-                    return RedirectToAction("Index", "PainelAdministrativo");
+                    var metaRetorno = _metaAppService.Adicionar(metaViewModel);
+                    if (metaRetorno.EhValido())
+                    {
+                        TempData["CadastradoSucesso"] = "Meta cadastrada com sucesso";
+                        return RedirectToAction("Index", "PainelAdministrativo");
+                    }
+                    else
+                    {
+                        return View(metaRetorno);
+                    }
+                    
                 }
                 return View(metaViewModel);
             }

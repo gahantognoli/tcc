@@ -17,7 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Meta Adicionar(Meta meta)
         {
-            if (!meta.EhValido())
+            if (!meta.EhValido(_metaRepositorio))
                 return meta;
 
             return _metaRepositorio.Adicionar(meta);
@@ -25,7 +25,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
 
         public Meta Atualizar(Meta meta)
         {
-            if (!meta.EhValido())
+            if (!meta.EstaConsistente())
                 return meta;
 
             return _metaRepositorio.Atualizar(meta);
@@ -40,6 +40,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
         public Meta ObterPorId(Guid id)
         {
             return _metaRepositorio.ObterPorId(id);
+        }
+
+        public IEnumerable<Meta> ObterPorPeriodo(string ano, string mes)
+        {
+            return _metaRepositorio.ObterPorPeriodo(ano, mes);
         }
 
         public IEnumerable<Meta> ObterTodos()

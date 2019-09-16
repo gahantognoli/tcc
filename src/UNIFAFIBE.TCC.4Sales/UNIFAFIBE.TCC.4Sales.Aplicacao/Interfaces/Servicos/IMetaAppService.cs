@@ -11,6 +11,6 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         void Remover(Guid id);
         MetaViewModel ObterPorId(Guid id);
         IEnumerable<MetaViewModel> ObterTodos();
-        //IEnumerable<MetaViewModel> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim);
+        IEnumerable<MetaViewModel> ObterPorPeriodo(string ano, string mes);
     }
 }

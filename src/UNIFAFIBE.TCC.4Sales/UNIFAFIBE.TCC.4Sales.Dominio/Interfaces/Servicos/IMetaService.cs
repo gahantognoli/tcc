@@ -11,5 +11,6 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         void Remover(Guid id);
         Meta ObterPorId(Guid id);
         IEnumerable<Meta> ObterTodos();
+        IEnumerable<Meta> ObterPorPeriodo(string ano, string mes);
     }
 }
