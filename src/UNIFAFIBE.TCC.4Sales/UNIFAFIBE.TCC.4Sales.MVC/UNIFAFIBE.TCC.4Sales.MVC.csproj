@@ -55,6 +55,30 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -155,11 +179,13 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="Binders\DecimalModelBinder.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ComissaoController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FaturamentoController.cs" />
     <Compile Include="Controllers\MetaController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\RelatoriosController.cs" />
     <Compile Include="Controllers\RepresentadaController.cs" />
     <Compile Include="Controllers\SegmentoController.cs" />
     <Compile Include="Controllers\StatusPedidoController.cs" />
@@ -171,6 +197,32 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relatorios\Clientes\DatasetRelatorioSituacaoCarteiraClientes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetRelatorioSituacaoCarteiraClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatorios\Comissoes\DatasetRelatorioComissoesPorPeriodo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetRelatorioComissoesPorPeriodo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatorios\Faturamentos\DatasetRelatoriosFaturamentos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetRelatoriosFaturamentos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatorios\Vendas\DatasetRelatorioRankingVendedores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetRelatorioRankingVendedores.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatorios\Vendas\DatasetRelatorioVendasPorPeriodo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetRelatorioVendasPorPeriodo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\img\ajax-loader-200px.gif" />
@@ -199,6 +251,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Cliente\script-alterar.js" />
     <Content Include="Scripts\Cliente\script.js" />
+    <Content Include="Scripts\Comissoes\script.js" />
     <Content Include="Scripts\Dashboard\chart.js" />
     <Content Include="Scripts\Dashboard\script.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -219,6 +272,61 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Relatorios\Vendas\DatasetRelatorioVendasPorPeriodo.xsc">
+      <DependentUpon>DatasetRelatorioVendasPorPeriodo.xsd</DependentUpon>
+    </Content>
+    <Content Include="Relatorios\Vendas\DatasetRelatorioRankingVendedores.xsc">
+      <DependentUpon>DatasetRelatorioRankingVendedores.xsd</DependentUpon>
+    </Content>
+    <Content Include="Relatorios\Faturamentos\DatasetRelatoriosFaturamentos.xsc">
+      <DependentUpon>DatasetRelatoriosFaturamentos.xsd</DependentUpon>
+    </Content>
+    <Content Include="Relatorios\Clientes\DatasetRelatorioSituacaoCarteiraClientes.xsc">
+      <DependentUpon>DatasetRelatorioSituacaoCarteiraClientes.xsd</DependentUpon>
+    </Content>
+    <None Include="Relatorios\Clientes\DatasetRelatorioSituacaoCarteiraClientes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetRelatorioSituacaoCarteiraClientes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Relatorios\Clientes\DatasetRelatorioSituacaoCarteiraClientes.xss">
+      <DependentUpon>DatasetRelatorioSituacaoCarteiraClientes.xsd</DependentUpon>
+    </Content>
+    <Content Include="Relatorios\Comissoes\DatasetRelatorioComissoesPorPeriodo.xsc">
+      <DependentUpon>DatasetRelatorioComissoesPorPeriodo.xsd</DependentUpon>
+    </Content>
+    <None Include="Relatorios\Comissoes\DatasetRelatorioComissoesPorPeriodo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetRelatorioComissoesPorPeriodo.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Relatorios\Comissoes\DatasetRelatorioComissoesPorPeriodo.xss">
+      <DependentUpon>DatasetRelatorioComissoesPorPeriodo.xsd</DependentUpon>
+    </Content>
+    <None Include="Relatorios\Faturamentos\DatasetRelatoriosFaturamentos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetRelatoriosFaturamentos.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Relatorios\Faturamentos\DatasetRelatoriosFaturamentos.xss">
+      <DependentUpon>DatasetRelatoriosFaturamentos.xsd</DependentUpon>
+    </Content>
+    <None Include="Relatorios\Vendas\DatasetRelatorioRankingVendedores.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetRelatorioRankingVendedores.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Relatorios\Vendas\DatasetRelatorioRankingVendedores.xss">
+      <DependentUpon>DatasetRelatorioRankingVendedores.xsd</DependentUpon>
+    </Content>
+    <None Include="Relatorios\Vendas\DatasetRelatorioVendasPorPeriodo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetRelatorioVendasPorPeriodo.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Relatorios\Vendas\DatasetRelatorioVendasPorPeriodo.xss">
+      <DependentUpon>DatasetRelatorioVendasPorPeriodo.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Global.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -255,6 +363,19 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\jquery.validate.custom.pt-br.js" />
     <Content Include="Scripts\Usuario\script.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -318,6 +439,11 @@
     <Content Include="Views\Meta\Detalhes.cshtml" />
     <Content Include="Views\Meta\Alterar.cshtml" />
     <Content Include="Views\Meta\Remover.cshtml" />
+    <Content Include="Views\Relatorios\VendasPorPeriodo.cshtml" />
+    <Content Include="Views\Relatorios\RankingVendedores.cshtml" />
+    <Content Include="Views\Relatorios\FaturamentoPorPeriodo.cshtml" />
+    <Content Include="Views\Relatorios\SituacaoCarteiraClientes.cshtml" />
+    <Content Include="Views\Relatorios\ComissaoPorPeriodo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,6 +473,23 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Relatorios\Clientes\RelatorioSituacaoCarteiraClientes.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Comissoes\RelatorioComissoesPorPeriodo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Faturamentos\RelatoriosFaturamento.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Vendas\RelatorioVendasPorPeriodo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Vendas\RelatorioVendasRakingVendedores.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

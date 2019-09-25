@@ -40,6 +40,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC
                "~/Scripts/StatusPedido/script.js",
                "~/Scripts/TipoPedido/script.js",
                "~/Scripts/Transportadora/script.js",
+               "~/Scripts/Comissoes/script.js",
                "~/Scripts/Meta/script.js"
             ));
 

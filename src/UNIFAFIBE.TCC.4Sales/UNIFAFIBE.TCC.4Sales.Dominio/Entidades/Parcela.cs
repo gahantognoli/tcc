@@ -17,6 +17,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         //public decimal ValorComissao { get; set; }
         public DateTime DataPagamento { get; set; }
         public Guid FaturamentoId { get; set; }
+        public bool Paga { get; set; } = false;
         public ValidationResult ValidationResult { get; set; }
         public virtual Faturamento Faturamento { get; set; }
 

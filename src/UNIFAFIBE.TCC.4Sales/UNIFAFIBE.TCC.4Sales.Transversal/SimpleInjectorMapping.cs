@@ -1,14 +1,21 @@
 ﻿using SimpleInjector;
 using System.Collections.Generic;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
+using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos.Relatorios;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos;
+using UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos.Relatorios;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
+using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios.Relatorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
+using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos.Relatorios;
 using UNIFAFIBE.TCC._4Sales.Dominio.Servicos;
+using UNIFAFIBE.TCC._4Sales.Dominio.Servicos.Relatorios;
 using UNIFAFIBE.TCC._4Sales.Infra.Serialization.Servicos;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Contexto;
 using UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios;
+using UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios.Relatorios;
 using UNIFAFIBE.TCC._4Sales.Persistencia.UnitOfWork;
 using UNIFAFIBE.TCC._4Sales.Transversal.EnvioEmail;
 
@@ -39,6 +46,10 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<IUsuarioRepositorio, UsuarioRepositorio>(Lifestyle.Scoped);
             container.Register<IDashboardRepositorio, DashboardRepositorio>(Lifestyle.Scoped);
             //container.Register<IUsuarioRepresentadaRepositorio, UsuarioRepresentadaRepositorio>(Lifestyle.Scoped);
+            container.Register<IRelatoriosVendaRepositorio, RelatoriosVendaRepositorio>(Lifestyle.Scoped);
+            container.Register<IRelatoriosFaturamentoRepositorio, RelatoriosFaturamentoRepositorio>(Lifestyle.Scoped);
+            container.Register<IRelatoriosComissaoRepositorio, RelatoriosComissaoRepositorio>(Lifestyle.Scoped);
+            container.Register<IRelatoriosClienteRepositorio, RelatoriosClienteRepositorio>(Lifestyle.Scoped);
             #endregion
 
             #region Registro dos Serviços
@@ -62,6 +73,10 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
             container.Register<IDashboardService, DashboardService>(Lifestyle.Scoped);
             //container.Register<IUsuarioRepresentadaService, UsuarioRepresentadaService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosVendaService, RelatoriosVendaService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosFaturamentoService, RelatoriosFaturamentoService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosComissaoService, RelatoriosComissaoService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosClienteService, RelatoriosClienteService>(Lifestyle.Scoped);
             #endregion
 
             #region Registros da Camada de Aplicação
@@ -84,6 +99,10 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<ITransportadoraAppService, TransportadoraAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
             container.Register<IDashboardAppService, DashboardAppService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosVendaAppService, RelatoriosVendaAppService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosFaturamentoAppService, RelatoriosFaturamentoAppService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosComissaoAppService, RelatoriosComissaoAppService>(Lifestyle.Scoped);
+            container.Register<IRelatoriosClienteAppService, RelatoriosClienteAppService>(Lifestyle.Scoped);
             //container.Register<IUsuarioRepresentadaAppService, UsuarioRepresentadaAppService>(Lifestyle.Scoped);
             #endregion
 
@@ -107,6 +126,7 @@ namespace UNIFAFIBE.TCC._4Sales.Transversal
             container.Register<IEntitySerializationServices<PedidoViewModel>, JSONSerializationServices<PedidoViewModel>>(Lifestyle.Scoped);
             container.Register<IEntitySerializationServices<FaturamentoViewModel>, JSONSerializationServices<FaturamentoViewModel>>(Lifestyle.Scoped);
             container.Register<IEntitySerializationServices<IEnumerable<MetaViewModel>>, JSONSerializationServices<IEnumerable<MetaViewModel>>>(Lifestyle.Scoped);
+            container.Register<IEntitySerializationServices<IEnumerable<Comissao>>, JSONSerializationServices<IEnumerable<Comissao>>>(Lifestyle.Scoped);
             #endregion
 
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);

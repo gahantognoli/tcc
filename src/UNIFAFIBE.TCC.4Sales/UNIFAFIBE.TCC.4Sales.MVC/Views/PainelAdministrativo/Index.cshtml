@@ -12,6 +12,11 @@
                        role="tab" aria-controls="usuario" aria-selected="true"><i class="fas fa-users icone-tab"></i>Usuários</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" id="comissoes-tab" data-toggle="tab"
+                       href="#comissoes" role="tab" aria-controls="comissoes"
+                       aria-selected="false"><i class="fas fa-dollar-sign icone-tab"></i>Comissões</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="outros-cadastros-tab" data-toggle="tab"
                        href="#outros-cadastros" role="tab" aria-controls="outros-cadastros"
                        aria-selected="false"><i class="fas fa-folder icone-tab"></i>Outros Cadastros</a>
@@ -45,13 +50,97 @@
                         <hr class="linha">
                     </div>
 
-
                     <div id="content-usuarios" class="col-md-12 p-0">
 
                     </div>
 
                 </div>
             </div>
+
+            <div div class="tab-pane fade" id="comissoes" role="tabpanel" aria-labelledby="comissoes-tab">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-dark text-white">
+                                <span class="h5">Pesquisa</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="mes">Mês</label>
+                                            <select name="mes" id="mes" class="form-control">
+                                                @{
+                                                    var mesAtual = System.DateTime.Today.Month;
+                                                }
+                                                <option value="01" @(mesAtual == 1 ? "selected" : "")>Janeiro</option>
+                                                <option value="02" @(mesAtual == 2 ? "selected" : "")>Fevereiro</option>
+                                                <option value="03" @(mesAtual == 3 ? "selected" : "")>Março</option>
+                                                <option value="04" @(mesAtual == 4 ? "selected" : "")>Abril</option>
+                                                <option value="05" @(mesAtual == 5 ? "selected" : "")>Maio</option>
+                                                <option value="06" @(mesAtual == 6 ? "selected" : "")>Junho</option>
+                                                <option value="07" @(mesAtual == 7 ? "selected" : "")>Julho</option>
+                                                <option value="08" @(mesAtual == 8 ? "selected" : "")>Agosto</option>
+                                                <option value="09" @(mesAtual == 9 ? "selected" : "")>Setembro</option>
+                                                <option value="10" @(mesAtual == 10 ? "selected" : "")>Outubro</option>
+                                                <option value="11" @(mesAtual == 11 ? "selected" : "")>Novembro</option>
+                                                <option value="12" @(mesAtual == 12 ? "selected" : "")>Dezembro</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="ano">Ano</label>
+                                            <select name="ano" id="ano" class="form-control">
+                                                @{
+                                                    var anoAtual = System.DateTime.Today.Year;
+                                                }
+                                                <option value="2010" @(anoAtual == 2010 ? "selected" : "")>2010</option>
+                                                <option value="2011" @(anoAtual == 2011 ? "selected" : "")>2011</option>
+                                                <option value="2012" @(anoAtual == 2012 ? "selected" : "")>2012</option>
+                                                <option value="2013" @(anoAtual == 2013 ? "selected" : "")>2013</option>
+                                                <option value="2014" @(anoAtual == 2014 ? "selected" : "")>2014</option>
+                                                <option value="2015" @(anoAtual == 2015 ? "selected" : "")>2015</option>
+                                                <option value="2016" @(anoAtual == 2016 ? "selected" : "")>2016</option>
+                                                <option value="2017" @(anoAtual == 2017 ? "selected" : "")>2017</option>
+                                                <option value="2018" @(anoAtual == 2018 ? "selected" : "")>2018</option>
+                                                <option value="2019" @(anoAtual == 2019 ? "selected" : "")>2019</option>
+                                                <option value="2020" @(anoAtual == 2020 ? "selected" : "")>2020</option>
+                                                <option value="2021" @(anoAtual == 2021 ? "selected" : "")>2021</option>
+                                                <option value="2022" @(anoAtual == 2022 ? "selected" : "")>2022</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <table class="table table-sm table-striped table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Data Pagamento</th>
+                                    <th scope="col">Num. Pedido</th>
+                                    <th scope="col">Vendedor</th>
+                                    <th scope="col">Representada</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Parcela</th>
+                                    <th scope="col">R$ Comissão</th>
+                                    <th scope="col">% Comissão</th>
+                                    <th scope="col">Paga</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-comissoes">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
 
             <div div class="tab-pane fade" id="outros-cadastros" role="tabpanel"
                  aria-labelledby="outros-cadastros-tab">
@@ -186,13 +275,20 @@
                                         </a>
                                     </div>
                                     @*<div class="input-group col-md-4 mt-3">
+                                            <input type="text" class="form-control" placeholder="Pesquisar meta" id="pesquisa-meta">
+                                            <div class="input-group-append" id="btnPesquisarMeta">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i class="fas fa-search icone-search"></i>
+                                                </span>
+                                            </div>
+                                        </div>*@<div class="input-group col-md-4 mt-3">
                                         <input type="text" class="form-control" placeholder="Pesquisar meta" id="pesquisa-meta">
                                         <div class="input-group-append" id="btnPesquisarMeta">
                                             <span class="input-group-text" id="basic-addon2">
                                                 <i class="fas fa-search icone-search"></i>
                                             </span>
                                         </div>
-                                    </div>*@
+                                    </div>
                                 </div>
                             </form>
 

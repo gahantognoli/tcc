@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Comissao Por Periodo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mt-3">
+            <div class="card-header bg-dark text-white">
+                <span class="h4">Comissões por Período</span>
+            </div>
+            <div class="card-body">
+                <form action="/Relatorios/GerarRelatorioComissaoPorPeriodo" method="get" target="_blank" id="formComissoes">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="dataEmissaoInicio">Data Pagamento Início</label>
+                            <input type="date" name="dataEmissaoInicio" id="dataEmissaoInicio" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dataEmissaoFim">Data Pagamento Fim</label>
+                            <input type="date" name="dataEmissaoFim" id="dataEmissaoFim" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="dataEmissaoFim">Exportar para</label>
+                            <select name="exportarPara" id="exportarPara" class="form-control" required>
+                                <option value="pdf">PDF</option>
+                                <option value="excel">Excel</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <button type="button" id="btnGerarRelatorio" name="gerarRelatorio" class="btn btn-success mr-1" onclick="$('#formComissoes').submit()">Gerar Relatório</button>
+                @Html.ActionLink("Voltar", "Index", "Dashboard", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+
+

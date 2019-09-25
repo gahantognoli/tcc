@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatasetRelatoriosFaturamentos" targetNamespace="http://tempuri.org/DatasetRelatoriosFaturamentos.xsd" xmlns:mstns="http://tempuri.org/DatasetRelatoriosFaturamentos.xsd" xmlns="http://tempuri.org/DatasetRelatoriosFaturamentos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DatasetRelatoriosFaturamentos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DatasetRelatoriosFaturamentos" msprop:Generator_UserDSName="DatasetRelatoriosFaturamentos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Faturamentos" msprop:Generator_TableClassName="FaturamentosDataTable" msprop:Generator_TableVarName="tableFaturamentos" msprop:Generator_TablePropName="Faturamentos" msprop:Generator_RowDeletingName="FaturamentosRowDeleting" msprop:Generator_RowChangingName="FaturamentosRowChanging" msprop:Generator_RowEvHandlerName="FaturamentosRowChangeEventHandler" msprop:Generator_RowDeletedName="FaturamentosRowDeleted" msprop:Generator_UserTableName="Faturamentos" msprop:Generator_RowChangedName="FaturamentosRowChanged" msprop:Generator_RowEvArgName="FaturamentosRowChangeEvent" msprop:Generator_RowClassName="FaturamentosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DataEmissao" msprop:Generator_ColumnVarNameInTable="columnDataEmissao" msprop:Generator_ColumnPropNameInRow="DataEmissao" msprop:Generator_ColumnPropNameInTable="DataEmissaoColumn" msprop:Generator_UserColumnName="DataEmissao" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NumeroPedido" msprop:Generator_ColumnVarNameInTable="columnNumeroPedido" msprop:Generator_ColumnPropNameInRow="NumeroPedido" msprop:Generator_ColumnPropNameInTable="NumeroPedidoColumn" msprop:Generator_UserColumnName="NumeroPedido" type="xs:int" minOccurs="0" />
+              <xs:element name="RazaoSocial" msprop:Generator_ColumnVarNameInTable="columnRazaoSocial" msprop:Generator_ColumnPropNameInRow="RazaoSocial" msprop:Generator_ColumnPropNameInTable="RazaoSocialColumn" msprop:Generator_UserColumnName="RazaoSocial" type="xs:string" minOccurs="0" />
+              <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="Vendedor" msprop:Generator_ColumnVarNameInTable="columnVendedor" msprop:Generator_ColumnPropNameInRow="Vendedor" msprop:Generator_ColumnPropNameInTable="VendedorColumn" msprop:Generator_UserColumnName="Vendedor" type="xs:string" minOccurs="0" />
+              <xs:element name="ValorTotal" msprop:Generator_ColumnVarNameInTable="columnValorTotal" msprop:Generator_ColumnPropNameInRow="ValorTotal" msprop:Generator_ColumnPropNameInTable="ValorTotalColumn" msprop:Generator_UserColumnName="ValorTotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Faturado" msprop:Generator_ColumnVarNameInTable="columnFaturado" msprop:Generator_ColumnPropNameInRow="Faturado" msprop:Generator_ColumnPropNameInTable="FaturadoColumn" msprop:Generator_UserColumnName="Faturado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NaoFaturado" msprop:Generator_ColumnVarNameInTable="columnNaoFaturado" msprop:Generator_ColumnPropNameInRow="NaoFaturado" msprop:Generator_ColumnPropNameInTable="NaoFaturadoColumn" msprop:Generator_UserColumnName="NaoFaturado" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

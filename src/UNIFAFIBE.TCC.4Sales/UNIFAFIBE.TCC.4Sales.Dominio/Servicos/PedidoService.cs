@@ -44,6 +44,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             }
         }
 
+        public void AtualizarPagamentoComissao(Guid parcelaId, bool pago)
+        {
+            _pedidoRepositorio.AtualizarPagamentoComissao(parcelaId, pago);
+        }
+
         public void Dispose()
         {
             _pedidoRepositorio.Dispose();
@@ -69,6 +74,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
                 return pedido;
 
             return _pedidoRepositorio.Adicionar(pedido);
+        }
+
+        public IEnumerable<Comissao> ObterComissoes(int mes, int ano)
+        {
+            return _pedidoRepositorio.ObterComissoes(mes, ano);
         }
 
         public int ObterNumeroPedido()

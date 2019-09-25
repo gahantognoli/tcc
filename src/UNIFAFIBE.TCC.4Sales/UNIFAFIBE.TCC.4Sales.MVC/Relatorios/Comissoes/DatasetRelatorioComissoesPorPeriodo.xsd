@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatasetRelatorioComissoesPorPeriodo" targetNamespace="http://tempuri.org/DatasetRelatorioComissoesPorPeriodo.xsd" xmlns:mstns="http://tempuri.org/DatasetRelatorioComissoesPorPeriodo.xsd" xmlns="http://tempuri.org/DatasetRelatorioComissoesPorPeriodo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DatasetRelatorioComissoesPorPeriodo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DatasetRelatorioComissoesPorPeriodo" msprop:Generator_UserDSName="DatasetRelatorioComissoesPorPeriodo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Comissoes" msprop:Generator_TableClassName="ComissoesDataTable" msprop:Generator_TableVarName="tableComissoes" msprop:Generator_RowChangedName="ComissoesRowChanged" msprop:Generator_TablePropName="Comissoes" msprop:Generator_RowDeletingName="ComissoesRowDeleting" msprop:Generator_RowChangingName="ComissoesRowChanging" msprop:Generator_RowEvHandlerName="ComissoesRowChangeEventHandler" msprop:Generator_RowDeletedName="ComissoesRowDeleted" msprop:Generator_RowClassName="ComissoesRow" msprop:Generator_UserTableName="Comissoes" msprop:Generator_RowEvArgName="ComissoesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DataPagamento" msprop:Generator_ColumnVarNameInTable="columnDataPagamento" msprop:Generator_ColumnPropNameInRow="DataPagamento" msprop:Generator_ColumnPropNameInTable="DataPagamentoColumn" msprop:Generator_UserColumnName="DataPagamento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NumeroPedido" msprop:Generator_ColumnVarNameInTable="columnNumeroPedido" msprop:Generator_ColumnPropNameInRow="NumeroPedido" msprop:Generator_ColumnPropNameInTable="NumeroPedidoColumn" msprop:Generator_UserColumnName="NumeroPedido" type="xs:int" minOccurs="0" />
+              <xs:element name="DataFaturamento" msprop:Generator_ColumnVarNameInTable="columnDataFaturamento" msprop:Generator_ColumnPropNameInRow="DataFaturamento" msprop:Generator_ColumnPropNameInTable="DataFaturamentoColumn" msprop:Generator_UserColumnName="DataFaturamento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Representada" msprop:Generator_ColumnVarNameInTable="columnRepresentada" msprop:Generator_ColumnPropNameInRow="Representada" msprop:Generator_ColumnPropNameInTable="RepresentadaColumn" msprop:Generator_UserColumnName="Representada" type="xs:string" minOccurs="0" />
+              <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="ValorPedido" msprop:Generator_ColumnVarNameInTable="columnValorPedido" msprop:Generator_ColumnPropNameInRow="ValorPedido" msprop:Generator_ColumnPropNameInTable="ValorPedidoColumn" msprop:Generator_UserColumnName="ValorPedido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NumeroParcela" msprop:Generator_ColumnVarNameInTable="columnNumeroParcela" msprop:Generator_ColumnPropNameInRow="NumeroParcela" msprop:Generator_ColumnPropNameInTable="NumeroParcelaColumn" msprop:Generator_UserColumnName="NumeroParcela" type="xs:int" minOccurs="0" />
+              <xs:element name="ValorComissao" msprop:Generator_ColumnVarNameInTable="columnValorComissao" msprop:Generator_ColumnPropNameInRow="ValorComissao" msprop:Generator_ColumnPropNameInTable="ValorComissaoColumn" msprop:Generator_UserColumnName="ValorComissao" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Comissao" msprop:Generator_ColumnVarNameInTable="columnComissao" msprop:Generator_ColumnPropNameInRow="Comissao" msprop:Generator_ColumnPropNameInTable="ComissaoColumn" msprop:Generator_UserColumnName="Comissao" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Paga" msprop:Generator_ColumnVarNameInTable="columnPaga" msprop:Generator_ColumnPropNameInRow="Paga" msprop:Generator_ColumnPropNameInTable="PagaColumn" msprop:Generator_UserColumnName="Paga" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

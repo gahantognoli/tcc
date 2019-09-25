@@ -21,5 +21,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Repositorios
         IEnumerable<Pedido> ObterPorTransportadora(Guid transportadoraId);
         IEnumerable<Pedido> ObterPorStatus(Guid statusId);
         IEnumerable<Pedido> ObterPorTipo(Guid tipoId);
+        IEnumerable<Comissao> ObterComissoes(int mes, int ano);
+        void AtualizarPagamentoComissao(Guid parcelaId, bool pago);
     }
 }

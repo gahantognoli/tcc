@@ -360,5 +360,22 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
             return retornoPedido;
         }
+
+        public IEnumerable<Comissao> ObterComissoes(int mes, int ano)
+        {
+            var cn = Db.Database.Connection;
+            IEnumerable<Comissao> retornoComissoes;
+
+            retornoComissoes = cn.Query<Comissao>(PedidoProcedures.ObterComissoes.GetDescription(),
+                new { @mes = mes , @ano = ano}, commandType: CommandType.StoredProcedure);
+
+            return retornoComissoes;
+        }
+
+        public void AtualizarPagamentoComissao(Guid parcelaId, bool pago)
+        {
+            var parcela = Db.Parcelas.Find(parcelaId);
+            parcela.Paga = pago;
+        }
     }
 }

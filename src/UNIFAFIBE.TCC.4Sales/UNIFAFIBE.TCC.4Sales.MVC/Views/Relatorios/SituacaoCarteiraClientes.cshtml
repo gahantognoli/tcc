@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Situação Carteira de Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mt-3">
+            <div class="card-header bg-dark text-white">
+                <span class="h4">Situação Carteira de Clientes</span>
+            </div>
+            <div class="card-body">
+                <form action="/Relatorios/GerarRelatorioSituacaoCarteiraClientes" method="get" target="_blank" id="formCarteiraClientes">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="dataEmissaoFim">Exportar para</label>
+                            <select name="exportarPara" id="exportarPara" class="form-control" required>
+                                <option value="pdf">PDF</option>
+                                <option value="excel">Excel</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <button type="button" id="btnGerarRelatorio" name="gerarRelatorio" class="btn btn-success mr-1" onclick="$('#formCarteiraClientes').submit()">Gerar Relatório</button>
+                @Html.ActionLink("Voltar", "Index", "Dashboard", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+

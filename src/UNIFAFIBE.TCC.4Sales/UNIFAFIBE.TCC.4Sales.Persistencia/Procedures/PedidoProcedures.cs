@@ -32,6 +32,8 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Procedures
         ObterPorTipo,
         [Description("usp_Pedido_ObterPorVendedor")]
         ObterPorVendedor,
+        [Description("usp_Comissoes_PorPeriodo")]
+        ObterComissoes,
         [Description("usp_Pedido_ObterTodos")]
         ObterTodos
     }

@@ -112,6 +112,10 @@
     <Compile Include="Procedures\PessoaFisicaProcedures.cs" />
     <Compile Include="Procedures\PessoaJuridicaProcedures.cs" />
     <Compile Include="Procedures\ProdutoProcedures.cs" />
+    <Compile Include="Procedures\Relatorios\RelatoriosClienteProcedures.cs" />
+    <Compile Include="Procedures\Relatorios\RelatoriosComissaoProcedures.cs" />
+    <Compile Include="Procedures\Relatorios\RelatoriosFaturamentoProcedures.cs" />
+    <Compile Include="Procedures\Relatorios\RelatoriosVendaProcedures.cs" />
     <Compile Include="Procedures\RepresentadaProcedures.cs" />
     <Compile Include="Procedures\SegmentoProcedures.cs" />
     <Compile Include="Procedures\StatusPedidoProcedures.cs" />
@@ -134,6 +138,11 @@
     <Compile Include="Repositorios\PedidoRepositorio.cs" />
     <Compile Include="Repositorios\PessoaJuridicaRepositorio.cs" />
     <Compile Include="Repositorios\ProdutoRepositorio.cs" />
+    <Compile Include="Repositorios\Relatorios\ConexaoSqlServer.cs" />
+    <Compile Include="Repositorios\Relatorios\RelatoriosClienteRepositorio.cs" />
+    <Compile Include="Repositorios\Relatorios\RelatoriosComissaoRepositorio.cs" />
+    <Compile Include="Repositorios\Relatorios\RelatoriosFaturamentoRepositorio.cs" />
+    <Compile Include="Repositorios\Relatorios\RelatoriosVendaRepositorio.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\RepresentadaRepositorio.cs" />
     <Compile Include="Repositorios\SegmentoRepositorio.cs" />

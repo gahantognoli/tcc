@@ -39,12 +39,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Comissao.cs" />
     <Compile Include="Entidades\CondicaoPagamento.cs" />
     <Compile Include="Entidades\ContatoCliente.cs" />
     <Compile Include="Entidades\ContatoRepresentada.cs" />
     <Compile Include="Entidades\Email.cs" />
     <Compile Include="Entidades\EnderecoCliente.cs" />
     <Compile Include="Entidades\Faturamento.cs" />
+    <Compile Include="Entidades\Relatorios\ComissaoPorPeriodo.cs" />
+    <Compile Include="Entidades\Relatorios\FaturamentoPorPeriodo.cs" />
+    <Compile Include="Entidades\Relatorios\SituacaoCarteiraClientes.cs" />
+    <Compile Include="Entidades\Relatorios\VendaPorPeriodo.cs" />
+    <Compile Include="Entidades\Relatorios\VendaRankingVendedor.cs" />
     <Compile Include="Especificacoes\CondicoesPagamento\CondicaoPagamentoDevePossuirDescricaoUnicaSpecification.cs" />
     <Compile Include="Especificacoes\ContatosCliente\ContatoClienteDevePossuirEmailValidoSpecification.cs" />
     <Compile Include="Especificacoes\ContatosRepresentada\ContatoRepresentadaDevePossuirEmailValidoSpecification.cs" />
@@ -128,6 +134,10 @@
     <Compile Include="Interfaces\Repositorios\ITransportadoraRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IUsuarioRepresentadaRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Relatorios\IRelatoriosClienteRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Relatorios\IRelatoriosComissaoRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Relatorios\IRelatoriosFaturamentoRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\Relatorios\IRelatoriosVendaRepositorio.cs" />
     <Compile Include="Interfaces\Servicos\IDashboardService.cs" />
     <Compile Include="Interfaces\Servicos\IEmailService.cs" />
     <Compile Include="Interfaces\Servicos\IEntitySerializationService.cs" />
@@ -141,6 +151,10 @@
     <Compile Include="Interfaces\Servicos\ITipoPedidoService.cs" />
     <Compile Include="Interfaces\Servicos\ITransportadoraService.cs" />
     <Compile Include="Interfaces\Servicos\IUsuarioRepresentadaService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosClienteService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosComissaoService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosFaturamentoService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosVendaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\Servicos\ICondicaoPagamentoService.cs" />
     <Compile Include="Interfaces\Servicos\IContatoClienteService.cs" />
@@ -164,6 +178,10 @@
     <Compile Include="Servicos\PessoaFisicaService.cs" />
     <Compile Include="Servicos\PessoaJuridicaService.cs" />
     <Compile Include="Servicos\ProdutoService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosClienteService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosComissaoService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosFaturamentoService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosVendaService.cs" />
     <Compile Include="Servicos\RepresentadaService.cs" />
     <Compile Include="Servicos\SegmentoService.cs" />
     <Compile Include="Servicos\StatusPedidoService.cs" />

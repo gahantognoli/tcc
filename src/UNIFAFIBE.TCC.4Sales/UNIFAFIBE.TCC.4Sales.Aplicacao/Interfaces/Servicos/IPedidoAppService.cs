@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
+using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
 
 namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
 {
@@ -29,5 +30,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         IEnumerable<PedidoViewModel> ObterPorTransportadora(Guid transportadoraId);
         IEnumerable<PedidoViewModel> ObterPorStatus(Guid statusId);
         IEnumerable<PedidoViewModel> ObterPorTipo(Guid tipoId);
+        IEnumerable<Comissao> ObterComissoes(int mes, int ano);
+        void AtualizarPagamentoComissao(Guid parcelaId, bool pago);
     }
 }

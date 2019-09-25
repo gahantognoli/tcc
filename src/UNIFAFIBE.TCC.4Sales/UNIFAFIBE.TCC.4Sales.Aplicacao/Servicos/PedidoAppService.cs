@@ -213,5 +213,16 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
         {
             return Mapper.Map<IEnumerable<PedidoViewModel>>(_pedidoService.ObterPorTipo(tipoId));
         }
+
+        public IEnumerable<Comissao> ObterComissoes(int mes, int ano)
+        {
+            return _pedidoService.ObterComissoes(mes, ano);
+        }
+
+        public void AtualizarPagamentoComissao(Guid parcelaId, bool pago)
+        {
+            _pedidoService.AtualizarPagamentoComissao(parcelaId, pago);
+            Commit();
+        }
     }
 }

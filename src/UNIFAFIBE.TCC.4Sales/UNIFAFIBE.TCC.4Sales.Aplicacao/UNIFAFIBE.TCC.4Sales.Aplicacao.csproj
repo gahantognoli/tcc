@@ -72,6 +72,10 @@
     <Compile Include="Interfaces\Servicos\ITransportadoraAppService.cs" />
     <Compile Include="Interfaces\Servicos\IUsuarioAppService.cs" />
     <Compile Include="Interfaces\Servicos\IUsuarioRepresentadaAppService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosClienteAppService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosComissaoAppService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosFaturamentoAppService.cs" />
+    <Compile Include="Interfaces\Servicos\Relatorios\IRelatoriosVendaAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\AppService.cs" />
     <Compile Include="Servicos\CondicaoPagamentoAppService.cs" />
@@ -87,6 +91,10 @@
     <Compile Include="Servicos\PessoaFisicaAppService.cs" />
     <Compile Include="Servicos\PessoaJuridicaAppService.cs" />
     <Compile Include="Servicos\ProdutoAppService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosClienteAppService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosComissaoAppService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosFaturamentoAppService.cs" />
+    <Compile Include="Servicos\Relatorios\RelatoriosVendaAppService.cs" />
     <Compile Include="Servicos\RepresentadaAppService.cs" />
     <Compile Include="Servicos\SegmentoAppService.cs" />
     <Compile Include="Servicos\StatusPedidoAppService.cs" />

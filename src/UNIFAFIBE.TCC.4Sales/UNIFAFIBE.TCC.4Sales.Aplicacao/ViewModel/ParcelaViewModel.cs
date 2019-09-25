@@ -31,6 +31,10 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public DateTime DataPagamento { get; set; }
         [ScaffoldColumn(false)]
         public Guid FaturamentoId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public bool Paga { get; set; } = false;
+
         [ScaffoldColumn(false)]
         public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
         public virtual FaturamentoViewModel Faturamento { get; set; }
