@@ -67,20 +67,34 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
             return retornoUsuario;
         }
 
-        public IEnumerable<Usuario> ObterPorEmail(string email)
+        public Usuario ObterPorEmail(string email)
         {
             var cn = Db.Database.Connection;
-            IEnumerable<Usuario> retornoUsuario;
+            Usuario retornoUsuario;
 
             retornoUsuario = cn.Query<Usuario>(UsuarioProcedures.ObterPorEmail.GetDescription(),
                 new { email = email },
-                commandType: CommandType.StoredProcedure);
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
 
             return retornoUsuario;
         }
 
+        public bool Logar(string email, string senha)
+        {
+            var cn = Db.Database.Connection;
+
+            var retorno = cn.Query<bool>(UsuarioProcedures.Logar.GetDescription(),
+                new { @email = email, @senha = senha },
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return retorno;
+        }
+
         public override Usuario Atualizar(Usuario obj)
         {
+            var temp = ObterPorId(obj.UsuarioId);
+            obj.Ativo = temp.Ativo;
+            obj.PrimeiroAcesso = temp.PrimeiroAcesso;
             Usuario existingUser = Db.Usuarios.Include("Representadas")
                 .Where(e => e.UsuarioId == obj.UsuarioId).FirstOrDefault<Usuario>();
 
@@ -128,6 +142,13 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
                 Db.Entry(item).State = System.Data.Entity.EntityState.Unchanged;
             }
 
+            return usuario;
+        }
+
+        public Usuario AlterarPrimeiroAcesso(Guid usuarioId)
+        {
+            var usuario = Db.Usuarios.Find(usuarioId);
+            usuario.PrimeiroAcesso = false;
             return usuario;
         }
     }

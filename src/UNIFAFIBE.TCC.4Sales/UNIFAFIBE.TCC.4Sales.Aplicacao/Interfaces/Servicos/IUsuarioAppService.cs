@@ -15,5 +15,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos
         UsuarioViewModel AlterarSenha(Guid usuarioId, string novaSenha);
         int SaveChanges();
         UsuarioRepresentadaCadastroViewModel ObterDadosUsuario(Guid id);
+        bool Logar(string email, string senha);
+        UsuarioViewModel ObterPorEmail(string email);
+        UsuarioViewModel AlterarPrimeiroAcesso(Guid usuarioId);
     }
 }

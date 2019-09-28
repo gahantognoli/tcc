@@ -16,7 +16,7 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Especificacoes.Usuarios
 
         public bool IsSatisfiedBy(Usuario usuario)
         {
-            return _usuarioRepositorio.ObterPorEmail(usuario.Email).FirstOrDefault() == null;
+            return _usuarioRepositorio.ObterPorEmail(usuario.Email) == null;
         }
     }
 }

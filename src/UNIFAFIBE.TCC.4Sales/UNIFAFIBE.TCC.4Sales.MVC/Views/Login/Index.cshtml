@@ -1,0 +1,53 @@
+﻿@model UNIFAFIBE.TCC._4Sales.MVC.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/Login")
+</head>
+<body>
+    <div class="wrapper-login">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-signin", @id = "form-login" }))
+        {
+            @Html.AntiForgeryToken()
+            if (ViewData.ModelState.IsValid == false)
+            {
+                <div class="alert alert-secondary">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <p class="h6 text-danger">Atenção:</p>
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+            }
+            @Html.HiddenFor(model => model.UrlRetorno)
+            <div class="text-center">
+                <img src="@Url.Content("~/assets/img/logo3.png")" alt="" class="img-logo-login">
+            </div>
+
+            <div class="form-group">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuário" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-label-group">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Senha" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block mt-3" type="submit" id="btn-login">Entrar</button>
+        }
+
+        <p class="text-muted text-center">© 2018-2019</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

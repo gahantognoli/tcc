@@ -25,6 +25,11 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
             return _usuarioRepositorio.Adicionar(usuario);
         }
 
+        public Usuario AlterarPrimeiroAcesso(Guid usuarioId)
+        {
+            return _usuarioRepositorio.AlterarPrimeiroAcesso(usuarioId);
+        }
+
         public Usuario AlterarSenha(Guid usuarioId, string novaSenha)
         {
             var usuario = _usuarioRepositorio.ObterPorId(usuarioId);
@@ -68,6 +73,16 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Servicos
         public void EnviarSenhaPorEmail(Email email)
         {
             _emailService.Enviar(email);
+        }
+
+        public bool Logar(string email, string senha)
+        {
+            return _usuarioRepositorio.Logar(email, senha);
+        }
+
+        public Usuario ObterPorEmail(string email)
+        {
+            return _usuarioRepositorio.ObterPorEmail(email);
         }
 
         public Usuario ObterPorId(Guid id)

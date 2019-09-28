@@ -17,8 +17,8 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Entidades
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
-        public bool Ativo { get; set; } = true;
-        public bool PrimeiroAcesso { get; set; } = true;
+        public bool Ativo { get; set; }
+        public bool PrimeiroAcesso { get; set; }
         public string FotoPerfil { get; set; }
         public string AssinaturaEmail { get; set; }
         public bool UsuarioResponsavel { get; set; }

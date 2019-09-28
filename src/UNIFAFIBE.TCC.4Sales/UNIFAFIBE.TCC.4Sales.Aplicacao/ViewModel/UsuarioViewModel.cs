@@ -28,8 +28,8 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel
         public string Email { get; set; }
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]
         public string Telefone { get; set; }
-        public bool Ativo { get; set; } = true;
-        public bool PrimeiroAcesso { get; set; } = true;
+        public bool Ativo { get; set; }
+        public bool PrimeiroAcesso { get; set; }
         public string FotoPerfil { get; set; }
         [Display(Name = "Assinatura E-mail")]
         [MaxLength(500, ErrorMessage = "Tamanho máximo de 500 caracteres")]

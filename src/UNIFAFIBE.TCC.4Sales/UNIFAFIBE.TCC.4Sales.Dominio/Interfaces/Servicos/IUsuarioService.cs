@@ -14,6 +14,9 @@ namespace UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos
         Usuario AlterarSenha(Guid usuarioId, string novaSenha);
         Usuario ObterPorId(Guid id);
         IEnumerable<Usuario> ObterTodos();
+        bool Logar(string email, string senha);
+        Usuario ObterPorEmail(string email);
         int SaveChanges();
+        Usuario AlterarPrimeiroAcesso(Guid usuarioId);
     }
 }

@@ -3,6 +3,7 @@ using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly IDashboardAppService _dashboardAppService;

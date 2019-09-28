@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
+using UNIFAFIBE.TCC._4Sales.MVC.Helpers;
 using X.PagedList;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
@@ -153,7 +154,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             List<PedidoViewModel> pedidos = new List<PedidoViewModel>();
 
             //Isso vira de uma claim, depois que fizermos o esquema de autenticação.
-            var usuario = _usuarioAppService.ObterPorId(Guid.Parse("65d44201-487e-46f0-bc3f-d4774c1768d5"));
+            var usuario = _usuarioAppService.ObterPorId(Guid.Parse(User.Identity.GetUserId()));
 
             if (parametro == "cliente")
             {

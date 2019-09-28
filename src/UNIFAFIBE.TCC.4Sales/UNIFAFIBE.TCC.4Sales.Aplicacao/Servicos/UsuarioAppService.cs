@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 using UNIFAFIBE.TCC._4Sales.Dominio.Entidades;
@@ -25,13 +27,17 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public UsuarioViewModel Adicionar(UsuarioViewModel usuario)
         {
-            usuario.Senha = GerarSenhaTemporaria();
+            var senhaTemporaria = GerarSenhaTemporaria();
+            usuario.Senha = GerarHash(senhaTemporaria);
+            usuario.Ativo = true;
+            usuario.PrimeiroAcesso = true;
             var usuarioRetorno = Mapper.Map<UsuarioViewModel>
                 (_usuarioService.Adicionar(Mapper.Map<Usuario>(usuario)));
 
             if (usuarioRetorno.EhValido())
             {
                 Commit();
+                usuarioRetorno.Senha = senhaTemporaria;
                 Email email = MontarEmailSenha(usuarioRetorno);
                 _usuarioService.EnviarSenhaPorEmail(email);
             }
@@ -48,6 +54,22 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             email.Mensagem += "\n\r\n\rSerá solicitado alteração dessa senha no seu primeiro acesso ao sistema";
             return email;
         }
+
+        private string GerarHash(string texto)
+        {
+            SHA256 sha256 = SHA256Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(texto);
+            byte[] hash = sha256.ComputeHash(bytes);
+
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                result.Append(hash[i].ToString("X"));
+            }
+
+            return result.ToString();
+        }
+
 
         private string GerarSenhaTemporaria()
         {
@@ -105,6 +127,7 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
 
         public UsuarioViewModel AlterarSenha(Guid usuarioId, string novaSenha)
         {
+            novaSenha = GerarHash(novaSenha);
             var usuarioRetorno = Mapper.Map<UsuarioViewModel>
                  (_usuarioService.AlterarSenha(usuarioId, novaSenha));
 
@@ -134,6 +157,24 @@ namespace UNIFAFIBE.TCC._4Sales.Aplicacao.Servicos
             _representadaService.Dispose();
             _usuarioService.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public bool Logar(string email, string senha)
+        {
+            senha = GerarHash(senha);
+            return _usuarioService.Logar(email, senha);
+        }
+
+        public UsuarioViewModel ObterPorEmail(string email)
+        {
+            return Mapper.Map<UsuarioViewModel>(_usuarioService.ObterPorEmail(email));
+        }
+
+        public UsuarioViewModel AlterarPrimeiroAcesso(Guid usuarioId)
+        {
+            var usuario = Mapper.Map<UsuarioViewModel>(_usuarioService.AlterarPrimeiroAcesso(usuarioId));
+            Commit();
+            return usuario;
         }
     }
 }
