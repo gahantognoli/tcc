@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
 using UNIFAFIBE.TCC._4Sales.Dominio.Interfaces.Servicos;
+using UNIFAFIBE.TCC._4Sales.MVC.Filters;
+using UNIFAFIBE.TCC._4Sales.MVC.Helpers;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
 {
@@ -30,12 +33,14 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         // GET: Usuario
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public JsonResult Listar()
         {
             var json = _colecaoSerializationUsuariosService.Serialize(_usuarioAppService.ObterTodos());
             return Json(new { usuario = json }, JsonRequestBehavior.AllowGet);
         }
 
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public ActionResult Novo()
         {
 
@@ -44,6 +49,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public ActionResult Novo(UsuarioViewModel usuario, string UsuarioResponsavel, string[] RepresentadaId)
         {
             try
@@ -85,6 +91,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             }
         }
 
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public ActionResult Alterar(Guid id)
         {
             PopularViewBag();
@@ -93,6 +100,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public ActionResult Alterar(UsuarioViewModel usuario, string UsuarioResponsavel, string[] RepresentadaId)
         {
             try
@@ -121,6 +129,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                     {
                         TempData["AtualizadoSucesso"] = "Usuário " + usuario.Nome +
                               " alterado com sucesso";
+                        User.UpdateImageClaim(usuario.UsuarioId, _usuarioAppService);
                         return RedirectToAction("Index", "PainelAdministrativo");
                     }
                     usuario.ValidationResult = usuarioRetorno.ValidationResult;
@@ -145,6 +154,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
             return Json(new { validationResult = usuario.ValidationResult }, JsonRequestBehavior.AllowGet);
         }
 
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public ActionResult Desativar(Guid? id)
         {
             if (id == null)
@@ -164,6 +174,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
         }
 
         [HttpPost]
+        [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
         public ActionResult Desativar(Guid id)
         {
             try
@@ -209,6 +220,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                     {
                         TempData["CadastradoSucesso"] = "Usuário " + usuario.Nome +
                               " alterado com sucesso";
+                        User.UpdateImageClaim(usuario.UsuarioId, _usuarioAppService);
                         return RedirectToAction("Index", "Dashboard");
                     }
                     usuario.ValidationResult = usuarioRetorno.ValidationResult;
@@ -222,6 +234,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                 throw;
             }
         }
+
 
         public JsonResult SalvarImagem(HttpPostedFileBase fileUpload)
         {

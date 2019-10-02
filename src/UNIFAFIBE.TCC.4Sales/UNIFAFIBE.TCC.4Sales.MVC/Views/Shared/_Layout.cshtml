@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg">
                 <div id="logo">
-                    <a href="#">
+                    <a href="/">
                         <img src="~/assets/img/logo.png" alt="" class="img-logo">
                     </a>
                 </div>
@@ -25,13 +25,8 @@
                     <i class="fas fa-align-justify"></i>
                 </button>
                 <ul class="nav navbar-nav ml-auto" id="menu-item-navigation-top">
-                    <li class="nav-item actives-menu-top">
-                        <a class="nav-link" href="#"><i class="fas fa-envelope icone-menu-top"></i></a>
-                    </li>
-                    <li class="nav-item actives-menu-top">
-                        <a class="nav-link" href="#"><i class="fas fa-bell icone-menu-top"></i></a>
-                    </li>
-                    <li class="nav-item actives-menu-top">
+                    
+                    <li class="nav-item actives-menu-top" style="border-left: solid 1px #CCC">
                         <div class="d-flex align-items-center user-loged">
                             <img src="@Url.Content(User.Identity.GetUserImage() == null ? string.Empty : User.Identity.GetUserImage())" alt="" class="img-user-loged">
                             <span>gantognoli</span>
@@ -40,10 +35,13 @@
 
                         <div class="info-user">
                             <ul class="list-unstyled">
-                                <li>
-                                    <a href="@Url.Action("Index", "PainelAdministrativo")">Painel Administrativo</a>
-                                </li>
-                                <hr class="hr-info-user" />
+                                @if (this.IfClaim("", "ADM"))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "PainelAdministrativo")">Painel Administrativo</a>
+                                    </li>
+                                    <hr class="hr-info-user" />
+                                }
                                 <li>
                                     <a href="/Login/Logoff">Sair</a>
                                 </li>
@@ -68,19 +66,12 @@
                         <p class="user-name">Gabriel Antognoli</p>
                         @*Alterar essa senha para o Id do usuário logado, que irá vir de uma claim*@
                         <a href="@Url.Action("EditarPerfil", "Usuario", new { id = User.Identity.GetUserId() })" class="link edit-user-profile">Editar perfil</a>
-                        <ul class="list-unstyled" id="menu-item-navigation">
-                            <li class="nav-item actives-menu-top">
-                                <a class="nav-link" href="#"><i class="fas fa-envelope icone-menu-top"></i></a>
-                            </li>
-                            <li class="nav-item actives-menu-top">
-                                <a class="nav-link" href="#"><i class="fas fa-bell icone-menu-top"></i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
 
             <ul class="list-unstyled list-menu">
+
                 <li id="dashboard-menu-item">
                     <a href="@Url.Action("Index", "Dashboard")">
                         <i class="fas fa-tachometer-alt icone-menu"></i>Dashboard
@@ -91,16 +82,23 @@
                         <i class="fas fa-clipboard-list icone-menu"></i>Pedidos
                     </a>
                 </li>
-                <li id="clientes-menu-item">
-                    <a href="@Url.Action("Index", "Cliente")">
-                        <i class="fas fa-user-friends icone-menu"></i>Clientes
-                    </a>
-                </li>
-                <li id="representadas-menu-item">
-                    <a href="@Url.Action("Index", "Representada")">
-                        <i class="fas fa-store icone-menu"></i>Representadas
-                    </a>
-                </li>
+                @if (this.IfClaim("", "ADM"))
+                {
+                    <li id="clientes-menu-item">
+                        <a href="@Url.Action("Index", "Cliente")">
+                            <i class="fas fa-user-friends icone-menu"></i>Clientes
+                        </a>
+                    </li>
+                }
+
+                @if (this.IfClaim("", "ADM"))
+                {
+                    <li id="representadas-menu-item">
+                        <a href="@Url.Action("Index", "Representada")">
+                            <i class="fas fa-store icone-menu"></i>Representadas
+                        </a>
+                    </li>
+                }
                 <li id="logoff">
                     <a href="#">
                         <i class="fas fa-sign-out-alt icone-menu"></i>Sair

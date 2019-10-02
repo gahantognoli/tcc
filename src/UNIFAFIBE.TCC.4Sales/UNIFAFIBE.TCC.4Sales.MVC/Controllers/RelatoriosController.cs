@@ -12,6 +12,7 @@ using UNIFAFIBE.TCC._4Sales.MVC.Relatorios.Vendas;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
 {
+    [Authorize]
     public class RelatoriosController : Controller
     {
         private readonly IRelatoriosVendaAppService _relatoriosVendaAppService;

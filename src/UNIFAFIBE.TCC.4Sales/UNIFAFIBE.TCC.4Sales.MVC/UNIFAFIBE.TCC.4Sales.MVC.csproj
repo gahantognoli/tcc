@@ -197,6 +197,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ComissaoController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FaturamentoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MetaController.cs" />
@@ -210,10 +211,13 @@
     <Compile Include="Controllers\PainelAdministrativoController.cs" />
     <Compile Include="Controllers\TransportadoraController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Filters\AutorizacaoFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ClaimsExtensionMethod.cs" />
     <Compile Include="Helpers\IdentityExtensionMethods.cs" />
+    <Compile Include="Helpers\PermissonHelperExtensionMethods.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RedefirSenhaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -467,6 +471,10 @@
     <Content Include="Views\Relatorios\ComissaoPorPeriodo.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\RedefinirSenha.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\NotAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

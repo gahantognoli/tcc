@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Security.Claims;
 using System.Web.Mvc;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.Interfaces.Servicos;
 using UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel;
+using UNIFAFIBE.TCC._4Sales.MVC.Filters;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
 {
+    [Authorize]
+    [ClaimsAutorize(ClaimType = ClaimTypes.Role, ClaimValue = "ADM")]
     public class ClienteController : Controller
     {
         private readonly IPessoaFisicaAppService _pessoaFisicaAppService;

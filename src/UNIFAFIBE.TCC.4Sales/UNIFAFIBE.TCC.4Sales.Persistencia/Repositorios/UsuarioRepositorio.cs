@@ -133,6 +133,9 @@ namespace UNIFAFIBE.TCC._4Sales.Persistencia.Repositorios
 
         public Usuario EditarPerfil(Usuario usuario)
         {
+            var temp = ObterPorId(usuario.UsuarioId);
+            usuario.Ativo = temp.Ativo;
+            usuario.PrimeiroAcesso = temp.PrimeiroAcesso;
             var entry = Db.Entry(usuario);
             DbSet.Attach(usuario);
             entry.State = EntityState.Modified;

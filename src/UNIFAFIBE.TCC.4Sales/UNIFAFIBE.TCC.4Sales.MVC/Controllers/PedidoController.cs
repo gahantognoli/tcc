@@ -10,6 +10,7 @@ using X.PagedList;
 
 namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
 {
+    [Authorize]
     public class PedidoController : Controller
     {
         private readonly IPedidoAppService _pedidoAppService;

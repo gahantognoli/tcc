@@ -91,7 +91,7 @@ namespace UNIFAFIBE.TCC._4Sales.MVC.Controllers
                 if (redefirSenhaViewModel.Senha != redefirSenhaViewModel.ConfirmarSenha)
                 {
                     ViewBag.UsuarioId = redefirSenhaViewModel.UsuarioId;
-                    ModelState.AddModelError("Erro", "As senha não conferem!");
+                    ModelState.AddModelError("Erro", "As senhas não conferem!");
                     return View(redefirSenhaViewModel);
                 }
 
