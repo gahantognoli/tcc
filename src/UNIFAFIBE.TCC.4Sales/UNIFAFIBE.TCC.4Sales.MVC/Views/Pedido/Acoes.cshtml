@@ -278,10 +278,10 @@
             <button type="button" class="btn btn-dark dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Alterar Status
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu" >
                 @foreach (var item in (ViewBag.StatusNaoPadroes as List<UNIFAFIBE.TCC._4Sales.Aplicacao.ViewModel.StatusPedidoViewModel>))
                 {
-                    <a class="dropdown-item" data-status="@item.StatusPedidoId">@item.Descricao</a>
+                    <a class="dropdown-item alterarStatus" data-status="@item.StatusPedidoId">@item.Descricao</a>
                 }
             </div>
         </div>
@@ -290,7 +290,7 @@
                 Mais opções
             </button>
             <div class="dropdown-menu">
-                <button class="dropdown-item" data-toggle="modal" data-target="#modalFaturamentos" style="cursor:pointer;">Faturamentos</button>
+                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalFaturamentos" style="cursor:pointer;">Faturamentos</button>
                 <a class="dropdown-item" href="#">Visualizar</a>
                 <a class="dropdown-item" href="#">Enviar p/ Representada</a>
             </div>

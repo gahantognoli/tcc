@@ -411,7 +411,7 @@ $(function () {
         functionsPedido.Remover($('#pedidoId').val());
     });
 
-    $('.dropdown-item').on('click', function () {
+    $('#alterarStatus').on('click', function () {
         var statusId = $(this).data('status');
         var pedidoId = $('#pedidoId').val();
         functionsPedido.AlterarStatus(statusId, pedidoId);
